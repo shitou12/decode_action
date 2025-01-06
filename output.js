@@ -48,8 +48,7 @@ class Bar {
       this.headers.nonce = this.nonce;
       this.headers.signatrue = this.signatrue;
       let _0x17da44 = await this.task("get", "https://hapi.baojun.net/base/account/pocket/draw/info", this.headers);
-      _0x17da44.result == true ? (this.jrcs = 0, this.noDrawMoney = Number(_0x17da44.data.noDrawMoney) / 100, console.log("账号[" + this.num + "]：可提现余额: [" + this.noDrawMoney + "] 元"), await wait(getRandomNumber(2, 3)), await this.csjc(1), await wait(getRandomNumber(2, 3)), await this.csjc(2), console.log("ÕËºÅ[" + this.num + "]：今日已获得奖励次数：" + this.jrcs)) : console.log("ÕËºÅ[" + this.num + "]£º" + _0x17da44.msg);
-    } catch (_0x35455c) {
+      _0x17da44.result == true ? (this.jrcs = 0, this.noDrawMoney = Number(_0x17da44.data.noDrawMoney) / 100, console.log("账号[" + this.num + "]：可提现余额: [" + this.noDrawMoney + "] 元"), await wait(getRandomNumber(2, 3)), await this.csjc(1), await wait(getRandomNumber(2, 3)), await this.csjc(2), console.log("ÕËºÅ[" + this.num + "]：今日已获得奖励次数：" + this.jrcs)) : console.log("ÕËºÅ[" + this.n
       console.log("ÕËºÅ[" + this.num + "]", _0x35455c);
     } finally {
       return Promise.resolve(1);
