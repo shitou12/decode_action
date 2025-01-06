@@ -1,4 +1,4 @@
-NAME = "宝骏汽车";
+
 VLAA = "bjqc";
 VALY = [VLAA + "app"];
 LOGS = 0;
