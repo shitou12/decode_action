@@ -1,4 +1,2660 @@
-//Sat Jan 31 2026 02:07:25 GMT+0000 (Coordinated Universal Time)
+//Sat Jan 31 2026 02:44:56 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
-"const ScriptVersion = \"1.1.4\";\nconst a0_0x1c51e0=a0_0x1953;(function(_0x33a699,_0x4cfdf1){const _0x3008b8=a0_0x1953,_0x4c3f38=_0x33a699();while(!![]){try{const _0x582058=parseInt(_0x3008b8(0xe0))\/0x1*(parseInt(_0x3008b8(0x358))\/0x2)+parseInt(_0x3008b8(0xde))\/0x3*(parseInt(_0x3008b8(0xe4))\/0x4)+parseInt(_0x3008b8(0xea))\/0x5*(parseInt(_0x3008b8(0xf0))\/0x6)+parseInt(_0x3008b8(0x363))\/0x7*(parseInt(_0x3008b8(0xd2))\/0x8)+parseInt(_0x3008b8(0xd3))\/0x9*(parseInt(_0x3008b8(0xd4))\/0xa)+parseInt(_0x3008b8(0xd1))\/0xb*(parseInt(_0x3008b8(0xf6))\/0xc)+parseInt(_0x3008b8(0xf7))\/0xd*(-parseInt(_0x3008b8(0xf9))\/0xe);if(_0x582058===_0x4cfdf1)break;else _0x4c3f38['push'](_0x4c3f38['shift']());}catch(_0x56b940){_0x4c3f38['push'](_0x4c3f38['shift']());}}}(a0_0x2f75,0x9b6ac),module[a0_0x1c51e0(0x17e)][a0_0x1c51e0(0xd0)]=ScriptVersion);if(typeof require===a0_0x1c51e0(0x17d))require=importModule;const {DmYY,Runing}=require(a0_0x1c51e0(0x10a)),FM=FileManager[a0_0x1c51e0(0xdf)](),BASE_DIR=FM[a0_0x1c51e0(0xdd)](FM['libraryDirectory'](),a0_0x1c51e0(0x10c));if(!FM[a0_0x1c51e0(0x101)](BASE_DIR))FM[a0_0x1c51e0(0x348)](BASE_DIR);try{const cachePath=FM[a0_0x1c51e0(0xdd)](BASE_DIR,a0_0x1c51e0(0x1be));if(FM[a0_0x1c51e0(0x101)](cachePath))FM[a0_0x1c51e0(0x1c0)](cachePath);}catch(a0_0x1953d2){}const ConfigManager={'getPath':_0x24820f=>FM[a0_0x1c51e0(0xdd)](BASE_DIR,_0x24820f),'load':()=>{const _0x19bc55=a0_0x1c51e0,_0xe2595d=FM[_0x19bc55(0xdd)](BASE_DIR,_0x19bc55(0x116));if(FM[_0x19bc55(0x101)](_0xe2595d))try{return JSON[_0x19bc55(0x25e)](FM[_0x19bc55(0x1c6)](_0xe2595d));}catch(_0x2f758f){return{};}return{};},'save':_0x88e776=>{const _0x195db7=a0_0x1c51e0;try{FM[_0x195db7(0x1cc)](FM[_0x195db7(0xdd)](BASE_DIR,_0x195db7(0x116)),JSON[_0x195db7(0x1cf)](_0x88e776));}catch(_0x1eeaf1){}},'saveCache':(_0x274d9e,_0x1c1f61)=>{const _0x24ae50=a0_0x1c51e0;try{FM[_0x24ae50(0x1cc)](FM[_0x24ae50(0xdd)](BASE_DIR,_0x274d9e),JSON[_0x24ae50(0x1cf)](_0x1c1f61));}catch(_0x5c2e83){}},'readCache':_0xb5a06a=>{const _0x348bee=a0_0x1c51e0;try{const _0x21b680=FM[_0x348bee(0xdd)](BASE_DIR,_0xb5a06a);if(FM[_0x348bee(0x101)](_0x21b680))return JSON[_0x348bee(0x25e)](FM[_0x348bee(0x1c6)](_0x21b680));}catch(_0x106398){}return null;},'saveImg':(_0x4799f7,_0x1dce2b)=>{const _0x279b0f=a0_0x1c51e0;try{FM[_0x279b0f(0x34c)](FM[_0x279b0f(0xdd)](BASE_DIR,_0x4799f7),_0x1dce2b);}catch(_0x476d44){}},'getImg':_0x312972=>{const _0x261567=a0_0x1c51e0,_0x1060cd=FM[_0x261567(0xdd)](BASE_DIR,_0x312972);return FM[_0x261567(0x101)](_0x1060cd)?FM[_0x261567(0x14a)](_0x1060cd):null;},'rmImg':_0x1dcb01=>{const _0x27ac2e=a0_0x1c51e0;try{FM[_0x27ac2e(0x1c0)](FM[_0x27ac2e(0xdd)](BASE_DIR,_0x1dcb01));}catch(_0x312c3d){}},'clear':()=>{const _0x24d862=a0_0x1c51e0;try{if(FM[_0x24d862(0x101)](BASE_DIR)){const _0x3d1637=FM[_0x24d862(0x14d)](BASE_DIR);for(const _0x566ac3 of _0x3d1637)FM[_0x24d862(0x1c0)](FM[_0x24d862(0xdd)](BASE_DIR,_0x566ac3));}}catch(_0x3d136c){}}},lunarInfo=[0x4bd8,0x4ae0,0xa570,0x54d5,0xd260,0xd950,0x16554,0x56a0,0x9ad0,0x55d2,0x4ae0,0xa5b6,0xa4d0,0xd250,0x1d255,0xb540,0xd6a0,0xada2,0x95b0,0x14977,0x4970,0xa4b0,0xb4b5,0x6a50,0x6d40,0x1ab54,0x2b60,0x9570,0x52f2,0x4970,0x6566,0xd4a0,0xea50,0x6e95,0x5ad0,0x2b60,0x186e3,0x92e0,0x1c8d7,0xc950,0xd4a0,0x1d8a6,0xb550,0x56a0,0x1a5b4,0x25d0,0x92d0,0xd2b2,0xa950,0xb557,0x6ca0,0xb550,0x15355,0x4da0,0xa5d0,0x14573,0x52d0,0xa9a8,0xe950,0x6aa0,0xaea6,0xab50,0x4b60,0xaae4,0xa570,0x5260,0xf263,0xd950,0x5b57,0x56a0,0x96d0,0x4dd5,0x4ad0,0xa4d0,0xd4d4,0xd250,0xd558,0xb540,0xb5a0,0x195a6,0x95b0,0x49b0,0xa974,0xa4b0,0xb27a,0x6a50,0x6d40,0xaf46,0xab60,0x9570,0x4af5,0x4970,0x64b0,0x74a3,0xea50,0x6b58,0x5ac0,0xab60,0x96d5,0x92e0,0xc960,0xd954,0xd4a0,0xda50,0x7552,0x56a0,0xabb7,0x25d0,0x92d0,0xcab5,0xa950,0xb4a0,0xbaa4,0xad50,0x55d9,0x4ba0,0xa5b0,0x15176,0x52b0,0xa930,0x7954,0x6aa0,0xad50,0x5b52,0x4b60,0xa6e6,0xa4e0,0xd260,0xea65,0xd530,0x5aa0,0x76a3,0x96d0,0xbd7,0x4ad0,0xa4d0,0x1d0b6,0xd250,0xd520,0xdd45,0xb5a0,0x56d0,0x55b2,0x49b0,0xa577,0xa4b0,0xaa50,0x1b255,0x6d20,0xada0],weatherIcos={'CLEAR_DAY':a0_0x1c51e0(0x25f),'CLEAR_NIGHT':a0_0x1c51e0(0x14b),'PARTLY_CLOUDY_DAY':a0_0x1c51e0(0x34a),'PARTLY_CLOUDY_NIGHT':a0_0x1c51e0(0xf1),'CLOUDY':a0_0x1c51e0(0x284),'LIGHT_HAZE':a0_0x1c51e0(0x17c),'MODERATE_HAZE':a0_0x1c51e0(0x17c),'HEAVY_HAZE':a0_0x1c51e0(0x17c),'LIGHT_RAIN':a0_0x1c51e0(0xd7),'MODERATE_RAIN':a0_0x1c51e0(0x261),'HEAVY_RAIN':a0_0x1c51e0(0x261),'STORM_RAIN':a0_0x1c51e0(0xd6),'FOG':a0_0x1c51e0(0xcf),'LIGHT_SNOW':a0_0x1c51e0(0x142),'MODERATE_SNOW':a0_0x1c51e0(0x142),'HEAVY_SNOW':a0_0x1c51e0(0x142),'STORM_SNOW':a0_0x1c51e0(0x144),'DUST':a0_0x1c51e0(0x2a5),'SAND':a0_0x1c51e0(0x2a5),'WIND':a0_0x1c51e0(0xfb),'SUNSET':a0_0x1c51e0(0x1f1),'SUNRISE':a0_0x1c51e0(0x169)},weekTitle=['周日','周一','周二','周三','周四','周五','周六'],weekTitleShort=['日','一','二','三','四','五','六'],zodiacAnimals=['鼠','牛','虎','兔','龙','蛇','马','羊','猴','鸡','狗','猪'],heavenlyStems=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'],earthlyBranches=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'],yellowBlackDays=['建','除','满','平','定','执','破','危','成','收','开','闭'],twentyEightMansions=['角','亢','氐','房','心','尾','箕','斗','牛','女','虚','危','室','壁','奎','娄','胃','昴','毕','觜','参','井','鬼','柳','星','张','翼','轸'],solarTerms=['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'],greetingText={'nightGreeting':a0_0x1c51e0(0x16b),'morningGreeting':a0_0x1c51e0(0x1ba),'noonGreeting':a0_0x1c51e0(0x1bc),'afternoonGreeting':a0_0x1c51e0(0x295),'eveningGreeting':a0_0x1c51e0(0x150),'nightText':a0_0x1c51e0(0x152)},baseConfigKeys={'size_greeting':a0_0x1c51e0(0x155),'size_date':a0_0x1c51e0(0x155),'size_lunar':a0_0x1c51e0(0x155),'size_info':a0_0x1c51e0(0x155),'size_weather':a0_0x1c51e0(0x155),'size_weatherLarge':'100','size_poetry':'100','size_timeInfo':'100','size_calendar':'100','size_holiday':'100','size_schedule_title':'100','size_schedule_item':'100','size_lotteryTitle':'100','size_lotteryItem':'100','size_lotteryInfo':'100','show_battery':'true','show_poetry':'true','birthday_list':'','color_greeting':'#ffffff','color_date':'#ffcc99','color_lunar':'#99ccff','color_info':'#ffffff','color_weather':'#ffffff','color_weatherLarge':'#ffffff','color_poetry':'#ffffff','color_timeInfo':'#99ccff','color_calendar':'#ffffff','color_holiday':'#ffffff','color_schedule_title':'#ffffff','color_schedule_bg':'#666666','color_schedule_item_1':'#ffffff','color_schedule_item_2':'#ffffff','color_schedule_item_3':'#ffffff','color_schedule_item_4':'#ffffff','color_schedule_item_5':'#ffffff','color_schedule_item_6':a0_0x1c51e0(0x157),'color_lotteryTitle':'#ffffff','color_lotteryItem':'#ffffff','color_lotteryInfo':'#99ccff','color_bg':'#000000','color_bg_2':'','color_bg_day':'','color_bg_2_day':'','color_bg_night':'','color_bg_2_night':'','layout_med_left_x':'0','layout_med_left_y':'0','layout_med_right_x':'0','layout_med_right_y':'0','layout_lg_tl_x':'0','layout_lg_tl_y':'0','layout_lg_tr_x':'0','layout_lg_tr_y':'0','layout_lg_mid_x':'0','layout_lg_mid_y':'0','layout_lg_week_x':'0','layout_lg_week_y':'0','layout_lg_cal_x':'0','layout_lg_cal_y':'0','layout_lg_holiday_x':'0','layout_lg_holiday_y':'0','layout_lg_schedule_x':'0','layout_lg_schedule_y':'0','space_week_w':'28','space_cal_w':'28','space_cal_h':'3','space_holiday_h':'2','space_schedule_h':'2','schedule_count':'4','schedule_offset':'0'};class CaishowWidget extends DmYY{constructor(_0x42aa8a){const _0x268999=a0_0x1c51e0;super(_0x42aa8a),this[_0x268999(0x1f2)]=_0x268999(0x15c),this['en']='CalendarWeather',this['logo']='https:\/\/raw.githubusercontent.com\/Orz-3\/task\/master\/scriptable\/icon\/caiyun.png',this['defaultData']={'apiKey':'','lockLocation':![],'fixedLng':'','fixedLat':'','fixedCity':'','fixedSubCity':'','refreshInterval':'60','styleModel':'classic','global_font_size':'100','lottery_type':'none','text_greeting_night':'','text_greeting_morning':'','text_greeting_noon':'','text_greeting_afternoon':'','text_greeting_evening':''};for(const [_0x4f48b5,_0x35f753]of Object['entries'](baseConfigKeys)){this['defaultData']['s1_'+_0x4f48b5]=_0x35f753,this['defaultData']['s2_'+_0x4f48b5]=_0x35f753,this['defaultData']['s3_'+_0x4f48b5]=_0x35f753,this['defaultData']['s4_'+_0x4f48b5]=_0x35f753;}this['defaultData'][_0x268999(0x1c1)]='30',this[_0x268999(0x1c3)][_0x268999(0x1d9)]=_0x268999(0x1dc),this[_0x268999(0x1c3)][_0x268999(0x111)]='89',this[_0x268999(0x1c3)][_0x268999(0x100)]='89',this[_0x268999(0x1c3)][_0x268999(0x107)]='30',this[_0x268999(0x1c3)][_0x268999(0x103)]=_0x268999(0x1dc),this[_0x268999(0x1c3)][_0x268999(0x110)]=_0x268999(0x108),this['defaultData']['s3_space_cal_w']=_0x268999(0x16c),this[_0x268999(0x1c3)]['s3_space_cal_h']='0',this['defaultData']['s3_space_holiday_h']='4',this['defaultData']['s4_space_week_w']='9.1',this['defaultData']['s4_space_cal_w']='6.2',this['defaultData']['s4_space_cal_h']='0',this['defaultData']['s4_space_schedule_h']='0',this['defaultData']['s4_schedule_count']='4';const _0x35f488=ConfigManager['load']();this['settings']=Object['assign']({},this['defaultData'],_0x35f488),this['Run']();}['saveSettings'](_0x306035=!![]){ConfigManager['save'](this['settings']),super['saveSettings'](![]);if(_0x306035)this['notify']('设置成功','配置已保存到本地文件，稍后刷新');return JSON['stringify'](this['settings']);}['Run'](){const _0x2dbd65=a0_0x1c51e0;config['runsInApp']&&(this['registerAction']('基础设置',async()=>{await this['setBasicConfig']();},{'name':'gearshape.fill','color':'#007aff','desc':'定位、API、刷新频率'}),this['registerAction']('彩票与问候',async()=>{const _0x29d5a7=a0_0x1953;await this['handleGreetingSettings'](this[_0x29d5a7(0x16d)]());},{'name':'ticket.fill','color':'#FF2D55','desc':'选择显示的彩票或问候语'}),this['registerAction']('第一套（三天天气）',async()=>{await this['handleStyleSettingsMenu']('s1');},{'name':'doc.text.image','color':'#FF9500','desc':_0x2dbd65(0x114)}),this['registerAction']('第二套（七天天气）',async()=>{await this['handleStyleSettingsMenu']('s2');},{'name':'doc.text','color':'#34C759','desc':'第二套\\x20(简约)'}),this['registerAction']('第三套（节假日倒计时）',async()=>{await this['handleStyleSettingsMenu']('s3');},{'name':'gift.fill','color':'#FF2D55','desc':'第三套\\x20(节日)'}),this['registerAction']('第四套（日历日程）',async()=>{await this['handleStyleSettingsMenu']('s4');},{'name':'calendar.badge.clock','color':'#007AFF','desc':'第四套\\x20(日程)'}),this['registerAction']('组件切换',async()=>{await this['handleStyleSwitch']();},{'name':'arrow.triangle.2.circlepath','color':'#5856d6','desc':'切换当前显示样式'}),this['registerAction']('重置配置',async()=>{const _0x3c4d29=new Alert();_0x3c4d29['title']='确认重置？',_0x3c4d29['message']='所有个性化颜色、布局、Key都将丢失。',_0x3c4d29['addAction']('确认重置'),_0x3c4d29['addCancelAction']('取消');const _0x559e8b=await _0x3c4d29['presentAlert']();_0x559e8b===0x0&&(ConfigManager['clear'](),this['settings']=Object['assign']({},this['defaultData']),this['saveSettings'](![]),this['notify']('已重置','请重新运行脚本'));},{'name':'trash.fill','color':'#ff3b30','desc':'修复所有问题'}),this['registerAction']('检查更新',async()=>{await this['updateScript'](![]);},{'name':'cloud.fill','color':'#007aff','desc':'当前版本\\x20v'+ScriptVersion}),Timer['schedule'](0x320,![],async()=>{await this['updateScript'](!![]);}));}['getActivePrefix'](){let _0x4a7d9f=this['settings']['styleModel']||'classic';if(_0x4a7d9f==='modern')return's2';if(_0x4a7d9f==='holiday')return's3';if(_0x4a7d9f==='schedule')return's4';return's1';}async['updateScript'](_0x566798=![]){const _0x8a63f1=a0_0x1c51e0,_0x33c813='https:\/\/raw.githubusercontent.com\/loveyuwy\/hao\/refs\/heads\/main\/wtk.js?ts='+Date['now'](),_0x3fb20c=new Alert();try{const _0x59036e=new Request(_0x33c813);_0x59036e['method']='GET';const _0x265a6d=await _0x59036e['loadString'](),_0x29b4fa=_0x265a6d['match'](\/const\\s+ScriptVersion\\s*=\\s*[\"'](.*?)[\"']\/),_0x2f4c19=_0x29b4fa?_0x29b4fa[0x1]:null;console['log']('[更新检测]\\x20本地:\\x20'+ScriptVersion+',\\x20远程:\\x20'+_0x2f4c19+',\\x20静默:\\x20'+_0x566798);if(!_0x2f4c19){if(_0x566798)return;_0x3fb20c['title']='⚠️\\x20无法检测远程版本',_0x3fb20c['message']='无法解析远程文件版本号，是否强制覆盖？',_0x3fb20c['addAction']('强制更新'),_0x3fb20c['addCancelAction']('取消');if(await _0x3fb20c['presentAlert']()===0x0)await this[_0x8a63f1(0x115)](_0x265a6d);return;}const _0x15fab7=(_0x42ad55,_0x33f7a3)=>{const _0x14f499=_0x42ad55['split']('.')['map'](Number),_0xd3942f=_0x33f7a3['split']('.')['map'](Number),_0x1aa36a=Math['max'](_0x14f499['length'],_0xd3942f['length']);for(let _0x14c1f0=0x0;_0x14c1f0<_0x1aa36a;_0x14c1f0++){const _0x33f478=_0x14f499[_0x14c1f0]||0x0,_0x3fde72=_0xd3942f[_0x14c1f0]||0x0;if(_0x33f478>_0x3fde72)return 0x1;if(_0x33f478<_0x3fde72)return-0x1;}return 0x0;};if(_0x15fab7(_0x2f4c19,ScriptVersion)>0x0){_0x3fb20c['title']='🚀\\x20发现新版本\\x20v'+_0x2f4c19,_0x3fb20c['message']='当前版本:\\x20v'+ScriptVersion+'\\x0a建议您立即更新以获得最新功能。',_0x3fb20c['addAction']('立即更新'),_0x3fb20c['addCancelAction']('稍后');const _0x5932f2=await _0x3fb20c['presentAlert']();if(_0x5932f2===0x0)await this['doUpdate'](_0x265a6d);}else{if(_0x566798)return;_0x3fb20c['title']='✅\\x20已是最新版本',_0x3fb20c['message']='远程版本:\\x20v'+_0x2f4c19+'\\x0a当前版本:\\x20v'+ScriptVersion+'\\x0a\\x0a您的版本是最新的（或比远程版本更高）。',_0x3fb20c['addAction']('好的'),await _0x3fb20c['presentAlert']();}}catch(_0x3fe19c){console['log']('[更新检测失败]\\x20'+_0x3fe19c['message']);if(_0x566798)return;_0x3fb20c['title']='❌\\x20更新检测失败',_0x3fb20c[_0x8a63f1(0xe7)]=_0x8a63f1(0x117)+_0x3fe19c[_0x8a63f1(0xe7)],_0x3fb20c['addAction']('确定'),await _0x3fb20c['presentAlert']();}}async[a0_0x1c51e0(0x115)](_0x4578bb){const _0xa737cf=a0_0x1c51e0;if(_0x4578bb&&_0x4578bb[_0xa737cf(0x16e)](_0xa737cf(0x1a2))){const _0x38c2b9=FileManager[_0xa737cf(0xdf)]();_0x38c2b9[_0xa737cf(0x1cc)](module[_0xa737cf(0x19f)],_0x4578bb);const _0x5216da=new Alert();_0x5216da[_0xa737cf(0x175)]=_0xa737cf(0x177),_0x5216da[_0xa737cf(0xe7)]=_0xa737cf(0x11d),_0x5216da[_0xa737cf(0x11e)]('好的'),await _0x5216da[_0xa737cf(0x355)]();}else this[_0xa737cf(0x260)](_0xa737cf(0x2ba),_0xa737cf(0x131));}async[a0_0x1c51e0(0x1b7)](_0x508314){const _0x263fd5=a0_0x1c51e0;let _0x3a26a7='经典';if(_0x508314==='s2')_0x3a26a7='简约';if(_0x508314==='s3')_0x3a26a7='节日';if(_0x508314==='s4')_0x3a26a7='日程';let _0x375e6c=[{'title':_0x263fd5(0x229),'val':_0x263fd5(0x226),'icon':{'name':_0x263fd5(0x126),'color':_0x263fd5(0xed)},'desc':_0x263fd5(0x128),'onClick':async()=>await this[_0x263fd5(0x354)](_0x508314)},{'title':_0x263fd5(0x149),'val':_0x263fd5(0x12b),'icon':{'name':_0x263fd5(0x22a),'color':_0x263fd5(0x285)},'desc':'调整行列间距\/数量','onClick':async()=>await this[_0x263fd5(0x224)](_0x508314)},{'title':_0x263fd5(0x1f6),'val':_0x263fd5(0x29e),'icon':{'name':_0x263fd5(0x1a7),'color':_0x263fd5(0x29f)},'desc':_0x263fd5(0xfd),'onClick':async()=>await this[_0x263fd5(0x212)](_0x508314,_0x3a26a7)},{'title':_0x263fd5(0x215),'val':_0x263fd5(0x1fd),'icon':{'name':_0x263fd5(0x201),'color':_0x263fd5(0x2a3)},'desc':_0x263fd5(0x2a7),'onClick':async()=>await this[_0x263fd5(0x2ac)](_0x508314)},{'title':_0x263fd5(0x2b0),'val':_0x263fd5(0x2b4),'icon':{'name':_0x263fd5(0x2b9),'color':_0x263fd5(0x1b5)},'desc':_0x263fd5(0x197),'onClick':async()=>await this[_0x263fd5(0x218)](_0x508314)},{'title':_0x263fd5(0x21a),'val':_0x263fd5(0x21d),'icon':{'name':_0x263fd5(0x220),'color':_0x263fd5(0x29f)},'desc':_0x263fd5(0x222),'onClick':async()=>await this[_0x263fd5(0x145)](_0x508314)}];_0x508314==='s3'&&_0x375e6c[_0x263fd5(0x250)](0x1,0x0,{'title':_0x263fd5(0x10f),'val':_0x263fd5(0xee),'icon':{'name':_0x263fd5(0x231),'color':_0x263fd5(0x285)},'desc':_0x263fd5(0x24b),'onClick':async()=>await this[_0x263fd5(0x25c)](_0x508314)}),await this[_0x263fd5(0x23b)]([{'title':_0x3a26a7+_0x263fd5(0x23d),'menu':_0x375e6c}]);}async[a0_0x1c51e0(0x25c)](_0x348f88){const _0xe1ccf0=a0_0x1c51e0;let _0x414584=_0x348f88+_0xe1ccf0(0x240),_0x40797c=this[_0xe1ccf0(0x242)][_0x414584]||'',_0x3f1564=_0x40797c[_0xe1ccf0(0x245)]('\\x0a')[_0xe1ccf0(0x248)](_0x5935bd=>_0x5935bd[_0xe1ccf0(0x139)]()!=='');const _0x586cb0=new Alert();_0x586cb0[_0xe1ccf0(0x175)]=_0xe1ccf0(0x166),_0x586cb0[_0xe1ccf0(0xe7)]=_0xe1ccf0(0x251);for(let _0x4bb504=0x0;_0x4bb504<0xa;_0x4bb504++){let _0x355896=_0x3f1564[_0x4bb504]||'';_0x586cb0[_0xe1ccf0(0x254)](_0xe1ccf0(0x256),_0x355896);}_0x586cb0[_0xe1ccf0(0x11e)](_0xe1ccf0(0x281)),_0x586cb0[_0xe1ccf0(0x25b)]('取消');const _0x4d4bc4=await _0x586cb0[_0xe1ccf0(0x355)]();if(_0x4d4bc4===0x0){let _0x32905b=[];for(let _0x2b03c7=0x0;_0x2b03c7<0xa;_0x2b03c7++){let _0x31feb0=_0x586cb0[_0xe1ccf0(0x287)](_0x2b03c7)[_0xe1ccf0(0x139)]();_0x31feb0&&_0x32905b[_0xe1ccf0(0x2d7)](_0x31feb0);}this[_0xe1ccf0(0x242)][_0x414584]=_0x32905b['join']('\\x0a'),this[_0xe1ccf0(0x15b)]();}}async[a0_0x1c51e0(0x212)](_0x3729c7,_0x4316b5){const _0x27beca=a0_0x1c51e0,_0x41afa3=_0x3729c7+_0x27beca(0x112),_0x5b06ee=_0x3729c7+_0x27beca(0x288),_0x5e2e85=_0x2c2482=>{const _0x1a6dab=_0x27beca;let _0x23d05a=this[_0x1a6dab(0x242)][_0x2c2482];return _0x23d05a===undefined||_0x23d05a===null||_0x23d05a===_0x1a6dab(0x113);};let _0x2b8584=_0x5e2e85(_0x41afa3),_0x2e53a9=_0x5e2e85(_0x5b06ee),_0x2bb87a=_0x2b8584?_0x27beca(0x15f):_0x27beca(0x160),_0x256425=_0x2e53a9?_0x27beca(0x15f):_0x27beca(0x160);await this[_0x27beca(0x23b)]([{'title':_0x27beca(0xe6)+_0x4316b5+'模式','menu':[{'title':_0x27beca(0x162),'desc':_0x2bb87a,'icon':{'name':_0x27beca(0x183),'color':_0x2b8584?_0x27beca(0x1b5):_0x27beca(0x164)},'val':_0x27beca(0x30e),'onClick':async()=>{const _0x1ca64f=_0x27beca,_0xd73ec6=new Alert();_0xd73ec6[_0x1ca64f(0x175)]=_0x1ca64f(0x159)+_0x4316b5+_0x1ca64f(0x188),_0xd73ec6[_0x1ca64f(0x11e)](_0x2b8584?_0x1ca64f(0x310):'开启'),_0xd73ec6[_0x1ca64f(0x11e)](!_0x2b8584?_0x1ca64f(0x32e):'关闭'),_0xd73ec6[_0x1ca64f(0x25b)]('取消');const _0x10a16c=await _0xd73ec6[_0x1ca64f(0x2da)]();if(_0x10a16c!==-0x1){const _0x3d540b=_0x10a16c===0x0?_0x1ca64f(0x113):_0x1ca64f(0x2de);this[_0x1ca64f(0x242)][_0x41afa3]=_0x3d540b,this[_0x1ca64f(0x15b)](![]),this[_0x1ca64f(0x260)](_0x1ca64f(0x2e1),_0x10a16c===0x0?_0x1ca64f(0x2e3):_0x1ca64f(0x34e)),await this[_0x1ca64f(0x212)](_0x3729c7,_0x4316b5);}}},{'title':_0x27beca(0x2eb),'desc':_0x256425+(_0x2e53a9?_0x27beca(0x2ee):_0x27beca(0x333)),'icon':{'name':_0x27beca(0x172),'color':_0x2e53a9?_0x27beca(0x29f):_0x27beca(0x164)},'val':_0x27beca(0x30f),'onClick':async()=>{const _0xc2543a=_0x27beca,_0x401c46=new Alert();_0x401c46[_0xc2543a(0x175)]=_0xc2543a(0x159)+_0x4316b5+_0xc2543a(0x2f4),_0x401c46[_0xc2543a(0x11e)](_0x2e53a9?_0xc2543a(0x310):'开启'),_0x401c46[_0xc2543a(0x11e)](!_0x2e53a9?_0xc2543a(0x32e):'关闭'),_0x401c46[_0xc2543a(0x25b)]('取消');const _0x13c841=await _0x401c46[_0xc2543a(0x2da)]();if(_0x13c841!==-0x1){const _0xe9d2ad=_0x13c841===0x0?_0xc2543a(0x113):'false';this[_0xc2543a(0x242)][_0x5b06ee]=_0xe9d2ad,this[_0xc2543a(0x15b)](![]),this[_0xc2543a(0x260)](_0xc2543a(0x2e1),_0x13c841===0x0?_0xc2543a(0x24c):_0xc2543a(0x24e)),await this[_0xc2543a(0x212)](_0x3729c7,_0x4316b5);}}}]}]);}async[a0_0x1c51e0(0x118)](){const _0x55ef69=a0_0x1c51e0,_0x1aa09f=[{'t':_0x55ef69(0x2bc),'v':_0x55ef69(0x2bf)},{'t':_0x55ef69(0x2bd),'v':_0x55ef69(0x17b)},{'t':_0x55ef69(0x2d2),'v':_0x55ef69(0xdb)},{'t':_0x55ef69(0x167),'v':_0x55ef69(0xef)},{'t':_0x55ef69(0x140),'v':_0x55ef69(0x12a)},{'t':_0x55ef69(0xff),'v':_0x55ef69(0xe3)},{'t':_0x55ef69(0xfc),'v':_0x55ef69(0x102)},{'t':_0x55ef69(0x186),'v':_0x55ef69(0x17f)}];let _0x116a5e=this[_0x55ef69(0x242)][_0x55ef69(0x10e)]||_0x55ef69(0x2bf),_0xd009f5=_0x1aa09f[_0x55ef69(0x13a)](_0x1a6ad2=>_0x1a6ad2['v']===_0x116a5e)||_0x1aa09f[0x0];await this['renderAppView']([{'title':_0x55ef69(0x2ce),'menu':[{'title':_0x55ef69(0x13e),'val':_0x55ef69(0x18c),'desc':_0xd009f5['t'],'icon':{'name':_0x55ef69(0x2d0),'color':_0x55ef69(0x285)},'onClick':async()=>{const _0xd676f0=_0x55ef69,_0x18d412=new Alert();_0x18d412['title']=_0xd676f0(0x18e),_0x18d412[_0xd676f0(0xe7)]=_0xd676f0(0x156),_0x1aa09f[_0xd676f0(0x190)](_0x3525e6=>{const _0xc3cd69=_0xd676f0;_0x3525e6['v']===_0x116a5e?_0x18d412[_0xc3cd69(0x11e)]('✅\\x20'+_0x3525e6['t']):_0x18d412[_0xc3cd69(0x11e)](_0x3525e6['t']);}),_0x18d412[_0xd676f0(0x25b)]('取消');const _0x27d8e8=await _0x18d412[_0xd676f0(0x2da)]();if(_0x27d8e8!==-0x1){const _0x37bb72=_0x1aa09f[_0x27d8e8];this[_0xd676f0(0x242)][_0xd676f0(0x10e)]=_0x37bb72['v'],this[_0xd676f0(0x15b)](![]),this[_0xd676f0(0x260)](_0xd676f0(0xda),_0xd676f0(0x187)+_0x37bb72['t']);}}}]},{'title':_0x55ef69(0x18d),'menu':[{'title':_0x55ef69(0x194),'type':_0x55ef69(0x14f),'val':_0x55ef69(0x196),'placeholder':_0x55ef69(0x136)+greetingText[_0x55ef69(0xf8)]},{'title':_0x55ef69(0x199),'type':_0x55ef69(0x14f),'val':_0x55ef69(0xe1),'placeholder':_0x55ef69(0x136)+greetingText[_0x55ef69(0x19b)]},{'title':_0x55ef69(0x29d),'type':_0x55ef69(0x14f),'val':_0x55ef69(0x11c),'placeholder':_0x55ef69(0x136)+greetingText[_0x55ef69(0x1b8)]},{'title':_0x55ef69(0x181),'type':_0x55ef69(0x14f),'val':_0x55ef69(0x1a0),'placeholder':_0x55ef69(0x136)+greetingText[_0x55ef69(0x17a)]},{'title':_0x55ef69(0x120),'type':_0x55ef69(0x14f),'val':_0x55ef69(0x1a3),'placeholder':_0x55ef69(0x136)+greetingText[_0x55ef69(0x122)]}]}]),this[_0x55ef69(0x15b)](![]);}async[a0_0x1c51e0(0x354)](_0x43a860){const _0x3db68b=a0_0x1c51e0,_0x42414e=[{'title':_0x3db68b(0x123),'code':_0x3db68b(0x1a6)},{'title':_0x3db68b(0x298),'code':_0x3db68b(0x1a8)},{'title':_0x3db68b(0x18b),'code':_0x3db68b(0x1aa)},{'title':_0x3db68b(0x299),'code':_0x3db68b(0x2d1)},{'title':_0x3db68b(0x297),'code':_0x3db68b(0x2d9)},{'title':_0x3db68b(0x13d),'code':_0x3db68b(0x1b0)},{'title':_0x3db68b(0x1b1),'code':'lg_cal'}];_0x43a860==='s3'&&_0x42414e[_0x3db68b(0x2d7)]({'title':_0x3db68b(0x32c),'code':_0x3db68b(0x1ad)}),_0x43a860==='s4'&&_0x42414e[_0x3db68b(0x2d7)]({'title':_0x3db68b(0x1b3),'code':_0x3db68b(0x314)}),await this[_0x3db68b(0x23b)]([{'title':_0x3db68b(0x318)+_0x43a860+')','menu':_0x42414e[_0x3db68b(0x2f7)](_0x5b95da=>({'title':_0x5b95da[_0x3db68b(0x175)],'val':_0x3db68b(0x31d)+_0x5b95da[_0x3db68b(0x31f)],'icon':{'name':_0x3db68b(0x322),'color':'#8E8E93'},'desc':'点击设置XY偏移','onClick':async()=>await this['renderLayoutInput'](_0x5b95da['title'],_0x5b95da['code'],_0x43a860)}))}]);}async['renderLayoutInput'](_0x423e83,_0x3bea2d,_0x30c971){await this['renderAppView']([{'title':_0x423e83+'\\x20-\\x20偏移\\x20(X\/Y)','menu':[{'title':'X轴偏移','desc':'正右负左','type':'input','val':_0x30c971+'_layout_'+_0x3bea2d+'_x','placeholder':'0'},{'title':'Y轴偏移','desc':'正下负上','type':'input','val':_0x30c971+'_layout_'+_0x3bea2d+'_y','placeholder':'0'}]}]),this['saveSettings'](![]);}async['handleSpacingMenu'](_0x4a1d9e){const _0x2f8cb9=a0_0x1c51e0;let _0x30cc3c=[{'title':'星期栏-横向','desc':'(左右间距)','type':_0x2f8cb9(0x14f),'val':_0x4a1d9e+'_space_week_w','placeholder':'28'},{'title':'日期区-横向','desc':'(左右间距,调小防溢出)','type':'input','val':_0x4a1d9e+'_space_cal_w','placeholder':'28'},{'title':'日期区-行高','desc':'(上下行距)','type':'input','val':_0x4a1d9e+'_space_cal_h','placeholder':'3'}];_0x30cc3c[_0x2f8cb9(0x2d7)]({'title':_0x2f8cb9(0x324),'desc':_0x2f8cb9(0x327),'type':_0x2f8cb9(0x14f),'val':_0x4a1d9e+_0x2f8cb9(0x32f),'placeholder':_0x2f8cb9(0x331)}),_0x4a1d9e!=='s4'&&_0x30cc3c[_0x2f8cb9(0x2d7)]({'title':_0x2f8cb9(0x308),'desc':_0x2f8cb9(0x271),'type':_0x2f8cb9(0x14f),'val':_0x4a1d9e+_0x2f8cb9(0x272),'placeholder':'0'}),_0x4a1d9e==='s3'&&_0x30cc3c[_0x2f8cb9(0x2d7)]({'title':_0x2f8cb9(0x336),'type':_0x2f8cb9(0x14f),'val':_0x4a1d9e+_0x2f8cb9(0x339),'placeholder':'4'}),_0x4a1d9e==='s4'&&(_0x30cc3c[_0x2f8cb9(0x2d7)]({'title':_0x2f8cb9(0x33b),'type':_0x2f8cb9(0x14f),'val':_0x4a1d9e+_0x2f8cb9(0x33e),'placeholder':'0'}),_0x30cc3c[_0x2f8cb9(0x2d7)]({'title':_0x2f8cb9(0x2c5),'desc':_0x2f8cb9(0x2c7),'type':_0x2f8cb9(0x14f),'val':_0x4a1d9e+_0x2f8cb9(0x2c9),'placeholder':'4'}),_0x30cc3c[_0x2f8cb9(0x2d7)]({'title':_0x2f8cb9(0x31a),'desc':_0x2f8cb9(0x1ca),'type':_0x2f8cb9(0x14f),'val':_0x4a1d9e+_0x2f8cb9(0x1cb),'placeholder':_0x2f8cb9(0x121)})),await this[_0x2f8cb9(0x23b)]([{'title':_0x2f8cb9(0x1cd)+_0x4a1d9e+')','menu':_0x30cc3c}]),this[_0x2f8cb9(0x15b)](![]);}async[a0_0x1c51e0(0x2ac)](_0x321702){const _0x21bfee=a0_0x1c51e0,_0x386b57=[{'id':_0x21bfee(0x1ce),'t':_0x21bfee(0x124)},{'id':_0x21bfee(0x1d0),'t':_0x21bfee(0x347)},{'id':_0x21bfee(0x1d2),'t':_0x21bfee(0x1d3)},{'id':_0x21bfee(0x1d4),'t':_0x21bfee(0x1d5)},{'id':_0x21bfee(0x346),'t':_0x21bfee(0x349)},{'id':_0x21bfee(0x1d8),'t':_0x21bfee(0x36f)},{'id':_0x21bfee(0x1da),'t':_0x21bfee(0x227)},{'id':_0x21bfee(0x14c),'t':_0x21bfee(0x228)},{'id':_0x21bfee(0x1de),'t':_0x21bfee(0x19e)},{'id':_0x21bfee(0x36c),'t':_0x21bfee(0x1a4)},{'id':_0x21bfee(0x1e2),'t':_0x21bfee(0x1e3)},{'id':'calendar','t':_0x21bfee(0x369)}];if(_0x321702==='s3')_0x386b57[_0x21bfee(0x2d7)]({'id':_0x21bfee(0x36a),'t':_0x21bfee(0x1e6)});_0x321702==='s4'&&(_0x386b57[_0x21bfee(0x2d7)]({'id':_0x21bfee(0x130),'t':_0x21bfee(0x1e8)}),_0x386b57[_0x21bfee(0x2d7)]({'id':_0x21bfee(0x191),'t':_0x21bfee(0x192)}));const _0x31aafb=_0x386b57[_0x21bfee(0x2f7)](_0x3d97ef=>({'title':_0x3d97ef['t'],'type':_0x21bfee(0x14f),'val':_0x321702+_0x21bfee(0x1eb)+_0x3d97ef['id'],'placeholder':_0x21bfee(0x155)})),_0x3e60fd=[{'title':_0x21bfee(0x36d),'desc':_0x21bfee(0x26f),'type':_0x21bfee(0x14f),'val':_0x21bfee(0x270),'placeholder':_0x21bfee(0x155)}];await this[_0x21bfee(0x23b)]([{'title':_0x21bfee(0x26a),'menu':_0x3e60fd},{'title':_0x21bfee(0xfa)+_0x321702+')','menu':[{'title':_0x21bfee(0x26b),'val':_0x21bfee(0x26d),'icon':{'name':_0x21bfee(0x26e),'color':_0x21bfee(0x29f)},'desc':_0x21bfee(0x29b),'onClick':async()=>{const _0xf61ed1=_0x21bfee;await this[_0xf61ed1(0x23b)]([{'title':_0xf61ed1(0x1e7),'menu':_0x31aafb}]),this[_0xf61ed1(0x15b)](![]);}},{'title':_0x21bfee(0x1a1),'val':_0x21bfee(0x274),'icon':{'name':_0x21bfee(0x275),'color':_0x21bfee(0x164)},'desc':_0x21bfee(0x1f9),'onClick':async()=>{const _0x34a689=_0x21bfee;_0x386b57[_0x34a689(0x190)](_0x53f469=>this[_0x34a689(0x242)][_0x321702+_0x34a689(0x1eb)+_0x53f469['id']]=_0x34a689(0x155)),this[_0x34a689(0x242)][_0x34a689(0x270)]=_0x34a689(0x155),this['saveSettings'](![]),this['notify']('已恢复','字体大小已重置');}}]}]);}async['handleColorMenu'](_0x5689f5){const _0x2ffbfc=a0_0x1c51e0,_0x4b6909=[{'id':'greeting','t':'问候语'},{'id':'lotteryTitle','t':'彩票标题'},{'id':'lotteryInfo','t':'今日开奖状态'},{'id':'date','t':'公历日期'},{'id':'lunar','t':'农历日期'},{'id':'info','t':'电量与定位'},{'id':'weather','t':'天气描述'},{'id':'weatherLarge','t':_0x2ffbfc(0x19e)},{'id':'poetry','t':'诗词与预报'},{'id':'timeInfo','t':'底部时间条'},{'id':'calendar','t':'月历区域'}];if(_0x5689f5==='s3')_0x4b6909['push']({'id':'holiday','t':_0x2ffbfc(0x1e6)});if(_0x5689f5==='s4'){_0x4b6909[_0x2ffbfc(0x2d7)]({'id':_0x2ffbfc(0x130),'t':_0x2ffbfc(0x1e8)}),_0x4b6909[_0x2ffbfc(0x2d7)]({'id':_0x2ffbfc(0x1fa),'t':_0x2ffbfc(0x267)});for(let _0x350c8f=0x1;_0x350c8f<=0x6;_0x350c8f++){_0x4b6909[_0x2ffbfc(0x2d7)]({'id':_0x2ffbfc(0x276)+_0x350c8f,'t':_0x2ffbfc(0x278)+_0x350c8f+'行'});}}const _0x575303=_0x4b6909[_0x2ffbfc(0x2f7)](_0x33c1c9=>({'title':_0x33c1c9['t'],'type':_0x2ffbfc(0x279),'val':_0x5689f5+_0x2ffbfc(0x27a)+_0x33c1c9['id']}));await this[_0x2ffbfc(0x23b)]([{'title':_0x2ffbfc(0x27c)+_0x5689f5+')','menu':[{'title':_0x2ffbfc(0x27d),'val':_0x2ffbfc(0x27f),'icon':{'name':_0x2ffbfc(0x280),'color':_0x2ffbfc(0x29f)},'desc':_0x2ffbfc(0x1ab),'onClick':async()=>{const _0x5ea1c4=_0x2ffbfc;await this[_0x5ea1c4(0x23b)]([{'title':_0x5ea1c4(0x205),'menu':_0x575303}]),this[_0x5ea1c4(0x15b)](![]);}},{'title':_0x2ffbfc(0x1a1),'val':_0x2ffbfc(0x206),'icon':{'name':_0x2ffbfc(0x275),'color':_0x2ffbfc(0x164)},'desc':_0x2ffbfc(0x1b4),'onClick':async()=>{const _0x309768=_0x2ffbfc;_0x4b6909[_0x309768(0x190)](_0x26436d=>this[_0x309768(0x242)][_0x5689f5+_0x309768(0x27a)+_0x26436d['id']]=baseConfigKeys[_0x309768(0x208)+_0x26436d['id']]),this[_0x309768(0x15b)](![]),this[_0x309768(0x260)](_0x309768(0x1f0),_0x309768(0x20a));}}]}]);}async[a0_0x1c51e0(0x145)](_0x5c4654){const _0xdc3c12=a0_0x1c51e0,_0x3512d9=_0xdc3c12(0x20b)+_0x5c4654+_0xdc3c12(0x193),_0x40fcd2=_0xdc3c12(0x20b)+_0x5c4654+_0xdc3c12(0x20d),_0x34fb19=_0xdc3c12(0x20b)+_0x5c4654+_0xdc3c12(0x20e);await this[_0xdc3c12(0x23b)]([{'title':_0xdc3c12(0x133)+_0x5c4654+')','menu':[{'title':_0xdc3c12(0x210),'val':_0xdc3c12(0x134),'icon':{'name':_0xdc3c12(0x1f8),'color':_0xdc3c12(0x285)},'desc':_0xdc3c12(0x213),'onClick':async()=>await this[_0xdc3c12(0x214)](_0x5c4654)},{'title':_0xdc3c12(0x1b6),'val':_0xdc3c12(0x216),'icon':{'name':_0xdc3c12(0x25f),'color':_0xdc3c12(0x2a3)},'desc':_0xdc3c12(0x217),'onClick':async()=>{const _0x3424d9=_0xdc3c12;try{let _0x4b5794=await Photos[_0x3424d9(0x1d7)]();ConfigManager[_0x3424d9(0x219)](_0x40fcd2,_0x4b5794),ConfigManager[_0x3424d9(0x219)](_0x3512d9,_0x4b5794),this[_0x3424d9(0x260)]('成功',_0x3424d9(0x22e));}catch(_0x4d01b5){}}},{'title':_0xdc3c12(0x21b),'val':_0xdc3c12(0x21c),'icon':{'name':_0xdc3c12(0x14b),'color':_0xdc3c12(0xed)},'desc':_0xdc3c12(0x262),'onClick':async()=>{const _0x50c93e=_0xdc3c12;try{let _0x1a58b5=await Photos[_0x50c93e(0x1d7)]();ConfigManager[_0x50c93e(0x219)](_0x34fb19,_0x1a58b5),this[_0x50c93e(0x260)]('成功',_0x50c93e(0x21e));}catch(_0x18ae93){}}},{'title':_0xdc3c12(0x21f),'type':_0xdc3c12(0x279),'val':_0x5c4654+_0xdc3c12(0xe2),'desc':_0xdc3c12(0x221)},{'title':_0xdc3c12(0x1e4),'type':_0xdc3c12(0x279),'val':_0x5c4654+_0xdc3c12(0x223),'desc':_0xdc3c12(0x125)},{'title':_0xdc3c12(0x225),'type':_0xdc3c12(0x279),'val':_0x5c4654+_0xdc3c12(0x1db),'desc':_0xdc3c12(0x221)},{'title':_0xdc3c12(0x1dd),'type':_0xdc3c12(0x279),'val':_0x5c4654+_0xdc3c12(0xec),'desc':_0xdc3c12(0x125)},{'title':_0xdc3c12(0x265),'val':_0xdc3c12(0x148),'icon':{'name':_0xdc3c12(0x10b),'color':_0xdc3c12(0x164)},'desc':_0xdc3c12(0x135),'onClick':async()=>{const _0x537ae1=_0xdc3c12;ConfigManager[_0x537ae1(0x19c)](_0x3512d9),ConfigManager[_0x537ae1(0x19c)](_0x40fcd2),ConfigManager[_0x537ae1(0x19c)](_0x34fb19),this[_0x537ae1(0x260)]('成功',_0x537ae1(0x147));}}]}]),this[_0xdc3c12(0x15b)](![]);}async[a0_0x1c51e0(0x214)](_0x1c0920){const _0x21a03e='https:\/\/raw.githubusercontent.com\/loveyuwy\/huohua\/refs\/heads\/main\/TransparencyEditor.js',_0x2da1f7=FileManager['local'](),_0x17457d=_0x2da1f7['joinPath'](_0x2da1f7['libraryDirectory'](),'Caishow_Editor_Cache.js');try{this['notify']('⏳\\x20加载中','正在拉取最新编辑器...');const _0x104bd9=new Request(_0x21a03e);_0x104bd9['headers']={'Cache-Control':'no-cache'};const _0x29a065=await _0x104bd9['loadString']();_0x2da1f7['writeString'](_0x17457d,_0x29a065);const _0x10490e=importModule(_0x17457d);await _0x10490e(this,ConfigManager,_0x1c0920);}catch(_0x3cfbac){console['error'](_0x3cfbac);const _0x3fc9dd=new Alert();_0x3fc9dd['title']='加载失败',_0x3fc9dd['message']='无法连接\\x20GitHub\\x20获取编辑器代码，请检查网络或\\x20URL\\x20配置。\\x0a\\x0a'+_0x3cfbac['message'],_0x3fc9dd['addAction']('确定'),await _0x3fc9dd['presentAlert']();}}async[a0_0x1c51e0(0x22f)](){const _0x3d676c=a0_0x1c51e0,_0xd2183b=async()=>{const _0x497601=a0_0x1953;try{const _0xd8ed6=await Location['current'](),_0xf0aca=await Location['reverseGeocode'](_0xd8ed6['latitude'],_0xd8ed6['longitude'],'zh_cn');this[_0x497601(0x242)][_0x497601(0x127)]=String(_0xd8ed6[_0x497601(0x15a)]),this[_0x497601(0x242)][_0x497601(0x12d)]=String(_0xd8ed6[_0x497601(0x233)]),this[_0x497601(0x242)][_0x497601(0x180)]=_0xf0aca[0x0][_0x497601(0x235)],this[_0x497601(0x242)][_0x497601(0x236)]=_0xf0aca[0x0][_0x497601(0x182)],this[_0x497601(0x15b)](![]),this[_0x497601(0x260)](_0x497601(0x238),_0x497601(0x239)),await this[_0x497601(0x22f)]();}catch(_0x1a44cd){this[_0x497601(0x260)](_0x497601(0x23a),_0x1a44cd[_0x497601(0xe7)]),await this[_0x497601(0x22f)]();}},_0xcc2e6c=[{'title':_0x3d676c(0x13f),'type':_0x3d676c(0x14f),'val':_0x3d676c(0x23c),'placeholder':'60'},{'title':_0x3d676c(0xfe),'val':_0x3d676c(0x23e),'icon':{'name':_0x3d676c(0x23f),'color':_0x3d676c(0x29f)},'onClick':_0xd2183b},{'title':_0x3d676c(0x14e),'type':_0x3d676c(0x241),'val':_0x3d676c(0xd8)}];await this[_0x3d676c(0x23b)]([{'title':_0x3d676c(0x243),'menu':_0xcc2e6c},{'title':_0x3d676c(0x244),'menu':[{'title':'经度','type':_0x3d676c(0x14f),'val':_0x3d676c(0x12d)},{'title':'纬度','type':_0x3d676c(0x14f),'val':_0x3d676c(0x127)},{'title':'城市','type':_0x3d676c(0x14f),'val':_0x3d676c(0x180)},{'title':'区域','type':_0x3d676c(0x14f),'val':_0x3d676c(0x236)}]}]),this[_0x3d676c(0x15b)](![]);}async[a0_0x1c51e0(0x151)](){const _0xa6baf=a0_0x1c51e0,_0xed821=ConfigManager[_0xa6baf(0x246)]();this[_0xa6baf(0x242)]=Object[_0xa6baf(0x247)]({},this[_0xa6baf(0x1c3)],_0xed821);const _0x41b029=[{'t':_0xa6baf(0x1f5),'v':_0xa6baf(0x234)},{'t':_0xa6baf(0x24a),'v':_0xa6baf(0x12e)},{'t':_0xa6baf(0x176),'v':_0xa6baf(0x36a)},{'t':_0xa6baf(0x24d),'v':_0xa6baf(0x137)}],_0x30cda0=this[_0xa6baf(0x242)][_0xa6baf(0x24f)]||'classic';await this[_0xa6baf(0x23b)]([{'title':_0xa6baf(0x104),'menu':_0x41b029[_0xa6baf(0x2f7)](_0x3395db=>({'title':(_0x30cda0===_0x3395db['v']?'✅\\x20':'')+_0x3395db['t'],'val':_0xa6baf(0xdc)+_0x3395db['v'],'icon':{'name':_0xa6baf(0x252),'color':_0xa6baf(0xed)},'onClick':async()=>{const _0x566270=_0xa6baf,_0x3f7fd5=new Alert();_0x3f7fd5[_0x566270(0x175)]=_0x566270(0x253),_0x3f7fd5[_0x566270(0xe7)]=_0x566270(0x1f3)+_0x3395db['t']+_0x566270(0x255),_0x3f7fd5[_0x566270(0x11e)](_0x566270(0x263)),_0x3f7fd5['addCancelAction']('取消');const _0x58d455=await _0x3f7fd5['presentAlert']();_0x58d455===0x0&&(this['settings']['styleModel']=_0x3395db['v'],this['saveSettings'](![]),this['notify']('✅\\x20样式已切换','当前模式：'+_0x3395db['t']+'\\x20(请重新运行)'));}}))}]);}async['setKeyConfig'](){await this['setBasicConfig']();}async['setRefreshConfig'](){await this['setBasicConfig']();}async['fetchData'](){const _0x52a8c3=a0_0x1c51e0,_0x3f82ff=ConfigManager['load']();this['settings']=Object['assign']({},this['defaultData'],_0x3f82ff);let _0x3cb4cf={'latitude':39.9,'longitude':116.4,'locality':'定位中','subLocality':''};const _0x45d758=this['settings']['lockLocation']===!![]||this['settings']['lockLocation']==='true';if(_0x45d758)this['settings']['fixedLat']&&this['settings']['fixedLng']&&(_0x3cb4cf={'latitude':this['settings']['fixedLat'],'longitude':this[_0x52a8c3(0x242)]['fixedLng'],'locality':this['settings']['fixedCity']||'固定','subLocality':this[_0x52a8c3(0x242)][_0x52a8c3(0x236)]||'位置'});else try{let _0x25c45c=await Location[_0x52a8c3(0x257)](),_0x28ebe6=await Location[_0x52a8c3(0x258)](_0x25c45c[_0x52a8c3(0x15a)],_0x25c45c[_0x52a8c3(0x233)],_0x52a8c3(0x26c));_0x3cb4cf={'latitude':_0x25c45c[_0x52a8c3(0x15a)],'longitude':_0x25c45c[_0x52a8c3(0x233)],'locality':_0x28ebe6[0x0][_0x52a8c3(0x235)],'subLocality':_0x28ebe6[0x0][_0x52a8c3(0x182)]},ConfigManager['saveCache']('location_cache.json',_0x3cb4cf),this['settings']['fixedLat']=String(_0x25c45c['latitude']),this['settings']['fixedLng']=String(_0x25c45c['longitude']),this['settings']['fixedCity']=_0x28ebe6[0x0]['locality'],this['settings']['fixedSubCity']=_0x28ebe6[0x0]['subLocality'],this['saveSettings'](![]);}catch(_0x13aec6){const _0x167cf7=ConfigManager['readCache']('location_cache.json');if(_0x167cf7)_0x3cb4cf=_0x167cf7;else _0x3cb4cf['locality']='定位失败';}this['location']=_0x3cb4cf;let _0x77e476={};try{const _0x43303c='https:\/\/api.open-meteo.com\/v1\/forecast?latitude='+_0x3cb4cf[_0x52a8c3(0x15a)]+'&longitude='+_0x3cb4cf['longitude']+'&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=auto&forecast_days=14',_0x13e1c8=_0x52a8c3(0x25a)+_0x3cb4cf[_0x52a8c3(0x15a)]+_0x52a8c3(0x264)+_0x3cb4cf[_0x52a8c3(0x233)]+'&current=us_aqi&timezone=auto',_0xd8d736=new Request(_0x43303c);_0xd8d736[_0x52a8c3(0x168)]=0x8;const _0x144dd0=new Request(_0x13e1c8);_0x144dd0[_0x52a8c3(0x168)]=0x8;const [_0xbf9a82,_0x254afd]=await Promise[_0x52a8c3(0x1b9)]([_0xd8d736[_0x52a8c3(0x12c)](),_0x144dd0[_0x52a8c3(0x12c)]()]);_0x77e476=this[_0x52a8c3(0x12f)](_0xbf9a82,_0x254afd);if(_0x77e476[_0x52a8c3(0xf5)])ConfigManager[_0x52a8c3(0x1ef)](_0x52a8c3(0x1be),_0x77e476);}catch(_0x552b28){const _0x57f357=ConfigManager[_0x52a8c3(0x249)](_0x52a8c3(0x1be));if(_0x57f357)_0x77e476=_0x57f357;}let _0x1e728f={},_0xe9d24e=this[_0x52a8c3(0x242)][_0x52a8c3(0x24f)]===_0x52a8c3(0x12e)||args[_0x52a8c3(0x237)]&&args[_0x52a8c3(0x237)][_0x52a8c3(0x1df)](_0x52a8c3(0x1f4))>-0x1;if(!_0xe9d24e)try{const _0x2b9f53=new Request(_0x52a8c3(0x1bb));_0x2b9f53[_0x52a8c3(0x168)]=0x5;const _0x26743c=await _0x2b9f53[_0x52a8c3(0x12c)]();_0x1e728f=_0x26743c[_0x52a8c3(0x1ed)]?_0x26743c:{};}catch(_0x1a874d){}let _0xdd11c6=[];try{const _0x192330=await CalendarEvent[_0x52a8c3(0x1af)]([]);_0xdd11c6=_0x192330[_0x52a8c3(0x248)](_0x2c98dd=>!_0x2c98dd[_0x52a8c3(0x175)][_0x52a8c3(0x269)](_0x52a8c3(0x232)))[_0x52a8c3(0x2f7)](_0x1925fb=>({'title':_0x1925fb[_0x52a8c3(0x175)]}));}catch(_0x490030){}const _0xc6d04e=await this[_0x52a8c3(0x158)]();return{'weather':_0x77e476,'poetry':_0x1e728f,'schedules':_0xdd11c6,'lottery':_0xc6d04e};}async[a0_0x1c51e0(0x158)](){const _0x14d17d=a0_0x1c51e0;let _0x1c4d92=this[_0x14d17d(0x242)][_0x14d17d(0x10e)]||_0x14d17d(0x17b);if(!_0x1c4d92||_0x1c4d92===_0x14d17d(0x2bf))return null;if(_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x1ea))||_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x1ec)))_0x1c4d92=_0x14d17d(0xdb);else{if(_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0xeb))||_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x268)))_0x1c4d92=_0x14d17d(0x17b);else{if(_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x15e))||_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x11b)))_0x1c4d92=_0x14d17d(0xef);else{if(_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x1f7))||_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x273)))_0x1c4d92=_0x14d17d(0x12a);else{if(_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x141))||_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x1fb)))_0x1c4d92=_0x14d17d(0xe3);else{if(_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x1fc))||_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x341)))_0x1c4d92=_0x14d17d(0x102);else{if(_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x138))||_0x1c4d92[_0x14d17d(0x16e)](_0x14d17d(0x1ff)))_0x1c4d92=_0x14d17d(0x17f);}}}}}}const _0x18ed63=_0x14d17d(0x1fe)+_0x1c4d92,_0x24d75d=ConfigManager[_0x14d17d(0x249)](_0x18ed63);if(_0x24d75d&&_0x24d75d[_0x14d17d(0x27b)]&&Date[_0x14d17d(0x1a9)]()-_0x24d75d[_0x14d17d(0x27b)]<0x1b7740&&_0x24d75d[_0x14d17d(0x1ed)][_0x14d17d(0x202)])return _0x24d75d[_0x14d17d(0x1ed)];let _0x29414b={'full':'','pool':'','type':_0x1c4d92};const _0xdb3849={'ssq':_0x14d17d(0x1ea),'dlt':_0x14d17d(0xeb),'pl3':_0x14d17d(0x15e),'fc3d':_0x14d17d(0x1f7),'qxc':_0x14d17d(0x141),'qlc':_0x14d17d(0x1fc),'pl5':_0x14d17d(0x138)},_0xc1fb94=_0xdb3849[_0x1c4d92]||'彩票',_0x257710={'dlt':0x55,'pl3':0x23,'pl5':0x51,'qxc':'04'};if(_0x257710[_0x1c4d92])try{const _0xd9ff35=_0x257710[_0x1c4d92],_0x581f69=_0x14d17d(0x27e)+_0xd9ff35+_0x14d17d(0x203),_0x5589dd=new Request(_0x581f69),_0x5c4a3a=await _0x5589dd[_0x14d17d(0x12c)]();if(_0x5c4a3a&&_0x5c4a3a[_0x14d17d(0x2d4)]&&_0x5c4a3a[_0x14d17d(0x2d5)]&&_0x5c4a3a[_0x14d17d(0x2d5)][_0x14d17d(0xf2)]&&_0x5c4a3a[_0x14d17d(0x2d5)][_0x14d17d(0xf2)][_0x14d17d(0x283)]>0x0){const _0x505d4b=_0x5c4a3a[_0x14d17d(0x2d5)][_0x14d17d(0xf2)][0x0];let _0x5b7f7e=_0x505d4b[_0x14d17d(0x1e1)][_0x14d17d(0x25d)](\/ \/g,'\\x20');if(_0x1c4d92===_0x14d17d(0x17b)){const _0x43bebd=_0x505d4b[_0x14d17d(0x1e1)][_0x14d17d(0x245)]('\\x20');_0x5b7f7e=_0x43bebd[_0x14d17d(0x286)](0x0,0x5)[_0x14d17d(0x15d)]('\\x20')+_0x14d17d(0x22b)+_0x43bebd[_0x14d17d(0x286)](0x5)[_0x14d17d(0x15d)]('\\x20');}_0x29414b[_0x14d17d(0x289)]=_0xc1fb94+'\\x20'+_0x505d4b[_0x14d17d(0x230)]+_0x14d17d(0x28b)+_0x5b7f7e;let _0x5a186b=_0x505d4b[_0x14d17d(0x28c)]||'0';_0x29414b['pool']=this[_0x14d17d(0x312)](_0x5a186b);}}catch(_0x5a1541){console[_0x14d17d(0x313)](_0x14d17d(0x28f)+_0x5a1541[_0x14d17d(0xe7)]);}else try{let _0x53c0eb=_0x1c4d92;if(_0x1c4d92===_0x14d17d(0x12a))_0x53c0eb='3d';const _0x5a8148=_0x14d17d(0x109)+_0x53c0eb+_0x14d17d(0x291),_0x48a02f=new Request(_0x5a8148);_0x48a02f[_0x14d17d(0x1b2)]={'User-Agent':_0x14d17d(0x293),'Referer':_0x14d17d(0x294),'Accept':_0x14d17d(0x178),'X-Requested-With':_0x14d17d(0x18f)};const _0x3246e0=await _0x48a02f[_0x14d17d(0x12c)]();if(_0x3246e0&&_0x3246e0[_0x14d17d(0x189)]&&_0x3246e0[_0x14d17d(0x189)][_0x14d17d(0x283)]>0x0){const _0x3d6918=_0x3246e0[_0x14d17d(0x189)][0x0];let _0x53c592=_0x3d6918[_0x14d17d(0x184)];_0x3d6918[_0x14d17d(0x170)]&&_0x3d6918[_0x14d17d(0x170)][_0x14d17d(0x283)]>0x0&&(_0x53c592=_0x53c592+_0x14d17d(0x22b)+_0x3d6918[_0x14d17d(0x170)]);_0x53c592=_0x53c592[_0x14d17d(0x25d)](\/,\/g,'\\x20'),_0x29414b[_0x14d17d(0x289)]=_0xc1fb94+'\\x20'+_0x3d6918[_0x14d17d(0x31f)]+_0x14d17d(0x28b)+_0x53c592;let _0x3bee74=_0x3d6918[_0x14d17d(0x266)]||'0';_0x29414b[_0x14d17d(0x202)]=this[_0x14d17d(0x312)](_0x3bee74);}}catch(_0x551057){console[_0x14d17d(0x313)](_0x14d17d(0x16f)+_0x551057[_0x14d17d(0xe7)]);}if(_0x29414b[_0x14d17d(0x289)])return ConfigManager[_0x14d17d(0x1ef)](_0x18ed63,{'data':_0x29414b,'timestamp':Date[_0x14d17d(0x1a9)]()}),_0x29414b;return null;}[a0_0x1c51e0(0x312)](_0x5b64b0){const _0x1c74c6=a0_0x1c51e0;let _0x563999=parseFloat(_0x5b64b0[_0x1c74c6(0x25d)](\/,\/g,''));if(isNaN(_0x563999))return _0x1c74c6(0x143);if(_0x563999>0x5f5e100)return(_0x563999\/0x5f5e100)[_0x1c74c6(0x1e9)](0x2)+'亿';else{if(_0x563999>0x2710)return(_0x563999\/0x2710)[_0x1c74c6(0x1e9)](0x1)+'万';}return _0x563999+'元';}[a0_0x1c51e0(0x1ee)](_0x498397){const _0x1a0379=a0_0x1c51e0,_0x4924ef=new Date()[_0x1a0379(0x146)]();let _0x55daf1=_0x1a0379(0x200);const _0x49edfc={'ssq':[0x0,0x2,0x4],'dlt':[0x1,0x3,0x6],'qlc':[0x1,0x3,0x5],'qxc':[0x0,0x2,0x5],'fc3d':[0x0,0x1,0x2,0x3,0x4,0x5,0x6],'pl3':[0x0,0x1,0x2,0x3,0x4,0x5,0x6],'pl5':[0x0,0x1,0x2,0x3,0x4,0x5,0x6]};let _0x551064=_0x1a0379(0x2a1);if([_0x1a0379(0xdb),_0x1a0379(0x102),_0x1a0379(0x12a)][_0x1a0379(0x16e)](_0x498397))_0x551064=_0x1a0379(0x2a2);return _0x49edfc[_0x498397]&&_0x49edfc[_0x498397][_0x1a0379(0x16e)](_0x4924ef)?_0x1a0379(0x2a0)+_0x551064:_0x1a0379(0x2a4);}[a0_0x1c51e0(0x12f)](_0x3bbf03,_0x5395c1){const _0x593306=a0_0x1c51e0;if(!_0x3bbf03||!_0x3bbf03[_0x593306(0x257)]||!_0x3bbf03[_0x593306(0x204)])return{};let _0x553fe3={};_0x553fe3['temp']=Math[_0x593306(0x2a6)](_0x3bbf03[_0x593306(0x257)][_0x593306(0x207)]),_0x553fe3[_0x593306(0x2a8)]=_0x3bbf03[_0x593306(0x257)][_0x593306(0x2a9)]+'%',_0x553fe3[_0x593306(0x2aa)]=this[_0x593306(0x2ab)](_0x3bbf03[_0x593306(0x257)][_0x593306(0x209)],_0x3bbf03[_0x593306(0x257)][_0x593306(0x2ad)]);_0x3bbf03[_0x593306(0x204)][_0x593306(0x2ae)]&&_0x3bbf03[_0x593306(0x204)][_0x593306(0x2ae)][0x0]!==undefined?_0x553fe3['uv']=Math[_0x593306(0x2a6)](_0x3bbf03[_0x593306(0x204)][_0x593306(0x2ae)][0x0]):_0x553fe3['uv']='-';_0x5395c1&&_0x5395c1[_0x593306(0x257)]&&_0x5395c1[_0x593306(0x257)][_0x593306(0x2af)]!==undefined?_0x553fe3[_0x593306(0x20c)]=this[_0x593306(0x2b1)](_0x5395c1[_0x593306(0x257)][_0x593306(0x2af)]):_0x553fe3[_0x593306(0x20c)]='-';const _0x3d6925=_0x3bbf03[_0x593306(0x257)][_0x593306(0x2b2)];if(_0x3d6925<=0x5)_0x553fe3[_0x593306(0x2b3)]='寒冷';else{if(_0x3d6925<=0xf)_0x553fe3[_0x593306(0x2b3)]='凉爽';else{if(_0x3d6925<=0x1a)_0x553fe3[_0x593306(0x2b3)]='舒适';else{if(_0x3d6925<=0x20)_0x553fe3[_0x593306(0x2b3)]='炎热';else _0x553fe3[_0x593306(0x2b3)]='酷热';}}}if(_0x3bbf03[_0x593306(0x204)][_0x593306(0x20f)]&&_0x3bbf03[_0x593306(0x204)][_0x593306(0x20f)][0x0])_0x553fe3[_0x593306(0x20f)]=_0x3bbf03[_0x593306(0x204)][_0x593306(0x20f)][0x0][_0x593306(0x245)]('T')[0x1];else _0x553fe3[_0x593306(0x20f)]=_0x593306(0x2b5);if(_0x3bbf03[_0x593306(0x204)][_0x593306(0x2b6)]&&_0x3bbf03[_0x593306(0x204)][_0x593306(0x2b6)][0x0])_0x553fe3[_0x593306(0x2b6)]=_0x3bbf03[_0x593306(0x204)][_0x593306(0x2b6)][0x0][_0x593306(0x245)]('T')[0x1];else _0x553fe3[_0x593306(0x2b6)]=_0x593306(0x2b5);_0x3bbf03[_0x593306(0x204)]['temperature_2m_min']&&_0x3bbf03['daily']['temperature_2m_min'][0x0]!==undefined?(_0x553fe3['min']=Math[_0x593306(0x2a6)](_0x3bbf03[_0x593306(0x204)][_0x593306(0x2b7)][0x0]),_0x553fe3[_0x593306(0x2b8)]=Math[_0x593306(0x2a6)](_0x3bbf03[_0x593306(0x204)][_0x593306(0x211)][0x0])):(_0x553fe3[_0x593306(0x174)]='-',_0x553fe3[_0x593306(0x2b8)]='-');const _0x3f1346={0x0:'晴朗',0x1:'多云',0x2:'多云',0x3:'阴',0x2d:'雾',0x33:'小雨',0x3d:'雨',0x47:'雪',0x5f:'雷雨'};let _0x3eb337=_0x3f1346[_0x3bbf03[_0x593306(0x257)][_0x593306(0x209)]]||'有雨';_0x553fe3[_0x593306(0x2bb)]='今日'+_0x3eb337+_0x593306(0xf3)+_0x553fe3[_0x593306(0x2b8)]+_0x593306(0x29a)+_0x553fe3[_0x593306(0x174)]+'°',_0x553fe3[_0x593306(0x2be)]='',_0x553fe3[_0x593306(0x1c4)]=[];for(let _0x33924b=0x1;_0x33924b<0xe;_0x33924b++){try{if(!_0x3bbf03[_0x593306(0x204)][_0x593306(0x2c0)][_0x33924b])break;let _0x33f25a=_0x3bbf03[_0x593306(0x204)][_0x593306(0x2c0)][_0x33924b],_0x3fdc54=parseInt(_0x33f25a[_0x593306(0x245)]('-')[0x2]);_0x553fe3[_0x593306(0x1c4)][_0x593306(0x2d7)]({'day':_0x3fdc54+'日','min':Math[_0x593306(0x2a6)](_0x3bbf03[_0x593306(0x204)][_0x593306(0x2b7)][_0x33924b]),'max':Math[_0x593306(0x2a6)](_0x3bbf03[_0x593306(0x204)][_0x593306(0x211)][_0x33924b]),'ico':this[_0x593306(0x2ab)](_0x3bbf03[_0x593306(0x204)][_0x593306(0x209)][_0x33924b],0x1)});}catch(_0x3f11ca){}}return _0x553fe3;}[a0_0x1c51e0(0x2ab)](_0x58632b,_0x408c0e){const _0xe41d9c=a0_0x1c51e0,_0x3f4148={0x0:_0x408c0e?_0xe41d9c(0x25f):_0xe41d9c(0x14b),0x1:_0x408c0e?_0xe41d9c(0x34a):_0xe41d9c(0xf1),0x2:_0x408c0e?_0xe41d9c(0x34a):_0xe41d9c(0xf1),0x3:_0xe41d9c(0x284),0x2d:_0xe41d9c(0xcf),0x30:_0xe41d9c(0xcf),0x33:_0xe41d9c(0xd7),0x35:_0xe41d9c(0xd7),0x37:_0xe41d9c(0xd7),0x3d:_0xe41d9c(0x261),0x3f:_0xe41d9c(0x261),0x41:_0xe41d9c(0x261),0x50:_0xe41d9c(0x261),0x51:_0xe41d9c(0x261),0x52:_0xe41d9c(0x261),0x47:_0xe41d9c(0x142),0x49:_0xe41d9c(0x142),0x4b:_0xe41d9c(0x142),0x5f:_0xe41d9c(0x1c5),0x60:_0xe41d9c(0x1c5),0x63:_0xe41d9c(0x1c5)};return _0x3f4148[_0x58632b]||_0xe41d9c(0x284);}async[a0_0x1c51e0(0x2c2)](){const _0x45eff5=a0_0x1c51e0,_0x571865=ConfigManager[_0x45eff5(0x246)]();this[_0x45eff5(0x242)]=Object[_0x45eff5(0x247)]({},this[_0x45eff5(0x1c3)],_0x571865);const _0x25bae9=await this[_0x45eff5(0x11f)](),_0x285c60=new ListWidget();let _0x58698b=this[_0x45eff5(0x242)][_0x45eff5(0x24f)]||_0x45eff5(0x234);if(!config[_0x45eff5(0x367)]&&args[_0x45eff5(0x237)]){if(args[_0x45eff5(0x237)][_0x45eff5(0x1df)](_0x45eff5(0x1f4))>-0x1)_0x58698b=_0x45eff5(0x12e);if(args[_0x45eff5(0x237)][_0x45eff5(0x1df)](_0x45eff5(0x1c7))>-0x1)_0x58698b=_0x45eff5(0x36a);if(args[_0x45eff5(0x237)][_0x45eff5(0x1df)](_0x45eff5(0x2c6))>-0x1)_0x58698b=_0x45eff5(0x137);}if(_0x58698b===_0x45eff5(0x12e))this[_0x45eff5(0x1c8)]=_0x45eff5(0x344);else{if(_0x58698b===_0x45eff5(0x36a))this[_0x45eff5(0x1c8)]=_0x45eff5(0x1c9);else _0x58698b===_0x45eff5(0x137)?this[_0x45eff5(0x1c8)]=_0x45eff5(0x2ca):this[_0x45eff5(0x1c8)]=_0x45eff5(0x18a);}let _0x580966=parseInt(this[_0x45eff5(0x242)][_0x45eff5(0x23c)])||0x3c;if(_0x580966<0x5)_0x580966=0x5;_0x285c60[_0x45eff5(0x30a)]=new Date(new Date()[_0x45eff5(0x366)]()+_0x580966*0xea60);const _0x4c1f6c=Device[_0x45eff5(0x30b)](),_0x58d3ef=_0x4c1f6c?_0x45eff5(0x13c):_0x45eff5(0x1ac),_0x4cd237=_0x45eff5(0x20b)+this[_0x45eff5(0x1c8)][_0x45eff5(0x25d)]('_','')+_0x45eff5(0x193),_0x3380d6=_0x45eff5(0x20b)+this[_0x45eff5(0x1c8)][_0x45eff5(0x25d)]('_','')+_0x58d3ef+_0x45eff5(0x193);let _0x281f70=ConfigManager[_0x45eff5(0x106)](_0x3380d6);if(!_0x281f70)_0x281f70=ConfigManager[_0x45eff5(0x106)](_0x4cd237);if(_0x281f70)_0x285c60[_0x45eff5(0x22d)]=_0x281f70;else{let _0xd7d59=_0x4c1f6c?this[_0x45eff5(0x1c8)]+_0x45eff5(0x259):this[_0x45eff5(0x1c8)]+'color_bg_day',_0x432627=_0x4c1f6c?this[_0x45eff5(0x1c8)]+_0x45eff5(0x129):this[_0x45eff5(0x1c8)]+_0x45eff5(0x28a),_0x1348fd=this[_0x45eff5(0x242)][_0xd7d59]||this[_0x45eff5(0x242)][this[_0x45eff5(0x1c8)]+_0x45eff5(0x2d6)]||_0x45eff5(0x292),_0x6cbae3=this[_0x45eff5(0x242)][_0x432627]||this[_0x45eff5(0x242)][this[_0x45eff5(0x1c8)]+_0x45eff5(0x1ae)];if(_0x6cbae3&&_0x6cbae3[_0x45eff5(0x283)]>0x0){let _0x12cd66=new LinearGradient();_0x12cd66[_0x45eff5(0x290)]=[new Color(_0x1348fd),new Color(_0x6cbae3)],_0x12cd66[_0x45eff5(0x30d)]=[0x0,0x1],_0x285c60[_0x45eff5(0x2db)]=_0x12cd66;}else _0x285c60[_0x45eff5(0x2dc)]=new Color(_0x1348fd);}_0x285c60[_0x45eff5(0x2dd)](0xa,0x4,0x5,0x4);if(this[_0x45eff5(0x22c)]===_0x45eff5(0xe8))await this[_0x45eff5(0x2df)](_0x285c60,_0x25bae9);else await this[_0x45eff5(0x296)](_0x285c60,_0x25bae9);return _0x285c60;}async[a0_0x1c51e0(0x2df)](_0x618e0f,_0x1f702b){const _0x57463d=a0_0x1c51e0;let _0x7991a4=_0x618e0f[_0x57463d(0x2e2)]();_0x7991a4[_0x57463d(0x30c)](),_0x7991a4[_0x57463d(0x2e0)]();let _0x6485ec=_0x7991a4[_0x57463d(0x2e2)]();_0x6485ec[_0x57463d(0x2e5)](),this[_0x57463d(0x2e6)](_0x6485ec,_0x57463d(0x1a6),{'t':0x0,'l':0x8,'b':0x0,'r':0x0}),await this[_0x57463d(0x2e7)](_0x6485ec,_0x1f702b),_0x7991a4[_0x57463d(0x2e4)]();let _0x50c7c9=_0x7991a4[_0x57463d(0x2e2)]();_0x50c7c9[_0x57463d(0x2e9)]=new Size(this['s'](0x6e,_0x57463d(0x14c)),0x0),_0x50c7c9[_0x57463d(0x2e5)](),this[_0x57463d(0x2e6)](_0x50c7c9,_0x57463d(0x1a8),{'t':0x0,'l':0x0,'b':0x0,'r':0x5}),await this[_0x57463d(0x2ea)](_0x50c7c9,_0x1f702b[_0x57463d(0x14c)]);}async[a0_0x1c51e0(0x296)](_0x1e1f70,_0x211d4e){const _0x1d23ac=a0_0x1c51e0,_0x1b8633=this[_0x1d23ac(0x1c8)]===_0x1d23ac(0x1c9),_0x1b27a1=this[_0x1d23ac(0x1c8)]===_0x1d23ac(0x2ca),_0x27119a=_0x1b8633||_0x1b27a1;let _0x1bf22b=_0x1e1f70[_0x1d23ac(0x2e2)]();_0x1bf22b[_0x1d23ac(0x30c)](),_0x1bf22b[_0x1d23ac(0x2e9)]=new Size(0x0,this['s'](_0x27119a?0x95:0x95,_0x1d23ac(0x14c)));let _0x27c465=_0x1bf22b[_0x1d23ac(0x2e2)]();_0x27c465[_0x1d23ac(0x2e5)](),this[_0x1d23ac(0x2e6)](_0x27c465,_0x1d23ac(0x1aa),{'t':0x0,'l':0x8,'b':0x0,'r':0x0}),await this['renderInfoSide'](_0x27c465,_0x211d4e),_0x1bf22b[_0x1d23ac(0x2e4)]();let _0x116ab6=_0x1bf22b[_0x1d23ac(0x2e2)]();_0x116ab6[_0x1d23ac(0x2e9)]=new Size(this['s'](0x6e,_0x1d23ac(0x14c)),0x0),_0x116ab6[_0x1d23ac(0x2e5)](),this[_0x1d23ac(0x2e6)](_0x116ab6,_0x1d23ac(0x2d1),{'t':0x0,'l':0x0,'b':0x0,'r':0x5}),await this[_0x1d23ac(0x2ea)](_0x116ab6,_0x211d4e[_0x1d23ac(0x14c)]),_0x1e1f70[_0x1d23ac(0x2e4)](_0x27119a?0x0:0x4);let _0x27c13a=_0x1e1f70[_0x1d23ac(0x2e2)]();_0x27c13a[_0x1d23ac(0x2e5)](),this[_0x1d23ac(0x2e6)](_0x27c13a,_0x1d23ac(0x2d9),{'t':0x0,'l':0x0,'b':0x0,'r':0x0}),await this[_0x1d23ac(0x315)](_0x27c13a);if(_0x27119a){let _0xfea7ca=_0x1e1f70[_0x1d23ac(0x2e2)]();_0xfea7ca[_0x1d23ac(0x30c)]();let _0x5473c2=_0xfea7ca[_0x1d23ac(0x2e2)]();_0x5473c2[_0x1d23ac(0x2e5)]();_0x1b8633?(this[_0x1d23ac(0x2e6)](_0x5473c2,_0x1d23ac(0x1ad),{'t':0x0,'l':0x5,'b':0x0,'r':0x0}),await this[_0x1d23ac(0x2ec)](_0x5473c2)):(this[_0x1d23ac(0x2e6)](_0x5473c2,_0x1d23ac(0x314),{'t':0x0,'l':0x5,'b':0x0,'r':0x0}),await this[_0x1d23ac(0x2ed)](_0x5473c2,_0x211d4e[_0x1d23ac(0x171)]));_0xfea7ca[_0x1d23ac(0x2e4)]();let _0x5741e5=_0xfea7ca[_0x1d23ac(0x2e2)]();_0x5741e5[_0x1d23ac(0x2e5)]();let _0x2499a5=_0x5741e5[_0x1d23ac(0x2e2)]();_0x2499a5[_0x1d23ac(0x2e5)](),this[_0x1d23ac(0x2e6)](_0x2499a5,_0x1d23ac(0x1b0),{'t':0x0,'l':0x12,'b':0x0,'r':0x0}),await this[_0x1d23ac(0x2ef)](_0x2499a5);let _0x24f835=_0x5741e5[_0x1d23ac(0x2e2)]();_0x24f835[_0x1d23ac(0x2e5)](),this[_0x1d23ac(0x2e6)](_0x24f835,_0x1d23ac(0x2f0),{'t':0x0,'l':0x12,'b':0x0,'r':0x0}),await this[_0x1d23ac(0x2f1)](_0x24f835);}else{_0x1e1f70[_0x1d23ac(0x2e4)](0x4);let _0x24f842=_0x1e1f70[_0x1d23ac(0x2e2)]();_0x24f842[_0x1d23ac(0x2e5)](),this['applyLayout'](_0x24f842,'lg_week',{'t':0x0,'l':0x0,'b':0x0,'r':0x0}),await this['renderWeekRow'](_0x24f842);let _0x190e48=_0x1e1f70['addStack']();_0x190e48['layoutVertically'](),this['applyLayout'](_0x190e48,'lg_cal',{'t':0x0,'l':0x0,'b':0x0,'r':0x0}),await this['renderCalendarGrid'](_0x190e48);}_0x1e1f70['addSpacer']();}async['renderHolidayBox'](_0x192608){const _0x58987c=a0_0x1c51e0;_0x192608['centerAlignContent']();let _0x2ccc4f=_0x192608['addStack']();_0x2ccc4f['size']=new Size(this['s'](0x6e,'holiday'),0x0),_0x2ccc4f['layoutVertically']();let _0xdec34d=parseFloat(this['settings'][this['activePrefix']+'space_holiday_h']||0x2),_0x2442ac=_0x2ccc4f['addStack']();_0x2442ac['centerAlignContent']();let _0xc6b9b7=this['s'](0xf,_0x58987c(0x36a)),_0xf991a7=_0x2442ac['addImage'](this['getSFIco']('gift.fill'));_0xf991a7[_0x58987c(0x179)]=new Size(_0xc6b9b7,_0xc6b9b7),_0xf991a7[_0x58987c(0x2f3)]=new Color('#FF5555'),_0x2442ac[_0x58987c(0x2e4)](0x4),this[_0x58987c(0x173)](_0x2442ac,_0x58987c(0x1e6),0x11,_0x58987c(0x36a),!![]),_0x2ccc4f[_0x58987c(0x2e4)](_0xdec34d);const _0x11002d=this[_0x58987c(0x2f5)]();for(let _0x5589d2 of _0x11002d){let _0x5851ff=_0x2ccc4f[_0x58987c(0x2e2)]();_0x5851ff[_0x58987c(0x2e0)](),this[_0x58987c(0x173)](_0x5851ff,_0x5589d2[_0x58987c(0x1f2)],0x11,_0x58987c(0x36a)),_0x5851ff[_0x58987c(0x2e4)]();let _0x57f36f=_0x5851ff[_0x58987c(0x2e2)]();_0x57f36f[_0x58987c(0x2dc)]=_0x5589d2[_0x58987c(0x2f6)]===0x0?new Color(_0x58987c(0x153)):new Color(_0x58987c(0x157),0.2),_0x57f36f[_0x58987c(0x2f8)]=0x3,_0x57f36f[_0x58987c(0x2dd)](0x1,0x4,0x1,0x4);let _0x58520c=_0x57f36f[_0x58987c(0x173)](_0x5589d2[_0x58987c(0x2f6)]===0x0?'今天':_0x5589d2[_0x58987c(0x2f6)]+'天');_0x58520c[_0x58987c(0x2f9)]=Font[_0x58987c(0x185)](this['s'](0xd,_0x58987c(0x36a))),_0x58520c[_0x58987c(0x2fb)]=_0x5589d2[_0x58987c(0x2f6)]===0x0?Color[_0x58987c(0x154)]():this[_0x58987c(0x2fd)](_0x58987c(0x36a)),_0x2ccc4f[_0x58987c(0x2e4)](_0xdec34d);}}async[a0_0x1c51e0(0x2ed)](_0x4c0681,_0x58bdf8){const _0x3366ee=a0_0x1c51e0;_0x4c0681[_0x3366ee(0x2e0)]();let _0x3f6978=_0x4c0681[_0x3366ee(0x2e2)]();_0x3f6978[_0x3366ee(0x2e9)]=new Size(this['s'](0x64,_0x3366ee(0x130)),0x0),_0x3f6978[_0x3366ee(0x2e5)]();let _0x58c0c4=parseFloat(this[_0x3366ee(0x242)][this[_0x3366ee(0x1c8)]+_0x3366ee(0x340)]||0x2),_0x5759b1=parseInt(this[_0x3366ee(0x242)][this[_0x3366ee(0x1c8)]+_0x3366ee(0x2ff)])||0x3,_0x3e1be1=this[_0x3366ee(0x242)][this[_0x3366ee(0x1c8)]+_0x3366ee(0x300)]||'',_0x55f29f=new Set(_0x3e1be1[_0x3366ee(0x25d)](\/，\/g,',')[_0x3366ee(0x245)](\/[, ]+\/)[_0x3366ee(0x2f7)](_0x43f9c7=>parseInt(_0x43f9c7))[_0x3366ee(0x248)](_0x5a5640=>!isNaN(_0x5a5640)&&_0x5a5640>0x0)[_0x3366ee(0x2f7)](_0x5bba58=>_0x5bba58-0x1)),_0x55c2f1=this[_0x3366ee(0x242)][this[_0x3366ee(0x1c8)]+_0x3366ee(0x1bd)],_0x5c1749=_0x58bdf8;_0x55c2f1&&_0x55c2f1[_0x3366ee(0x139)]()!==''&&(_0x5c1749=_0x58bdf8[_0x3366ee(0x248)](_0x43e33b=>_0x43e33b[_0x3366ee(0x175)][_0x3366ee(0x16e)](_0x55c2f1)));let _0x5bb8ac=_0x58bdf8[_0x3366ee(0x248)]((_0x470ad1,_0x45a6ba)=>!_0x55f29f[_0x3366ee(0x302)](_0x45a6ba)),_0x4f02b1=_0x3f6978[_0x3366ee(0x2e2)]();_0x4f02b1[_0x3366ee(0x2e0)]();let _0x35ae84=this['s'](0xf,_0x3366ee(0x130)),_0x426301=_0x4f02b1[_0x3366ee(0xe5)](this[_0x3366ee(0x1a5)](_0x3366ee(0x1bf)));_0x426301[_0x3366ee(0x179)]=new Size(_0x35ae84,_0x35ae84),_0x426301[_0x3366ee(0x2f3)]=new Color(_0x3366ee(0x306)),_0x4f02b1[_0x3366ee(0x2e4)](0x4),this[_0x3366ee(0x173)](_0x4f02b1,_0x3366ee(0x307),0x11,_0x3366ee(0x130),!![]),_0x3f6978[_0x3366ee(0x2e4)](_0x58c0c4);if(_0x5bb8ac[_0x3366ee(0x283)]===0x0){let _0x5d7dcb=_0x3f6978[_0x3366ee(0x2e2)]();_0x5d7dcb[_0x3366ee(0x2e0)](),this[_0x3366ee(0x173)](_0x5d7dcb,_0x3366ee(0x2cc),12.2,_0x3366ee(0x191));}else{let _0x5d4e1d=_0x3f6978[_0x3366ee(0x2e2)]();_0x5d4e1d[_0x3366ee(0x2e5)]();let _0x2aa5ca=this[_0x3366ee(0x1c8)]+_0x3366ee(0x309),_0x250eae=this[_0x3366ee(0x242)][_0x2aa5ca];if(!_0x250eae)_0x250eae=_0x3366ee(0x28d);let _0x1858ad;try{let _0x24b01e=new Color(_0x250eae);_0x1858ad=new Color(_0x24b01e[_0x3366ee(0x342)],0.3);}catch(_0x18c329){_0x1858ad=new Color(_0x3366ee(0x28d),0.3);}_0x5d4e1d[_0x3366ee(0x2dc)]=_0x1858ad,_0x5d4e1d[_0x3366ee(0x2f8)]=0x4,_0x5d4e1d[_0x3366ee(0x2dd)](0x4,0x4,0x4,0x4);let _0x17fa1c=Math[_0x3366ee(0x174)](_0x5bb8ac[_0x3366ee(0x283)],_0x5759b1);for(let _0x23e592=0x0;_0x23e592<_0x17fa1c;_0x23e592++){let _0x2549a9=_0x5bb8ac[_0x23e592],_0x260862=_0x5d4e1d[_0x3366ee(0x2e2)]();_0x260862[_0x3366ee(0x343)]();let _0xcb7008=_0x260862[_0x3366ee(0x2e2)]();_0xcb7008[_0x3366ee(0x2dd)](0x6,0x0,0x0,0x0);let _0xe4dc6d=_0xcb7008[_0x3366ee(0x2e2)]();_0xe4dc6d['size']=new Size(0x4,0x4),_0xe4dc6d['cornerRadius']=0x2;let _0x262484;_0x23e592<0x6?_0x262484=this['getConfColor']('schedule_item_'+(_0x23e592+0x1)):_0x262484=new Color('#ffffff');_0xe4dc6d['backgroundColor']=_0x262484,_0x260862['addSpacer'](0x4);let _0x294c0e=_0x2549a9['title'],_0x27b547=-0x1;if(_0x294c0e['includes']('柴油'))_0x27b547=_0x294c0e['indexOf']('柴油')+0x2;else{if(_0x294c0e['includes']('汽油'))_0x27b547=_0x294c0e['indexOf']('汽油')+0x2;}if(_0x27b547>-0x1){let _0xfde959=_0x260862['addStack']();_0xfde959['layoutVertically']();let _0x3f5f46=_0x294c0e['substring'](0x0,_0x27b547),_0x3fbdf0=_0x294c0e['substring'](_0x27b547)['trim']();this['addText'](_0xfde959,_0x3f5f46,12.2,'schedule_item',![],0x0,0x1,_0x262484),this['addText'](_0xfde959,_0x3fbdf0,12.2,_0x3366ee(0x191),![],0x0,0x1,_0x262484);}else{let _0x331f9c=this['addText'](_0x260862,_0x294c0e,12.2,'schedule_item',![],0x0,0x2,_0x262484);_0x331f9c['lineLimit']=0x2;}_0x23e592<_0x17fa1c-0x1&&_0x5d4e1d['addSpacer'](_0x58c0c4);}}}['getNextHolidays'](){const _0x3bd3a1=a0_0x1c51e0,_0x32c0f2=new Date(),_0x3eade0=_0x32c0f2[_0x3bd3a1(0x13b)](),_0x337fa8=[{'name':'元旦','m':0x1,'d':0x1},{'name':'情人节','m':0x2,'d':0xe},{'name':'妇女节','m':0x3,'d':0x8},{'name':_0x3bd3a1(0xe9),'m':0x5,'d':0x1},{'name':_0x3bd3a1(0x2d3),'m':0x6,'d':0x1},{'name':_0x3bd3a1(0x16a),'m':0x8,'d':0x1},{'name':_0x3bd3a1(0x311),'m':0x9,'d':0xa},{'name':_0x3bd3a1(0x28e),'m':0xa,'d':0x1},{'name':_0x3bd3a1(0x198),'m':0xb,'d':0x1},{'name':_0x3bd3a1(0x11a),'m':0xc,'d':0x19}],_0x3ea20d={0x7e9:[_0x3bd3a1(0x132),_0x3bd3a1(0x316),_0x3bd3a1(0x368),_0x3bd3a1(0x2cb)],0x7ea:[_0x3bd3a1(0x319),_0x3bd3a1(0x119),_0x3bd3a1(0x31b),_0x3bd3a1(0x31c)],0x7eb:[_0x3bd3a1(0x2fa),_0x3bd3a1(0x119),_0x3bd3a1(0x31e),_0x3bd3a1(0x364)],0x7ec:[_0x3bd3a1(0x365),_0x3bd3a1(0x316),_0x3bd3a1(0x321),_0x3bd3a1(0x2fe)],0x7ed:[_0x3bd3a1(0x323),_0x3bd3a1(0x316),_0x3bd3a1(0x301),_0x3bd3a1(0x325)],0x7ee:[_0x3bd3a1(0x326),_0x3bd3a1(0x119),_0x3bd3a1(0x303),_0x3bd3a1(0x328)],0x7ef:[_0x3bd3a1(0x304),_0x3bd3a1(0x119),_0x3bd3a1(0x32a),_0x3bd3a1(0x195)]};let _0x4035d8=[];const _0x568c50=(_0x55584d,_0x54f826,_0x5bb883)=>new Date(_0x55584d,_0x54f826-0x1,_0x5bb883),_0x57f362=(_0x4fcb95,_0x5aedc7)=>{const _0x55b89d=_0x3bd3a1,_0x5986b4=_0x5aedc7[_0x55b89d(0x245)](\/[-\/]\/);return new Date(_0x4fcb95,parseInt(_0x5986b4[0x0])-0x1,parseInt(_0x5986b4[0x1]));};for(let _0x5a456d=_0x3eade0-0x1;_0x5a456d<=_0x3eade0+0x1;_0x5a456d++){_0x5a456d>=_0x3eade0&&_0x337fa8[_0x3bd3a1(0x190)](_0x5bc5a7=>{const _0xbd81ab=_0x3bd3a1;_0x4035d8[_0xbd81ab(0x2d7)]({'name':_0x5bc5a7[_0xbd81ab(0x1f2)],'date':_0x568c50(_0x5a456d,_0x5bc5a7['m'],_0x5bc5a7['d'])});});if(_0x5a456d>=_0x3eade0&&_0x3ea20d[_0x5a456d]){const [_0x5eed3e,_0x2c443d,_0x2f1262,_0x2c7733]=_0x3ea20d[_0x5a456d];let _0x2f6f1c=_0x57f362(_0x5a456d,_0x5eed3e);_0x4035d8[_0x3bd3a1(0x2d7)]({'name':'春节','date':_0x2f6f1c}),_0x4035d8[_0x3bd3a1(0x2d7)]({'name':'除夕','date':new Date(_0x2f6f1c[_0x3bd3a1(0x366)]()-0x18*0x3c*0x3c*0x3e8)}),_0x4035d8[_0x3bd3a1(0x2d7)]({'name':'元宵','date':new Date(_0x2f6f1c[_0x3bd3a1(0x366)]()+0xe*0x18*0x3c*0x3c*0x3e8)}),_0x4035d8[_0x3bd3a1(0x2d7)]({'name':'清明','date':_0x57f362(_0x5a456d,_0x2c443d)}),_0x4035d8[_0x3bd3a1(0x2d7)]({'name':'端午','date':_0x57f362(_0x5a456d,_0x2f1262)}),_0x4035d8[_0x3bd3a1(0x2d7)]({'name':'中秋','date':_0x57f362(_0x5a456d,_0x2c7733)});}let _0x43eef5=this[_0x3bd3a1(0x242)][this[_0x3bd3a1(0x1c8)]+_0x3bd3a1(0x2cf)]||'';if(_0x43eef5){let _0x291ac4=_0x43eef5[_0x3bd3a1(0x245)]('\\x0a');for(let _0x2e5db2 of _0x291ac4){_0x2e5db2=_0x2e5db2[_0x3bd3a1(0x25d)](\/，\/g,',');let _0x2ebd0d=_0x2e5db2[_0x3bd3a1(0x245)](',');if(_0x2ebd0d[_0x3bd3a1(0x283)]<0x2)continue;let _0x297a1f=_0x2ebd0d[0x0][_0x3bd3a1(0x139)](),_0x28bb69=_0x2ebd0d[0x1][_0x3bd3a1(0x139)](),_0x1d9c29=_0x2ebd0d[_0x3bd3a1(0x283)]>0x2&&(_0x2ebd0d[0x2][_0x3bd3a1(0x16e)]('农')||_0x2ebd0d[0x2][_0x3bd3a1(0x16e)](_0x3bd3a1(0x32d)))?_0x3bd3a1(0x1d8):_0x3bd3a1(0x329),_0x1c0568=_0x28bb69[_0x3bd3a1(0x245)](\/[-\/]\/);if(_0x1c0568[_0x3bd3a1(0x283)]!==0x2)continue;let _0x5aee4e=parseInt(_0x1c0568[0x0]),_0x2e0c1a=parseInt(_0x1c0568[0x1]),_0x358919=null;try{_0x1d9c29===_0x3bd3a1(0x1d8)?_0x358919=getSolarFromLunar(_0x5a456d,_0x5aee4e,_0x2e0c1a):_0x358919=_0x568c50(_0x5a456d,_0x5aee4e,_0x2e0c1a);}catch(_0x326184){}_0x358919&&!isNaN(_0x358919[_0x3bd3a1(0x366)]())&&_0x4035d8[_0x3bd3a1(0x2d7)]({'name':_0x297a1f,'date':_0x358919});}}}let _0x401c51=new Date();_0x401c51[_0x3bd3a1(0x32b)](0x0,0x0,0x0,0x0);let _0x3d5417=_0x4035d8[_0x3bd3a1(0x2f7)](_0x2b113c=>{const _0x304543=_0x3bd3a1;if(!_0x2b113c[_0x304543(0x346)])return null;let _0x846b4c=(_0x2b113c['date']-_0x401c51)\/(0x3e8*0x3c*0x3c*0x18);return{'name':_0x2b113c['name'],'days':Math['ceil'](_0x846b4c),'date':_0x2b113c['date']};})['filter'](_0x8a60fb=>_0x8a60fb&&!isNaN(_0x8a60fb['days'])&&_0x8a60fb['days']>=0x0)['sort']((_0x1e5b2f,_0x18657f)=>_0x1e5b2f['days']-_0x18657f['days']),_0x552b35=[],_0x254b22=new Set();for(let _0x1e67d9 of _0x3d5417){let _0xdd36be=_0x1e67d9['name']+'_'+_0x1e67d9['days'];!_0x254b22['has'](_0xdd36be)&&(_0x254b22['add'](_0xdd36be),_0x552b35['push'](_0x1e67d9));if(_0x552b35['length']>=0x5)break;}return _0x552b35;}['applyLayout'](_0x2b1071,_0x14ce9a,_0x1aa169={'t':0x0,'l':0x0,'b':0x0,'r':0x0}){const _0x390043=a0_0x1c51e0;let _0x150143=parseInt(this['settings'][this['activePrefix']+'layout_'+_0x14ce9a+'_x'])||0x0,_0x4779ef=parseInt(this['settings'][this['activePrefix']+'layout_'+_0x14ce9a+'_y'])||0x0,_0x312a25=_0x1aa169['t']+_0x4779ef,_0x117708=_0x1aa169['l']+_0x150143,_0x176cb8=_0x1aa169['b'],_0xd60c4e=_0x1aa169['r'];_0x312a25<0x0&&(_0x176cb8+=Math['abs'](_0x312a25),_0x312a25=0x0),_0x176cb8<0x0&&(_0x312a25+=Math['abs'](_0x176cb8),_0x176cb8=0x0),_0x117708<0x0&&(_0xd60c4e+=Math[_0x390043(0x330)](_0x117708),_0x117708=0x0),_0xd60c4e<0x0&&(_0x117708+=Math['abs'](_0xd60c4e),_0xd60c4e=0x0),_0x2b1071['setPadding'](_0x312a25,_0x117708,_0x176cb8,_0xd60c4e);}[a0_0x1c51e0(0x2f2)](_0x1acaf8,_0x193438,_0x2ddb42,_0x179968=![]){const _0x2cc88b=a0_0x1c51e0,_0x3421d8=new Color('#FF3B30'),_0x30cd95=new Color('#007AFF');let _0x309de7=_0x193438['split']('+'),_0x30fc90=_0x309de7[0x0]['trim']()[_0x2cc88b(0x245)](\/[\\s,]+\/),_0x3627a7=[];_0x309de7['length']>0x1&&(_0x3627a7=_0x309de7[0x1][_0x2cc88b(0x139)]()[_0x2cc88b(0x245)](\/[\\s,]+\/));let _0x4211a1=this['s'](0xe,_0x2cc88b(0x1d2)),_0x4378b2=Math[_0x2cc88b(0x2a6)](_0x4211a1*(_0x179968?1.5:1.7));const _0x59d261=(_0x4375e7,_0x420ed5)=>{const _0x2df780=_0x2cc88b;if(!_0x4375e7||_0x4375e7[_0x2df780(0x139)]()==='')return;let _0x43a595=_0x1acaf8[_0x2df780(0x2e2)]();_0x43a595[_0x2df780(0x2e9)]=new Size(_0x4378b2,_0x4378b2),_0x43a595[_0x2df780(0x2f8)]=_0x4378b2\/0x2,_0x43a595[_0x2df780(0x2dc)]=_0x420ed5,_0x43a595[_0x2df780(0x2e0)]();let _0x46a374=_0x43a595[_0x2df780(0x173)](_0x4375e7);_0x46a374[_0x2df780(0x2f9)]=Font[_0x2df780(0x185)](_0x4211a1),_0x46a374[_0x2df780(0x2fb)]=Color[_0x2df780(0x154)](),_0x1acaf8[_0x2df780(0x2e4)](_0x179968?0x3:0x4);};for(let _0x404f1e of _0x30fc90)_0x59d261(_0x404f1e,_0x3421d8);for(let _0x470f7b of _0x3627a7)_0x59d261(_0x470f7b,_0x30cd95);}async[a0_0x1c51e0(0x2e7)](_0x352e68,_0x4b87ab){const _0x34484f=a0_0x1c51e0,_0x352b3d=this[_0x34484f(0x1c8)]===_0x34484f(0x344),_0x33c425=this[_0x34484f(0x242)][this[_0x34484f(0x1c8)]+_0x34484f(0x332)],_0x33811c=this[_0x34484f(0x242)][this[_0x34484f(0x1c8)]+_0x34484f(0x161)],_0x30833d=_0x33c425===undefined||_0x33c425===_0x34484f(0x113),_0x36d793=_0x33811c===undefined||_0x33811c==='true',_0x301736=new Date();let _0x3ccd32=_0x352e68[_0x34484f(0x2e2)]();_0x3ccd32[_0x34484f(0x2e0)]();let _0x3c012a=this[_0x34484f(0x242)][_0x34484f(0x10e)]&&this[_0x34484f(0x242)][_0x34484f(0x10e)]!==_0x34484f(0x2bf)&&_0x4b87ab[_0x34484f(0x334)];if(_0x3c012a){let _0x4a59de=_0x4b87ab[_0x34484f(0x334)][_0x34484f(0x289)][_0x34484f(0x245)](':'),_0x48f2cc=_0x4a59de[0x0],_0x4a4387=_0x4a59de[_0x34484f(0x283)]>0x1?_0x4a59de[0x1][_0x34484f(0x139)]():'';this[_0x34484f(0x173)](_0x3ccd32,_0x48f2cc,0xe,_0x34484f(0x1d0),!![]),_0x3ccd32[_0x34484f(0x2e4)](0x19);let _0x4cd913=_0x3ccd32[_0x34484f(0x2e2)]();_0x4cd913[_0x34484f(0x2dc)]=new Color(_0x34484f(0x28d),0.3),_0x4cd913[_0x34484f(0x2f8)]=0x4,_0x4cd913[_0x34484f(0x2dd)](0x1,0x4,0x1,0x4),_0x4cd913[_0x34484f(0x2e0)]();let _0x5811d0=this[_0x34484f(0x1ee)](_0x4b87ab[_0x34484f(0x334)][_0x34484f(0x335)]);this[_0x34484f(0x173)](_0x4cd913,_0x5811d0,0xa,_0x34484f(0x1d4),![],0x0,0x1,this[_0x34484f(0x2fd)](_0x34484f(0x1d4))),_0x352e68[_0x34484f(0x2e4)](0x2);let _0x4c27dc=_0x352e68[_0x34484f(0x2e2)]();_0x4c27dc[_0x34484f(0x2e0)](),this[_0x34484f(0x2f2)](_0x4c27dc,_0x4a4387,this[_0x34484f(0x242)][_0x34484f(0x10e)],_0x352b3d);if(_0x352b3d)_0x352e68[_0x34484f(0x2e4)](0x2);}else{this[_0x34484f(0x173)](_0x3ccd32,this[_0x34484f(0x1c2)](_0x301736),0x16,_0x34484f(0x1ce),!![]);let _0x58d085=_0x352e68[_0x34484f(0x2e2)]();_0x58d085[_0x34484f(0x2e0)](),this[_0x34484f(0x173)](_0x58d085,this[_0x34484f(0x337)](_0x301736),0x10,_0x34484f(0x346)),_0x58d085[_0x34484f(0x2e4)](0x4);let _0x3f792f=this[_0x34484f(0x338)](_0x301736);this[_0x34484f(0x173)](_0x58d085,_0x3f792f[_0x34484f(0x2c1)]+_0x3f792f[_0x34484f(0x33a)],0x10,_0x34484f(0x1d8));}_0x352e68[_0x34484f(0x2e4)](0x2);let _0x3cbfe2=_0x352e68[_0x34484f(0x2e2)]();_0x3cbfe2[_0x34484f(0x2e0)](),this[_0x34484f(0x173)](_0x3cbfe2,weekTitle[_0x301736[_0x34484f(0x146)]()],0x10,_0x34484f(0x1da));_0x30833d&&(_0x3cbfe2[_0x34484f(0x2e4)](0x4),this[_0x34484f(0x173)](_0x3cbfe2,'🔋'+Math[_0x34484f(0x2a6)](Device[_0x34484f(0x2c3)]()*0x64)+'%',0xf,_0x34484f(0x1da)));_0x3cbfe2[_0x34484f(0x2e4)](0x4);let _0x561739=this[_0x34484f(0x23f)][_0x34484f(0x235)]||'';if(this[_0x34484f(0x23f)][_0x34484f(0x182)])_0x561739+='\\x20'+this[_0x34484f(0x23f)][_0x34484f(0x182)];if(!_0x561739)_0x561739=_0x34484f(0x33c);this[_0x34484f(0x173)](_0x3cbfe2,'📍'+_0x561739,0xf,_0x34484f(0x1da));let _0x54b322=_0x4b87ab[_0x34484f(0x14c)][_0x34484f(0x2be)]||_0x4b87ab[_0x34484f(0x14c)][_0x34484f(0x2bb)]||_0x34484f(0x33d);this[_0x34484f(0x173)](_0x352e68,_0x54b322,0xc,_0x34484f(0x14c),![],0x2,0x3),_0x352e68[_0x34484f(0x2e4)](0x2);let _0x565d44=_0x352e68[_0x34484f(0x2e2)]();_0x565d44[_0x34484f(0x2e0)]();if(_0x4b87ab[_0x34484f(0x14c)][_0x34484f(0x1c4)]&&_0x4b87ab[_0x34484f(0x14c)][_0x34484f(0x1c4)][_0x34484f(0x283)]>0x0){let _0x3375cf=_0x565d44[_0x34484f(0x2e2)](),_0x3f9580=_0x352b3d||!_0x36d793,_0x40e046=_0x3f9580?0x7:0x3,_0xe37ee6=Math[_0x34484f(0x174)](_0x4b87ab[_0x34484f(0x14c)][_0x34484f(0x1c4)][_0x34484f(0x283)],_0x40e046),_0x11981c=_0x3f9580?0x6:0x8;for(let _0x40e690=0x0;_0x40e690<_0xe37ee6;_0x40e690++){let _0x34f99c=_0x4b87ab[_0x34484f(0x14c)][_0x34484f(0x1c4)][_0x40e690],_0x343ae6=_0x3375cf[_0x34484f(0x2e2)]();_0x343ae6[_0x34484f(0x2e5)](),_0x343ae6[_0x34484f(0x2e0)]();if(_0x3f9580){let _0x403f99=_0x343ae6['addText'](_0x34f99c['day']);_0x403f99['font']=Font['systemFont'](this['s'](0x9,'poetry')),_0x403f99['textColor']=this['getConfColor']('poetry'),_0x343ae6['addSpacer'](0x1);let _0x569c14=this['s'](0xd,'weather'),_0x4a98de=_0x343ae6['addImage'](this['getSFIco'](_0x34f99c['ico']));_0x4a98de['imageSize']=new Size(_0x569c14,_0x569c14),_0x4a98de['tintColor']=this['getConfColor']('weather'),_0x343ae6['addSpacer'](0x1);let _0x4c4300=_0x343ae6['addText'](_0x34f99c['min']+'\/'+_0x34f99c[_0x34484f(0x2b8)]+'°');_0x4c4300['font']=Font['systemFont'](this['s'](0x8,'poetry')),_0x4c4300['textColor']=this['getConfColor']('poetry');}else{this[_0x34484f(0x173)](_0x343ae6,_0x34f99c[_0x34484f(0x33a)],0xa,_0x34484f(0x36c)),_0x343ae6['addSpacer'](0x1);let _0x584635=_0x343ae6[_0x34484f(0xe5)](this[_0x34484f(0x1a5)](_0x34f99c[_0x34484f(0x2aa)])),_0x259d35=this['s'](0xf,_0x34484f(0x14c));_0x584635[_0x34484f(0x179)]=new Size(_0x259d35,_0x259d35),_0x584635[_0x34484f(0x2f3)]=this[_0x34484f(0x2fd)](_0x34484f(0x14c)),_0x343ae6[_0x34484f(0x2e4)](0x1),this[_0x34484f(0x173)](_0x343ae6,_0x34f99c[_0x34484f(0x174)]+'\/'+_0x34f99c[_0x34484f(0x2b8)]+'°',0x9,_0x34484f(0x36c));}if(_0x40e690<_0xe37ee6-0x1)_0x3375cf[_0x34484f(0x2e4)](_0x11981c);}if(_0x3f9580&&_0xe37ee6<0x7){_0x565d44[_0x34484f(0x2e4)](0x4);let _0x23f313=_0x565d44[_0x34484f(0x173)](_0x34484f(0x105)+_0xe37ee6+'天');_0x23f313[_0x34484f(0x2f9)]=Font[_0x34484f(0x33f)](0x8),_0x23f313[_0x34484f(0x2fb)]=Color[_0x34484f(0x184)]();}}else{let _0x274da0=_0x565d44[_0x34484f(0x173)](_0x34484f(0x277));_0x274da0[_0x34484f(0x2f9)]=Font[_0x34484f(0x33f)](0xa),_0x274da0[_0x34484f(0x2fb)]=Color[_0x34484f(0x184)]();}_0x565d44[_0x34484f(0x2e4)](0xa);if(_0x36d793&&!_0x352b3d&&_0x4b87ab[_0x34484f(0x36c)]&&_0x4b87ab[_0x34484f(0x36c)][_0x34484f(0x1ed)]){let _0x2ce4bc=_0x565d44[_0x34484f(0x2e2)]();_0x2ce4bc[_0x34484f(0x2e5)](),_0x2ce4bc[_0x34484f(0x2dc)]=new Color(_0x34484f(0x29c),0.3),_0x2ce4bc[_0x34484f(0x2f8)]=0x4,_0x2ce4bc[_0x34484f(0x2dd)](0x2,0x4,0x2,0x4);let _0x2d4417=_0x4b87ab[_0x34484f(0x36c)][_0x34484f(0x1ed)][_0x34484f(0x2d8)][_0x34484f(0x25d)](\/[。，！]$\/,''),_0x2e02cf=this[_0x34484f(0x173)](_0x2ce4bc,_0x2d4417,0xa,_0x34484f(0x36c));_0x2e02cf[_0x34484f(0x2c8)]=0x3,_0x2ce4bc[_0x34484f(0x2e4)](0x2);let _0x21fe1c=_0x4b87ab[_0x34484f(0x36c)][_0x34484f(0x1ed)][_0x34484f(0xf4)][_0x34484f(0x19a)]+'·'+_0x4b87ab[_0x34484f(0x36c)][_0x34484f(0x1ed)][_0x34484f(0xf4)][_0x34484f(0x1d1)],_0xba1a1d=this[_0x34484f(0x173)](_0x2ce4bc,'—\\x20'+_0x21fe1c,0x8,'poetry');_0xba1a1d[_0x34484f(0x10d)]();}if(this[_0x34484f(0x1c8)]!==_0x34484f(0x2ca)&&_0x4b87ab[_0x34484f(0x171)][_0x34484f(0x283)]>0x0){let _0x17a4d7=_0x4b87ab[_0x34484f(0x171)],_0x165a12=this[_0x34484f(0x242)][this[_0x34484f(0x1c8)]+_0x34484f(0x1bd)],_0xa56dc1=parseInt(this[_0x34484f(0x242)][this[_0x34484f(0x1c8)]+_0x34484f(0x163)])||0x0;_0x165a12&&_0x165a12[_0x34484f(0x139)]()!==''&&(_0x17a4d7=_0x17a4d7[_0x34484f(0x248)](_0x401066=>_0x401066[_0x34484f(0x175)][_0x34484f(0x16e)](_0x165a12)));let _0x37097b=_0x17a4d7[_0xa56dc1];if(_0x37097b){_0x352e68[_0x34484f(0x2e4)](0x4);let _0x46062b=_0x352e68[_0x34484f(0x2e2)]();_0x46062b[_0x34484f(0x2e0)]();let _0xfedfab=_0x46062b[_0x34484f(0xe5)](this[_0x34484f(0x1a5)](_0x34484f(0xce)));_0xfedfab[_0x34484f(0x179)]=new Size(0xa,0xa),_0xfedfab[_0x34484f(0x2f3)]=this[_0x34484f(0x2fd)](_0x34484f(0x1da)),_0x46062b[_0x34484f(0x2e4)](0x4),this[_0x34484f(0x173)](_0x46062b,_0x37097b[_0x34484f(0x175)],0xb,_0x34484f(0x1da));}}}async[a0_0x1c51e0(0x2ea)](_0xfedfa9,_0x418c59){const _0x455941=a0_0x1c51e0;let _0x1d6d51=_0xfedfa9[_0x455941(0x2e2)]();_0x1d6d51[_0x455941(0x1d6)](),_0xfedfa9[_0x455941(0x2e4)](0x0),_0x1d6d51[_0x455941(0x2e4)]();let _0x415fa6=_0x1d6d51[_0x455941(0xe5)](this[_0x455941(0x1a5)](_0x418c59[_0x455941(0x2aa)])),_0xfe9b1f=this['s'](0x1e,_0x455941(0x1de));_0x415fa6['imageSize']=new Size(_0xfe9b1f,_0xfe9b1f),_0x415fa6['tintColor']=this['getConfColor']('weatherLarge'),_0x1d6d51[_0x455941(0x2e4)](0x4);let _0x30c89a=this[_0x455941(0x173)](_0x1d6d51,(_0x418c59[_0x455941(0xf5)]||'-')+'°',0x14,_0x455941(0x1de));_0x30c89a[_0x455941(0x2f9)]=Font[_0x455941(0x34b)](this['s'](0x14,_0x455941(0x1de))),_0xfedfa9[_0x455941(0x2e4)](0x4);const _0x3396c9=_0xfeeba1=>{const _0x36debe=_0x455941;let _0x3ca158=_0xfedfa9[_0x36debe(0x2e2)]();_0x3ca158[_0x36debe(0x2e4)](),this[_0x36debe(0x173)](_0x3ca158,_0xfeeba1,0xc,_0x36debe(0x14c));};_0x3396c9(_0x455941(0xd9)+(_0x418c59[_0x455941(0x2a8)]||'-')),_0x3396c9(_0x455941(0x2e8)+(_0x418c59['comfort']||'-')),_0x3396c9(_0x455941(0x34d)+(_0x418c59['uv']||'-')),_0x3396c9(_0x455941(0x34f)+(_0x418c59[_0x455941(0x20c)]||'-')),_0xfedfa9[_0x455941(0x2e4)](0x2);let _0xee712=_0xfedfa9[_0x455941(0x2e2)]();_0xee712[_0x455941(0x2e4)]();let _0x14dcc2=_0xee712[_0x455941(0x173)]('↑'+(_0x418c59[_0x455941(0x2b8)]||'-')+'°');_0x14dcc2[_0x455941(0x2f9)]=Font['systemFont'](this['s'](0xb,'weather')),_0x14dcc2['textColor']=new Color('#ff5555'),_0xee712['addSpacer'](0x4);let _0xef2f3=_0xee712['addText']('↓'+(_0x418c59['min']||'-')+'°');_0xef2f3['font']=Font['systemFont'](this['s'](0xb,'weather')),_0xef2f3['textColor']=new Color('#55ff55'),_0xfedfa9['addSpacer'](0x1);let _0xcdc238=_0xfedfa9['addStack']();_0xcdc238['addSpacer']();let _0xcc4643=this['s'](0xc,'weather'),_0xcc4642=_0xcdc238['addImage'](this['getSFIco']('sunrise.fill'));_0xcc4642['imageSize']=new Size(_0xcc4643,_0xcc4643),this['addText'](_0xcdc238,_0x418c59['sunrise']||'--:--',0xb,'weather'),_0xcdc238['addSpacer'](0x4);let _0x261885=_0xcdc238['addImage'](this['getSFIco']('sunset.fill'));_0x261885['imageSize']=new Size(_0xcc4643,_0xcc4643),this['addText'](_0xcdc238,_0x418c59[_0x455941(0x2b6)]||'--:--',0xb,_0x455941(0x14c)),_0xfedfa9['addSpacer'](0x2);let _0xcc1399=_0xfedfa9['addStack']();_0xcc1399['addSpacer']();let _0xed820=new Date(),_0x41b027=_0xed820['getMinutes']();this['addText'](_0xcc1399,'更新\\x20'+_0xed820['getHours']()+':'+(_0x41b027<0xa?'0'+_0x41b027:_0x41b027),0xa,_0x455941(0x14c));}async['renderTimeInfo'](_0x3f6993){const _0x3d4963=a0_0x1c51e0;let _0x3f9941=_0x3f6993[_0x3d4963(0x2e2)]();_0x3f9941[_0x3d4963(0x30c)](),_0x3f9941[_0x3d4963(0x2dd)](0x0,0x4,0x0,0x4);const _0x3ff7de=new Date(),_0x3cfcfa=this[_0x3d4963(0x338)](_0x3ff7de),_0x3c9e5d=zodiacAnimals[(_0x3cfcfa[_0x3d4963(0x350)]-0x4)%0xc],_0x30b169=getWeekOfYear(_0x3ff7de),_0x4a05f5=getDayOfYear(_0x3ff7de),_0x30b494=_0x3ff7de[_0x3d4963(0x13b)]()%0x4===0x0?0x16e:0x16d;let _0x3cb7ca=[],_0x3f8005=[];try{const _0x367aa1=await CalendarEvent[_0x3d4963(0x1af)]([]);for(const _0x419b5d of _0x367aa1){if(!_0x419b5d[_0x3d4963(0x351)])continue;let _0x419b5e=_0x419b5d[_0x3d4963(0x175)];if(_0x419b5e[_0x3d4963(0x16e)]('宜')){let _0x5aef8a=_0x419b5e[_0x3d4963(0x352)](_0x419b5e[_0x3d4963(0x1df)]('宜')+0x1);if(_0x5aef8a[_0x3d4963(0x16e)]('忌'))_0x5aef8a=_0x5aef8a[_0x3d4963(0x245)]('忌')[0x0];_0x5aef8a=_0x5aef8a[_0x3d4963(0x25d)](\/^[:：\\s]+\/,'');let _0x598b6d=_0x5aef8a[_0x3d4963(0x245)](\/[\\s,，、\\.．]+\/)[_0x3d4963(0x248)](_0x432ef3=>_0x432ef3[_0x3d4963(0x139)]()[_0x3d4963(0x283)]>0x0&&_0x432ef3[_0x3d4963(0x283)]<0x6);if(_0x598b6d[_0x3d4963(0x283)]>0x0)_0x3cb7ca=_0x598b6d;}if(_0x419b5e[_0x3d4963(0x16e)]('忌')){let _0x372bc3=_0x419b5e[_0x3d4963(0x352)](_0x419b5e[_0x3d4963(0x1df)]('忌')+0x1);if(_0x372bc3[_0x3d4963(0x16e)]('宜'))_0x372bc3=_0x372bc3[_0x3d4963(0x245)]('宜')[0x0];_0x372bc3=_0x372bc3[_0x3d4963(0x25d)](\/^[:：\\s]+\/,'');let _0x3a594f=_0x372bc3[_0x3d4963(0x245)](\/[\\s,，、\\.．]+\/)[_0x3d4963(0x248)](_0x465c80=>_0x465c80[_0x3d4963(0x139)]()[_0x3d4963(0x283)]>0x0&&_0x465c80[_0x3d4963(0x283)]<0x6);if(_0x3a594f[_0x3d4963(0x283)]>0x0)_0x3f8005=_0x3a594f;}}}catch(_0x167c5b){}if(_0x3cb7ca[_0x3d4963(0x283)]===0x0)_0x3cb7ca=getYiJiSimple(_0x3ff7de,0x0);if(_0x3f8005[_0x3d4963(0x283)]===0x0)_0x3f8005=getYiJiSimple(_0x3ff7de,0x1);let _0x337ccf=_0x3f9941[_0x3d4963(0x2e2)]();_0x337ccf[_0x3d4963(0x2e5)]();let _0x3084e6=_0x337ccf[_0x3d4963(0x2e2)]();_0x3084e6[_0x3d4963(0x2e0)](),this[_0x3d4963(0x173)](_0x3084e6,_0x3c9e5d+'年\\x20'+_0x3cfcfa[_0x3d4963(0x2c1)]+_0x3cfcfa[_0x3d4963(0x33a)],0xc,_0x3d4963(0x1e2)),_0x337ccf[_0x3d4963(0x2e4)](0x0);let _0x36d93e=_0x337ccf[_0x3d4963(0x2e2)]();_0x36d93e[_0x3d4963(0x2e0)](),this[_0x3d4963(0x173)](_0x36d93e,'第'+_0x30b169+_0x3d4963(0x282)+_0x4a05f5+'\/'+_0x30b494+'天',0xa,_0x3d4963(0x346)),_0x3f9941[_0x3d4963(0x2e4)]();let _0x39d421=_0x3f9941[_0x3d4963(0x2e2)]();_0x39d421[_0x3d4963(0x2e0)](),this[_0x3d4963(0xd5)](_0x39d421,'宜',_0x3d4963(0x353),_0x3cb7ca,_0x3d4963(0x353)),_0x3f9941[_0x3d4963(0x2e4)]();let _0x397585=_0x3f9941[_0x3d4963(0x2e2)]();_0x397585[_0x3d4963(0x2e0)](),this[_0x3d4963(0xd5)](_0x397585,'忌',_0x3d4963(0x292),_0x3f8005,_0x3d4963(0x157));}[a0_0x1c51e0(0xd5)](_0x10e53c,_0xdea590,_0x2c9a28,_0x1fd6ab,_0x1fd6ac){const _0x3dfdee=a0_0x1c51e0;let _0x699f7=_0x10e53c[_0x3dfdee(0x2e2)](),_0x19c0f6=this['s'](0x1e,_0x3dfdee(0x1e2));_0x699f7[_0x3dfdee(0x2e9)]=new Size(_0x19c0f6,_0x19c0f6),_0x699f7['cornerRadius']=_0x19c0f6\/0x2,_0x699f7['backgroundColor']=new Color(_0x2c9a28),_0x699f7['centerAlignContent']();let _0x4bb503=_0x699f7['addText'](_0xdea590);_0x4bb503[_0x3dfdee(0x2f9)]=Font[_0x3dfdee(0x185)](this['s'](0x11,_0x3dfdee(0x1e2))),_0x4bb503[_0x3dfdee(0x2fb)]=Color[_0x3dfdee(0x154)](),_0x10e53c[_0x3dfdee(0x2e4)](0x8);let _0x2b03c6=_0x10e53c[_0x3dfdee(0x2e2)]();_0x2b03c6[_0x3dfdee(0x2e5)]();if(_0x1fd6ab[_0x3dfdee(0x283)]>0x0){let _0x34f988=_0x2b03c6[_0x3dfdee(0x2e2)]();this[_0x3dfdee(0x173)](_0x34f988,_0x1fd6ab[_0x3dfdee(0x286)](0x0,0x3)[_0x3dfdee(0x15d)]('\\x20\\x20'),0xa,_0x3dfdee(0x1e2),![],0x0,0x1,new Color(_0x1fd6ac));if(_0x1fd6ab[_0x3dfdee(0x283)]>0x3){let _0x3a249f=_0x2b03c6[_0x3dfdee(0x2e2)]();this[_0x3dfdee(0x173)](_0x3a249f,_0x1fd6ab[_0x3dfdee(0x286)](0x3,0x6)['join']('\\x20\\x20'),0xa,'timeInfo',![],0x0,0x1,new Color(_0x1fd6ac));}}}async[a0_0x1c51e0(0x2ef)](_0x46118d){const _0x5ee2ce=a0_0x1c51e0;let _0x44aa7b=_0x46118d[_0x5ee2ce(0x2e2)]();_0x44aa7b[_0x5ee2ce(0x2dd)](0x0,0x5,0x0,0x3);let _0x5e01d2=this[_0x5ee2ce(0x1c8)]===_0x5ee2ce(0x1c9)||this[_0x5ee2ce(0x1c8)]===_0x5ee2ce(0x2ca)?9.1:0x1e,_0x5b33a1=parseFloat(this[_0x5ee2ce(0x242)][this['activePrefix']+'space_week_w']||_0x5e01d2);for(let _0x16a9aa=0x0;_0x16a9aa<0x7;_0x16a9aa++){let _0x138213=_0x44aa7b[_0x5ee2ce(0x2e2)]();_0x138213[_0x5ee2ce(0x2e9)]=new Size(this['s'](0x18,_0x5ee2ce(0x356)),this['s'](0x16,_0x5ee2ce(0x356))),_0x138213[_0x5ee2ce(0x2e0)]();let _0x462b14=_0x138213[_0x5ee2ce(0x173)](weekTitleShort[_0x16a9aa]);_0x462b14[_0x5ee2ce(0x2f9)]=Font[_0x5ee2ce(0x185)](this['s'](0xe,_0x5ee2ce(0x356))),_0x462b14[_0x5ee2ce(0x2fb)]=_0x16a9aa===0x0||_0x16a9aa===0x6?new Color(_0x5ee2ce(0x357)):this['getConfColor'](_0x5ee2ce(0x356));if(_0x16a9aa<0x6)_0x44aa7b['addSpacer'](_0x5b33a1);}}async[a0_0x1c51e0(0x2f1)](_0x16dca0){const _0x5ece63=a0_0x1c51e0;let _0x10884b=new Date(),_0x1748a8=_0x10884b['getFullYear'](),_0xef47fe=_0x10884b['getMonth'](),_0x2845e1=getMonthGrid(_0x1748a8,_0xef47fe),_0x106ec4,_0xda6951;this[_0x5ece63(0x1c8)]==='s3_'||this['activePrefix']===_0x5ece63(0x2ca)?(_0x106ec4=parseFloat(this['settings'][this[_0x5ece63(0x1c8)]+_0x5ece63(0x345)]||6.2),_0xda6951=parseFloat(this[_0x5ece63(0x242)][this[_0x5ece63(0x1c8)]+_0x5ece63(0x359)]||0x0)):(_0x106ec4=parseFloat(this[_0x5ece63(0x242)][this[_0x5ece63(0x1c8)]+_0x5ece63(0x345)]||27.2),_0xda6951=parseFloat(this[_0x5ece63(0x242)][this[_0x5ece63(0x1c8)]+_0x5ece63(0x359)]||0x3));let _0xe63cd9=this['s'](0x1b,_0x5ece63(0x356));for(let _0x58e338=0x0;_0x58e338<_0x2845e1[_0x5ece63(0x283)];_0x58e338++){let _0x55b5b8=_0x16dca0[_0x5ece63(0x2e2)]();_0x55b5b8[_0x5ece63(0x2dd)](0x0,0x7,0x0,0x2);for(let _0x29031a=0x0;_0x29031a<0x7;_0x29031a++){let _0x2f5772=_0x2845e1[_0x58e338][_0x29031a],_0x2c5c8e=_0x55b5b8[_0x5ece63(0x2e2)]();_0x2c5c8e[_0x5ece63(0x2e9)]=new Size(_0xe63cd9,_0xe63cd9),_0x2c5c8e[_0x5ece63(0x2e5)](),_0x2c5c8e[_0x5ece63(0x2e0)]();if(_0x2f5772!==null){let _0x25b408=new Date(_0x1748a8,_0xef47fe,_0x2f5772),_0x19ca15=_0x2f5772===_0x10884b[_0x5ece63(0x35a)](),_0x1862fd=_0x29031a===0x0||_0x29031a===0x6,_0x2095a7=_0x2c5c8e[_0x5ece63(0x2e2)]();_0x2095a7[_0x5ece63(0x2e9)]=new Size(this['s'](0x11,_0x5ece63(0x356)),this['s'](0x11,_0x5ece63(0x356))),_0x2095a7[_0x5ece63(0x2e0)]();if(_0x19ca15){let _0x182d30=_0x2095a7['addStack']();_0x182d30[_0x5ece63(0x2e9)]=new Size(this['s'](0x10,_0x5ece63(0x356)),this['s'](0x10,_0x5ece63(0x356))),_0x182d30[_0x5ece63(0x2f8)]=this['s'](0x8,_0x5ece63(0x356)),_0x182d30[_0x5ece63(0x2dc)]=new Color(_0x5ece63(0x35b)),_0x182d30[_0x5ece63(0x2e0)]();let _0x241a24=_0x182d30[_0x5ece63(0x173)](_0x2f5772[_0x5ece63(0x35c)]());_0x241a24[_0x5ece63(0x2f9)]=Font[_0x5ece63(0x185)](this['s'](0xc,_0x5ece63(0x356))),_0x241a24[_0x5ece63(0x2fb)]=Color[_0x5ece63(0x35d)]();}else{let _0x1d3e15=_0x2095a7[_0x5ece63(0x173)](_0x2f5772[_0x5ece63(0x35c)]());_0x1d3e15[_0x5ece63(0x2f9)]=Font[_0x5ece63(0x185)](this['s'](0xc,_0x5ece63(0x356))),_0x1d3e15[_0x5ece63(0x2fb)]=_0x1862fd?new Color(_0x5ece63(0x357)):this[_0x5ece63(0x2fd)](_0x5ece63(0x356));}let _0x1865c8=this[_0x5ece63(0x338)](_0x25b408),_0x3b6a0e=getSolarTerm(_0x25b408),_0x483ffd=_0x2c5c8e[_0x5ece63(0x2e2)]();_0x483ffd[_0x5ece63(0x2dd)](-0x1,1.5,0x0,0x0),_0x483ffd[_0x5ece63(0x2e0)]();let _0x1b8d5e=_0x483ffd[_0x5ece63(0x173)](_0x3b6a0e||_0x1865c8[_0x5ece63(0x33a)]);_0x1b8d5e[_0x5ece63(0x2f9)]=Font[_0x5ece63(0x33f)](this['s'](0x8,_0x5ece63(0x356))),_0x1b8d5e[_0x5ece63(0x2fb)]=new Color(this[_0x5ece63(0x2fd)](_0x5ece63(0x356))[_0x5ece63(0x342)],0.7);}if(_0x29031a<0x6)_0x55b5b8[_0x5ece63(0x2e4)](_0x106ec4);}if(_0x58e338<_0x2845e1[_0x5ece63(0x283)]-0x1)_0x16dca0['addSpacer'](_0xda6951);}}['addText'](_0xe73b7f,_0xcdcf1c,_0x263449,_0xe5d2bd,_0x58dca1=![],_0x564716=0x0,_0x5b8a03=0x1,_0x4fa010=null){const _0x33c548=a0_0x1c51e0;if(_0x564716>0x0)_0xe73b7f['addSpacer'](_0x564716);let _0x5c3cb9=_0xe73b7f['addText'](String(_0xcdcf1c));_0x5c3cb9['font']=_0x58dca1?Font[_0x33c548(0x185)](this['s'](_0x263449,_0xe5d2bd)):Font[_0x33c548(0x33f)](this['s'](_0x263449,_0xe5d2bd)),_0x5c3cb9[_0x33c548(0x2fb)]=_0x4fa010||this[_0x33c548(0x2fd)](_0xe5d2bd);if(_0x5b8a03>0x1)_0x5c3cb9[_0x33c548(0x2c8)]=_0x5b8a03;return _0x5c3cb9;}['s'](_0x5ad8a2,_0x5a7a05){const _0x411880=a0_0x1c51e0;let _0x442057=this[_0x411880(0x1c8)]+_0x411880(0x35e)+_0x5a7a05,_0x5a76db=(parseInt(this[_0x411880(0x242)][_0x442057])||0x64)\/0x64,_0x59b6a4=(parseInt(this[_0x411880(0x242)][_0x411880(0x270)])||0x64)\/0x64;return Math[_0x411880(0x2a6)](_0x5ad8a2*_0x5a76db*_0x59b6a4);}[a0_0x1c51e0(0x2fd)](_0x41dfe6){const _0x3f8485=a0_0x1c51e0;let _0x42a01d=this[_0x3f8485(0x1c8)]+_0x3f8485(0x208)+_0x41dfe6,_0x54dfbc=this['settings'][_0x42a01d];return _0x54dfbc?new Color(_0x54dfbc):new Color(baseConfigKeys['color_'+_0x41dfe6]);}[a0_0x1c51e0(0x1a5)](_0x5a22aa){const _0x1bf72c=a0_0x1c51e0;try{return SFSymbol[_0x1bf72c(0x35f)](_0x5a22aa)[_0x1bf72c(0x360)];}catch{return SFSymbol[_0x1bf72c(0x35f)](_0x1bf72c(0x25f))[_0x1bf72c(0x360)];}}[a0_0x1c51e0(0x337)](_0x484191){const _0xcfc8ae=a0_0x1c51e0;let _0x47e2f4=new DateFormatter();return _0x47e2f4[_0xcfc8ae(0x361)]=_0xcfc8ae(0x26c),_0x47e2f4[_0xcfc8ae(0x362)]=_0xcfc8ae(0x2fc),_0x47e2f4[_0xcfc8ae(0x320)](_0x484191);}['getGreeting'](_0x3189a4){const _0x5ae930=a0_0x1c51e0,_0x3e2653=_0x3189a4['getHours']();let _0x5482cd='';if(_0x3e2653<0x5||_0x3e2653>=0x17){_0x5482cd=this[_0x5ae930(0x242)][_0x5ae930(0x196)];if(!_0x5482cd)_0x5482cd=greetingText[_0x5ae930(0xf8)];}else{if(_0x3e2653<0xb){_0x5482cd=this[_0x5ae930(0x242)][_0x5ae930(0xe1)];if(!_0x5482cd)_0x5482cd=greetingText[_0x5ae930(0x19b)];}else{if(_0x3e2653<0xd){_0x5482cd=this[_0x5ae930(0x242)][_0x5ae930(0x11c)];if(!_0x5482cd)_0x5482cd=greetingText[_0x5ae930(0x1b8)];}else{if(_0x3e2653<0x12){_0x5482cd=this[_0x5ae930(0x242)][_0x5ae930(0x1a0)];if(!_0x5482cd)_0x5482cd=greetingText['afternoonGreeting'];}else{_0x5482cd=this[_0x5ae930(0x242)][_0x5ae930(0x1a3)];if(!_0x5482cd)_0x5482cd=greetingText[_0x5ae930(0x122)];}}}}return _0x5482cd;}['airQuality'](_0x556f00){if(_0x556f00<=0x32)return'优';if(_0x556f00<=0x64)return'良';if(_0x556f00<=0x96)return'轻';if(_0x556f00<=0xc8)return'中';if(_0x556f00<=0x12c)return'重';return'严';}['getLunarDate_Precise'](_0x3c1d9f){const _0x5809b1=a0_0x1c51e0,_0x53f45d=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'],_0x559e7f=['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];let _0x3dc7c1=_0x3c1d9f[_0x5809b1(0x13b)](),_0x3eb32b=_0x3c1d9f['getMonth']()+0x1,_0x3f1352=_0x3c1d9f['getDate'](),_0x33f266,_0x33923f=0x15c,_0x3f7c39=(Date['UTC'](_0x3dc7c1,_0x3eb32b-0x1,_0x3f1352)-Date['UTC'](0x76c,0x0,0x1f))\/0x5265c00;for(_0x33f266=0x76c;_0x33f266<0x835&&_0x3f7c39>0x0;_0x33f266++){_0x33923f=lYearDays(_0x33f266),_0x3f7c39-=_0x33923f;}_0x3f7c39<0x0&&(_0x3f7c39+=_0x33923f,_0x33f266--);let _0x432626=lunarInfo[_0x33f266-0x76c]&0xf,_0x210578=![],_0x1b6e5c,_0x1b0fca;for(_0x1b6e5c=0x1;_0x1b6e5c<0xd&&_0x3f7c39>0x0;_0x1b6e5c++){_0x1b0fca=_0x432626===_0x1b6e5c-0x1&&!_0x210578?lunarInfo[_0x33f266-0x76c]&0x10000?0x1e:0x1d:lunarInfo[_0x33f266-0x76c]&0x10000>>_0x1b6e5c?0x1e:0x1d;if(_0x210578&&_0x1b6e5c===_0x432626+0x1)_0x210578=![];else _0x432626>0x0&&_0x1b6e5c===_0x432626+0x1&&!_0x210578&&(_0x210578=!![],--_0x1b6e5c);_0x3f7c39-=_0x1b0fca;}_0x3f7c39<0x0&&(_0x3f7c39+=_0x1b0fca,--_0x1b6e5c);if(_0x1b6e5c<0x1)_0x1b6e5c=0x1;if(_0x1b6e5c>0xc)_0x1b6e5c=0xc;return{'year':_0x33f266,'month':(_0x210578?'闰':'')+_0x53f45d[_0x1b6e5c-0x1],'day':_0x559e7f[Math[_0x5809b1(0x2cd)](_0x3f7c39)]||'初一'};}}function getSolarFromLunar(_0x26f9c4,_0x1bda53,_0x27dc3c){const _0x167c04=a0_0x1c51e0;if(_0x26f9c4<0x76c||_0x26f9c4>0x834)return null;let _0x11828d=0x0;for(let _0x548b99=0x76c;_0x548b99<_0x26f9c4;_0x548b99++){_0x11828d+=lYearDays(_0x548b99);}let _0x27d911=lunarInfo[_0x26f9c4-0x76c]&0xf;for(let _0x5759bd=0x1;_0x5759bd<_0x1bda53;_0x5759bd++){let _0x24b17c=lunarInfo[_0x26f9c4-0x76c]&0x10000>>_0x5759bd?0x1e:0x1d;_0x11828d+=_0x24b17c,_0x27d911>0x0&&_0x5759bd===_0x27d911&&(_0x11828d+=lunarInfo[_0x26f9c4-0x76c]&0x10000?0x1e:0x1d);}_0x11828d+=_0x27dc3c-0x1;let _0x100253=new Date(0x76c,0x0,0x1f);return _0x100253[_0x167c04(0x2c4)](_0x100253[_0x167c04(0x35a)]()+_0x11828d),_0x100253;}function lYearDays(_0x19b717){let _0x185300,_0x7be2d=0x15c;for(_0x185300=0x8000;_0x185300>0x8;_0x185300>>=0x1)_0x7be2d+=lunarInfo[_0x19b717-0x76c]&_0x185300?0x1:0x0;return _0x7be2d+(lunarInfo[_0x19b717-0x76c]&0xf?lunarInfo[_0x19b717-0x76c]&0x10000?0x1e:0x1d:0x0);}function getSolarTerm(_0x3a96f3){const _0xe36c11=a0_0x1c51e0,_0xab90b=['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'],_0x64131e=_0x3a96f3[_0xe36c11(0x13b)](),_0x6a14c3=_0x3a96f3[_0xe36c11(0x317)]()+0x1,_0x135777=_0x3a96f3[_0xe36c11(0x35a)](),_0x2cac03=[5.4055,20.12,3.87,18.73,5.63,20.646,4.81,20.1,5.52,21.04,5.678,21.37,7.108,22.83,7.5,23.13,7.646,23.042,8.318,23.438,7.438,22.36,7.18,21.94];if(_0x64131e<0x7d0||_0x64131e>0x833)return'';function _0x1ff459(_0xad2453,_0xb01f31){const _0x3cfdcd=_0xe36c11;return Math[_0x3cfdcd(0x2cd)]((_0xad2453-0x7d0)*0.2422+_0x2cac03[_0xb01f31])-Math[_0x3cfdcd(0x2cd)]((_0xad2453-0x7d0)\/0x4);}let _0x1e608e=(_0x6a14c3-0x1)*0x2,_0x80a0a4=_0x1ff459(_0x64131e,_0x1e608e);if(_0x135777===_0x80a0a4)return _0xab90b[_0x1e608e];let _0x2141e4=(_0x6a14c3-0x1)*0x2+0x1,_0x22a8f7=_0x1ff459(_0x64131e,_0x2141e4);if(_0x135777===_0x22a8f7)return _0xab90b[_0x2141e4];return null;}function a0_0x2f75(){const _0x2e98b5=['mJe6mtu','i0zgotuWma','5lUk5PEL5lIn5BYa5Aww','y2XVDwqUzhvZDc5MAwXS','CM91BMq','6lcd5Pw05ywO5Bga5OIw5Bga6yoO57YP5Ps+','AhvT','CMvSyxrPDMvFAhvTAwrPDhLFmM0','AwnV','D21dB2rLvg9jy29U','AgfUzgXLu2L6zu1LBNu','AxnFzgf5','DxzFAw5KzxHFBwf4','DxnFyxfP','6AkC6iMY6ywn572U','ywLYuxvHBgL0Eq','DgvTCgvYyxr1CMvFmM0','y29TzM9YDa','BwvUDv9JB2XVCG','ls06ls0','C3vUC2v0','DgvTCgvYyxr1CMvFmM1FBwLU','Bwf4','CgfPBNrWywXLDhrLlMzPBgW','5PU05PAW5AsX6lsL','zgvZyW','8j+AQYdKUi3MMl7NPlRLVANNPAGGkos9V+EuQoMxRUwaMEIVRsK','8j+FOFcFLluG5AsN5lMq6ycpicHetfqP','ywXLCNruAxrSzq','BM9Uzq','DgLTzq','Bw9UDgG','CMvUzgvY','yMf0DgvYEuXLDMvS','C2v0rgf0zq','5PYa5AsN5PI+56s65PwW6yEp','C3r5Bgu0','5BU66k6Um+AiLJq','BgLUzuXPBwL0','x3nJAgvKDwXLx2nVDw50','CZrF','mtaTmdy','5PEG5zco57UT5A6j5O6s','zMXVB3i','5B2P56wO5PI+56s66k6+572U','yMLYDgHKyxLFBgLZDa','y2HLy2TSAxn0','BgDFDhi','8j+uTpcFLluG5y+m6iMY55cdicHtu1eP','5ys\/56UL6iQc','C3vJy2vZCW','DMfSDwu','y29SB3jFyMC','ChvZAa','y29UDgvUDa','BgDFBwLK','ChjLC2vUDfnOzwv0','yMfJA2DYB3vUzeDYywrPzw50','yMfJA2DYB3vUzenVBg9Y','C2v0ugfKzgLUzW','zMfSC2u','CMvUzgvYtwvKAxvT','y2vUDgvYqwXPz25dB250zw50','6k6+572U5BEY5l+D5A2y','ywrKu3rHy2S','5BEY5BYa5zcV55s16yEp5PI+56s6','ywrKu3bHy2vY','Bgf5B3v0vMvYDgLJywXSEq','yxbWBhLmyxLVDxq','CMvUzgvYsw5MB1nPzgu','6iIs6ycc77YA','C2L6zq','CMvUzgvYv2vHDgHLCLnPzgu','8j+tNcdOR5FOR43KUi7LPkNMSjtOGztLIQG','CMvUzgvYsg9SAwrHEujVEa','CMvUzgvYu2nOzwr1BgvcB3G','icJMMl7OR5FOR40Rm+wKQEwKQEAWLcK','CMvUzgvYv2vLA1jVDW','BgDFy2fS','CMvUzgvYq2fSzw5KyxjhCMLK','CMvUzgvYtg90DgvYEujHBgXZ','DgLUDenVBg9Y','ioIVL+IVJEAyVUEKUG','z2v0tMv4DeHVBgLKyxLZ','zgf5CW','BwfW','y29YBMvYuMfKAxvZ','zM9UDa','mdiTmdy','Dgv4DenVBg9Y','ExL5EEw5Te1n5PYizoAxPq','z2v0q29UzKnVBg9Y','mtaTmdm','C2nOzwr1BgvFy291BNq','C2nOzwr1BgvFB2zMC2v0','mdyTmty','AgfZ','mdyTmdu','mdeTmJm','zMLSBa','iZu1qKvgma','5PEL56Il5A6j5O6s','5OYh5A6A5PI+56s656YS5yEG5P2H','y29SB3jFC2nOzwr1BgvFyMC','CMvMCMvZAefMDgvYrgf0zq','AxnvC2LUz0rHCMTbChbLyxjHBMnL','Bgf5B3v0sg9YAxPVBNrHBgX5','Bg9JyxrPB25Z','Dg9Nz2XLx2jHDa','Dg9Nz2XLx3bVzq','5BYa5zcVicJLVzpLIy0P','5Pwz5BIi6iQc','zM9YBwf0tw9UzxK','Bg9N','BgDFC2nOzwr1Bgu','CMvUzgvYvgLTzuLUzM8','mdqTmdq','z2v0tw9UDgG','6ycj5OUP6lcd5Pw05yY65z+FicG','mdiTmtC','6lEZ6l+h5OYh5A6A5BQp5y+3','mdyTmtK','mdKTmJu','Bgf5B3v0xW','mdyTmdK','y29Kzq','C3rYAw5N','mduTmJG','C3f1yxjLlMrHC2HLza','mdiTmtm','5PEL56Il5ywZ6zsU6k+nkoMhJEIMGsK','mdKTmJi','mdiTmdm','kowpQUAyVUEKUUwqQ+ATPoIVJEEAHoAxPEEOIYZNLzNNQBRMMl7NPlRMIydMNiKP','mdKTmti','C29Syxi','mdyTmJq','C2v0sg91CNm','w+wKP+wpT10G5BEM5lIllEIkGUAxPEwaKUAvSa','thvUyxi','5ywZ6zETicJLVzpLIy0P','x3nJAgvKDwXLx2TLExDVCMq','ywjZ','5l6l5AAcoIdMN7tMSRK','C2HVD19Iyxr0zxj5','icJPMPdOR5FOR40Rn+wKQEwKQEAWLcK','Bg90DgvYEq','DhLWzq','5ycs6k6H5PE2lEIHJoMRMa','z2v0rgf0zvn0CG','z2v0thvUyxjeyxrLx1bYzwnPC2u','x3nWywnLx2HVBgLKyxLFAa','zgf5','5PEL56Il5yIx6kgOlEIHJoMRMa','5A6A5l2n5lIT','5PQc5PEG5PwW5O2U','x3nWywnLx3nJAgvKDwXLx2G','C3LZDgvTrM9UDa','C3bHy2vFC2nOzwr1BgvFAa','uuXd','Agv4','Dg9WqwXPz25dB250zw50','CZjF','C3bHy2vFy2fSx3C','zgf0zq','5B2P56wO5Qch6AkykoACN+wpTYK','y3jLyxrLrgLYzwn0B3j5','5ywS5y6g5PEL5PYF','y2XVDwqUC3vUlMzPBgW','yM9Sze1VBM9ZCgfJzwrtExn0zw1gB250','D3jPDgvjBwfNzq','57sR5Asw77YA','5BEY5ywZ6zET55s16yEp5PI+56s6','56M65Rcu77YA','EwvHCG','AxnbBgXeyxK','C3vIC3rYAw5N','i0qZmKyYrG','AgfUzgXLtgf5B3v0twvUDq','ChjLC2vUDefSzxj0','y2fSzw5Kyxi','i2zMntu1nq','ndG5oty0qKjcqKjc','C3bHy2vFy2fSx2G','z2v0rgf0zq','i2zMy2mWma','Dg9tDhjPBMC','yMXHy2S','C2L6zv8','BMfTzwq','Aw1Hz2u','Bg9JywXL','zgf0zuzVCM1HDa','n0zgqKjcqG','mdKTmtu','mdeTmJy','z2v0vgLTzq','CNvUC0LUqxbW','mduTmZe','5PYi5y6g5yY65z+F','Ag9SAwrHEq','C2v0vvrdrgf0zq','Cg9LDhj5','8j+mKcdLHAJLSydNVkNMLl4','y2vPBa','5yAC5y6g5PEL5PYF','BwvNyxbOB25L','y2XVDwqUzM9NlMzPBgW','u2nYAxb0vMvYC2LVBG','mtfcqKjcqKi','nZy2odCYqKjcqKjc','oujcqKjcqG','otu4ntKWqKjcqNDc','CMvUzgvYwwLkAq','y2XVDwqUAgvHDNLYywLUlMzPBgW','y2XVDwqUzhjPENPSzs5MAwXS','Bg9JA0XVy2f0Aw9U','5RM\/5BQM77YA','6k6+572U5BEY5PU05PAW','C3nX','C3r5BgvF','AM9PBLbHDgG','m0jcqKjcqG','Bg9JywW','mujcqKjcqG','Dgv4Df9NCMvLDgLUz19TB3jUAw5N','x2nVBg9Yx2jNx2rHEq','CxHJ','otC5oti4qKjcqKjc','ywrKsw1Hz2u','5PI+56s66k6+572Uic0G','BwvZC2fNzq','BwvKAxvT','5yQZ5yQO6iQc','nujcqKjcqG','5AsN5lMq6ycp','x2nVBg9Yx2jNxZjFBMLNAhq','iZu4ntzenG','BwvUDv9IAxj0AgrHEq','CgWZ','mtq2otG5mKjgrKzgta','y2XVDwqUBw9VBI5MAwXS','BgLZDa','77Ym5PYa6AUy','B3jPz2LU','DgvTCa','mte1mdmWoejcqKjcqG','mZLcq0ndq0m','BMLNAhrhCMvLDgLUzW','mtGWmtaZmendq0ndqW','5Bga6yoO5B6U6lcdicG','D2LUza','8j+mIcdKUipKUzdLVAKGkffmqYK','6zQq6jEpl+AyVUEKUUMdQowiHUwfG+E0Oa','8j+tJsdOJRFLJ5BLRPRKVy0','n++4J+kdOYdKUipMMj\/LVAKGkffyqYK','CZrFC2L6zv9JywXLBMrHCG','zMLSzuv4Axn0CW','CwXJ','CZjFC3bHy2vFy2fSx3C','6ycj5OUP57Ue5lU25Qc35BYp','qvbj5lUf','z2v0sw1N','CZjFC3bHy2vFD2vLA193','os4X','Ahr0Chm6lY93D3CUy3DSlMDVDI5JBI9JD2XFywrTAw4VzNjVBNqVy3DSA2OVC2vHCMnOl2TQEhGVzMLUzerYyxDoB3rPy2u\/BMfTzt0','lI9eBvLz','DhjHC2G','q2fPC2HVD19eyxrHx09n','CMLNAhrbBgLNBLrLEhq','Bg90DgvYEv90ExbL','55sF5PEL566H55cg','CZnFC3bHy2vFD2vLA193','CZnFC2L6zv9JywXLBMrHCG','x3nOB3DFyMf0DgvYEq','Dhj1zq','56YS5lIa5AwxicJNU4\/LHBGP','zg9vCgrHDgu','C2v0DgLUz3mUANnVBG','572r57UC6k+35Rgc6zsz6k+V77YAcG','AgfUzgXLr3jLzxrPBMDtzxr0Aw5NCW','mdqTmdu','5zYJ6k+E6iQc','ueWZ','Dgv4Df9NCMvLDgLUz19UB29U','6isA5PYS5BEY6kAg55Uw77Ym6k+36yca5yE65BM26yEn5PAW6l+q6kgm6isA5PYS5lUL55sF5Pwi44cc','ywrKqwn0Aw9U','zMv0y2HeyxrH','5PMA5lIkicGXodOWmc0YmZOWmcK','mIW0','BMLNAhruzxH0','w+s4REwpT10G5BEM5l6N5l+H5OgV5yY6','6zEU5ycz6k+T','5y+V6ycjoIdORR7NVA7LKi7MMl7NPlRMUjdLJ5G','yxjYB3CUDxaUyw5KlMrVD24Uyw5KlMfYCM93lMXLzNqUyw5KlNjPz2H0','zML4zwrmyxq','6lcd5Pw057Ue5lU25l2n572U','y29SB3jFyMDFmL9UAwDODa','zMmZza','BwvUDv9ZCgfJAw5N','Bg9HzePtt04','zML4zwrmBMC','Bw9KzxjU','ChjVy2vZC09Wzw5nzxrLBW','C2nOzwr1BgvFDgL0Bgu','5lIl6l2955Qe5yAf5A655lY85lMo5lIn5Q2J56gU','mdeTmJK','6iom5PMV5QIH5BYpicG','yMDFBwfRzv90CMfUC3bHCMvUDa','5OgI5Asn57QV6iMY6iom5PMV','6BUy6k6KoIa','C2nOzwr1Bgu','5O6s5yIx5lQu','DhjPBq','zMLUza','z2v0rNvSBfLLyxi','x25Pz2H0','w+wKP+wpT10G5PEL5y6glEAyN+ACN+AGJW','54k55yE76ycj5OUP5QIH5BYp','5yI35PAW6zE06zQukowiHIK','8j+oSIdNPO\/LVAKZrcaOrKmZrcK','5lId5PIF5B2P','y2XVDwqUC25VDY5MAwXS','57UF6k6H5lIT','D2LUzc5ZBM93lMzPBgW','AgfUzgXLqMfJA2DYB3vUze1LBNu','z2v0rgf5','6iom5PMV5BEY5RIf6zMK','yMDFy2XLyxi','6zE06lEDl+AvSoMhJW','CMvHzeLTywDL','Bw9VBI5MAwXS','D2vHDgHLCG','BgLZDenVBNrLBNrZ','6zsb5A6A5A6A5l2n','Aw5WDxq','8j+qS+EbQ+wnJIZVViJLGO3MMzRLPB3LKydVViK','AgfUzgXLu3r5BgvtD2L0y2G','8j+mMEEbQ+wnJIZVViJMMzRKUiRLPB3LKydVViK','i0zgntu1nq','D2HPDgu','mtaW','6ycj5OUP5zco5Bcg5PU\/5O2I6zEU5ycz6k+T5l2n572U5PI+56s65BYa5Aww5l+H5OgV','i2zMzMzMzG','zMv0y2HmB3r0zxj5rgf0yq','6k6+572Uia','Bgf0Axr1zgu','C2f2zvnLDhrPBMDZ','5ywO6io95PEL5y6g5AsP5Rcu','AM9PBG','5O6s5yIx5lIj','5B2t5yMn54Q25Ocb77YA4PYfiow3SUw8GowqRW','5B2t5yMn54Q25Ocb77YA8j+uTcdLT7lLHBpPL60','C2HVD19WB2v0CNK','8j+uIYdNLlxPH4\/MMl7NPlO','C2nOzwr1BgvFAw5KzxG','i0zgm0iZma','z2v0vvrdrNvSBfLLyxi','8j+oGIdNLj\/ML6xNRQhNKiy','8j+uOIdMJPlLIjFKUiKGkfbmmYK','DgLTzw91DeLUDgvYDMfS','C3vUCMLZzs5MAwXS','5BU65yAB6iQc','8j+MIEEbQ+wnJIZLJ6\/KU6xMNAxKUidLJ5hKUOz+','nI4Y','z2v0qwn0AxzLuhjLzML4','Aw5JBhvKzxm','q1DmievYCM9YoIa','yMX1zq','C2nOzwr1BgvZ','Dgv4Dc5XDw90zq','ywrKvgv4Da','BwLU','DgL0Bgu','56YS5lIj5AwxkoIkGUAxPEwaKUIUOEAxTIK','4PYfioABToAwSoAiKowkNW','yxbWBgLJyxrPB24VANnVBIWGDgv4Dc9QyxzHC2nYAxb0lcaQlYO7ihe9mc4Wmq','Aw1Hz2vtAxPL','ywz0zxjUB29Ur3jLzxrPBMC','zgX0','C3vUlMHHEMuUzMLSBa','Dw5KzwzPBMvK','zxHWB3j0CW','CgW1','zML4zwrdAxr5','5lIl5y2iicGXmZOWmc0XodOWmcK','C3vItg9JywXPDhK','yMf0DgvYEs4Xmda','CMvK','yM9Szfn5C3rLBuzVBNq','8j+wKcdMJPlLIjFKUPqGkfbmnsK','5B2t5yMn5QIH5BYp77YA','ioEuTEMhJ+AyVUEKUG','CMvZDwX0','CZfF','w+wKP+wpT10G5BEM5lIk5l+H5OgV5yY6','y2XPy2TFC2vSzwn0x2XVDhrLCNLFDhLWzq','6iEQ5A6A5lMj6zEU5ycz6k+TicJLVzpLVANNPAJPGiNMI6KI5lIn5PI+56s6iUAxTUEuN+AvIcK','6ycj5OUP5PI+56s655Qe5B2P56wO','we1mshr0CfjLCxvLC3q','zM9YrwfJAa','C2nOzwr1BgvFAxrLBq','5PEL56Il5yIx6kgO','lMPWzW','5yEm5PMOl+A3SEwKNcaOmJm6mdaTmdu6mdaP','mtaTmde','Dgv4Df9NCMvLDgLUz19UAwDODa','6iEQ5A6A5lMj5PAh5A2x6AkC6iMY','5lIh5zYJ6iQc','5PEP5lIkicGWntOWmc0XmtOWmcK','zhLUyxn0Eq','Bw9YBMLUz0DYzwv0Aw5N','CM1jBwC','z2v0vvrdrgf0zq','5AsN5RIP5BQM5PwW5A2x','zMLSzw5HBwu','Dgv4Df9NCMvLDgLUz19HzNrLCM5VB24','4OAP77IpioAbOUwKJEM7MoIUPa','q2fPC2HVD1DPzgDLDa','Dgv4Df9NCMvLDgLUz19LDMvUAw5N','6k+x6k+n5lIo6Ake5OQL','z2v0u0zjy28','BwvKx2XLzNq','zxLLlMzPBgW','BwvKx3jPz2H0','BM93','BgDFDgW','6l+B5ywL6ycj6iMY6Ag16z2I','x2rHEq','BgDFAg9SAwrHEq','y29SB3jFyMDFmG','Dg9KyxK','BgDFD2vLAW','w+wKP+wpT10G5PEL5y6glEAxPEACN+wmUG','AgvHzgvYCW','w+wKP+wpT10G5BEM5lIllEAxPEwoHUs6I+s7TG','6yEn572U5B2t5yMn5Awx57o76AkC6iMY','iZm0qZC1oq','4PIa77IpioEzVEwKQEAOOEw8JYaTiowBVUEjHW','AgfUzgXLu3r5Bgvtzxr0Aw5NC01LBNu','BM9VBKDYzwv0Aw5N','ywXS','8j+sQ+EbQ+wnJIZML6NKUiRLV4pMG4xNVO7NVO7LK5j+','Ahr0Chm6lY92mI5QAw5YAxnOAwnPlMnVBs9Zzw50zw5Jzq','8j+LS+EbQ+wnJIZKUk3LJyJLPB3LKyb+','C2nOzwr1BgvFA2v5D29Yza','D2vHDgHLCL9JywnOzs5QC29U','y2fSzw5KyxiUyMfKz2uUy2XVy2S','CMvTB3zL','CZfFC3bHy2vFD2vLA193','z2v0r3jLzxrPBMC','zgvMyxvSDerHDge','zNv0DxjL','y2XVDwqUyM9SDc5YywLUlMzPBgW','CMvHzfn0CMLUzW','C3r5BguZ','ywn0AxzLuhjLzML4','CZnF','5AAcoIaYldqGkoI3S+I\/H+ESRdlLKOZNRkW05lIQkq','x3nJAgvKDwXLx29MzNnLDa','D3jPDgvtDhjPBMC','6zE06lED6lcd5Pw0icG','z3jLzxrPBMC','C3rYAw5NAwz5','Bg90DgvYEvrPDgXL','yxv0Ag9Y','Bg90DgvYEuL0zw0','5B2P56wO5BYa5Aww55cd5y+3','Bg90DgvYEuLUzM8','5lUk5PEL5BYa5Aww54Q25Ocb','yM90Dg9TqwXPz25dB250zw50','zNjVBuXPyNjHCNK','BhvUyxi','CZfFC3bHy2vFy2fSx3C','Aw5MBW','x2nVBg9Yx2jNx25Pz2H0','mJCUmG','8j+mMsdLPjZPL7qGlsdPOPZOIBiYicJMUjdLJ5GP','D2vHDgHLCKXHCMDL','Aw5KzxHpzG','z2v0vvrdrgf5','Bg90DgvYEurYyxDszxn1Bhq','DgLTzuLUzM8','5BQv6yoO5PE26zE05P2H','4PIa77IpioEzVEwKQsaTioMINoIjSJiGkoA4KowpMcK','vvrd','6iQc5PEL5ycs5PwW','5Bga6yoO57YP5Ps+icJNMB7LIiBMR5qP','5PEL56Il5Qch6Aky','Dg9gAxHLza','5y+m6iMY55cd','x3nPEMvF','u1nr','zgf0yq','z2v0tg90DgvYEvnJAgvKDwXL','C2f2zunHy2HL','5BEY5OgI5Asn','C3vUC2v0lMzPBgW','BMfTzq','5y2Z5Bcg5yIh5O2I5lI677YA','C3r5BguY','56YS5lIa5Awxkos4IEwKQEwKQEAWLcK','5PI+56s65BYa5ywZ','56Ap5B2Pm0q','D2fUzc5HBMqUC3rHCNm','6yEn572U5B2t5yMn5Awx57o75A2x5l2t','C2nOzwr1BgvFyMC','uvHd','5lId5lMq5B2P','BwvUDv9ZAxPL','Bg90DgvYEv9JywnOzv8','ueW1','5lUk5PEL5lYr5BIc','Dgv4DgzVCM1HDc5ZAxPL','Cg9VBa','jNbYB3zPBMnLswq9mczWywDLu2L6zt0XjMLZvMvYAwz5pteMCgfNzu5Vpte','zgfPBhK','6iEQ5A6A5lMj6AkC6iMY','y29SB3jFCMvZzxq','yxbWyxjLBNrFDgvTCgvYyxr1CMu','y29SB3jF','D2vHDgHLCL9JB2rL','6AkC6iMY5BEY6yEn572U','yMDF','yxfP','x2rHEs5QCgC','x25Pz2H0lMPWzW','C3vUCMLZzq','8j+QHcdLIlBKVzZPGi\/MMi7OG4ZMMA8','DgvTCgvYyxr1CMvFmM1FBwf4','AgfUzgXLvMLZAwjPBgL0Eu1LBNu','5yQG6l295PYa5PAW5lQr56UV566x5Rov5yI25l2C','Bg9HzefUzfj1BKvKAxrVCG','5A2x5l2t5AsN5Bcp','yMDFC2vSzwn0x2rHEq','6ycj5OUP55M95AsP5PI+56s655Qe5zU+54Mh','AgfUzgXLq29SB3jnzw51','C2f2zuLTzW','6iom5PMV6k6+572U','8j+mMsdLPjZPL7tMQkhLVi8GlsdLM77NIyC','yMDFC2vSzwn0x25Pz2H0','BwvUDv9IzW','5AsC6zE05zU+54Mh5BEY5l+D5A2y','4PIa77IpioEzVEwKQsaTioMINoIjSJeGkos4U+IjSIK','CgHVDg8UzMLSBa','5PEG5zU+54Mh5PE25PI+56s6','5PEL5AsC5QIH5BYpl+wBVUEjHY\/MUjdLJ5G','x2nVBg9Yx2jNxZjFzgf5','AgfUzgXLu3bHy2LUz01LBNu','8j+mMsdLPjZPL7qGlsdPOPZOIBiXicJKUlVOIBiP','BwvUDv9SyxLVDxq','55s16yEp5lIo5A6A5l2n','5AsP5Rcu5O+p6l+W','5BId5Bga5B6U6lcd','yxjYB3CUDxaUBgvMDc5HBMqUyxjYB3CUzg93BI5YAwDODa','icSG','D2LKz2v0rMfTAwX5','yMfJA2DYB3vUzeLTywDL','55M95AsP5zU+54Mh5BEY5l+D5A2y','C2v0qMfZAwndB25MAwC','Bg90DgvYEurYyxDoDw0','y2fRzs5MAwXS','q2fUy2vSzwq','Bg9Uz2L0DwrL','y2XHC3nPyW','Bg9JywXPDhK','zML4zwrtDwjdAxr5','D2LKz2v0ugfYyw1LDgvY','5A6A5l2n5OIq5yQF','5BEY5l+D5A2y','5A6A5l2n5AsX6lsL','CMvUzgvYqxbWvMLLDW','CMvMCMvZAeLUDgvYDMfS','6ywn572U6i+C5y2v','z2v0x2XVy2f0Aw9Ux2j0BG','Bg9JyxrPB24','x2jPCNrOzgf5x2XPC3q','C3DPDgnO','C2v0DgLUz3m','5z+656ga6k6+572UicJLHAJLSydNLj\/MLyGP','5zU65A6A5z2q5Qch','C3bSAxq','Bg9Hza','yxnZAwDU','zMLSDgvY','CMvHzenHy2HL','56YS5lQm5Awxkos4G+wKQEwKQEAWLcK','5RE75yQGl+EUOEEqHUwUTUs6UUACI+wpI+EuN+AxPq','5BEY5BYa5zcV6k+x6k+n','56YS5zUB5AwxkoAxPEwoHUs6I+s7TIK','5BEY5ywZ6zET6k+x6k+n','C3r5BgvnB2rLBa','C3bSAwnL','44cq6l6t5ywL6k+05PIo44crcUIVT+wCQos4I+AwUEI+K+wfPEAHHUs4REwHQ+wgME+8JoAGVow8J+s4UU+8MGRLP5pLKi0S5PEL5PYFloEXU+wEIWOk44cq56s65l6l44crcUIaGEwfRcWXmc0YnYZLHPZLJOyk6icb5AMglda1ltiWlowfRowoHGOkkoI+K+wfPEAHHUEvMEEPUUwiMEs4JEAyVUEKUIK','y2LYy2XLlMDYAwqUmNGY','56gU6k6K5yIh5O2I77YF','ywrKvgv4DezPzwXK','cGRLIiFMJAlLKi7OR7FNGRNLH7VOHjRMNkZLJ7pKUiVOP5lNMOtIGjZOV5dOOyZIGj3MJiNPKQ7KU6xLIlFMLRdPOOtOP4JJGii','5AEt5zcnle1nlurelowfRowoHI\/LHPZLJOy','y3vYCMvUDa','CMv2zxjZzuDLB2nVzgu','y29SB3jFyMDFBMLNAhq','Ahr0Chm6lY9HAxiTCxvHBgL0Es1HCgKUB3bLBI1TzxrLBY5JB20VDJeVywLYlxf1ywXPDhK\/Bgf0Axr1zgu9','ywrKq2fUy2vSqwn0Aw9U','AgfUzgXLqMLYDgHKyxLtzxr0Aw5NCW','CMvWBgfJzq','CgfYC2u','C3vUlM1HEc5MAwXS','BM90Awz5','y2XVDwqUCMfPBI5MAwXS','6ycj5OUP5REX6iMY5QIH5BYp5zU+54Mh','56gU6k6K5yIh5O2I','jMXVBMDPDhvKzt0','8j+xKsdMUixPMAtMIydMNiNLM77NIyC','Cg9VBg1VBMv5','5PEL56Il6iom5PMVkow6LEAHHIK','reXu','C3rHCNrZv2L0Aa','5ywO5Bga6k6+572UicJLVBhLK43MIydMNiNNU4tKU7yP','4PYp77Ipios\/RUAuUEwXGoMdQoAvSowaVa','EMHFy24','C2L6zv9LzgL0','CgvUy2LS','5OMa5PYj5PAh5A2x5OYj5Q+u5l6l57YP5Ps+koM7MoIUPdeWmcK','z2XVyMfSx2zVBNrFC2L6zq','koETM+MaIEwqJUEAHoESRowhOoADOsWGmoAyR+ESRos4GoADOsK','x3nJAgvKDwXLx2LUzgv4','rKmZra','C2L6zv9YzxnLDa','yxjYB3CUy291BNrLCMnSB2nRD2LZzq','C2nOzwr1BgvFAxrLBv8','5PEG6Ake5OQL5PwW5O2U','5PEL56Il5yIx6kgOlEESRa','y29SB3i','x2nVBg9YxW','DgLTzxn0yw1W','6AkC6iMY6ywn572UicG','8j+oQcdKV67MLlNPOPZOIBi','Ahr0Chm6lY93zwjHCgKUC3bVCNr0zxj5lMnUl2DHDgv3yxKVBg90DgvYEs9NzxriAxn0B3j5ugfNzuXPC3rwms5XCNK\/z2fTzu5Vpq','y29SB3jFzwrPDa','CgfPBNrWywXLDhrL','5l+D5A2y55sF5Pwi','lZuZ5zgOioESRca','BgvUz3rO','y2XVDwqUzMLSBa','i0zgmKq1nq','C2XPy2u','Dgv4DezPzwXKvMfSDwu','x3nOB3DFCg9LDhj5','zNvSBa','y29SB3jFyMDFmL9KyxK','5PYFoIa','Cg9VBe1VBMv5','iZy2nJy2nG','5zU95BQg6iQc','u3bVCNr0zxj5ievYCM9YoIa','y29SB3jZ','jMLZC3vLq291BNq9mq','iZaWmdaWma','tw96AwXSys81lJaGkgLqAg9UztSGq1bvigLqAg9UzsbpuYaXnL8WigXPA2uGtwfJie9tifGPiefWCgXLv2vIs2L0lZyWns4XlJe1icHlsfrntcWGBgLRzsbhzwnRBYKGvMvYC2LVBI8XnI4Wie1VyMLSzs8XnuuXndGGu2fMyxjPlZyWnc4X','Ahr0Chm6lY93D3CUy3DSlMDVDI5JBI8','8j+qOEEbQ+wnJIZKUiVLJyJLPB3LKyb+','CMvUzgvYtgfYz2u','w+wKP+wpT10G5lIT6zE06BUe5y6g5P2H','w+s4REwpT10G5y+Z5l6N5AsP5Rcu5yY6','w+wKP+wpT10G5y+Z5lIk5AsP5Rcu5yY6','WRdVViZMNidKVy4','6l+B5ywL5y2v54US6lcd5Pw0','iZy2nG','5lIT5y2iicGXmtOWmc0XmZOWmcK','BwvUDv92Axm','iZaWn0fgrG','5lUk5PEL5BYa5AwwoIa','mJe6mZa'];a0_0x2f75=function(){return _0x2e98b5;};return a0_0x2f75();}function getMonthGrid(_0x37b54a,_0x315f77){const _0x5f28aa=a0_0x1c51e0,_0x3e15a8=new Date(_0x37b54a,_0x315f77,0x1),_0x3e75b7=new Date(_0x37b54a,_0x315f77+0x1,0x0),_0x31bf86=_0x3e75b7[_0x5f28aa(0x35a)](),_0x3da97f=_0x3e15a8[_0x5f28aa(0x146)](),_0x328a3f=[];let _0x31232c=Array(_0x3da97f)[_0x5f28aa(0x305)](null);for(let _0x306477=0x1;_0x306477<=_0x31bf86;_0x306477++){_0x31232c[_0x5f28aa(0x2d7)](_0x306477),_0x31232c[_0x5f28aa(0x283)]===0x7&&(_0x328a3f[_0x5f28aa(0x2d7)](_0x31232c),_0x31232c=[]);}if(_0x31232c[_0x5f28aa(0x283)]>0x0){while(_0x31232c[_0x5f28aa(0x283)]<0x7)_0x31232c[_0x5f28aa(0x2d7)](null);_0x328a3f[_0x5f28aa(0x2d7)](_0x31232c);}return _0x328a3f;}function getStemBranchDay(_0x49bbce){const _0x5b65fd=a0_0x1c51e0,_0x33191f=new Date(0x76c,0x0,0x1f),_0x34aceb=Math[_0x5b65fd(0x2cd)]((_0x49bbce-_0x33191f)\/0x5265c00);return heavenlyStems[(_0x34aceb%0xa+0xa)%0xa]+earthlyBranches[(_0x34aceb%0xc+0xc)%0xc];}function getYellowBlackDay(_0x4c83fc){let _0x1d0882=getLunarDate_Precise_Simple(_0x4c83fc);return yellowBlackDays[(_0x1d0882['m']+_0x1d0882['d']-0x2)%0xc];}function getLunarDate_Precise_Simple(_0x1ca85c){const _0x4d0e9e=a0_0x1c51e0;let _0x294681=_0x1ca85c[_0x4d0e9e(0x13b)](),_0x29a6a6=_0x1ca85c[_0x4d0e9e(0x317)]()+0x1,_0x1dbcb3=_0x1ca85c[_0x4d0e9e(0x35a)](),_0x28e7ee,_0x4a7a84=0x15c,_0xf90a2c=(Date[_0x4d0e9e(0x1e5)](_0x294681,_0x29a6a6-0x1,_0x1dbcb3)-Date[_0x4d0e9e(0x1e5)](0x76c,0x0,0x1f))\/0x5265c00;for(_0x28e7ee=0x76c;_0x28e7ee<0x835&&_0xf90a2c>0x0;_0x28e7ee++){_0x4a7a84=lYearDays(_0x28e7ee),_0xf90a2c-=_0x4a7a84;}_0xf90a2c<0x0&&(_0xf90a2c+=_0x4a7a84,_0x28e7ee--);let _0x104f5b=lunarInfo[_0x28e7ee-0x76c]&0xf,_0x4716b2=![],_0x5d582b,_0x1c31f0;for(_0x5d582b=0x1;_0x5d582b<0xd&&_0xf90a2c>0x0;_0x5d582b++){_0x1c31f0=_0x104f5b===_0x5d582b-0x1&&!_0x4716b2?lunarInfo[_0x28e7ee-0x76c]&0x10000?0x1e:0x1d:lunarInfo[_0x28e7ee-0x76c]&0x10000>>_0x5d582b?0x1e:0x1d;if(_0x4716b2&&_0x5d582b===_0x104f5b+0x1)_0x4716b2=![];else _0x104f5b>0x0&&_0x5d582b===_0x104f5b+0x1&&!_0x4716b2&&(_0x4716b2=!![],--_0x5d582b);_0xf90a2c-=_0x1c31f0;}_0xf90a2c<0x0&&(_0xf90a2c+=_0x1c31f0,--_0x5d582b);if(_0x5d582b<0x1)_0x5d582b=0x1;if(_0x5d582b>0xc)_0x5d582b=0xc;return{'m':_0x5d582b,'d':Math[_0x4d0e9e(0x2cd)](_0xf90a2c)+0x1};}function getMansion(_0x5678bf){const _0x2d6598=a0_0x1c51e0,_0x53aa9b=new Date(0x76c,0x0,0x1f),_0x2c41a8=Math[_0x2d6598(0x2cd)]((_0x5678bf-_0x53aa9b)\/0x5265c00);return twentyEightMansions[(_0x2c41a8%0x1c+0x1c)%0x1c];}function isAuspiciousDay(_0x12d542){const _0x5986f7=a0_0x1c51e0,_0x1a9b37=getYellowBlackDay(_0x12d542),_0x4a7bfd=getMansion(_0x12d542),_0x1dc8bc=['除','危','定','执','成','开'],_0x1a6ed2=['角','房','尾','箕','斗','室','壁','娄','胃','毕','参','井','张','轸'];return _0x1dc8bc[_0x5986f7(0x16e)](_0x1a9b37)&&_0x1a6ed2[_0x5986f7(0x16e)](_0x4a7bfd);}function getTraditionalYiJi(_0x1acd7a){const _0x3c4227=a0_0x1c51e0,_0x25ee30=getStemBranchDay(_0x1acd7a),_0x1ff891=getYellowBlackDay(_0x1acd7a),_0x2be285=isAuspiciousDay(_0x1acd7a);let _0x128b39=[],_0x76bcfa=[],_0x8cfe73=_0x25ee30[0x0];if(['甲','乙'][_0x3c4227(0x16e)](_0x8cfe73))_0x128b39[_0x3c4227(0x2d7)]('祭祀','祈福','入学','栽种'),_0x76bcfa[_0x3c4227(0x2d7)]('动土','开市','破屋');else{if(['丙','丁'][_0x3c4227(0x16e)](_0x8cfe73))_0x128b39[_0x3c4227(0x2d7)]('嫁娶','开市','出行'),_0x76bcfa[_0x3c4227(0x2d7)]('祭祀','动土','安葬');else{if(['戊','己'][_0x3c4227(0x16e)](_0x8cfe73))_0x128b39[_0x3c4227(0x2d7)]('修造','动土','入宅'),_0x76bcfa[_0x3c4227(0x2d7)]('开市','嫁娶','出行');else['庚','辛'][_0x3c4227(0x16e)](_0x8cfe73)?(_0x128b39[_0x3c4227(0x2d7)]('求医','诉讼','交易'),_0x76bcfa[_0x3c4227(0x2d7)]('祈福','祭祀','安床')):(_0x128b39[_0x3c4227(0x2d7)]('出行','移徙','纳财'),_0x76bcfa[_0x3c4227(0x2d7)]('修造','动土','开仓'));}}const _0x811314={'建':[['祭祀','祈福'],['嫁娶','开市']],'除':[['治病','扫舍'],['出行','诉讼']],'满':[['祭祀','开市'],['嫁娶','安葬']],'平':[['修造','安床'],['开市','交易']],'定':[['嫁娶','订盟'],['词讼','开渠']],'执':[['捕捉','破土'],['嫁娶','移徙']],'破':[['破屋','坏垣'],['嫁娶','开市']],'危':[['安床','入宅'],['破土','开渠']],'成':[['嫁娶','开市'],['造桥','安床']],'收':[['纳财','交易'],['开市','安葬']],'开':[['开市','交易'],['破土','安葬']],'闭':[['筑堤','补垣'],['开市','出行']]};_0x811314[_0x1ff891]&&(_0x128b39[_0x3c4227(0x2d7)](..._0x811314[_0x1ff891][0x0]),_0x76bcfa[_0x3c4227(0x2d7)](..._0x811314[_0x1ff891][0x1]));if(_0x2be285)_0x128b39[_0x3c4227(0x2d7)]('嫁娶','开市','入宅');else _0x76bcfa[_0x3c4227(0x2d7)]('嫁娶','开市','出行');return{'yi':[...new Set(_0x128b39)][_0x3c4227(0x286)](0x0,0x6),'ji':[...new Set(_0x76bcfa)][_0x3c4227(0x286)](0x0,0x6)};}function getYiJiSimple(_0x1e6d9f,_0x425b2a){const _0x95ebc9=getTraditionalYiJi(_0x1e6d9f);return _0x425b2a===0x0?_0x95ebc9['yi']:_0x95ebc9['ji'];}function getWeekOfYear(_0xaf582f){const _0x1e30e0=a0_0x1c51e0,_0x2135da=new Date(Date[_0x1e30e0(0x1e5)](_0xaf582f[_0x1e30e0(0x13b)](),_0xaf582f[_0x1e30e0(0x317)](),_0xaf582f[_0x1e30e0(0x35a)]())),_0x361143=_0x2135da[_0x1e30e0(0x1e0)]()||0x7;_0x2135da[_0x1e30e0(0x36b)](_0x2135da[_0x1e30e0(0x19d)]()+0x4-_0x361143);const _0x6968d9=new Date(Date[_0x1e30e0(0x1e5)](_0x2135da[_0x1e30e0(0x165)](),0x0,0x1));return Math[_0x1e30e0(0x36e)](((_0x2135da-_0x6968d9)\/0x5265c00+0x1)\/0x7);}function a0_0x1953(_0x566798,_0x3d1637){const _0x312c3d=a0_0x2f75();return a0_0x1953=function(_0x4a7d9f,_0x5bfeb7){_0x4a7d9f=_0x4a7d9f-0xce;let _0x42ad55=_0x312c3d[_0x4a7d9f];if(a0_0x1953['BUvwvJ']===undefined){var _0x4799f7=function(_0x15fab7){const _0x1dce2b='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+\/=';let _0x476d44='',_0x312972='';for(let _0x1060cd=0x0,_0x1dcb01,_0x566ac3,_0x3d136c=0x0;_0x566ac3=_0x15fab7['charAt'](_0x3d136c++);~_0x566ac3&&(_0x1dcb01=_0x1060cd%0x4?_0x1dcb01*0x40+_0x566ac3:_0x566ac3,_0x1060cd++%0x4)?_0x476d44+=String['fromCharCode'](0xff&_0x1dcb01>>(-0x2*_0x1060cd&0x6)):0x0){_0x566ac3=_0x1dce2b['indexOf'](_0x566ac3);}for(let _0x42aa8a=0x0,_0x35f488=_0x476d44['length'];_0x42aa8a<_0x35f488;_0x42aa8a++){_0x312972+='%'+('00'+_0x476d44['charCodeAt'](_0x42aa8a)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x312972);};a0_0x1953['IdwErH']=_0x4799f7,_0x566798=arguments,a0_0x1953['BUvwvJ']=!![];}const _0x106398=_0x312c3d[0x0],_0x29b4fa=_0x4a7d9f+_0x106398,_0x2f4c19=_0x566798[_0x29b4fa];return!_0x2f4c19?(_0x42ad55=a0_0x1953['IdwErH'](_0x42ad55),_0x566798[_0x29b4fa]=_0x42ad55):_0x42ad55=_0x2f4c19,_0x42ad55;},a0_0x1953(_0x566798,_0x3d1637);}function getDayOfYear(_0x393ec9){const _0x31d7aa=a0_0x1c51e0;return Math[_0x31d7aa(0x2cd)]((_0x393ec9-new Date(_0x393ec9[_0x31d7aa(0x13b)](),0x0,0x0))\/0x3e8\/0x3c\/0x3c\/0x18);}function pad(_0x35e501){return _0x35e501<0xa?'0'+_0x35e501:_0x35e501;}await Runing(CaishowWidget,args[a0_0x1c51e0(0x237)],![]);";
+const ScriptVersion = "1.1.4";
+module.exports.ScriptVersion = ScriptVersion;
+if (typeof require === "undefined") {
+  require = importModule;
+}
+const {
+  DmYY,
+  Runing
+} = require("./DmYY");
+const FM = FileManager.local();
+const BASE_DIR = FM.joinPath(FM.libraryDirectory(), "Caishow_Data_OM");
+if (!FM.fileExists(BASE_DIR)) {
+  FM.createDirectory(BASE_DIR);
+}
+try {
+  const cachePath = FM.joinPath(BASE_DIR, "weather_cache.json");
+  if (FM.fileExists(cachePath)) {
+    FM.remove(cachePath);
+  }
+} catch (a0_0x1953d2) {}
+const ConfigManager = {
+  getPath: _0x24820f => FM.joinPath(BASE_DIR, _0x24820f),
+  load: () => {
+    const _0xe2595d = FM.joinPath(BASE_DIR, "settings.json");
+    if (FM.fileExists(_0xe2595d)) {
+      try {
+        return JSON.parse(FM.readString(_0xe2595d));
+      } catch (_0x2f758f) {
+        return {};
+      }
+    }
+    return {};
+  },
+  save: _0x88e776 => {
+    try {
+      FM.writeString(FM.joinPath(BASE_DIR, "settings.json"), JSON.stringify(_0x88e776));
+    } catch (_0x1eeaf1) {}
+  },
+  saveCache: (_0x274d9e, _0x1c1f61) => {
+    try {
+      FM.writeString(FM.joinPath(BASE_DIR, _0x274d9e), JSON.stringify(_0x1c1f61));
+    } catch (_0x5c2e83) {}
+  },
+  readCache: _0xb5a06a => {
+    try {
+      const _0x21b680 = FM.joinPath(BASE_DIR, _0xb5a06a);
+      if (FM.fileExists(_0x21b680)) {
+        return JSON.parse(FM.readString(_0x21b680));
+      }
+    } catch (_0x106398) {}
+    return null;
+  },
+  saveImg: (_0x4799f7, _0x1dce2b) => {
+    try {
+      FM.writeImage(FM.joinPath(BASE_DIR, _0x4799f7), _0x1dce2b);
+    } catch (_0x476d44) {}
+  },
+  getImg: _0x312972 => {
+    const _0x1060cd = FM.joinPath(BASE_DIR, _0x312972);
+    return FM.fileExists(_0x1060cd) ? FM.readImage(_0x1060cd) : null;
+  },
+  rmImg: _0x1dcb01 => {
+    try {
+      FM.remove(FM.joinPath(BASE_DIR, _0x1dcb01));
+    } catch (_0x312c3d) {}
+  },
+  clear: () => {
+    try {
+      if (FM.fileExists(BASE_DIR)) {
+        const _0x3d1637 = FM.listContents(BASE_DIR);
+        for (const _0x566ac3 of _0x3d1637) FM.remove(FM.joinPath(BASE_DIR, _0x566ac3));
+      }
+    } catch (_0x3d136c) {}
+  }
+};
+const lunarInfo = [19416, 19168, 42352, 21717, 53856, 55632, 91476, 22176, 39632, 21970, 19168, 42422, 42192, 53840, 119381, 46400, 54944, 44450, 38320, 84343, 18800, 42160, 46261, 27216, 27968, 109396, 11104, 38256, 21234, 18800, 25958, 54432, 59984, 28309, 23248, 11104, 100067, 37600, 116951, 51536, 54432, 120998, 46416, 22176, 107956, 9680, 37584, 53938, 43344, 46423, 27808, 46416, 86869, 19872, 42448, 83315, 21200, 43432, 59728, 27296, 44710, 43856, 19296, 43748, 42352, 21088, 62051, 55632, 23383, 22176, 38608, 19925, 19152, 42192, 54484, 53840, 54616, 46400, 46496, 103846, 38320, 18864, 43380, 42160, 45690, 27216, 27968, 44870, 43872, 38256, 19189, 18800, 25776, 29859, 59984, 27480, 23232, 43872, 38613, 37600, 51552, 55636, 54432, 55888, 30034, 22176, 43959, 9680, 37584, 51893, 43344, 46240, 47780, 44368, 21977, 19360, 42416, 86390, 21168, 43312, 31060, 27296, 44368, 23378, 19296, 42726, 42208, 53856, 60005, 54576, 23200, 30371, 38608, 3031, 19152, 42192, 118966, 53840, 54560, 56645, 46496, 22224, 21938, 18864, 42359, 42160, 43600, 111189, 27936, 44448];
+const weekTitle = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+const weekTitleShort = ["日", "一", "二", "三", "四", "五", "六"];
+const zodiacAnimals = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"];
+const heavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+const earthlyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+const yellowBlackDays = ["建", "除", "满", "平", "定", "执", "破", "危", "成", "收", "开", "闭"];
+const twentyEightMansions = ["角", "亢", "氐", "房", "心", "尾", "箕", "斗", "牛", "女", "虚", "危", "室", "壁", "奎", "娄", "胃", "昴", "毕", "觜", "参", "井", "鬼", "柳", "星", "张", "翼", "轸"];
+const baseConfigKeys = {
+  size_greeting: "100",
+  size_date: "100",
+  size_lunar: "100",
+  size_info: "100",
+  size_weather: "100",
+  size_weatherLarge: "100",
+  size_poetry: "100",
+  size_timeInfo: "100",
+  size_calendar: "100",
+  size_holiday: "100",
+  size_schedule_title: "100",
+  size_schedule_item: "100",
+  size_lotteryTitle: "100",
+  size_lotteryItem: "100",
+  size_lotteryInfo: "100",
+  show_battery: "true",
+  show_poetry: "true",
+  birthday_list: "",
+  color_greeting: "#ffffff",
+  color_date: "#ffcc99",
+  color_lunar: "#99ccff",
+  color_info: "#ffffff",
+  color_weather: "#ffffff",
+  color_weatherLarge: "#ffffff",
+  color_poetry: "#ffffff",
+  color_timeInfo: "#99ccff",
+  color_calendar: "#ffffff",
+  color_holiday: "#ffffff",
+  color_schedule_title: "#ffffff",
+  color_schedule_bg: "#666666",
+  color_schedule_item_1: "#ffffff",
+  color_schedule_item_2: "#ffffff",
+  color_schedule_item_3: "#ffffff",
+  color_schedule_item_4: "#ffffff",
+  color_schedule_item_5: "#ffffff",
+  color_schedule_item_6: "#ffffff",
+  color_lotteryTitle: "#ffffff",
+  color_lotteryItem: "#ffffff",
+  color_lotteryInfo: "#99ccff",
+  color_bg: "#000000",
+  color_bg_2: "",
+  color_bg_day: "",
+  color_bg_2_day: "",
+  color_bg_night: "",
+  color_bg_2_night: "",
+  layout_med_left_x: "0",
+  layout_med_left_y: "0",
+  layout_med_right_x: "0",
+  layout_med_right_y: "0",
+  layout_lg_tl_x: "0",
+  layout_lg_tl_y: "0",
+  layout_lg_tr_x: "0",
+  layout_lg_tr_y: "0",
+  layout_lg_mid_x: "0",
+  layout_lg_mid_y: "0",
+  layout_lg_week_x: "0",
+  layout_lg_week_y: "0",
+  layout_lg_cal_x: "0",
+  layout_lg_cal_y: "0",
+  layout_lg_holiday_x: "0",
+  layout_lg_holiday_y: "0",
+  layout_lg_schedule_x: "0",
+  layout_lg_schedule_y: "0",
+  space_week_w: "28",
+  space_cal_w: "28",
+  space_cal_h: "3",
+  space_holiday_h: "2",
+  space_schedule_h: "2",
+  schedule_count: "4",
+  schedule_offset: "0"
+};
+class CaishowWidget extends DmYY {
+  constructor(_0x42aa8a) {
+    super(_0x42aa8a);
+    this.name = "全能日历天气";
+    this.en = "CalendarWeather";
+    this.logo = "https://raw.githubusercontent.com/Orz-3/task/master/scriptable/icon/caiyun.png";
+    this.defaultData = {
+      apiKey: "",
+      lockLocation: false,
+      fixedLng: "",
+      fixedLat: "",
+      fixedCity: "",
+      fixedSubCity: "",
+      refreshInterval: "60",
+      styleModel: "classic",
+      global_font_size: "100",
+      lottery_type: "none",
+      text_greeting_night: "",
+      text_greeting_morning: "",
+      text_greeting_noon: "",
+      text_greeting_afternoon: "",
+      text_greeting_evening: ""
+    };
+    for (const [_0x4f48b5, _0x35f753] of Object.entries(baseConfigKeys)) {
+      this.defaultData["s1_" + _0x4f48b5] = _0x35f753;
+      this.defaultData["s2_" + _0x4f48b5] = _0x35f753;
+      this.defaultData["s3_" + _0x4f48b5] = _0x35f753;
+      this.defaultData["s4_" + _0x4f48b5] = _0x35f753;
+    }
+    this.defaultData.s1_space_week_w = "30";
+    this.defaultData.s1_space_cal_w = "27.2";
+    this.defaultData.s3_size_calendar = "89";
+    this.defaultData.s4_size_calendar = "89";
+    this.defaultData.s2_space_week_w = "30";
+    this.defaultData.s2_space_cal_w = "27.2";
+    this.defaultData.s3_space_week_w = "9.1";
+    this.defaultData.s3_space_cal_w = "6.2";
+    this.defaultData.s3_space_cal_h = "0";
+    this.defaultData.s3_space_holiday_h = "4";
+    this.defaultData.s4_space_week_w = "9.1";
+    this.defaultData.s4_space_cal_w = "6.2";
+    this.defaultData.s4_space_cal_h = "0";
+    this.defaultData.s4_space_schedule_h = "0";
+    this.defaultData.s4_schedule_count = "4";
+    const _0x35f488 = ConfigManager.load();
+    this.settings = Object.assign({}, this.defaultData, _0x35f488);
+    this.Run();
+  }
+  saveSettings(_0x306035 = true) {
+    ConfigManager.save(this.settings);
+    super.saveSettings(false);
+    if (_0x306035) {
+      this.notify("设置成功", "配置已保存到本地文件，稍后刷新");
+    }
+    return JSON.stringify(this.settings);
+  }
+  Run() {
+    config.runsInApp && (this.registerAction("基础设置", async () => {
+      await this.setBasicConfig();
+    }, {
+      name: "gearshape.fill",
+      color: "#007aff",
+      desc: "定位、API、刷新频率"
+    }), this.registerAction("彩票与问候", async () => {
+      await this.handleGreetingSettings(this.getActivePrefix());
+    }, {
+      name: "ticket.fill",
+      color: "#FF2D55",
+      desc: "选择显示的彩票或问候语"
+    }), this.registerAction("第一套（三天天气）", async () => {
+      await this.handleStyleSettingsMenu("s1");
+    }, {
+      name: "doc.text.image",
+      color: "#FF9500",
+      desc: "第一套 (经典)"
+    }), this.registerAction("第二套（七天天气）", async () => {
+      await this.handleStyleSettingsMenu("s2");
+    }, {
+      name: "doc.text",
+      color: "#34C759",
+      desc: "第二套 (简约)"
+    }), this.registerAction("第三套（节假日倒计时）", async () => {
+      await this.handleStyleSettingsMenu("s3");
+    }, {
+      name: "gift.fill",
+      color: "#FF2D55",
+      desc: "第三套 (节日)"
+    }), this.registerAction("第四套（日历日程）", async () => {
+      await this.handleStyleSettingsMenu("s4");
+    }, {
+      name: "calendar.badge.clock",
+      color: "#007AFF",
+      desc: "第四套 (日程)"
+    }), this.registerAction("组件切换", async () => {
+      await this.handleStyleSwitch();
+    }, {
+      name: "arrow.triangle.2.circlepath",
+      color: "#5856d6",
+      desc: "切换当前显示样式"
+    }), this.registerAction("重置配置", async () => {
+      const _0x3c4d29 = new Alert();
+      _0x3c4d29.title = "确认重置？";
+      _0x3c4d29.message = "所有个性化颜色、布局、Key都将丢失。";
+      _0x3c4d29.addAction("确认重置");
+      _0x3c4d29.addCancelAction("取消");
+      const _0x559e8b = await _0x3c4d29.presentAlert();
+      _0x559e8b === 0 && (ConfigManager.clear(), this.settings = Object.assign({}, this.defaultData), this.saveSettings(false), this.notify("已重置", "请重新运行脚本"));
+    }, {
+      name: "trash.fill",
+      color: "#ff3b30",
+      desc: "修复所有问题"
+    }), this.registerAction("检查更新", async () => {
+      await this.updateScript(false);
+    }, {
+      name: "cloud.fill",
+      color: "#007aff",
+      desc: "当前版本 v" + ScriptVersion
+    }), Timer.schedule(800, false, async () => {
+      await this.updateScript(true);
+    }));
+  }
+  getActivePrefix() {
+    let _0x4a7d9f = this.settings.styleModel || "classic";
+    if (_0x4a7d9f === "modern") {
+      return "s2";
+    }
+    if (_0x4a7d9f === "holiday") {
+      return "s3";
+    }
+    if (_0x4a7d9f === "schedule") {
+      return "s4";
+    }
+    return "s1";
+  }
+  async updateScript(_0x566798 = false) {
+    const _0x33c813 = "https://raw.githubusercontent.com/loveyuwy/hao/refs/heads/main/wtk.js?ts=" + Date.now();
+    const _0x3fb20c = new Alert();
+    try {
+      const _0x59036e = new Request(_0x33c813);
+      _0x59036e.method = "GET";
+      const _0x265a6d = await _0x59036e.loadString();
+      const _0x29b4fa = _0x265a6d.match(/const\s+ScriptVersion\s*=\s*["'](.*?)["']/);
+      const _0x2f4c19 = _0x29b4fa ? _0x29b4fa[1] : null;
+      console.log("[更新检测] 本地: " + ScriptVersion + ", 远程: " + _0x2f4c19 + ", 静默: " + _0x566798);
+      if (!_0x2f4c19) {
+        if (_0x566798) {
+          return;
+        }
+        _0x3fb20c.title = "⚠️ 无法检测远程版本";
+        _0x3fb20c.message = "无法解析远程文件版本号，是否强制覆盖？";
+        _0x3fb20c.addAction("强制更新");
+        _0x3fb20c.addCancelAction("取消");
+        if ((await _0x3fb20c.presentAlert()) === 0) {
+          await this.doUpdate(_0x265a6d);
+        }
+        return;
+      }
+      const _0x15fab7 = (_0x42ad55, _0x33f7a3) => {
+        const _0x14f499 = _0x42ad55.split(".").map(Number);
+        const _0xd3942f = _0x33f7a3.split(".").map(Number);
+        const _0x1aa36a = Math.max(_0x14f499.length, _0xd3942f.length);
+        for (let _0x14c1f0 = 0; _0x14c1f0 < _0x1aa36a; _0x14c1f0++) {
+          const _0x33f478 = _0x14f499[_0x14c1f0] || 0;
+          const _0x3fde72 = _0xd3942f[_0x14c1f0] || 0;
+          if (_0x33f478 > _0x3fde72) {
+            return 1;
+          }
+          if (_0x33f478 < _0x3fde72) {
+            return -1;
+          }
+        }
+        return 0;
+      };
+      if (_0x15fab7(_0x2f4c19, ScriptVersion) > 0) {
+        _0x3fb20c.title = "🚀 发现新版本 v" + _0x2f4c19;
+        _0x3fb20c.message = "当前版本: v" + ScriptVersion + "\n建议您立即更新以获得最新功能。";
+        _0x3fb20c.addAction("立即更新");
+        _0x3fb20c.addCancelAction("稍后");
+        const _0x5932f2 = await _0x3fb20c.presentAlert();
+        if (_0x5932f2 === 0) {
+          await this.doUpdate(_0x265a6d);
+        }
+      } else {
+        if (_0x566798) {
+          return;
+        }
+        _0x3fb20c.title = "✅ 已是最新版本";
+        _0x3fb20c.message = "远程版本: v" + _0x2f4c19 + "\n当前版本: v" + ScriptVersion + "\n\n您的版本是最新的（或比远程版本更高）。";
+        _0x3fb20c.addAction("好的");
+        await _0x3fb20c.presentAlert();
+      }
+    } catch (_0x3fe19c) {
+      console.log("[更新检测失败] " + _0x3fe19c.message);
+      if (_0x566798) {
+        return;
+      }
+      _0x3fb20c.title = "❌ 更新检测失败";
+      _0x3fb20c.message = "网络请求错误：\n" + _0x3fe19c.message;
+      _0x3fb20c.addAction("确定");
+      await _0x3fb20c.presentAlert();
+    }
+  }
+  async doUpdate(_0x4578bb) {
+    if (_0x4578bb && _0x4578bb.includes("CaishowWidget")) {
+      const _0x38c2b9 = FileManager.local();
+      _0x38c2b9.writeString(module.filename, _0x4578bb);
+      const _0x5216da = new Alert();
+      _0x5216da.title = "✅ 更新成功";
+      _0x5216da.message = "脚本已覆盖，请退出并重新运行脚本以生效。";
+      _0x5216da.addAction("好的");
+      await _0x5216da.presentAlert();
+    } else {
+      this.notify("更新失败", "下载的内容似乎不正确");
+    }
+  }
+  async handleStyleSettingsMenu(_0x508314) {
+    let _0x3a26a7 = "经典";
+    if (_0x508314 === "s2") {
+      _0x3a26a7 = "简约";
+    }
+    if (_0x508314 === "s3") {
+      _0x3a26a7 = "节日";
+    }
+    if (_0x508314 === "s4") {
+      _0x3a26a7 = "日程";
+    }
+    let _0x375e6c = [{
+      title: "布局微调",
+      val: "menu_layout",
+      icon: {
+        name: "arrow.up.and.down.and.arrow.left.and.right",
+        color: "#5856D6"
+      },
+      desc: "调整组件位置",
+      onClick: async () => await this.handleLayoutMenu(_0x508314)
+    }, {
+      title: "间距/数量",
+      val: "menu_spacing",
+      icon: {
+        name: "arrow.up.left.and.arrow.down.right",
+        color: "#FF2D55"
+      },
+      desc: "调整行列间距/数量",
+      onClick: async () => await this.handleSpacingMenu(_0x508314)
+    }, {
+      title: "显示开关",
+      val: "menu_vis",
+      icon: {
+        name: "eye.fill",
+        color: "#007AFF"
+      },
+      desc: "隐藏/显示部分元素",
+      onClick: async () => await this.handleVisibilityMenu(_0x508314, _0x3a26a7)
+    }, {
+      title: "字体大小",
+      val: "menu_size",
+      icon: {
+        name: "textformat.size",
+        color: "#FF9500"
+      },
+      desc: "调整全局或局部缩放",
+      onClick: async () => await this.handleSizeMenu(_0x508314)
+    }, {
+      title: "颜色配置",
+      val: "menu_color",
+      icon: {
+        name: "paintpalette.fill",
+        color: "#34C759"
+      },
+      desc: "自定义文字颜色",
+      onClick: async () => await this.handleColorMenu(_0x508314)
+    }, {
+      title: "背景设置",
+      val: "menu_bg",
+      icon: {
+        name: "photo.fill",
+        color: "#007AFF"
+      },
+      desc: "日夜模式/图片/渐变",
+      onClick: async () => await this.handleBackgroundMenu(_0x508314)
+    }];
+    _0x508314 === "s3" && _0x375e6c.splice(1, 0, {
+      title: "生日管理",
+      val: "menu_birthday",
+      icon: {
+        name: "cake.fill",
+        color: "#FF2D55"
+      },
+      desc: "添加/管理家人朋友生日",
+      onClick: async () => await this.handleBirthdaySettings(_0x508314)
+    });
+    await this.renderAppView([{
+      title: _0x3a26a7 + "配置菜单",
+      menu: _0x375e6c
+    }]);
+  }
+  async handleBirthdaySettings(_0x348f88) {
+    let _0x414584 = _0x348f88 + "_birthday_list";
+    let _0x40797c = this.settings[_0x414584] || "";
+    let _0x3f1564 = _0x40797c.split("\n").filter(_0x5935bd => _0x5935bd.trim() !== "");
+    const _0x586cb0 = new Alert();
+    _0x586cb0.title = "🎂 生日管理";
+    _0x586cb0.message = "【输入说明】\n请在下方输入框中填写，格式为：\n姓名,日期,类型\n\n【示例】\n老公,10-27,农历\n老婆,05-20,公历\n\n(输入框留空则不显示)";
+    for (let _0x4bb504 = 0; _0x4bb504 < 10; _0x4bb504++) {
+      let _0x355896 = _0x3f1564[_0x4bb504] || "";
+      _0x586cb0.addTextField("姓名,MM-DD,公历/农历", _0x355896);
+    }
+    _0x586cb0.addAction("保存生效");
+    _0x586cb0.addCancelAction("取消");
+    const _0x4d4bc4 = await _0x586cb0.presentAlert();
+    if (_0x4d4bc4 === 0) {
+      let _0x32905b = [];
+      for (let _0x2b03c7 = 0; _0x2b03c7 < 10; _0x2b03c7++) {
+        let _0x31feb0 = _0x586cb0.textFieldValue(_0x2b03c7).trim();
+        _0x31feb0 && _0x32905b.push(_0x31feb0);
+      }
+      this.settings[_0x414584] = _0x32905b.join("\n");
+      this.saveSettings();
+    }
+  }
+  async handleVisibilityMenu(_0x3729c7, _0x4316b5) {
+    const _0x41afa3 = _0x3729c7 + "_show_battery";
+    const _0x5b06ee = _0x3729c7 + "_show_poetry";
+    const _0x5e2e85 = _0x2c2482 => {
+      let _0x23d05a = this.settings[_0x2c2482];
+      return _0x23d05a === undefined || _0x23d05a === null || _0x23d05a === "true";
+    };
+    let _0x2b8584 = _0x5e2e85(_0x41afa3);
+    let _0x2e53a9 = _0x5e2e85(_0x5b06ee);
+    let _0x2bb87a = _0x2b8584 ? "当前状态：✅ 已开启" : "当前状态：🔴 已关闭";
+    let _0x256425 = _0x2e53a9 ? "当前状态：✅ 已开启" : "当前状态：🔴 已关闭";
+    await this.renderAppView([{
+      title: "显示设置 - " + _0x4316b5 + "模式",
+      menu: [{
+        title: "🔋 电量显示",
+        desc: _0x2bb87a,
+        icon: {
+          name: "battery.100",
+          color: _0x2b8584 ? "#34C759" : "#FF3B30"
+        },
+        val: "toggle_bat",
+        onClick: async () => {
+          const _0xd73ec6 = new Alert();
+          _0xd73ec6.title = "设置 " + _0x4316b5 + " 电量显示";
+          _0xd73ec6.addAction(_0x2b8584 ? "开启 (当前)" : "开启");
+          _0xd73ec6.addAction(!_0x2b8584 ? "关闭 (当前)" : "关闭");
+          _0xd73ec6.addCancelAction("取消");
+          const _0x10a16c = await _0xd73ec6.presentSheet();
+          if (_0x10a16c !== -1) {
+            const _0x3d540b = _0x10a16c === 0 ? "true" : "false";
+            this.settings[_0x41afa3] = _0x3d540b;
+            this.saveSettings(false);
+            this.notify("设置已保存", _0x10a16c === 0 ? "已开启电量显示" : "已关闭电量显示");
+            await this.handleVisibilityMenu(_0x3729c7, _0x4316b5);
+          }
+        }
+      }, {
+        title: "📜 诗词与天气联动",
+        desc: _0x256425 + (_0x2e53a9 ? " (显诗词+3天天气)" : " (隐诗词+7天天气)"),
+        icon: {
+          name: "text.quote",
+          color: _0x2e53a9 ? "#007AFF" : "#FF3B30"
+        },
+        val: "toggle_poe",
+        onClick: async () => {
+          const _0x401c46 = new Alert();
+          _0x401c46.title = "设置 " + _0x4316b5 + " 诗词显示";
+          _0x401c46.addAction(_0x2e53a9 ? "开启 (当前)" : "开启");
+          _0x401c46.addAction(!_0x2e53a9 ? "关闭 (当前)" : "关闭");
+          _0x401c46.addCancelAction("取消");
+          const _0x13c841 = await _0x401c46.presentSheet();
+          if (_0x13c841 !== -1) {
+            const _0xe9d2ad = _0x13c841 === 0 ? "true" : "false";
+            this.settings[_0x5b06ee] = _0xe9d2ad;
+            this.saveSettings(false);
+            this.notify("设置已保存", _0x13c841 === 0 ? "已开启诗词" : "已关闭诗词");
+            await this.handleVisibilityMenu(_0x3729c7, _0x4316b5);
+          }
+        }
+      }]
+    }]);
+  }
+  async handleGreetingSettings() {
+    const _0x1aa09f = [{
+      t: "🚫 不显示彩票 (使用问候语)",
+      v: "none"
+    }, {
+      t: "🟡🔵 大乐透 (DLT)",
+      v: "dlt"
+    }, {
+      t: "🔴🔵 双色球 (SSQ)",
+      v: "ssq"
+    }, {
+      t: "🔢 排列三 (PL3)",
+      v: "pl3"
+    }, {
+      t: "🎲 福彩3D (FC3D)",
+      v: "fc3d"
+    }, {
+      t: "7️⃣ 七星彩 (QXC)",
+      v: "qxc"
+    }, {
+      t: "🌈 七乐彩 (QLC)",
+      v: "qlc"
+    }, {
+      t: "🖐 排列五 (PL5)",
+      v: "pl5"
+    }];
+    let _0x116a5e = this.settings.lottery_type || "none";
+    let _0xd009f5 = _0x1aa09f.find(_0x1a6ad2 => _0x1a6ad2.v === _0x116a5e) || _0x1aa09f[0];
+    await this.renderAppView([{
+      title: "彩票显示设置",
+      menu: [{
+        title: "点击选择模式",
+        val: "click_select_lottery_type",
+        desc: _0xd009f5.t,
+        icon: {
+          name: "checklist",
+          color: "#FF2D55"
+        },
+        onClick: async () => {
+          const _0x18d412 = new Alert();
+          _0x18d412.title = "选择显示的彩票";
+          _0x18d412.message = "选择后将替换问候语位置显示开奖信息";
+          _0x1aa09f.forEach(_0x3525e6 => {
+            _0x3525e6.v === _0x116a5e ? _0x18d412.addAction("✅ " + _0x3525e6.t) : _0x18d412.addAction(_0x3525e6.t);
+          });
+          _0x18d412.addCancelAction("取消");
+          const _0x27d8e8 = await _0x18d412.presentSheet();
+          if (_0x27d8e8 !== -1) {
+            const _0x37bb72 = _0x1aa09f[_0x27d8e8];
+            this.settings.lottery_type = _0x37bb72.v;
+            this.saveSettings(false);
+            this.notify("设置已更新", "当前模式：" + _0x37bb72.t);
+          }
+        }
+      }]
+    }, {
+      title: "自定义问候语 (当彩票选择\"不显示\"时生效)",
+      menu: [{
+        title: "凌晨/深夜 (23:00-05:00)",
+        type: "input",
+        val: "text_greeting_night",
+        placeholder: "默认: 🦉火华,可以来一发了~"
+      }, {
+        title: "早上 (05:00-11:00)",
+        type: "input",
+        val: "text_greeting_morning",
+        placeholder: "默认: 💫火华,早上心情美美哒~"
+      }, {
+        title: "中午 (11:00-13:00)",
+        type: "input",
+        val: "text_greeting_noon",
+        placeholder: "默认: 🥳火华,中午好呀~"
+      }, {
+        title: "下午 (13:00-18:00)",
+        type: "input",
+        val: "text_greeting_afternoon",
+        placeholder: "默认: 🐡火华,下午好呀~"
+      }, {
+        title: "晚上 (18:00-23:00)",
+        type: "input",
+        val: "text_greeting_evening",
+        placeholder: "默认: 🌙火华,（晚上好呀）"
+      }]
+    }]);
+    this.saveSettings(false);
+  }
+  async handleLayoutMenu(_0x43a860) {
+    const _0x42414e = [{
+      title: "[中号] 左侧信息区",
+      code: "med_left"
+    }, {
+      title: "[中号] 右侧天气区",
+      code: "med_right"
+    }, {
+      title: "[大号] 左上信息区",
+      code: "lg_tl"
+    }, {
+      title: "[大号] 右上天气区",
+      code: "lg_tr"
+    }, {
+      title: "[大号] 中间黄历条",
+      code: "lg_mid"
+    }, {
+      title: "[大号] 日历-星期栏",
+      code: "lg_week"
+    }, {
+      title: "[大号] 日历-日期区",
+      code: "lg_cal"
+    }];
+    _0x43a860 === "s3" && _0x42414e.push({
+      title: "[大号] 左下-节日倒数",
+      code: "lg_holiday"
+    });
+    _0x43a860 === "s4" && _0x42414e.push({
+      title: "[大号] 左下-日历事件",
+      code: "lg_schedule"
+    });
+    await this.renderAppView([{
+      title: "选择调整区域 (" + _0x43a860 + ")",
+      menu: _0x42414e.map(_0x5b95da => ({
+        title: _0x5b95da.title,
+        val: "layout_" + _0x5b95da.code,
+        icon: {
+          name: "square.dashed",
+          color: "#8E8E93"
+        },
+        desc: "点击设置XY偏移",
+        onClick: async () => await this.renderLayoutInput(_0x5b95da.title, _0x5b95da.code, _0x43a860)
+      }))
+    }]);
+  }
+  async renderLayoutInput(_0x423e83, _0x3bea2d, _0x30c971) {
+    await this.renderAppView([{
+      title: _0x423e83 + " - 偏移 (X/Y)",
+      menu: [{
+        title: "X轴偏移",
+        desc: "正右负左",
+        type: "input",
+        val: _0x30c971 + "_layout_" + _0x3bea2d + "_x",
+        placeholder: "0"
+      }, {
+        title: "Y轴偏移",
+        desc: "正下负上",
+        type: "input",
+        val: _0x30c971 + "_layout_" + _0x3bea2d + "_y",
+        placeholder: "0"
+      }]
+    }]);
+    this.saveSettings(false);
+  }
+  async handleSpacingMenu(_0x4a1d9e) {
+    let _0x30cc3c = [{
+      title: "星期栏-横向",
+      desc: "(左右间距)",
+      type: "input",
+      val: _0x4a1d9e + "_space_week_w",
+      placeholder: "28"
+    }, {
+      title: "日期区-横向",
+      desc: "(左右间距,调小防溢出)",
+      type: "input",
+      val: _0x4a1d9e + "_space_cal_w",
+      placeholder: "28"
+    }, {
+      title: "日期区-行高",
+      desc: "(上下行距)",
+      type: "input",
+      val: _0x4a1d9e + "_space_cal_h",
+      placeholder: "3"
+    }];
+    _0x30cc3c.push({
+      title: "日程关键词(重要)",
+      desc: "(只显示含此词的日程,留空显示所有)",
+      type: "input",
+      val: _0x4a1d9e + "_schedule_keyword",
+      placeholder: "例如: 柴油"
+    });
+    _0x4a1d9e !== "s4" && _0x30cc3c.push({
+      title: "指定显示第几条",
+      desc: "(筛选后的第几条, 0是第一条)",
+      type: "input",
+      val: _0x4a1d9e + "_schedule_index",
+      placeholder: "0"
+    });
+    _0x4a1d9e === "s3" && _0x30cc3c.push({
+      title: "倒计时-行高",
+      type: "input",
+      val: _0x4a1d9e + "_space_holiday_h",
+      placeholder: "4"
+    });
+    _0x4a1d9e === "s4" && (_0x30cc3c.push({
+      title: "日程列表-行高",
+      type: "input",
+      val: _0x4a1d9e + "_space_schedule_h",
+      placeholder: "0"
+    }), _0x30cc3c.push({
+      title: "最大显示数量",
+      desc: "建议3或4",
+      type: "input",
+      val: _0x4a1d9e + "_schedule_count",
+      placeholder: "4"
+    }), _0x30cc3c.push({
+      title: "跳过指定序号",
+      desc: "如: 2,4 (跳过第2和第4个)",
+      type: "input",
+      val: _0x4a1d9e + "_schedule_offset",
+      placeholder: "2,4"
+    }));
+    await this.renderAppView([{
+      title: "间距调整 (" + _0x4a1d9e + ")",
+      menu: _0x30cc3c
+    }]);
+    this.saveSettings(false);
+  }
+  async handleSizeMenu(_0x321702) {
+    const _0x386b57 = [{
+      id: "greeting",
+      t: "问候语"
+    }, {
+      id: "lotteryTitle",
+      t: "彩票标题(期号)"
+    }, {
+      id: "lotteryItem",
+      t: "彩票开奖球号"
+    }, {
+      id: "lotteryInfo",
+      t: "今日开奖状态"
+    }, {
+      id: "date",
+      t: "公历日期"
+    }, {
+      id: "lunar",
+      t: "农历日期"
+    }, {
+      id: "info",
+      t: "电量与定位"
+    }, {
+      id: "weather",
+      t: "天气描述"
+    }, {
+      id: "weatherLarge",
+      t: "大温度数字"
+    }, {
+      id: "poetry",
+      t: "诗词与预报"
+    }, {
+      id: "timeInfo",
+      t: "底部时间条"
+    }, {
+      id: "calendar",
+      t: "月历区域"
+    }];
+    if (_0x321702 === "s3") {
+      _0x386b57.push({
+        id: "holiday",
+        t: "节日倒数"
+      });
+    }
+    _0x321702 === "s4" && (_0x386b57.push({
+      id: "schedule_title",
+      t: "日程标题"
+    }), _0x386b57.push({
+      id: "schedule_item",
+      t: "日程列表"
+    }));
+    const _0x31aafb = _0x386b57.map(_0x3d97ef => ({
+      title: _0x3d97ef.t,
+      type: "input",
+      val: _0x321702 + "_size_" + _0x3d97ef.id,
+      placeholder: "100"
+    }));
+    const _0x3e60fd = [{
+      title: "🌐 全局缩放",
+      desc: "所有文字按比例缩放(默认100)",
+      type: "input",
+      val: "global_font_size",
+      placeholder: "100"
+    }];
+    await this.renderAppView([{
+      title: "全局设置 (影响所有组件)",
+      menu: _0x3e60fd
+    }, {
+      title: "局部微调 (" + _0x321702 + ")",
+      menu: [{
+        title: "✏️ 修改局部数值",
+        val: "size_edit",
+        icon: {
+          name: "pencil",
+          color: "#007AFF"
+        },
+        desc: "进入单独调整",
+        onClick: async () => {
+          await this.renderAppView([{
+            title: "局部缩放 (百分比)",
+            menu: _0x31aafb
+          }]);
+          this.saveSettings(false);
+        }
+      }, {
+        title: "↩️ 恢复默认",
+        val: "size_reset",
+        icon: {
+          name: "arrow.counterclockwise",
+          color: "#FF3B30"
+        },
+        desc: "重置当前套系字体",
+        onClick: async () => {
+          _0x386b57.forEach(_0x53f469 => this.settings[_0x321702 + "_size_" + _0x53f469.id] = "100");
+          this.settings.global_font_size = "100";
+          this.saveSettings(false);
+          this.notify("已恢复", "字体大小已重置");
+        }
+      }]
+    }]);
+  }
+  async handleColorMenu(_0x5689f5) {
+    const _0x4b6909 = [{
+      id: "greeting",
+      t: "问候语"
+    }, {
+      id: "lotteryTitle",
+      t: "彩票标题"
+    }, {
+      id: "lotteryInfo",
+      t: "今日开奖状态"
+    }, {
+      id: "date",
+      t: "公历日期"
+    }, {
+      id: "lunar",
+      t: "农历日期"
+    }, {
+      id: "info",
+      t: "电量与定位"
+    }, {
+      id: "weather",
+      t: "天气描述"
+    }, {
+      id: "weatherLarge",
+      t: "大温度数字"
+    }, {
+      id: "poetry",
+      t: "诗词与预报"
+    }, {
+      id: "timeInfo",
+      t: "底部时间条"
+    }, {
+      id: "calendar",
+      t: "月历区域"
+    }];
+    if (_0x5689f5 === "s3") {
+      _0x4b6909.push({
+        id: "holiday",
+        t: "节日倒数"
+      });
+    }
+    if (_0x5689f5 === "s4") {
+      _0x4b6909.push({
+        id: "schedule_title",
+        t: "日程标题"
+      });
+      _0x4b6909.push({
+        id: "schedule_bg",
+        t: "日程背景(底框)"
+      });
+      for (let _0x350c8f = 1; _0x350c8f <= 6; _0x350c8f++) {
+        _0x4b6909.push({
+          id: "schedule_item_" + _0x350c8f,
+          t: "日程列表-第" + _0x350c8f + "行"
+        });
+      }
+    }
+    const _0x575303 = _0x4b6909.map(_0x33c1c9 => ({
+      title: _0x33c1c9.t,
+      type: "color",
+      val: _0x5689f5 + "_color_" + _0x33c1c9.id
+    }));
+    await this.renderAppView([{
+      title: "颜色配置 (" + _0x5689f5 + ")",
+      menu: [{
+        title: "🎨 修改颜色",
+        val: "color_edit",
+        icon: {
+          name: "paintpalette",
+          color: "#007AFF"
+        },
+        desc: "进入选色页面",
+        onClick: async () => {
+          await this.renderAppView([{
+            title: "自定义颜色",
+            menu: _0x575303
+          }]);
+          this.saveSettings(false);
+        }
+      }, {
+        title: "↩️ 恢复默认",
+        val: "color_reset",
+        icon: {
+          name: "arrow.counterclockwise",
+          color: "#FF3B30"
+        },
+        desc: "重置当前套系颜色",
+        onClick: async () => {
+          _0x4b6909.forEach(_0x26436d => this.settings[_0x5689f5 + "_color_" + _0x26436d.id] = baseConfigKeys["color_" + _0x26436d.id]);
+          this.saveSettings(false);
+          this.notify("已恢复", "颜色已重置");
+        }
+      }]
+    }]);
+  }
+  async handleBackgroundMenu(_0x5c4654) {
+    const _0x3512d9 = "bg_" + _0x5c4654 + ".jpg";
+    const _0x40fcd2 = "bg_" + _0x5c4654 + "_day.jpg";
+    const _0x34fb19 = "bg_" + _0x5c4654 + "_night.jpg";
+    await this.renderAppView([{
+      title: "背景模式 (" + _0x5c4654 + ")",
+      menu: [{
+        title: "🪄 制作透明背景",
+        val: "bg_make_transparent",
+        icon: {
+          name: "wand.and.stars",
+          color: "#FF2D55"
+        },
+        desc: "加载最新云端算法制作",
+        onClick: async () => await this.loadAndRunEditor(_0x5c4654)
+      }, {
+        title: "☀️ 白天模式 - 图片",
+        val: "bg_select_day",
+        icon: {
+          name: "sun.max.fill",
+          color: "#FF9500"
+        },
+        desc: "选择白天显示的图片",
+        onClick: async () => {
+          try {
+            let _0x4b5794 = await Photos.fromLibrary();
+            ConfigManager.saveImg(_0x40fcd2, _0x4b5794);
+            ConfigManager.saveImg(_0x3512d9, _0x4b5794);
+            this.notify("成功", "白天图片已保存");
+          } catch (_0x4d01b5) {}
+        }
+      }, {
+        title: "🌙 夜间模式 - 图片",
+        val: "bg_select_night",
+        icon: {
+          name: "moon.fill",
+          color: "#5856D6"
+        },
+        desc: "选择深色模式图片",
+        onClick: async () => {
+          try {
+            let _0x1a58b5 = await Photos.fromLibrary();
+            ConfigManager.saveImg(_0x34fb19, _0x1a58b5);
+            this.notify("成功", "夜间图片已保存");
+          } catch (_0x18ae93) {}
+        }
+      }, {
+        title: "☀️ 白天 - 颜色1 (主色)",
+        type: "color",
+        val: _0x5c4654 + "_color_bg_day",
+        desc: "无图片时显示"
+      }, {
+        title: "☀️ 白天 - 颜色2 (渐变)",
+        type: "color",
+        val: _0x5c4654 + "_color_bg_2_day",
+        desc: "可选: 设置后显示渐变"
+      }, {
+        title: "🌙 夜间 - 颜色1 (主色)",
+        type: "color",
+        val: _0x5c4654 + "_color_bg_night",
+        desc: "无图片时显示"
+      }, {
+        title: "🌙 夜间 - 颜色2 (渐变)",
+        type: "color",
+        val: _0x5c4654 + "_color_bg_2_night",
+        desc: "可选: 设置后显示渐变"
+      }, {
+        title: "🗑 清除所有图片",
+        val: "bg_clear",
+        icon: {
+          name: "trash",
+          color: "#FF3B30"
+        },
+        desc: "恢复纯色背景",
+        onClick: async () => {
+          ConfigManager.rmImg(_0x3512d9);
+          ConfigManager.rmImg(_0x40fcd2);
+          ConfigManager.rmImg(_0x34fb19);
+          this.notify("成功", "背景已清除");
+        }
+      }]
+    }]);
+    this.saveSettings(false);
+  }
+  async loadAndRunEditor(_0x1c0920) {
+    const _0x21a03e = "https://raw.githubusercontent.com/loveyuwy/huohua/refs/heads/main/TransparencyEditor.js";
+    const _0x2da1f7 = FileManager.local();
+    const _0x17457d = _0x2da1f7.joinPath(_0x2da1f7.libraryDirectory(), "Caishow_Editor_Cache.js");
+    try {
+      this.notify("⏳ 加载中", "正在拉取最新编辑器...");
+      const _0x104bd9 = new Request(_0x21a03e);
+      _0x104bd9.headers = {
+        "Cache-Control": "no-cache"
+      };
+      const _0x29a065 = await _0x104bd9.loadString();
+      _0x2da1f7.writeString(_0x17457d, _0x29a065);
+      const _0x10490e = importModule(_0x17457d);
+      await _0x10490e(this, ConfigManager, _0x1c0920);
+    } catch (_0x3cfbac) {
+      console.error(_0x3cfbac);
+      const _0x3fc9dd = new Alert();
+      _0x3fc9dd.title = "加载失败";
+      _0x3fc9dd.message = "无法连接 GitHub 获取编辑器代码，请检查网络或 URL 配置。\n\n" + _0x3cfbac.message;
+      _0x3fc9dd.addAction("确定");
+      await _0x3fc9dd.presentAlert();
+    }
+  }
+  async setBasicConfig() {
+    const _0xd2183b = async () => {
+      try {
+        const _0xd8ed6 = await Location.current();
+        const _0xf0aca = await Location.reverseGeocode(_0xd8ed6.latitude, _0xd8ed6.longitude, "zh_cn");
+        this.settings.fixedLat = String(_0xd8ed6.latitude);
+        this.settings.fixedLng = String(_0xd8ed6.longitude);
+        this.settings.fixedCity = _0xf0aca[0].locality;
+        this.settings.fixedSubCity = _0xf0aca[0].subLocality;
+        this.saveSettings(false);
+        this.notify("定位成功", "已保存");
+        await this.setBasicConfig();
+      } catch (_0x1a44cd) {
+        this.notify("定位失败", _0x1a44cd.message);
+        await this.setBasicConfig();
+      }
+    };
+    const _0xcc2e6c = [{
+      title: "刷新间隔(分)",
+      type: "input",
+      val: "refreshInterval",
+      placeholder: "60"
+    }, {
+      title: "📍 获取定位",
+      val: "get_location_btn",
+      icon: {
+        name: "location",
+        color: "#007AFF"
+      },
+      onClick: _0xd2183b
+    }, {
+      title: "锁定定位",
+      type: "switch",
+      val: "lockLocation"
+    }];
+    await this.renderAppView([{
+      title: "基础设置 (全局生效)",
+      menu: _0xcc2e6c
+    }, {
+      title: "固定坐标",
+      menu: [{
+        title: "经度",
+        type: "input",
+        val: "fixedLng"
+      }, {
+        title: "纬度",
+        type: "input",
+        val: "fixedLat"
+      }, {
+        title: "城市",
+        type: "input",
+        val: "fixedCity"
+      }, {
+        title: "区域",
+        type: "input",
+        val: "fixedSubCity"
+      }]
+    }]);
+    this.saveSettings(false);
+  }
+  async handleStyleSwitch() {
+    const _0xed821 = ConfigManager.load();
+    this.settings = Object.assign({}, this.defaultData, _0xed821);
+    const _0x41b029 = [{
+      t: "第一套(三天天气)",
+      v: "classic"
+    }, {
+      t: "第二套(七天天气)",
+      v: "modern"
+    }, {
+      t: "第三套(节日倒计时)",
+      v: "holiday"
+    }, {
+      t: "第四套(日历事件)",
+      v: "schedule"
+    }];
+    const _0x30cda0 = this.settings.styleModel || "classic";
+    await this.renderAppView([{
+      title: "选择组件样式",
+      menu: _0x41b029.map(_0x3395db => ({
+        title: (_0x30cda0 === _0x3395db.v ? "✅ " : "") + _0x3395db.t,
+        val: "style_" + _0x3395db.v,
+        icon: {
+          name: "circle.grid.2x2",
+          color: "#5856D6"
+        },
+        onClick: async () => {
+          const _0x3f7fd5 = new Alert();
+          _0x3f7fd5.title = "确认切换？";
+          _0x3f7fd5.message = "即将切换为：" + _0x3395db.t + "\n\n切换后请点击脚本右下角的“运行”按钮以刷新预览。";
+          _0x3f7fd5.addAction("确认切换");
+          _0x3f7fd5.addCancelAction("取消");
+          const _0x58d455 = await _0x3f7fd5.presentAlert();
+          _0x58d455 === 0 && (this.settings.styleModel = _0x3395db.v, this.saveSettings(false), this.notify("✅ 样式已切换", "当前模式：" + _0x3395db.t + " (请重新运行)"));
+        }
+      }))
+    }]);
+  }
+  async setKeyConfig() {
+    await this.setBasicConfig();
+  }
+  async setRefreshConfig() {
+    await this.setBasicConfig();
+  }
+  async fetchData() {
+    const _0x3f82ff = ConfigManager.load();
+    this.settings = Object.assign({}, this.defaultData, _0x3f82ff);
+    let _0x3cb4cf = {
+      latitude: 39.9,
+      longitude: 116.4,
+      locality: "定位中",
+      subLocality: ""
+    };
+    const _0x45d758 = this.settings.lockLocation === true || this.settings.lockLocation === "true";
+    if (_0x45d758) {
+      this.settings.fixedLat && this.settings.fixedLng && (_0x3cb4cf = {
+        latitude: this.settings.fixedLat,
+        longitude: this.settings.fixedLng,
+        locality: this.settings.fixedCity || "固定",
+        subLocality: this.settings.fixedSubCity || "位置"
+      });
+    } else {
+      try {
+        let _0x25c45c = await Location.current();
+        let _0x28ebe6 = await Location.reverseGeocode(_0x25c45c.latitude, _0x25c45c.longitude, "zh_cn");
+        _0x3cb4cf = {
+          latitude: _0x25c45c.latitude,
+          longitude: _0x25c45c.longitude,
+          locality: _0x28ebe6[0].locality,
+          subLocality: _0x28ebe6[0].subLocality
+        };
+        ConfigManager.saveCache("location_cache.json", _0x3cb4cf);
+        this.settings.fixedLat = String(_0x25c45c.latitude);
+        this.settings.fixedLng = String(_0x25c45c.longitude);
+        this.settings.fixedCity = _0x28ebe6[0].locality;
+        this.settings.fixedSubCity = _0x28ebe6[0].subLocality;
+        this.saveSettings(false);
+      } catch (_0x13aec6) {
+        const _0x167cf7 = ConfigManager.readCache("location_cache.json");
+        if (_0x167cf7) {
+          _0x3cb4cf = _0x167cf7;
+        } else {
+          _0x3cb4cf.locality = "定位失败";
+        }
+      }
+    }
+    this.location = _0x3cb4cf;
+    let _0x77e476 = {};
+    try {
+      const _0x43303c = "https://api.open-meteo.com/v1/forecast?latitude=" + _0x3cb4cf.latitude + "&longitude=" + _0x3cb4cf.longitude + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=auto&forecast_days=14";
+      const _0x13e1c8 = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=" + _0x3cb4cf.latitude + "&longitude=" + _0x3cb4cf.longitude + "&current=us_aqi&timezone=auto";
+      const _0xd8d736 = new Request(_0x43303c);
+      _0xd8d736.timeoutInterval = 8;
+      const _0x144dd0 = new Request(_0x13e1c8);
+      _0x144dd0.timeoutInterval = 8;
+      const [_0xbf9a82, _0x254afd] = await Promise.all([_0xd8d736.loadJSON(), _0x144dd0.loadJSON()]);
+      _0x77e476 = this.processOpenMeteo(_0xbf9a82, _0x254afd);
+      if (_0x77e476.temp) {
+        ConfigManager.saveCache("weather_cache.json", _0x77e476);
+      }
+    } catch (_0x552b28) {
+      const _0x57f357 = ConfigManager.readCache("weather_cache.json");
+      if (_0x57f357) {
+        _0x77e476 = _0x57f357;
+      }
+    }
+    let _0x1e728f = {};
+    let _0xe9d24e = this.settings.styleModel === "modern" || args.widgetParameter && args.widgetParameter.indexOf("style2") > -1;
+    if (!_0xe9d24e) {
+      try {
+        const _0x2b9f53 = new Request("https://v2.jinrishici.com/sentence");
+        _0x2b9f53.timeoutInterval = 5;
+        const _0x26743c = await _0x2b9f53.loadJSON();
+        _0x1e728f = _0x26743c.data ? _0x26743c : {};
+      } catch (_0x1a874d) {}
+    }
+    let _0xdd11c6 = [];
+    try {
+      const _0x192330 = await CalendarEvent.today([]);
+      _0xdd11c6 = _0x192330.filter(_0x2c98dd => !_0x2c98dd.title.startsWith("Canceled")).map(_0x1925fb => ({
+        title: _0x1925fb.title
+      }));
+    } catch (_0x490030) {}
+    const _0xc6d04e = await this.fetchLotteryData();
+    return {
+      weather: _0x77e476,
+      poetry: _0x1e728f,
+      schedules: _0xdd11c6,
+      lottery: _0xc6d04e
+    };
+  }
+  async fetchLotteryData() {
+    let _0x1c4d92 = this.settings.lottery_type || "dlt";
+    if (!_0x1c4d92 || _0x1c4d92 === "none") {
+      return null;
+    }
+    if (_0x1c4d92.includes("双色球") || _0x1c4d92.includes("SSQ")) {
+      _0x1c4d92 = "ssq";
+    } else {
+      if (_0x1c4d92.includes("大乐透") || _0x1c4d92.includes("DLT")) {
+        _0x1c4d92 = "dlt";
+      } else {
+        if (_0x1c4d92.includes("排列三") || _0x1c4d92.includes("PL3")) {
+          _0x1c4d92 = "pl3";
+        } else {
+          if (_0x1c4d92.includes("福彩3D") || _0x1c4d92.includes("FC3D")) {
+            _0x1c4d92 = "fc3d";
+          } else {
+            if (_0x1c4d92.includes("七星彩") || _0x1c4d92.includes("QXC")) {
+              _0x1c4d92 = "qxc";
+            } else {
+              if (_0x1c4d92.includes("七乐彩") || _0x1c4d92.includes("QLC")) {
+                _0x1c4d92 = "qlc";
+              } else {
+                if (_0x1c4d92.includes("排列五") || _0x1c4d92.includes("PL5")) {
+                  _0x1c4d92 = "pl5";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    const _0x18ed63 = "lottery_cache_" + _0x1c4d92;
+    const _0x24d75d = ConfigManager.readCache(_0x18ed63);
+    if (_0x24d75d && _0x24d75d.timestamp && Date.now() - _0x24d75d.timestamp < 1800000 && _0x24d75d.data.pool) {
+      return _0x24d75d.data;
+    }
+    let _0x29414b = {
+      full: "",
+      pool: "",
+      type: _0x1c4d92
+    };
+    const _0xdb3849 = {
+      ssq: "双色球",
+      dlt: "大乐透",
+      pl3: "排列三",
+      fc3d: "福彩3D",
+      qxc: "七星彩",
+      qlc: "七乐彩",
+      pl5: "排列五"
+    };
+    const _0xc1fb94 = _0xdb3849[_0x1c4d92] || "彩票";
+    const _0x257710 = {
+      dlt: 85,
+      pl3: 35,
+      pl5: 81,
+      qxc: "04"
+    };
+    if (_0x257710[_0x1c4d92]) {
+      try {
+        const _0xd9ff35 = _0x257710[_0x1c4d92];
+        const _0x581f69 = "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=" + _0xd9ff35 + "&provinceId=0&pageSize=1&isVerify=1&pageNo=1";
+        const _0x5589dd = new Request(_0x581f69);
+        const _0x5c4a3a = await _0x5589dd.loadJSON();
+        if (_0x5c4a3a && _0x5c4a3a.success && _0x5c4a3a.value && _0x5c4a3a.value.list && _0x5c4a3a.value.list.length > 0) {
+          const _0x505d4b = _0x5c4a3a.value.list[0];
+          let _0x5b7f7e = _0x505d4b.lotteryDrawResult.replace(/ /g, " ");
+          if (_0x1c4d92 === "dlt") {
+            const _0x43bebd = _0x505d4b.lotteryDrawResult.split(" ");
+            _0x5b7f7e = _0x43bebd.slice(0, 5).join(" ") + " + " + _0x43bebd.slice(5).join(" ");
+          }
+          _0x29414b.full = _0xc1fb94 + " " + _0x505d4b.lotteryDrawNum + "期: " + _0x5b7f7e;
+          let _0x5a186b = _0x505d4b.poolMoney || "0";
+          _0x29414b.pool = this.formatMoney(_0x5a186b);
+        }
+      } catch (_0x5a1541) {
+        console.log("Sporttery Error: " + _0x5a1541.message);
+      }
+    } else {
+      try {
+        let _0x53c0eb = _0x1c4d92;
+        if (_0x1c4d92 === "fc3d") {
+          _0x53c0eb = "3d";
+        }
+        const _0x5a8148 = "https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice?name=" + _0x53c0eb + "&issueCount=1";
+        const _0x48a02f = new Request(_0x5a8148);
+        _0x48a02f.headers = {
+          "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1",
+          Referer: "https://www.cwl.gov.cn/",
+          Accept: "application/json, text/javascript, */*; q=0.01",
+          "X-Requested-With": "XMLHttpRequest"
+        };
+        const _0x3246e0 = await _0x48a02f.loadJSON();
+        if (_0x3246e0 && _0x3246e0.result && _0x3246e0.result.length > 0) {
+          const _0x3d6918 = _0x3246e0.result[0];
+          let _0x53c592 = _0x3d6918.red;
+          _0x3d6918.blue && _0x3d6918.blue.length > 0 && (_0x53c592 = _0x53c592 + " + " + _0x3d6918.blue);
+          _0x53c592 = _0x53c592.replace(/,/g, " ");
+          _0x29414b.full = _0xc1fb94 + " " + _0x3d6918.code + "期: " + _0x53c592;
+          let _0x3bee74 = _0x3d6918.poolmoney || "0";
+          _0x29414b.pool = this.formatMoney(_0x3bee74);
+        }
+      } catch (_0x551057) {
+        console.log("CWL Error: " + _0x551057.message);
+      }
+    }
+    if (_0x29414b.full) {
+      ConfigManager.saveCache(_0x18ed63, {
+        data: _0x29414b,
+        timestamp: Date.now()
+      });
+      return _0x29414b;
+    }
+    return null;
+  }
+  formatMoney(_0x5b64b0) {
+    let _0x563999 = parseFloat(_0x5b64b0.replace(/,/g, ""));
+    if (isNaN(_0x563999)) {
+      return "统计中";
+    }
+    if (_0x563999 > 100000000) {
+      return (_0x563999 / 100000000).toFixed(2) + "亿";
+    } else {
+      if (_0x563999 > 10000) {
+        return (_0x563999 / 10000).toFixed(1) + "万";
+      }
+    }
+    return _0x563999 + "元";
+  }
+  getLotterySchedule(_0x498397) {
+    const _0x4924ef = new Date().getDay();
+    const _0x49edfc = {
+      ssq: [0, 2, 4],
+      dlt: [1, 3, 6],
+      qlc: [1, 3, 5],
+      qxc: [0, 2, 5],
+      fc3d: [0, 1, 2, 3, 4, 5, 6],
+      pl3: [0, 1, 2, 3, 4, 5, 6],
+      pl5: [0, 1, 2, 3, 4, 5, 6]
+    };
+    let _0x551064 = "21:30";
+    if (["ssq", "qlc", "fc3d"].includes(_0x498397)) {
+      _0x551064 = "21:15";
+    }
+    return _0x49edfc[_0x498397] && _0x49edfc[_0x498397].includes(_0x4924ef) ? "今日开奖: " + _0x551064 : "今日不开奖";
+  }
+  processOpenMeteo(_0x3bbf03, _0x5395c1) {
+    if (!_0x3bbf03 || !_0x3bbf03.current || !_0x3bbf03.daily) {
+      return {};
+    }
+    let _0x553fe3 = {
+      temp: Math.round(_0x3bbf03.current.apparent_temperature),
+      hum: _0x3bbf03.current.relative_humidity_2m + "%",
+      ico: this.wmCodeToIcon(_0x3bbf03.current.weather_code, _0x3bbf03.current.is_day)
+    };
+    _0x3bbf03.daily.uv_index_max && _0x3bbf03.daily.uv_index_max[0] !== undefined ? _0x553fe3.uv = Math.round(_0x3bbf03.daily.uv_index_max[0]) : _0x553fe3.uv = "-";
+    _0x5395c1 && _0x5395c1.current && _0x5395c1.current.us_aqi !== undefined ? _0x553fe3.aqi = this.airQuality(_0x5395c1.current.us_aqi) : _0x553fe3.aqi = "-";
+    const _0x3d6925 = _0x3bbf03.current.temperature_2m;
+    if (_0x3d6925 <= 5) {
+      _0x553fe3.comfort = "寒冷";
+    } else {
+      if (_0x3d6925 <= 15) {
+        _0x553fe3.comfort = "凉爽";
+      } else {
+        if (_0x3d6925 <= 26) {
+          _0x553fe3.comfort = "舒适";
+        } else {
+          if (_0x3d6925 <= 32) {
+            _0x553fe3.comfort = "炎热";
+          } else {
+            _0x553fe3.comfort = "酷热";
+          }
+        }
+      }
+    }
+    if (_0x3bbf03.daily.sunrise && _0x3bbf03.daily.sunrise[0]) {
+      _0x553fe3.sunrise = _0x3bbf03.daily.sunrise[0].split("T")[1];
+    } else {
+      _0x553fe3.sunrise = "--:--";
+    }
+    if (_0x3bbf03.daily.sunset && _0x3bbf03.daily.sunset[0]) {
+      _0x553fe3.sunset = _0x3bbf03.daily.sunset[0].split("T")[1];
+    } else {
+      _0x553fe3.sunset = "--:--";
+    }
+    _0x3bbf03.daily.temperature_2m_min && _0x3bbf03.daily.temperature_2m_min[0] !== undefined ? (_0x553fe3.min = Math.round(_0x3bbf03.daily.temperature_2m_min[0]), _0x553fe3.max = Math.round(_0x3bbf03.daily.temperature_2m_max[0])) : (_0x553fe3.min = "-", _0x553fe3.max = "-");
+    const _0x3f1346 = {
+      0: "晴朗",
+      1: "多云",
+      2: "多云",
+      3: "阴",
+      45: "雾",
+      51: "小雨",
+      61: "雨",
+      71: "雪",
+      95: "雷雨"
+    };
+    let _0x3eb337 = _0x3f1346[_0x3bbf03.current.weather_code] || "有雨";
+    _0x553fe3.desc = "今日" + _0x3eb337 + "，最高" + _0x553fe3.max + "°，最低" + _0x553fe3.min + "°";
+    _0x553fe3.alertTitle = "";
+    _0x553fe3.future = [];
+    for (let _0x33924b = 1; _0x33924b < 14; _0x33924b++) {
+      try {
+        if (!_0x3bbf03.daily.time[_0x33924b]) {
+          break;
+        }
+        let _0x33f25a = _0x3bbf03.daily.time[_0x33924b];
+        let _0x3fdc54 = parseInt(_0x33f25a.split("-")[2]);
+        _0x553fe3.future.push({
+          day: _0x3fdc54 + "日",
+          min: Math.round(_0x3bbf03.daily.temperature_2m_min[_0x33924b]),
+          max: Math.round(_0x3bbf03.daily.temperature_2m_max[_0x33924b]),
+          ico: this.wmCodeToIcon(_0x3bbf03.daily.weather_code[_0x33924b], 1)
+        });
+      } catch (_0x3f11ca) {}
+    }
+    return _0x553fe3;
+  }
+  wmCodeToIcon(_0x58632b, _0x408c0e) {
+    const _0x3f4148 = {
+      0: _0x408c0e ? "sun.max.fill" : "moon.fill",
+      1: _0x408c0e ? "cloud.sun.fill" : "cloud.moon.fill",
+      2: _0x408c0e ? "cloud.sun.fill" : "cloud.moon.fill",
+      3: "cloud.fill",
+      45: "cloud.fog.fill",
+      48: "cloud.fog.fill",
+      51: "cloud.drizzle.fill",
+      53: "cloud.drizzle.fill",
+      55: "cloud.drizzle.fill",
+      61: "cloud.rain.fill",
+      63: "cloud.rain.fill",
+      65: "cloud.rain.fill",
+      80: "cloud.rain.fill",
+      81: "cloud.rain.fill",
+      82: "cloud.rain.fill",
+      71: "cloud.snow.fill",
+      73: "cloud.snow.fill",
+      75: "cloud.snow.fill",
+      95: "cloud.bolt.rain.fill",
+      96: "cloud.bolt.rain.fill",
+      99: "cloud.bolt.rain.fill"
+    };
+    return _0x3f4148[_0x58632b] || "cloud.fill";
+  }
+  async render() {
+    const _0x571865 = ConfigManager.load();
+    this.settings = Object.assign({}, this.defaultData, _0x571865);
+    const _0x25bae9 = await this.fetchData();
+    const _0x285c60 = new ListWidget();
+    let _0x58698b = this.settings.styleModel || "classic";
+    if (!config.runsInApp && args.widgetParameter) {
+      if (args.widgetParameter.indexOf("style2") > -1) {
+        _0x58698b = "modern";
+      }
+      if (args.widgetParameter.indexOf("style3") > -1) {
+        _0x58698b = "holiday";
+      }
+      if (args.widgetParameter.indexOf("style4") > -1) {
+        _0x58698b = "schedule";
+      }
+    }
+    if (_0x58698b === "modern") {
+      this.activePrefix = "s2_";
+    } else {
+      if (_0x58698b === "holiday") {
+        this.activePrefix = "s3_";
+      } else {
+        _0x58698b === "schedule" ? this.activePrefix = "s4_" : this.activePrefix = "s1_";
+      }
+    }
+    let _0x580966 = parseInt(this.settings.refreshInterval) || 60;
+    if (_0x580966 < 5) {
+      _0x580966 = 5;
+    }
+    _0x285c60.refreshAfterDate = new Date(new Date().getTime() + _0x580966 * 60000);
+    const _0x4c1f6c = Device.isUsingDarkAppearance();
+    const _0x58d3ef = _0x4c1f6c ? "_night" : "_day";
+    const _0x4cd237 = "bg_" + this.activePrefix.replace("_", "") + ".jpg";
+    const _0x3380d6 = "bg_" + this.activePrefix.replace("_", "") + _0x58d3ef + ".jpg";
+    let _0x281f70 = ConfigManager.getImg(_0x3380d6);
+    if (!_0x281f70) {
+      _0x281f70 = ConfigManager.getImg(_0x4cd237);
+    }
+    if (_0x281f70) {
+      _0x285c60.backgroundImage = _0x281f70;
+    } else {
+      let _0xd7d59 = _0x4c1f6c ? this.activePrefix + "color_bg_night" : this.activePrefix + "color_bg_day";
+      let _0x432627 = _0x4c1f6c ? this.activePrefix + "color_bg_2_night" : this.activePrefix + "color_bg_2_day";
+      let _0x1348fd = this.settings[_0xd7d59] || this.settings[this.activePrefix + "color_bg"] || "#000000";
+      let _0x6cbae3 = this.settings[_0x432627] || this.settings[this.activePrefix + "color_bg_2"];
+      if (_0x6cbae3 && _0x6cbae3.length > 0) {
+        let _0x12cd66 = new LinearGradient();
+        _0x12cd66.colors = [new Color(_0x1348fd), new Color(_0x6cbae3)];
+        _0x12cd66.locations = [0, 1];
+        _0x285c60.backgroundGradient = _0x12cd66;
+      } else {
+        _0x285c60.backgroundColor = new Color(_0x1348fd);
+      }
+    }
+    _0x285c60.setPadding(10, 4, 5, 4);
+    if (this.widgetFamily === "medium") {
+      await this.renderMedium(_0x285c60, _0x25bae9);
+    } else {
+      await this.renderLarge(_0x285c60, _0x25bae9);
+    }
+    return _0x285c60;
+  }
+  async renderMedium(_0x618e0f, _0x1f702b) {
+    let _0x7991a4 = _0x618e0f.addStack();
+    _0x7991a4.layoutHorizontally();
+    _0x7991a4.centerAlignContent();
+    let _0x6485ec = _0x7991a4.addStack();
+    _0x6485ec.layoutVertically();
+    this.applyLayout(_0x6485ec, "med_left", {
+      t: 0,
+      l: 8,
+      b: 0,
+      r: 0
+    });
+    await this.renderInfoSide(_0x6485ec, _0x1f702b);
+    _0x7991a4.addSpacer();
+    let _0x50c7c9 = _0x7991a4.addStack();
+    _0x50c7c9.size = new Size(this.s(110, "weather"), 0);
+    _0x50c7c9.layoutVertically();
+    this.applyLayout(_0x50c7c9, "med_right", {
+      t: 0,
+      l: 0,
+      b: 0,
+      r: 5
+    });
+    await this.renderWeatherSide(_0x50c7c9, _0x1f702b.weather);
+  }
+  async renderLarge(_0x1e1f70, _0x211d4e) {
+    const _0x1b8633 = this.activePrefix === "s3_";
+    const _0x1b27a1 = this.activePrefix === "s4_";
+    const _0x27119a = _0x1b8633 || _0x1b27a1;
+    let _0x1bf22b = _0x1e1f70.addStack();
+    _0x1bf22b.layoutHorizontally();
+    _0x1bf22b.size = new Size(0, this.s(_0x27119a ? 149 : 149, "weather"));
+    let _0x27c465 = _0x1bf22b.addStack();
+    _0x27c465.layoutVertically();
+    this.applyLayout(_0x27c465, "lg_tl", {
+      t: 0,
+      l: 8,
+      b: 0,
+      r: 0
+    });
+    await this.renderInfoSide(_0x27c465, _0x211d4e);
+    _0x1bf22b.addSpacer();
+    let _0x116ab6 = _0x1bf22b.addStack();
+    _0x116ab6.size = new Size(this.s(110, "weather"), 0);
+    _0x116ab6.layoutVertically();
+    this.applyLayout(_0x116ab6, "lg_tr", {
+      t: 0,
+      l: 0,
+      b: 0,
+      r: 5
+    });
+    await this.renderWeatherSide(_0x116ab6, _0x211d4e.weather);
+    _0x1e1f70.addSpacer(_0x27119a ? 0 : 4);
+    let _0x27c13a = _0x1e1f70.addStack();
+    _0x27c13a.layoutVertically();
+    this.applyLayout(_0x27c13a, "lg_mid", {
+      t: 0,
+      l: 0,
+      b: 0,
+      r: 0
+    });
+    await this.renderTimeInfo(_0x27c13a);
+    if (_0x27119a) {
+      let _0xfea7ca = _0x1e1f70.addStack();
+      _0xfea7ca.layoutHorizontally();
+      let _0x5473c2 = _0xfea7ca.addStack();
+      _0x5473c2.layoutVertically();
+      _0x1b8633 ? (this.applyLayout(_0x5473c2, "lg_holiday", {
+        t: 0,
+        l: 5,
+        b: 0,
+        r: 0
+      }), await this.renderHolidayBox(_0x5473c2)) : (this.applyLayout(_0x5473c2, "lg_schedule", {
+        t: 0,
+        l: 5,
+        b: 0,
+        r: 0
+      }), await this.renderScheduleBox(_0x5473c2, _0x211d4e.schedules));
+      _0xfea7ca.addSpacer();
+      let _0x5741e5 = _0xfea7ca.addStack();
+      _0x5741e5.layoutVertically();
+      let _0x2499a5 = _0x5741e5.addStack();
+      _0x2499a5.layoutVertically();
+      this.applyLayout(_0x2499a5, "lg_week", {
+        t: 0,
+        l: 18,
+        b: 0,
+        r: 0
+      });
+      await this.renderWeekRow(_0x2499a5);
+      let _0x24f835 = _0x5741e5.addStack();
+      _0x24f835.layoutVertically();
+      this.applyLayout(_0x24f835, "lg_cal", {
+        t: 0,
+        l: 18,
+        b: 0,
+        r: 0
+      });
+      await this.renderCalendarGrid(_0x24f835);
+    } else {
+      _0x1e1f70.addSpacer(4);
+      let _0x24f842 = _0x1e1f70.addStack();
+      _0x24f842.layoutVertically();
+      this.applyLayout(_0x24f842, "lg_week", {
+        t: 0,
+        l: 0,
+        b: 0,
+        r: 0
+      });
+      await this.renderWeekRow(_0x24f842);
+      let _0x190e48 = _0x1e1f70.addStack();
+      _0x190e48.layoutVertically();
+      this.applyLayout(_0x190e48, "lg_cal", {
+        t: 0,
+        l: 0,
+        b: 0,
+        r: 0
+      });
+      await this.renderCalendarGrid(_0x190e48);
+    }
+    _0x1e1f70.addSpacer();
+  }
+  async renderHolidayBox(_0x192608) {
+    _0x192608.centerAlignContent();
+    let _0x2ccc4f = _0x192608.addStack();
+    _0x2ccc4f.size = new Size(this.s(110, "holiday"), 0);
+    _0x2ccc4f.layoutVertically();
+    let _0xdec34d = parseFloat(this.settings[this.activePrefix + "space_holiday_h"] || 2);
+    let _0x2442ac = _0x2ccc4f.addStack();
+    _0x2442ac.centerAlignContent();
+    let _0xc6b9b7 = this.s(15, "holiday");
+    let _0xf991a7 = _0x2442ac.addImage(this.getSFIco("gift.fill"));
+    _0xf991a7.imageSize = new Size(_0xc6b9b7, _0xc6b9b7);
+    _0xf991a7.tintColor = new Color("#FF5555");
+    _0x2442ac.addSpacer(4);
+    this.addText(_0x2442ac, "节日倒数", 17, "holiday", true);
+    _0x2ccc4f.addSpacer(_0xdec34d);
+    const _0x11002d = this.getNextHolidays();
+    for (let _0x5589d2 of _0x11002d) {
+      let _0x5851ff = _0x2ccc4f.addStack();
+      _0x5851ff.centerAlignContent();
+      this.addText(_0x5851ff, _0x5589d2.name, 17, "holiday");
+      _0x5851ff.addSpacer();
+      let _0x57f36f = _0x5851ff.addStack();
+      _0x57f36f.backgroundColor = _0x5589d2.days === 0 ? new Color("#FF5555") : new Color("#ffffff", 0.2);
+      _0x57f36f.cornerRadius = 3;
+      _0x57f36f.setPadding(1, 4, 1, 4);
+      let _0x58520c = _0x57f36f.addText(_0x5589d2.days === 0 ? "今天" : _0x5589d2.days + "天");
+      _0x58520c.font = Font.boldSystemFont(this.s(13, "holiday"));
+      _0x58520c.textColor = _0x5589d2.days === 0 ? Color.white() : this.getConfColor("holiday");
+      _0x2ccc4f.addSpacer(_0xdec34d);
+    }
+  }
+  async renderScheduleBox(_0x4c0681, _0x58bdf8) {
+    _0x4c0681.centerAlignContent();
+    let _0x3f6978 = _0x4c0681.addStack();
+    _0x3f6978.size = new Size(this.s(100, "schedule_title"), 0);
+    _0x3f6978.layoutVertically();
+    let _0x58c0c4 = parseFloat(this.settings[this.activePrefix + "space_schedule_h"] || 2);
+    let _0x5759b1 = parseInt(this.settings[this.activePrefix + "schedule_count"]) || 3;
+    let _0x3e1be1 = this.settings[this.activePrefix + "schedule_offset"] || "";
+    let _0x55f29f = new Set(_0x3e1be1.replace(/，/g, ",").split(/[, ]+/).map(_0x43f9c7 => parseInt(_0x43f9c7)).filter(_0x5a5640 => !isNaN(_0x5a5640) && _0x5a5640 > 0).map(_0x5bba58 => _0x5bba58 - 1));
+    let _0x55c2f1 = this.settings[this.activePrefix + "schedule_keyword"];
+    let _0x5c1749 = _0x58bdf8;
+    _0x55c2f1 && _0x55c2f1.trim() !== "" && (_0x5c1749 = _0x58bdf8.filter(_0x43e33b => _0x43e33b.title.includes(_0x55c2f1)));
+    let _0x5bb8ac = _0x58bdf8.filter((_0x470ad1, _0x45a6ba) => !_0x55f29f.has(_0x45a6ba));
+    let _0x4f02b1 = _0x3f6978.addStack();
+    _0x4f02b1.centerAlignContent();
+    let _0x35ae84 = this.s(15, "schedule_title");
+    let _0x426301 = _0x4f02b1.addImage(this.getSFIco("calendar.badge.clock"));
+    _0x426301.imageSize = new Size(_0x35ae84, _0x35ae84);
+    _0x426301.tintColor = new Color("#55BEF0");
+    _0x4f02b1.addSpacer(4);
+    this.addText(_0x4f02b1, "日程安排", 17, "schedule_title", true);
+    _0x3f6978.addSpacer(_0x58c0c4);
+    if (_0x5bb8ac.length === 0) {
+      let _0x5d7dcb = _0x3f6978.addStack();
+      _0x5d7dcb.centerAlignContent();
+      this.addText(_0x5d7dcb, "无后续安排", 12.2, "schedule_item");
+    } else {
+      let _0x5d4e1d = _0x3f6978.addStack();
+      _0x5d4e1d.layoutVertically();
+      let _0x2aa5ca = this.activePrefix + "color_schedule_bg";
+      let _0x250eae = this.settings[_0x2aa5ca];
+      if (!_0x250eae) {
+        _0x250eae = "#666666";
+      }
+      let _0x1858ad;
+      try {
+        let _0x24b01e = new Color(_0x250eae);
+        _0x1858ad = new Color(_0x24b01e.hex, 0.3);
+      } catch (_0x18c329) {
+        _0x1858ad = new Color("#666666", 0.3);
+      }
+      _0x5d4e1d.backgroundColor = _0x1858ad;
+      _0x5d4e1d.cornerRadius = 4;
+      _0x5d4e1d.setPadding(4, 4, 4, 4);
+      let _0x17fa1c = Math.min(_0x5bb8ac.length, _0x5759b1);
+      for (let _0x23e592 = 0; _0x23e592 < _0x17fa1c; _0x23e592++) {
+        let _0x2549a9 = _0x5bb8ac[_0x23e592];
+        let _0x260862 = _0x5d4e1d.addStack();
+        _0x260862.topAlignContent();
+        let _0xcb7008 = _0x260862.addStack();
+        _0xcb7008.setPadding(6, 0, 0, 0);
+        let _0xe4dc6d = _0xcb7008.addStack();
+        _0xe4dc6d.size = new Size(4, 4);
+        _0xe4dc6d.cornerRadius = 2;
+        let _0x262484;
+        _0x23e592 < 6 ? _0x262484 = this.getConfColor("schedule_item_" + (_0x23e592 + 1)) : _0x262484 = new Color("#ffffff");
+        _0xe4dc6d.backgroundColor = _0x262484;
+        _0x260862.addSpacer(4);
+        let _0x294c0e = _0x2549a9.title;
+        let _0x27b547 = -1;
+        if (_0x294c0e.includes("柴油")) {
+          _0x27b547 = _0x294c0e.indexOf("柴油") + 2;
+        } else {
+          if (_0x294c0e.includes("汽油")) {
+            _0x27b547 = _0x294c0e.indexOf("汽油") + 2;
+          }
+        }
+        if (_0x27b547 > -1) {
+          let _0xfde959 = _0x260862.addStack();
+          _0xfde959.layoutVertically();
+          let _0x3f5f46 = _0x294c0e.substring(0, _0x27b547);
+          let _0x3fbdf0 = _0x294c0e.substring(_0x27b547).trim();
+          this.addText(_0xfde959, _0x3f5f46, 12.2, "schedule_item", false, 0, 1, _0x262484);
+          this.addText(_0xfde959, _0x3fbdf0, 12.2, "schedule_item", false, 0, 1, _0x262484);
+        } else {
+          let _0x331f9c = this.addText(_0x260862, _0x294c0e, 12.2, "schedule_item", false, 0, 2, _0x262484);
+          _0x331f9c.lineLimit = 2;
+        }
+        _0x23e592 < _0x17fa1c - 1 && _0x5d4e1d.addSpacer(_0x58c0c4);
+      }
+    }
+  }
+  getNextHolidays() {
+    const _0x32c0f2 = new Date();
+    const _0x3eade0 = _0x32c0f2.getFullYear();
+    const _0x337fa8 = [{
+      name: "元旦",
+      m: 1,
+      d: 1
+    }, {
+      name: "情人节",
+      m: 2,
+      d: 14
+    }, {
+      name: "妇女节",
+      m: 3,
+      d: 8
+    }, {
+      name: "劳动节",
+      m: 5,
+      d: 1
+    }, {
+      name: "儿童节",
+      m: 6,
+      d: 1
+    }, {
+      name: "建军节",
+      m: 8,
+      d: 1
+    }, {
+      name: "教师节",
+      m: 9,
+      d: 10
+    }, {
+      name: "国庆节",
+      m: 10,
+      d: 1
+    }, {
+      name: "万圣节",
+      m: 11,
+      d: 1
+    }, {
+      name: "圣诞节",
+      m: 12,
+      d: 25
+    }];
+    const _0x3ea20d = {
+      2025: ["01-29", "04-04", "05-31", "10-06"],
+      2026: ["02-17", "04-05", "06-19", "09-25"],
+      2027: ["02-06", "04-05", "06-09", "09-15"],
+      2028: ["01-26", "04-04", "05-28", "10-03"],
+      2029: ["02-13", "04-04", "06-16", "09-22"],
+      2030: ["02-03", "04-05", "06-05", "09-12"],
+      2031: ["01-23", "04-05", "06-24", "10-01"]
+    };
+    let _0x4035d8 = [];
+    const _0x568c50 = (_0x55584d, _0x54f826, _0x5bb883) => new Date(_0x55584d, _0x54f826 - 1, _0x5bb883);
+    const _0x57f362 = (_0x4fcb95, _0x5aedc7) => {
+      const _0x5986b4 = _0x5aedc7.split(/[-/]/);
+      return new Date(_0x4fcb95, parseInt(_0x5986b4[0]) - 1, parseInt(_0x5986b4[1]));
+    };
+    for (let _0x5a456d = _0x3eade0 - 1; _0x5a456d <= _0x3eade0 + 1; _0x5a456d++) {
+      _0x5a456d >= _0x3eade0 && _0x337fa8.forEach(_0x5bc5a7 => {
+        _0x4035d8.push({
+          name: _0x5bc5a7.name,
+          date: _0x568c50(_0x5a456d, _0x5bc5a7.m, _0x5bc5a7.d)
+        });
+      });
+      if (_0x5a456d >= _0x3eade0 && _0x3ea20d[_0x5a456d]) {
+        const [_0x5eed3e, _0x2c443d, _0x2f1262, _0x2c7733] = _0x3ea20d[_0x5a456d];
+        let _0x2f6f1c = _0x57f362(_0x5a456d, _0x5eed3e);
+        _0x4035d8.push({
+          name: "春节",
+          date: _0x2f6f1c
+        });
+        _0x4035d8.push({
+          name: "除夕",
+          date: new Date(_0x2f6f1c.getTime() - 86400000)
+        });
+        _0x4035d8.push({
+          name: "元宵",
+          date: new Date(_0x2f6f1c.getTime() + 1209600000)
+        });
+        _0x4035d8.push({
+          name: "清明",
+          date: _0x57f362(_0x5a456d, _0x2c443d)
+        });
+        _0x4035d8.push({
+          name: "端午",
+          date: _0x57f362(_0x5a456d, _0x2f1262)
+        });
+        _0x4035d8.push({
+          name: "中秋",
+          date: _0x57f362(_0x5a456d, _0x2c7733)
+        });
+      }
+      let _0x43eef5 = this.settings[this.activePrefix + "birthday_list"] || "";
+      if (_0x43eef5) {
+        let _0x291ac4 = _0x43eef5.split("\n");
+        for (let _0x2e5db2 of _0x291ac4) {
+          _0x2e5db2 = _0x2e5db2.replace(/，/g, ",");
+          let _0x2ebd0d = _0x2e5db2.split(",");
+          if (_0x2ebd0d.length < 2) {
+            continue;
+          }
+          let _0x297a1f = _0x2ebd0d[0].trim();
+          let _0x28bb69 = _0x2ebd0d[1].trim();
+          let _0x1d9c29 = _0x2ebd0d.length > 2 && (_0x2ebd0d[2].includes("农") || _0x2ebd0d[2].includes("Lunar")) ? "lunar" : "solar";
+          let _0x1c0568 = _0x28bb69.split(/[-/]/);
+          if (_0x1c0568.length !== 2) {
+            continue;
+          }
+          let _0x5aee4e = parseInt(_0x1c0568[0]);
+          let _0x2e0c1a = parseInt(_0x1c0568[1]);
+          let _0x358919 = null;
+          try {
+            _0x1d9c29 === "lunar" ? _0x358919 = getSolarFromLunar(_0x5a456d, _0x5aee4e, _0x2e0c1a) : _0x358919 = _0x568c50(_0x5a456d, _0x5aee4e, _0x2e0c1a);
+          } catch (_0x326184) {}
+          _0x358919 && !isNaN(_0x358919.getTime()) && _0x4035d8.push({
+            name: _0x297a1f,
+            date: _0x358919
+          });
+        }
+      }
+    }
+    let _0x401c51 = new Date();
+    _0x401c51.setHours(0, 0, 0, 0);
+    let _0x3d5417 = _0x4035d8.map(_0x2b113c => {
+      if (!_0x2b113c.date) {
+        return null;
+      }
+      let _0x846b4c = (_0x2b113c.date - _0x401c51) / 86400000;
+      return {
+        name: _0x2b113c.name,
+        days: Math.ceil(_0x846b4c),
+        date: _0x2b113c.date
+      };
+    }).filter(_0x8a60fb => _0x8a60fb && !isNaN(_0x8a60fb.days) && _0x8a60fb.days >= 0).sort((_0x1e5b2f, _0x18657f) => _0x1e5b2f.days - _0x18657f.days);
+    let _0x552b35 = [];
+    let _0x254b22 = new Set();
+    for (let _0x1e67d9 of _0x3d5417) {
+      let _0xdd36be = _0x1e67d9.name + "_" + _0x1e67d9.days;
+      !_0x254b22.has(_0xdd36be) && (_0x254b22.add(_0xdd36be), _0x552b35.push(_0x1e67d9));
+      if (_0x552b35.length >= 5) {
+        break;
+      }
+    }
+    return _0x552b35;
+  }
+  applyLayout(_0x2b1071, _0x14ce9a, _0x1aa169 = {
+    t: 0,
+    l: 0,
+    b: 0,
+    r: 0
+  }) {
+    let _0x150143 = parseInt(this.settings[this.activePrefix + "layout_" + _0x14ce9a + "_x"]) || 0;
+    let _0x4779ef = parseInt(this.settings[this.activePrefix + "layout_" + _0x14ce9a + "_y"]) || 0;
+    let _0x312a25 = _0x1aa169.t + _0x4779ef;
+    let _0x117708 = _0x1aa169.l + _0x150143;
+    let _0x176cb8 = _0x1aa169.b;
+    let _0xd60c4e = _0x1aa169.r;
+    _0x312a25 < 0 && (_0x176cb8 += Math.abs(_0x312a25), _0x312a25 = 0);
+    _0x176cb8 < 0 && (_0x312a25 += Math.abs(_0x176cb8), _0x176cb8 = 0);
+    _0x117708 < 0 && (_0xd60c4e += Math.abs(_0x117708), _0x117708 = 0);
+    _0xd60c4e < 0 && (_0x117708 += Math.abs(_0xd60c4e), _0xd60c4e = 0);
+    _0x2b1071.setPadding(_0x312a25, _0x117708, _0x176cb8, _0xd60c4e);
+  }
+  renderLotteryBalls(_0x1acaf8, _0x193438, _0x2ddb42, _0x179968 = false) {
+    const _0x3421d8 = new Color("#FF3B30");
+    const _0x30cd95 = new Color("#007AFF");
+    let _0x309de7 = _0x193438.split("+");
+    let _0x30fc90 = _0x309de7[0].trim().split(/[\s,]+/);
+    let _0x3627a7 = [];
+    _0x309de7.length > 1 && (_0x3627a7 = _0x309de7[1].trim().split(/[\s,]+/));
+    let _0x4211a1 = this.s(14, "lotteryItem");
+    let _0x4378b2 = Math.round(_0x4211a1 * (_0x179968 ? 1.5 : 1.7));
+    const _0x59d261 = (_0x4375e7, _0x420ed5) => {
+      if (!_0x4375e7 || _0x4375e7.trim() === "") {
+        return;
+      }
+      let _0x43a595 = _0x1acaf8.addStack();
+      _0x43a595.size = new Size(_0x4378b2, _0x4378b2);
+      _0x43a595.cornerRadius = _0x4378b2 / 2;
+      _0x43a595.backgroundColor = _0x420ed5;
+      _0x43a595.centerAlignContent();
+      let _0x46a374 = _0x43a595.addText(_0x4375e7);
+      _0x46a374.font = Font.boldSystemFont(_0x4211a1);
+      _0x46a374.textColor = Color.white();
+      _0x1acaf8.addSpacer(_0x179968 ? 3 : 4);
+    };
+    for (let _0x404f1e of _0x30fc90) _0x59d261(_0x404f1e, _0x3421d8);
+    for (let _0x470f7b of _0x3627a7) _0x59d261(_0x470f7b, _0x30cd95);
+  }
+  async renderInfoSide(_0x352e68, _0x4b87ab) {
+    const _0x352b3d = this.activePrefix === "s2_";
+    const _0x33c425 = this.settings[this.activePrefix + "show_battery"];
+    const _0x33811c = this.settings[this.activePrefix + "show_poetry"];
+    const _0x30833d = _0x33c425 === undefined || _0x33c425 === "true";
+    const _0x36d793 = _0x33811c === undefined || _0x33811c === "true";
+    const _0x301736 = new Date();
+    let _0x3ccd32 = _0x352e68.addStack();
+    _0x3ccd32.centerAlignContent();
+    let _0x3c012a = this.settings.lottery_type && this.settings.lottery_type !== "none" && _0x4b87ab.lottery;
+    if (_0x3c012a) {
+      let _0x4a59de = _0x4b87ab.lottery.full.split(":");
+      let _0x48f2cc = _0x4a59de[0];
+      let _0x4a4387 = _0x4a59de.length > 1 ? _0x4a59de[1].trim() : "";
+      this.addText(_0x3ccd32, _0x48f2cc, 14, "lotteryTitle", true);
+      _0x3ccd32.addSpacer(25);
+      let _0x4cd913 = _0x3ccd32.addStack();
+      _0x4cd913.backgroundColor = new Color("#666666", 0.3);
+      _0x4cd913.cornerRadius = 4;
+      _0x4cd913.setPadding(1, 4, 1, 4);
+      _0x4cd913.centerAlignContent();
+      let _0x5811d0 = this.getLotterySchedule(_0x4b87ab.lottery.type);
+      this.addText(_0x4cd913, _0x5811d0, 10, "lotteryInfo", false, 0, 1, this.getConfColor("lotteryInfo"));
+      _0x352e68.addSpacer(2);
+      let _0x4c27dc = _0x352e68.addStack();
+      _0x4c27dc.centerAlignContent();
+      this.renderLotteryBalls(_0x4c27dc, _0x4a4387, this.settings.lottery_type, _0x352b3d);
+      if (_0x352b3d) {
+        _0x352e68.addSpacer(2);
+      }
+    } else {
+      this.addText(_0x3ccd32, this.getGreeting(_0x301736), 22, "greeting", true);
+      let _0x58d085 = _0x352e68.addStack();
+      _0x58d085.centerAlignContent();
+      this.addText(_0x58d085, this.getDateStr(_0x301736), 16, "date");
+      _0x58d085.addSpacer(4);
+      let _0x3f792f = this.getLunarDate_Precise(_0x301736);
+      this.addText(_0x58d085, _0x3f792f.month + _0x3f792f.day, 16, "lunar");
+    }
+    _0x352e68.addSpacer(2);
+    let _0x3cbfe2 = _0x352e68.addStack();
+    _0x3cbfe2.centerAlignContent();
+    this.addText(_0x3cbfe2, weekTitle[_0x301736.getDay()], 16, "info");
+    _0x30833d && (_0x3cbfe2.addSpacer(4), this.addText(_0x3cbfe2, "🔋" + Math.round(Device.batteryLevel() * 100) + "%", 15, "info"));
+    _0x3cbfe2.addSpacer(4);
+    let _0x561739 = this.location.locality || "";
+    if (this.location.subLocality) {
+      _0x561739 += " " + this.location.subLocality;
+    }
+    if (!_0x561739) {
+      _0x561739 = "定位中";
+    }
+    this.addText(_0x3cbfe2, "📍" + _0x561739, 15, "info");
+    let _0x54b322 = _0x4b87ab.weather.alertTitle || _0x4b87ab.weather.desc || "暂无数据";
+    this.addText(_0x352e68, _0x54b322, 12, "weather", false, 2, 3);
+    _0x352e68.addSpacer(2);
+    let _0x565d44 = _0x352e68.addStack();
+    _0x565d44.centerAlignContent();
+    if (_0x4b87ab.weather.future && _0x4b87ab.weather.future.length > 0) {
+      let _0x3375cf = _0x565d44.addStack();
+      let _0x3f9580 = _0x352b3d || !_0x36d793;
+      let _0x40e046 = _0x3f9580 ? 7 : 3;
+      let _0xe37ee6 = Math.min(_0x4b87ab.weather.future.length, _0x40e046);
+      let _0x11981c = _0x3f9580 ? 6 : 8;
+      for (let _0x40e690 = 0; _0x40e690 < _0xe37ee6; _0x40e690++) {
+        let _0x34f99c = _0x4b87ab.weather.future[_0x40e690];
+        let _0x343ae6 = _0x3375cf.addStack();
+        _0x343ae6.layoutVertically();
+        _0x343ae6.centerAlignContent();
+        if (_0x3f9580) {
+          let _0x403f99 = _0x343ae6.addText(_0x34f99c.day);
+          _0x403f99.font = Font.systemFont(this.s(9, "poetry"));
+          _0x403f99.textColor = this.getConfColor("poetry");
+          _0x343ae6.addSpacer(1);
+          let _0x569c14 = this.s(13, "weather");
+          let _0x4a98de = _0x343ae6.addImage(this.getSFIco(_0x34f99c.ico));
+          _0x4a98de.imageSize = new Size(_0x569c14, _0x569c14);
+          _0x4a98de.tintColor = this.getConfColor("weather");
+          _0x343ae6.addSpacer(1);
+          let _0x4c4300 = _0x343ae6.addText(_0x34f99c.min + "/" + _0x34f99c.max + "°");
+          _0x4c4300.font = Font.systemFont(this.s(8, "poetry"));
+          _0x4c4300.textColor = this.getConfColor("poetry");
+        } else {
+          this.addText(_0x343ae6, _0x34f99c.day, 10, "poetry");
+          _0x343ae6.addSpacer(1);
+          let _0x584635 = _0x343ae6.addImage(this.getSFIco(_0x34f99c.ico));
+          let _0x259d35 = this.s(15, "weather");
+          _0x584635.imageSize = new Size(_0x259d35, _0x259d35);
+          _0x584635.tintColor = this.getConfColor("weather");
+          _0x343ae6.addSpacer(1);
+          this.addText(_0x343ae6, _0x34f99c.min + "/" + _0x34f99c.max + "°", 9, "poetry");
+        }
+        if (_0x40e690 < _0xe37ee6 - 1) {
+          _0x3375cf.addSpacer(_0x11981c);
+        }
+      }
+      if (_0x3f9580 && _0xe37ee6 < 7) {
+        _0x565d44.addSpacer(4);
+        let _0x23f313 = _0x565d44.addText("API仅" + _0xe37ee6 + "天");
+        _0x23f313.font = Font.systemFont(8);
+        _0x23f313.textColor = Color.red();
+      }
+    } else {
+      let _0x274da0 = _0x565d44.addText("无预报数据");
+      _0x274da0.font = Font.systemFont(10);
+      _0x274da0.textColor = Color.red();
+    }
+    _0x565d44.addSpacer(10);
+    if (_0x36d793 && !_0x352b3d && _0x4b87ab.poetry && _0x4b87ab.poetry.data) {
+      let _0x2ce4bc = _0x565d44.addStack();
+      _0x2ce4bc.layoutVertically();
+      _0x2ce4bc.backgroundColor = new Color("#666", 0.3);
+      _0x2ce4bc.cornerRadius = 4;
+      _0x2ce4bc.setPadding(2, 4, 2, 4);
+      let _0x2d4417 = _0x4b87ab.poetry.data.content.replace(/[。，！]$/, "");
+      let _0x2e02cf = this.addText(_0x2ce4bc, _0x2d4417, 10, "poetry");
+      _0x2e02cf.lineLimit = 3;
+      _0x2ce4bc.addSpacer(2);
+      let _0x21fe1c = _0x4b87ab.poetry.data.origin.dynasty + "·" + _0x4b87ab.poetry.data.origin.author;
+      let _0xba1a1d = this.addText(_0x2ce4bc, "— " + _0x21fe1c, 8, "poetry");
+      _0xba1a1d.rightAlignText();
+    }
+    if (this.activePrefix !== "s4_" && _0x4b87ab.schedules.length > 0) {
+      let _0x17a4d7 = _0x4b87ab.schedules;
+      let _0x165a12 = this.settings[this.activePrefix + "schedule_keyword"];
+      let _0xa56dc1 = parseInt(this.settings[this.activePrefix + "schedule_index"]) || 0;
+      _0x165a12 && _0x165a12.trim() !== "" && (_0x17a4d7 = _0x17a4d7.filter(_0x401066 => _0x401066.title.includes(_0x165a12)));
+      let _0x37097b = _0x17a4d7[_0xa56dc1];
+      if (_0x37097b) {
+        _0x352e68.addSpacer(4);
+        let _0x46062b = _0x352e68.addStack();
+        _0x46062b.centerAlignContent();
+        let _0xfedfab = _0x46062b.addImage(this.getSFIco("megaphone"));
+        _0xfedfab.imageSize = new Size(10, 10);
+        _0xfedfab.tintColor = this.getConfColor("info");
+        _0x46062b.addSpacer(4);
+        this.addText(_0x46062b, _0x37097b.title, 11, "info");
+      }
+    }
+  }
+  async renderWeatherSide(_0xfedfa9, _0x418c59) {
+    let _0x1d6d51 = _0xfedfa9.addStack();
+    _0x1d6d51.bottomAlignContent();
+    _0xfedfa9.addSpacer(0);
+    _0x1d6d51.addSpacer();
+    let _0x415fa6 = _0x1d6d51.addImage(this.getSFIco(_0x418c59.ico));
+    let _0xfe9b1f = this.s(30, "weatherLarge");
+    _0x415fa6.imageSize = new Size(_0xfe9b1f, _0xfe9b1f);
+    _0x415fa6.tintColor = this.getConfColor("weatherLarge");
+    _0x1d6d51.addSpacer(4);
+    let _0x30c89a = this.addText(_0x1d6d51, (_0x418c59.temp || "-") + "°", 20, "weatherLarge");
+    _0x30c89a.font = Font.boldMonospacedSystemFont(this.s(20, "weatherLarge"));
+    _0xfedfa9.addSpacer(4);
+    const _0x3396c9 = _0xfeeba1 => {
+      let _0x3ca158 = _0xfedfa9.addStack();
+      _0x3ca158.addSpacer();
+      this.addText(_0x3ca158, _0xfeeba1, 12, "weather");
+    };
+    _0x3396c9("湿度：" + (_0x418c59.hum || "-"));
+    _0x3396c9("舒适：" + (_0x418c59.comfort || "-"));
+    _0x3396c9("紫外：" + (_0x418c59.uv || "-"));
+    _0x3396c9("空气：" + (_0x418c59.aqi || "-"));
+    _0xfedfa9.addSpacer(2);
+    let _0xee712 = _0xfedfa9.addStack();
+    _0xee712.addSpacer();
+    let _0x14dcc2 = _0xee712.addText("↑" + (_0x418c59.max || "-") + "°");
+    _0x14dcc2.font = Font.systemFont(this.s(11, "weather"));
+    _0x14dcc2.textColor = new Color("#ff5555");
+    _0xee712.addSpacer(4);
+    let _0xef2f3 = _0xee712.addText("↓" + (_0x418c59.min || "-") + "°");
+    _0xef2f3.font = Font.systemFont(this.s(11, "weather"));
+    _0xef2f3.textColor = new Color("#55ff55");
+    _0xfedfa9.addSpacer(1);
+    let _0xcdc238 = _0xfedfa9.addStack();
+    _0xcdc238.addSpacer();
+    let _0xcc4643 = this.s(12, "weather");
+    let _0xcc4642 = _0xcdc238.addImage(this.getSFIco("sunrise.fill"));
+    _0xcc4642.imageSize = new Size(_0xcc4643, _0xcc4643);
+    this.addText(_0xcdc238, _0x418c59.sunrise || "--:--", 11, "weather");
+    _0xcdc238.addSpacer(4);
+    let _0x261885 = _0xcdc238.addImage(this.getSFIco("sunset.fill"));
+    _0x261885.imageSize = new Size(_0xcc4643, _0xcc4643);
+    this.addText(_0xcdc238, _0x418c59.sunset || "--:--", 11, "weather");
+    _0xfedfa9.addSpacer(2);
+    let _0xcc1399 = _0xfedfa9.addStack();
+    _0xcc1399.addSpacer();
+    let _0xed820 = new Date();
+    let _0x41b027 = _0xed820.getMinutes();
+    this.addText(_0xcc1399, "更新 " + _0xed820.getHours() + ":" + (_0x41b027 < 10 ? "0" + _0x41b027 : _0x41b027), 10, "weather");
+  }
+  async renderTimeInfo(_0x3f6993) {
+    let _0x3f9941 = _0x3f6993.addStack();
+    _0x3f9941.layoutHorizontally();
+    _0x3f9941.setPadding(0, 4, 0, 4);
+    const _0x3ff7de = new Date();
+    const _0x3cfcfa = this.getLunarDate_Precise(_0x3ff7de);
+    const _0x3c9e5d = zodiacAnimals[(_0x3cfcfa.year - 4) % 12];
+    const _0x30b169 = getWeekOfYear(_0x3ff7de);
+    const _0x4a05f5 = getDayOfYear(_0x3ff7de);
+    const _0x30b494 = _0x3ff7de.getFullYear() % 4 === 0 ? 366 : 365;
+    let _0x3cb7ca = [];
+    let _0x3f8005 = [];
+    try {
+      const _0x367aa1 = await CalendarEvent.today([]);
+      for (const _0x419b5d of _0x367aa1) {
+        if (!_0x419b5d.isAllDay) {
+          continue;
+        }
+        let _0x419b5e = _0x419b5d.title;
+        if (_0x419b5e.includes("宜")) {
+          let _0x5aef8a = _0x419b5e.substring(_0x419b5e.indexOf("宜") + 1);
+          if (_0x5aef8a.includes("忌")) {
+            _0x5aef8a = _0x5aef8a.split("忌")[0];
+          }
+          _0x5aef8a = _0x5aef8a.replace(/^[:：\s]+/, "");
+          let _0x598b6d = _0x5aef8a.split(/[\s,，、\.．]+/).filter(_0x432ef3 => _0x432ef3.trim().length > 0 && _0x432ef3.length < 6);
+          if (_0x598b6d.length > 0) {
+            _0x3cb7ca = _0x598b6d;
+          }
+        }
+        if (_0x419b5e.includes("忌")) {
+          let _0x372bc3 = _0x419b5e.substring(_0x419b5e.indexOf("忌") + 1);
+          if (_0x372bc3.includes("宜")) {
+            _0x372bc3 = _0x372bc3.split("宜")[0];
+          }
+          _0x372bc3 = _0x372bc3.replace(/^[:：\s]+/, "");
+          let _0x3a594f = _0x372bc3.split(/[\s,，、\.．]+/).filter(_0x465c80 => _0x465c80.trim().length > 0 && _0x465c80.length < 6);
+          if (_0x3a594f.length > 0) {
+            _0x3f8005 = _0x3a594f;
+          }
+        }
+      }
+    } catch (_0x167c5b) {}
+    if (_0x3cb7ca.length === 0) {
+      _0x3cb7ca = getYiJiSimple(_0x3ff7de, 0);
+    }
+    if (_0x3f8005.length === 0) {
+      _0x3f8005 = getYiJiSimple(_0x3ff7de, 1);
+    }
+    let _0x337ccf = _0x3f9941.addStack();
+    _0x337ccf.layoutVertically();
+    let _0x3084e6 = _0x337ccf.addStack();
+    _0x3084e6.centerAlignContent();
+    this.addText(_0x3084e6, _0x3c9e5d + "年 " + _0x3cfcfa.month + _0x3cfcfa.day, 12, "timeInfo");
+    _0x337ccf.addSpacer(0);
+    let _0x36d93e = _0x337ccf.addStack();
+    _0x36d93e.centerAlignContent();
+    this.addText(_0x36d93e, "第" + _0x30b169 + "/53周 第 " + _0x4a05f5 + "/" + _0x30b494 + "天", 10, "date");
+    _0x3f9941.addSpacer();
+    let _0x39d421 = _0x3f9941.addStack();
+    _0x39d421.centerAlignContent();
+    this.renderYiJi(_0x39d421, "宜", "#D32F2F", _0x3cb7ca, "#D32F2F");
+    _0x3f9941.addSpacer();
+    let _0x397585 = _0x3f9941.addStack();
+    _0x397585.centerAlignContent();
+    this.renderYiJi(_0x397585, "忌", "#000000", _0x3f8005, "#ffffff");
+  }
+  renderYiJi(_0x10e53c, _0xdea590, _0x2c9a28, _0x1fd6ab, _0x1fd6ac) {
+    let _0x699f7 = _0x10e53c.addStack();
+    let _0x19c0f6 = this.s(30, "timeInfo");
+    _0x699f7.size = new Size(_0x19c0f6, _0x19c0f6);
+    _0x699f7.cornerRadius = _0x19c0f6 / 2;
+    _0x699f7.backgroundColor = new Color(_0x2c9a28);
+    _0x699f7.centerAlignContent();
+    let _0x4bb503 = _0x699f7.addText(_0xdea590);
+    _0x4bb503.font = Font.boldSystemFont(this.s(17, "timeInfo"));
+    _0x4bb503.textColor = Color.white();
+    _0x10e53c.addSpacer(8);
+    let _0x2b03c6 = _0x10e53c.addStack();
+    _0x2b03c6.layoutVertically();
+    if (_0x1fd6ab.length > 0) {
+      let _0x34f988 = _0x2b03c6.addStack();
+      this.addText(_0x34f988, _0x1fd6ab.slice(0, 3).join("  "), 10, "timeInfo", false, 0, 1, new Color(_0x1fd6ac));
+      if (_0x1fd6ab.length > 3) {
+        let _0x3a249f = _0x2b03c6.addStack();
+        this.addText(_0x3a249f, _0x1fd6ab.slice(3, 6).join("  "), 10, "timeInfo", false, 0, 1, new Color(_0x1fd6ac));
+      }
+    }
+  }
+  async renderWeekRow(_0x46118d) {
+    let _0x44aa7b = _0x46118d.addStack();
+    _0x44aa7b.setPadding(0, 5, 0, 3);
+    let _0x5e01d2 = this.activePrefix === "s3_" || this.activePrefix === "s4_" ? 9.1 : 30;
+    let _0x5b33a1 = parseFloat(this.settings[this.activePrefix + "space_week_w"] || _0x5e01d2);
+    for (let _0x16a9aa = 0; _0x16a9aa < 7; _0x16a9aa++) {
+      let _0x138213 = _0x44aa7b.addStack();
+      _0x138213.size = new Size(this.s(24, "calendar"), this.s(22, "calendar"));
+      _0x138213.centerAlignContent();
+      let _0x462b14 = _0x138213.addText(weekTitleShort[_0x16a9aa]);
+      _0x462b14.font = Font.boldSystemFont(this.s(14, "calendar"));
+      _0x462b14.textColor = _0x16a9aa === 0 || _0x16a9aa === 6 ? new Color("#ff5555") : this.getConfColor("calendar");
+      if (_0x16a9aa < 6) {
+        _0x44aa7b.addSpacer(_0x5b33a1);
+      }
+    }
+  }
+  async renderCalendarGrid(_0x16dca0) {
+    let _0x10884b = new Date();
+    let _0x1748a8 = _0x10884b.getFullYear();
+    let _0xef47fe = _0x10884b.getMonth();
+    let _0x2845e1 = getMonthGrid(_0x1748a8, _0xef47fe);
+    let _0x106ec4;
+    let _0xda6951;
+    this.activePrefix === "s3_" || this.activePrefix === "s4_" ? (_0x106ec4 = parseFloat(this.settings[this.activePrefix + "space_cal_w"] || 6.2), _0xda6951 = parseFloat(this.settings[this.activePrefix + "space_cal_h"] || 0)) : (_0x106ec4 = parseFloat(this.settings[this.activePrefix + "space_cal_w"] || 27.2), _0xda6951 = parseFloat(this.settings[this.activePrefix + "space_cal_h"] || 3));
+    let _0xe63cd9 = this.s(27, "calendar");
+    for (let _0x58e338 = 0; _0x58e338 < _0x2845e1.length; _0x58e338++) {
+      let _0x55b5b8 = _0x16dca0.addStack();
+      _0x55b5b8.setPadding(0, 7, 0, 2);
+      for (let _0x29031a = 0; _0x29031a < 7; _0x29031a++) {
+        let _0x2f5772 = _0x2845e1[_0x58e338][_0x29031a];
+        let _0x2c5c8e = _0x55b5b8.addStack();
+        _0x2c5c8e.size = new Size(_0xe63cd9, _0xe63cd9);
+        _0x2c5c8e.layoutVertically();
+        _0x2c5c8e.centerAlignContent();
+        if (_0x2f5772 !== null) {
+          let _0x25b408 = new Date(_0x1748a8, _0xef47fe, _0x2f5772);
+          let _0x19ca15 = _0x2f5772 === _0x10884b.getDate();
+          let _0x1862fd = _0x29031a === 0 || _0x29031a === 6;
+          let _0x2095a7 = _0x2c5c8e.addStack();
+          _0x2095a7.size = new Size(this.s(17, "calendar"), this.s(17, "calendar"));
+          _0x2095a7.centerAlignContent();
+          if (_0x19ca15) {
+            let _0x182d30 = _0x2095a7.addStack();
+            _0x182d30.size = new Size(this.s(16, "calendar"), this.s(16, "calendar"));
+            _0x182d30.cornerRadius = this.s(8, "calendar");
+            _0x182d30.backgroundColor = new Color("#ffcc00");
+            _0x182d30.centerAlignContent();
+            let _0x241a24 = _0x182d30.addText(_0x2f5772.toString());
+            _0x241a24.font = Font.boldSystemFont(this.s(12, "calendar"));
+            _0x241a24.textColor = Color.black();
+          } else {
+            let _0x1d3e15 = _0x2095a7.addText(_0x2f5772.toString());
+            _0x1d3e15.font = Font.boldSystemFont(this.s(12, "calendar"));
+            _0x1d3e15.textColor = _0x1862fd ? new Color("#ff5555") : this.getConfColor("calendar");
+          }
+          let _0x1865c8 = this.getLunarDate_Precise(_0x25b408);
+          let _0x3b6a0e = getSolarTerm(_0x25b408);
+          let _0x483ffd = _0x2c5c8e.addStack();
+          _0x483ffd.setPadding(-1, 1.5, 0, 0);
+          _0x483ffd.centerAlignContent();
+          let _0x1b8d5e = _0x483ffd.addText(_0x3b6a0e || _0x1865c8.day);
+          _0x1b8d5e.font = Font.systemFont(this.s(8, "calendar"));
+          _0x1b8d5e.textColor = new Color(this.getConfColor("calendar").hex, 0.7);
+        }
+        if (_0x29031a < 6) {
+          _0x55b5b8.addSpacer(_0x106ec4);
+        }
+      }
+      if (_0x58e338 < _0x2845e1.length - 1) {
+        _0x16dca0.addSpacer(_0xda6951);
+      }
+    }
+  }
+  addText(_0xe73b7f, _0xcdcf1c, _0x263449, _0xe5d2bd, _0x58dca1 = false, _0x564716 = 0, _0x5b8a03 = 1, _0x4fa010 = null) {
+    if (_0x564716 > 0) {
+      _0xe73b7f.addSpacer(_0x564716);
+    }
+    let _0x5c3cb9 = _0xe73b7f.addText(String(_0xcdcf1c));
+    _0x5c3cb9.font = _0x58dca1 ? Font.boldSystemFont(this.s(_0x263449, _0xe5d2bd)) : Font.systemFont(this.s(_0x263449, _0xe5d2bd));
+    _0x5c3cb9.textColor = _0x4fa010 || this.getConfColor(_0xe5d2bd);
+    if (_0x5b8a03 > 1) {
+      _0x5c3cb9.lineLimit = _0x5b8a03;
+    }
+    return _0x5c3cb9;
+  }
+  s(_0x5ad8a2, _0x5a7a05) {
+    let _0x442057 = this.activePrefix + "size_" + _0x5a7a05;
+    let _0x5a76db = (parseInt(this.settings[_0x442057]) || 100) / 100;
+    let _0x59b6a4 = (parseInt(this.settings.global_font_size) || 100) / 100;
+    return Math.round(_0x5ad8a2 * _0x5a76db * _0x59b6a4);
+  }
+  getConfColor(_0x41dfe6) {
+    let _0x42a01d = this.activePrefix + "color_" + _0x41dfe6;
+    let _0x54dfbc = this.settings[_0x42a01d];
+    return _0x54dfbc ? new Color(_0x54dfbc) : new Color(baseConfigKeys["color_" + _0x41dfe6]);
+  }
+  getSFIco(_0x5a22aa) {
+    try {
+      return SFSymbol.named(_0x5a22aa).image;
+    } catch {
+      return SFSymbol.named("sun.max.fill").image;
+    }
+  }
+  getDateStr(_0x484191) {
+    let _0x47e2f4 = new DateFormatter();
+    _0x47e2f4.locale = "zh_cn";
+    _0x47e2f4.dateFormat = "yyyy年MM月d日";
+    return _0x47e2f4.string(_0x484191);
+  }
+  getGreeting(_0x3189a4) {
+    const _0x3e2653 = _0x3189a4.getHours();
+    let _0x5482cd = "";
+    if (_0x3e2653 < 5 || _0x3e2653 >= 23) {
+      _0x5482cd = this.settings.text_greeting_night;
+      if (!_0x5482cd) {
+        _0x5482cd = "🦉火华,可以来一发了~";
+      }
+    } else {
+      if (_0x3e2653 < 11) {
+        _0x5482cd = this.settings.text_greeting_morning;
+        if (!_0x5482cd) {
+          _0x5482cd = "💫火华,早上心情美美哒~";
+        }
+      } else {
+        if (_0x3e2653 < 13) {
+          _0x5482cd = this.settings.text_greeting_noon;
+          if (!_0x5482cd) {
+            _0x5482cd = "🥳火华,中午好呀~";
+          }
+        } else {
+          if (_0x3e2653 < 18) {
+            _0x5482cd = this.settings.text_greeting_afternoon;
+            if (!_0x5482cd) {
+              _0x5482cd = "🐡火华,下午好呀~";
+            }
+          } else {
+            _0x5482cd = this.settings.text_greeting_evening;
+            if (!_0x5482cd) {
+              _0x5482cd = "🌙火华,（晚上好呀）";
+            }
+          }
+        }
+      }
+    }
+    return _0x5482cd;
+  }
+  airQuality(_0x556f00) {
+    if (_0x556f00 <= 50) {
+      return "优";
+    }
+    if (_0x556f00 <= 100) {
+      return "良";
+    }
+    if (_0x556f00 <= 150) {
+      return "轻";
+    }
+    if (_0x556f00 <= 200) {
+      return "中";
+    }
+    if (_0x556f00 <= 300) {
+      return "重";
+    }
+    return "严";
+  }
+  getLunarDate_Precise(_0x3c1d9f) {
+    const _0x53f45d = ["正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "腊月"];
+    const _0x559e7f = ["初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十", "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"];
+    let _0x3dc7c1 = _0x3c1d9f.getFullYear();
+    let _0x3eb32b = _0x3c1d9f.getMonth() + 1;
+    let _0x3f1352 = _0x3c1d9f.getDate();
+    let _0x33f266;
+    let _0x33923f = 348;
+    let _0x3f7c39 = (Date.UTC(_0x3dc7c1, _0x3eb32b - 1, _0x3f1352) - Date.UTC(1900, 0, 31)) / 86400000;
+    for (_0x33f266 = 1900; _0x33f266 < 2101 && _0x3f7c39 > 0; _0x33f266++) {
+      _0x33923f = lYearDays(_0x33f266);
+      _0x3f7c39 -= _0x33923f;
+    }
+    _0x3f7c39 < 0 && (_0x3f7c39 += _0x33923f, _0x33f266--);
+    let _0x432626 = lunarInfo[_0x33f266 - 1900] & 15;
+    let _0x210578 = false;
+    let _0x1b6e5c;
+    let _0x1b0fca;
+    for (_0x1b6e5c = 1; _0x1b6e5c < 13 && _0x3f7c39 > 0; _0x1b6e5c++) {
+      _0x1b0fca = _0x432626 === _0x1b6e5c - 1 && !_0x210578 ? lunarInfo[_0x33f266 - 1900] & 65536 ? 30 : 29 : lunarInfo[_0x33f266 - 1900] & 65536 >> _0x1b6e5c ? 30 : 29;
+      if (_0x210578 && _0x1b6e5c === _0x432626 + 1) {
+        _0x210578 = false;
+      } else {
+        _0x432626 > 0 && _0x1b6e5c === _0x432626 + 1 && !_0x210578 && (_0x210578 = true, --_0x1b6e5c);
+      }
+      _0x3f7c39 -= _0x1b0fca;
+    }
+    _0x3f7c39 < 0 && (_0x3f7c39 += _0x1b0fca, --_0x1b6e5c);
+    if (_0x1b6e5c < 1) {
+      _0x1b6e5c = 1;
+    }
+    if (_0x1b6e5c > 12) {
+      _0x1b6e5c = 12;
+    }
+    return {
+      year: _0x33f266,
+      month: (_0x210578 ? "闰" : "") + _0x53f45d[_0x1b6e5c - 1],
+      day: _0x559e7f[Math.floor(_0x3f7c39)] || "初一"
+    };
+  }
+}
+function getSolarFromLunar(_0x26f9c4, _0x1bda53, _0x27dc3c) {
+  if (_0x26f9c4 < 1900 || _0x26f9c4 > 2100) {
+    return null;
+  }
+  let _0x11828d = 0;
+  for (let _0x548b99 = 1900; _0x548b99 < _0x26f9c4; _0x548b99++) {
+    _0x11828d += lYearDays(_0x548b99);
+  }
+  let _0x27d911 = lunarInfo[_0x26f9c4 - 1900] & 15;
+  for (let _0x5759bd = 1; _0x5759bd < _0x1bda53; _0x5759bd++) {
+    let _0x24b17c = lunarInfo[_0x26f9c4 - 1900] & 65536 >> _0x5759bd ? 30 : 29;
+    _0x11828d += _0x24b17c;
+    _0x27d911 > 0 && _0x5759bd === _0x27d911 && (_0x11828d += lunarInfo[_0x26f9c4 - 1900] & 65536 ? 30 : 29);
+  }
+  _0x11828d += _0x27dc3c - 1;
+  let _0x100253 = new Date(1900, 0, 31);
+  _0x100253.setDate(_0x100253.getDate() + _0x11828d);
+  return _0x100253;
+}
+function lYearDays(_0x19b717) {
+  let _0x185300;
+  let _0x7be2d = 348;
+  for (_0x185300 = 32768; _0x185300 > 8; _0x185300 >>= 1) {
+    _0x7be2d += lunarInfo[_0x19b717 - 1900] & _0x185300 ? 1 : 0;
+  }
+  return _0x7be2d + (lunarInfo[_0x19b717 - 1900] & 15 ? lunarInfo[_0x19b717 - 1900] & 65536 ? 30 : 29 : 0);
+}
+function getSolarTerm(_0x3a96f3) {
+  const _0xab90b = ["小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"];
+  const _0x64131e = _0x3a96f3.getFullYear();
+  const _0x6a14c3 = _0x3a96f3.getMonth() + 1;
+  const _0x135777 = _0x3a96f3.getDate();
+  const _0x2cac03 = [5.4055, 20.12, 3.87, 18.73, 5.63, 20.646, 4.81, 20.1, 5.52, 21.04, 5.678, 21.37, 7.108, 22.83, 7.5, 23.13, 7.646, 23.042, 8.318, 23.438, 7.438, 22.36, 7.18, 21.94];
+  if (_0x64131e < 2000 || _0x64131e > 2099) {
+    return "";
+  }
+  function _0x1ff459(_0xad2453, _0xb01f31) {
+    return Math.floor((_0xad2453 - 2000) * 0.2422 + _0x2cac03[_0xb01f31]) - Math.floor((_0xad2453 - 2000) / 4);
+  }
+  let _0x1e608e = (_0x6a14c3 - 1) * 2;
+  let _0x80a0a4 = _0x1ff459(_0x64131e, _0x1e608e);
+  if (_0x135777 === _0x80a0a4) {
+    return _0xab90b[_0x1e608e];
+  }
+  let _0x2141e4 = (_0x6a14c3 - 1) * 2 + 1;
+  let _0x22a8f7 = _0x1ff459(_0x64131e, _0x2141e4);
+  if (_0x135777 === _0x22a8f7) {
+    return _0xab90b[_0x2141e4];
+  }
+  return null;
+}
+function getMonthGrid(_0x37b54a, _0x315f77) {
+  const _0x3e15a8 = new Date(_0x37b54a, _0x315f77, 1);
+  const _0x3e75b7 = new Date(_0x37b54a, _0x315f77 + 1, 0);
+  const _0x31bf86 = _0x3e75b7.getDate();
+  const _0x3da97f = _0x3e15a8.getDay();
+  const _0x328a3f = [];
+  let _0x31232c = Array(_0x3da97f).fill(null);
+  for (let _0x306477 = 1; _0x306477 <= _0x31bf86; _0x306477++) {
+    _0x31232c.push(_0x306477);
+    _0x31232c.length === 7 && (_0x328a3f.push(_0x31232c), _0x31232c = []);
+  }
+  if (_0x31232c.length > 0) {
+    while (_0x31232c.length < 7) {
+      _0x31232c.push(null);
+    }
+    _0x328a3f.push(_0x31232c);
+  }
+  return _0x328a3f;
+}
+function getStemBranchDay(_0x49bbce) {
+  const _0x33191f = new Date(1900, 0, 31);
+  const _0x34aceb = Math.floor((_0x49bbce - _0x33191f) / 86400000);
+  return heavenlyStems[(_0x34aceb % 10 + 10) % 10] + earthlyBranches[(_0x34aceb % 12 + 12) % 12];
+}
+function getYellowBlackDay(_0x4c83fc) {
+  let _0x1d0882 = getLunarDate_Precise_Simple(_0x4c83fc);
+  return yellowBlackDays[(_0x1d0882.m + _0x1d0882.d - 2) % 12];
+}
+function getLunarDate_Precise_Simple(_0x1ca85c) {
+  let _0x294681 = _0x1ca85c.getFullYear();
+  let _0x29a6a6 = _0x1ca85c.getMonth() + 1;
+  let _0x1dbcb3 = _0x1ca85c.getDate();
+  let _0x28e7ee;
+  let _0x4a7a84 = 348;
+  let _0xf90a2c = (Date.UTC(_0x294681, _0x29a6a6 - 1, _0x1dbcb3) - Date.UTC(1900, 0, 31)) / 86400000;
+  for (_0x28e7ee = 1900; _0x28e7ee < 2101 && _0xf90a2c > 0; _0x28e7ee++) {
+    _0x4a7a84 = lYearDays(_0x28e7ee);
+    _0xf90a2c -= _0x4a7a84;
+  }
+  _0xf90a2c < 0 && (_0xf90a2c += _0x4a7a84, _0x28e7ee--);
+  let _0x104f5b = lunarInfo[_0x28e7ee - 1900] & 15;
+  let _0x4716b2 = false;
+  let _0x5d582b;
+  let _0x1c31f0;
+  for (_0x5d582b = 1; _0x5d582b < 13 && _0xf90a2c > 0; _0x5d582b++) {
+    _0x1c31f0 = _0x104f5b === _0x5d582b - 1 && !_0x4716b2 ? lunarInfo[_0x28e7ee - 1900] & 65536 ? 30 : 29 : lunarInfo[_0x28e7ee - 1900] & 65536 >> _0x5d582b ? 30 : 29;
+    if (_0x4716b2 && _0x5d582b === _0x104f5b + 1) {
+      _0x4716b2 = false;
+    } else {
+      _0x104f5b > 0 && _0x5d582b === _0x104f5b + 1 && !_0x4716b2 && (_0x4716b2 = true, --_0x5d582b);
+    }
+    _0xf90a2c -= _0x1c31f0;
+  }
+  _0xf90a2c < 0 && (_0xf90a2c += _0x1c31f0, --_0x5d582b);
+  if (_0x5d582b < 1) {
+    _0x5d582b = 1;
+  }
+  if (_0x5d582b > 12) {
+    _0x5d582b = 12;
+  }
+  return {
+    m: _0x5d582b,
+    d: Math.floor(_0xf90a2c) + 1
+  };
+}
+function getMansion(_0x5678bf) {
+  const _0x53aa9b = new Date(1900, 0, 31);
+  const _0x2c41a8 = Math.floor((_0x5678bf - _0x53aa9b) / 86400000);
+  return twentyEightMansions[(_0x2c41a8 % 28 + 28) % 28];
+}
+function isAuspiciousDay(_0x12d542) {
+  const _0x1a9b37 = getYellowBlackDay(_0x12d542);
+  const _0x4a7bfd = getMansion(_0x12d542);
+  const _0x1dc8bc = ["除", "危", "定", "执", "成", "开"];
+  const _0x1a6ed2 = ["角", "房", "尾", "箕", "斗", "室", "壁", "娄", "胃", "毕", "参", "井", "张", "轸"];
+  return _0x1dc8bc.includes(_0x1a9b37) && _0x1a6ed2.includes(_0x4a7bfd);
+}
+function getTraditionalYiJi(_0x1acd7a) {
+  const _0x25ee30 = getStemBranchDay(_0x1acd7a);
+  const _0x1ff891 = getYellowBlackDay(_0x1acd7a);
+  const _0x2be285 = isAuspiciousDay(_0x1acd7a);
+  let _0x128b39 = [];
+  let _0x76bcfa = [];
+  let _0x8cfe73 = _0x25ee30[0];
+  if (["甲", "乙"].includes(_0x8cfe73)) {
+    _0x128b39.push("祭祀", "祈福", "入学", "栽种");
+    _0x76bcfa.push("动土", "开市", "破屋");
+  } else {
+    if (["丙", "丁"].includes(_0x8cfe73)) {
+      _0x128b39.push("嫁娶", "开市", "出行");
+      _0x76bcfa.push("祭祀", "动土", "安葬");
+    } else {
+      if (["戊", "己"].includes(_0x8cfe73)) {
+        _0x128b39.push("修造", "动土", "入宅");
+        _0x76bcfa.push("开市", "嫁娶", "出行");
+      } else {
+        ["庚", "辛"].includes(_0x8cfe73) ? (_0x128b39.push("求医", "诉讼", "交易"), _0x76bcfa.push("祈福", "祭祀", "安床")) : (_0x128b39.push("出行", "移徙", "纳财"), _0x76bcfa.push("修造", "动土", "开仓"));
+      }
+    }
+  }
+  const _0x811314 = {
+    "建": [["祭祀", "祈福"], ["嫁娶", "开市"]],
+    "除": [["治病", "扫舍"], ["出行", "诉讼"]],
+    "满": [["祭祀", "开市"], ["嫁娶", "安葬"]],
+    "平": [["修造", "安床"], ["开市", "交易"]],
+    "定": [["嫁娶", "订盟"], ["词讼", "开渠"]],
+    "执": [["捕捉", "破土"], ["嫁娶", "移徙"]],
+    "破": [["破屋", "坏垣"], ["嫁娶", "开市"]],
+    "危": [["安床", "入宅"], ["破土", "开渠"]],
+    "成": [["嫁娶", "开市"], ["造桥", "安床"]],
+    "收": [["纳财", "交易"], ["开市", "安葬"]],
+    "开": [["开市", "交易"], ["破土", "安葬"]],
+    "闭": [["筑堤", "补垣"], ["开市", "出行"]]
+  };
+  _0x811314[_0x1ff891] && (_0x128b39.push(..._0x811314[_0x1ff891][0]), _0x76bcfa.push(..._0x811314[_0x1ff891][1]));
+  if (_0x2be285) {
+    _0x128b39.push("嫁娶", "开市", "入宅");
+  } else {
+    _0x76bcfa.push("嫁娶", "开市", "出行");
+  }
+  return {
+    yi: [...new Set(_0x128b39)].slice(0, 6),
+    ji: [...new Set(_0x76bcfa)].slice(0, 6)
+  };
+}
+function getYiJiSimple(_0x1e6d9f, _0x425b2a) {
+  const _0x95ebc9 = getTraditionalYiJi(_0x1e6d9f);
+  return _0x425b2a === 0 ? _0x95ebc9.yi : _0x95ebc9.ji;
+}
+function getWeekOfYear(_0xaf582f) {
+  const _0x2135da = new Date(Date.UTC(_0xaf582f.getFullYear(), _0xaf582f.getMonth(), _0xaf582f.getDate()));
+  const _0x361143 = _0x2135da.getUTCDay() || 7;
+  _0x2135da.setUTCDate(_0x2135da.getUTCDate() + 4 - _0x361143);
+  const _0x6968d9 = new Date(Date.UTC(_0x2135da.getUTCFullYear(), 0, 1));
+  return Math.ceil(((_0x2135da - _0x6968d9) / 86400000 + 1) / 7);
+}
+function getDayOfYear(_0x393ec9) {
+  return Math.floor((_0x393ec9 - new Date(_0x393ec9.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+}
+function pad(_0x35e501) {
+  return _0x35e501 < 10 ? "0" + _0x35e501 : _0x35e501;
+}
+await Runing(CaishowWidget, args.widgetParameter, false);
