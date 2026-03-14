@@ -1,2660 +1,5405 @@
-//Sat Jan 31 2026 02:44:56 GMT+0000 (Coordinated Universal Time)
+//Sat Mar 14 2026 09:09:06 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
-const ScriptVersion = "1.1.4";
-module.exports.ScriptVersion = ScriptVersion;
-if (typeof require === "undefined") {
-  require = importModule;
-}
-const {
-  DmYY,
-  Runing
-} = require("./DmYY");
-const FM = FileManager.local();
-const BASE_DIR = FM.joinPath(FM.libraryDirectory(), "Caishow_Data_OM");
-if (!FM.fileExists(BASE_DIR)) {
-  FM.createDirectory(BASE_DIR);
-}
-try {
-  const cachePath = FM.joinPath(BASE_DIR, "weather_cache.json");
-  if (FM.fileExists(cachePath)) {
-    FM.remove(cachePath);
-  }
-} catch (a0_0x1953d2) {}
-const ConfigManager = {
-  getPath: _0x24820f => FM.joinPath(BASE_DIR, _0x24820f),
-  load: () => {
-    const _0xe2595d = FM.joinPath(BASE_DIR, "settings.json");
-    if (FM.fileExists(_0xe2595d)) {
-      try {
-        return JSON.parse(FM.readString(_0xe2595d));
-      } catch (_0x2f758f) {
-        return {};
+const e = (() => {
+  const e = e => e in globalThis;
+  switch (!0) {
+    case e("$task"):
+      {
+        return "Quantumult X";
       }
-    }
-    return {};
-  },
-  save: _0x88e776 => {
-    try {
-      FM.writeString(FM.joinPath(BASE_DIR, "settings.json"), JSON.stringify(_0x88e776));
-    } catch (_0x1eeaf1) {}
-  },
-  saveCache: (_0x274d9e, _0x1c1f61) => {
-    try {
-      FM.writeString(FM.joinPath(BASE_DIR, _0x274d9e), JSON.stringify(_0x1c1f61));
-    } catch (_0x5c2e83) {}
-  },
-  readCache: _0xb5a06a => {
-    try {
-      const _0x21b680 = FM.joinPath(BASE_DIR, _0xb5a06a);
-      if (FM.fileExists(_0x21b680)) {
-        return JSON.parse(FM.readString(_0x21b680));
+    case e("$loon"):
+      {
+        return "Loon";
       }
-    } catch (_0x106398) {}
-    return null;
-  },
-  saveImg: (_0x4799f7, _0x1dce2b) => {
-    try {
-      FM.writeImage(FM.joinPath(BASE_DIR, _0x4799f7), _0x1dce2b);
-    } catch (_0x476d44) {}
-  },
-  getImg: _0x312972 => {
-    const _0x1060cd = FM.joinPath(BASE_DIR, _0x312972);
-    return FM.fileExists(_0x1060cd) ? FM.readImage(_0x1060cd) : null;
-  },
-  rmImg: _0x1dcb01 => {
-    try {
-      FM.remove(FM.joinPath(BASE_DIR, _0x1dcb01));
-    } catch (_0x312c3d) {}
-  },
-  clear: () => {
-    try {
-      if (FM.fileExists(BASE_DIR)) {
-        const _0x3d1637 = FM.listContents(BASE_DIR);
-        for (const _0x566ac3 of _0x3d1637) FM.remove(FM.joinPath(BASE_DIR, _0x566ac3));
+    case e("$rocket"):
+      {
+        return "Shadowrocket";
       }
-    } catch (_0x3d136c) {}
-  }
-};
-const lunarInfo = [19416, 19168, 42352, 21717, 53856, 55632, 91476, 22176, 39632, 21970, 19168, 42422, 42192, 53840, 119381, 46400, 54944, 44450, 38320, 84343, 18800, 42160, 46261, 27216, 27968, 109396, 11104, 38256, 21234, 18800, 25958, 54432, 59984, 28309, 23248, 11104, 100067, 37600, 116951, 51536, 54432, 120998, 46416, 22176, 107956, 9680, 37584, 53938, 43344, 46423, 27808, 46416, 86869, 19872, 42448, 83315, 21200, 43432, 59728, 27296, 44710, 43856, 19296, 43748, 42352, 21088, 62051, 55632, 23383, 22176, 38608, 19925, 19152, 42192, 54484, 53840, 54616, 46400, 46496, 103846, 38320, 18864, 43380, 42160, 45690, 27216, 27968, 44870, 43872, 38256, 19189, 18800, 25776, 29859, 59984, 27480, 23232, 43872, 38613, 37600, 51552, 55636, 54432, 55888, 30034, 22176, 43959, 9680, 37584, 51893, 43344, 46240, 47780, 44368, 21977, 19360, 42416, 86390, 21168, 43312, 31060, 27296, 44368, 23378, 19296, 42726, 42208, 53856, 60005, 54576, 23200, 30371, 38608, 3031, 19152, 42192, 118966, 53840, 54560, 56645, 46496, 22224, 21938, 18864, 42359, 42160, 43600, 111189, 27936, 44448];
-const weekTitle = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-const weekTitleShort = ["日", "一", "二", "三", "四", "五", "六"];
-const zodiacAnimals = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"];
-const heavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
-const earthlyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
-const yellowBlackDays = ["建", "除", "满", "平", "定", "执", "破", "危", "成", "收", "开", "闭"];
-const twentyEightMansions = ["角", "亢", "氐", "房", "心", "尾", "箕", "斗", "牛", "女", "虚", "危", "室", "壁", "奎", "娄", "胃", "昴", "毕", "觜", "参", "井", "鬼", "柳", "星", "张", "翼", "轸"];
-const baseConfigKeys = {
-  size_greeting: "100",
-  size_date: "100",
-  size_lunar: "100",
-  size_info: "100",
-  size_weather: "100",
-  size_weatherLarge: "100",
-  size_poetry: "100",
-  size_timeInfo: "100",
-  size_calendar: "100",
-  size_holiday: "100",
-  size_schedule_title: "100",
-  size_schedule_item: "100",
-  size_lotteryTitle: "100",
-  size_lotteryItem: "100",
-  size_lotteryInfo: "100",
-  show_battery: "true",
-  show_poetry: "true",
-  birthday_list: "",
-  color_greeting: "#ffffff",
-  color_date: "#ffcc99",
-  color_lunar: "#99ccff",
-  color_info: "#ffffff",
-  color_weather: "#ffffff",
-  color_weatherLarge: "#ffffff",
-  color_poetry: "#ffffff",
-  color_timeInfo: "#99ccff",
-  color_calendar: "#ffffff",
-  color_holiday: "#ffffff",
-  color_schedule_title: "#ffffff",
-  color_schedule_bg: "#666666",
-  color_schedule_item_1: "#ffffff",
-  color_schedule_item_2: "#ffffff",
-  color_schedule_item_3: "#ffffff",
-  color_schedule_item_4: "#ffffff",
-  color_schedule_item_5: "#ffffff",
-  color_schedule_item_6: "#ffffff",
-  color_lotteryTitle: "#ffffff",
-  color_lotteryItem: "#ffffff",
-  color_lotteryInfo: "#99ccff",
-  color_bg: "#000000",
-  color_bg_2: "",
-  color_bg_day: "",
-  color_bg_2_day: "",
-  color_bg_night: "",
-  color_bg_2_night: "",
-  layout_med_left_x: "0",
-  layout_med_left_y: "0",
-  layout_med_right_x: "0",
-  layout_med_right_y: "0",
-  layout_lg_tl_x: "0",
-  layout_lg_tl_y: "0",
-  layout_lg_tr_x: "0",
-  layout_lg_tr_y: "0",
-  layout_lg_mid_x: "0",
-  layout_lg_mid_y: "0",
-  layout_lg_week_x: "0",
-  layout_lg_week_y: "0",
-  layout_lg_cal_x: "0",
-  layout_lg_cal_y: "0",
-  layout_lg_holiday_x: "0",
-  layout_lg_holiday_y: "0",
-  layout_lg_schedule_x: "0",
-  layout_lg_schedule_y: "0",
-  space_week_w: "28",
-  space_cal_w: "28",
-  space_cal_h: "3",
-  space_holiday_h: "2",
-  space_schedule_h: "2",
-  schedule_count: "4",
-  schedule_offset: "0"
-};
-class CaishowWidget extends DmYY {
-  constructor(_0x42aa8a) {
-    super(_0x42aa8a);
-    this.name = "全能日历天气";
-    this.en = "CalendarWeather";
-    this.logo = "https://raw.githubusercontent.com/Orz-3/task/master/scriptable/icon/caiyun.png";
-    this.defaultData = {
-      apiKey: "",
-      lockLocation: false,
-      fixedLng: "",
-      fixedLat: "",
-      fixedCity: "",
-      fixedSubCity: "",
-      refreshInterval: "60",
-      styleModel: "classic",
-      global_font_size: "100",
-      lottery_type: "none",
-      text_greeting_night: "",
-      text_greeting_morning: "",
-      text_greeting_noon: "",
-      text_greeting_afternoon: "",
-      text_greeting_evening: ""
-    };
-    for (const [_0x4f48b5, _0x35f753] of Object.entries(baseConfigKeys)) {
-      this.defaultData["s1_" + _0x4f48b5] = _0x35f753;
-      this.defaultData["s2_" + _0x4f48b5] = _0x35f753;
-      this.defaultData["s3_" + _0x4f48b5] = _0x35f753;
-      this.defaultData["s4_" + _0x4f48b5] = _0x35f753;
-    }
-    this.defaultData.s1_space_week_w = "30";
-    this.defaultData.s1_space_cal_w = "27.2";
-    this.defaultData.s3_size_calendar = "89";
-    this.defaultData.s4_size_calendar = "89";
-    this.defaultData.s2_space_week_w = "30";
-    this.defaultData.s2_space_cal_w = "27.2";
-    this.defaultData.s3_space_week_w = "9.1";
-    this.defaultData.s3_space_cal_w = "6.2";
-    this.defaultData.s3_space_cal_h = "0";
-    this.defaultData.s3_space_holiday_h = "4";
-    this.defaultData.s4_space_week_w = "9.1";
-    this.defaultData.s4_space_cal_w = "6.2";
-    this.defaultData.s4_space_cal_h = "0";
-    this.defaultData.s4_space_schedule_h = "0";
-    this.defaultData.s4_schedule_count = "4";
-    const _0x35f488 = ConfigManager.load();
-    this.settings = Object.assign({}, this.defaultData, _0x35f488);
-    this.Run();
-  }
-  saveSettings(_0x306035 = true) {
-    ConfigManager.save(this.settings);
-    super.saveSettings(false);
-    if (_0x306035) {
-      this.notify("设置成功", "配置已保存到本地文件，稍后刷新");
-    }
-    return JSON.stringify(this.settings);
-  }
-  Run() {
-    config.runsInApp && (this.registerAction("基础设置", async () => {
-      await this.setBasicConfig();
-    }, {
-      name: "gearshape.fill",
-      color: "#007aff",
-      desc: "定位、API、刷新频率"
-    }), this.registerAction("彩票与问候", async () => {
-      await this.handleGreetingSettings(this.getActivePrefix());
-    }, {
-      name: "ticket.fill",
-      color: "#FF2D55",
-      desc: "选择显示的彩票或问候语"
-    }), this.registerAction("第一套（三天天气）", async () => {
-      await this.handleStyleSettingsMenu("s1");
-    }, {
-      name: "doc.text.image",
-      color: "#FF9500",
-      desc: "第一套 (经典)"
-    }), this.registerAction("第二套（七天天气）", async () => {
-      await this.handleStyleSettingsMenu("s2");
-    }, {
-      name: "doc.text",
-      color: "#34C759",
-      desc: "第二套 (简约)"
-    }), this.registerAction("第三套（节假日倒计时）", async () => {
-      await this.handleStyleSettingsMenu("s3");
-    }, {
-      name: "gift.fill",
-      color: "#FF2D55",
-      desc: "第三套 (节日)"
-    }), this.registerAction("第四套（日历日程）", async () => {
-      await this.handleStyleSettingsMenu("s4");
-    }, {
-      name: "calendar.badge.clock",
-      color: "#007AFF",
-      desc: "第四套 (日程)"
-    }), this.registerAction("组件切换", async () => {
-      await this.handleStyleSwitch();
-    }, {
-      name: "arrow.triangle.2.circlepath",
-      color: "#5856d6",
-      desc: "切换当前显示样式"
-    }), this.registerAction("重置配置", async () => {
-      const _0x3c4d29 = new Alert();
-      _0x3c4d29.title = "确认重置？";
-      _0x3c4d29.message = "所有个性化颜色、布局、Key都将丢失。";
-      _0x3c4d29.addAction("确认重置");
-      _0x3c4d29.addCancelAction("取消");
-      const _0x559e8b = await _0x3c4d29.presentAlert();
-      _0x559e8b === 0 && (ConfigManager.clear(), this.settings = Object.assign({}, this.defaultData), this.saveSettings(false), this.notify("已重置", "请重新运行脚本"));
-    }, {
-      name: "trash.fill",
-      color: "#ff3b30",
-      desc: "修复所有问题"
-    }), this.registerAction("检查更新", async () => {
-      await this.updateScript(false);
-    }, {
-      name: "cloud.fill",
-      color: "#007aff",
-      desc: "当前版本 v" + ScriptVersion
-    }), Timer.schedule(800, false, async () => {
-      await this.updateScript(true);
-    }));
-  }
-  getActivePrefix() {
-    let _0x4a7d9f = this.settings.styleModel || "classic";
-    if (_0x4a7d9f === "modern") {
-      return "s2";
-    }
-    if (_0x4a7d9f === "holiday") {
-      return "s3";
-    }
-    if (_0x4a7d9f === "schedule") {
-      return "s4";
-    }
-    return "s1";
-  }
-  async updateScript(_0x566798 = false) {
-    const _0x33c813 = "https://raw.githubusercontent.com/loveyuwy/hao/refs/heads/main/wtk.js?ts=" + Date.now();
-    const _0x3fb20c = new Alert();
-    try {
-      const _0x59036e = new Request(_0x33c813);
-      _0x59036e.method = "GET";
-      const _0x265a6d = await _0x59036e.loadString();
-      const _0x29b4fa = _0x265a6d.match(/const\s+ScriptVersion\s*=\s*["'](.*?)["']/);
-      const _0x2f4c19 = _0x29b4fa ? _0x29b4fa[1] : null;
-      console.log("[更新检测] 本地: " + ScriptVersion + ", 远程: " + _0x2f4c19 + ", 静默: " + _0x566798);
-      if (!_0x2f4c19) {
-        if (_0x566798) {
-          return;
-        }
-        _0x3fb20c.title = "⚠️ 无法检测远程版本";
-        _0x3fb20c.message = "无法解析远程文件版本号，是否强制覆盖？";
-        _0x3fb20c.addAction("强制更新");
-        _0x3fb20c.addCancelAction("取消");
-        if ((await _0x3fb20c.presentAlert()) === 0) {
-          await this.doUpdate(_0x265a6d);
-        }
+    case e("Egern"):
+      {
+        return "Egern";
+      }
+    case Boolean(globalThis.$environment?.["surge-version"]):
+      {
+        return "Surge";
+      }
+    case Boolean(globalThis.$environment?.["stash-version"]):
+      {
+        return "Stash";
+      }
+    case Boolean(globalThis.process?.versions?.node):
+      {
+        return "Node.js";
+      }
+    default:
+      {
         return;
       }
-      const _0x15fab7 = (_0x42ad55, _0x33f7a3) => {
-        const _0x14f499 = _0x42ad55.split(".").map(Number);
-        const _0xd3942f = _0x33f7a3.split(".").map(Number);
-        const _0x1aa36a = Math.max(_0x14f499.length, _0xd3942f.length);
-        for (let _0x14c1f0 = 0; _0x14c1f0 < _0x1aa36a; _0x14c1f0++) {
-          const _0x33f478 = _0x14f499[_0x14c1f0] || 0;
-          const _0x3fde72 = _0xd3942f[_0x14c1f0] || 0;
-          if (_0x33f478 > _0x3fde72) {
-            return 1;
-          }
-          if (_0x33f478 < _0x3fde72) {
-            return -1;
-          }
-        }
-        return 0;
-      };
-      if (_0x15fab7(_0x2f4c19, ScriptVersion) > 0) {
-        _0x3fb20c.title = "🚀 发现新版本 v" + _0x2f4c19;
-        _0x3fb20c.message = "当前版本: v" + ScriptVersion + "\n建议您立即更新以获得最新功能。";
-        _0x3fb20c.addAction("立即更新");
-        _0x3fb20c.addCancelAction("稍后");
-        const _0x5932f2 = await _0x3fb20c.presentAlert();
-        if (_0x5932f2 === 0) {
-          await this.doUpdate(_0x265a6d);
-        }
-      } else {
-        if (_0x566798) {
-          return;
-        }
-        _0x3fb20c.title = "✅ 已是最新版本";
-        _0x3fb20c.message = "远程版本: v" + _0x2f4c19 + "\n当前版本: v" + ScriptVersion + "\n\n您的版本是最新的（或比远程版本更高）。";
-        _0x3fb20c.addAction("好的");
-        await _0x3fb20c.presentAlert();
-      }
-    } catch (_0x3fe19c) {
-      console.log("[更新检测失败] " + _0x3fe19c.message);
-      if (_0x566798) {
-        return;
-      }
-      _0x3fb20c.title = "❌ 更新检测失败";
-      _0x3fb20c.message = "网络请求错误：\n" + _0x3fe19c.message;
-      _0x3fb20c.addAction("确定");
-      await _0x3fb20c.presentAlert();
-    }
   }
-  async doUpdate(_0x4578bb) {
-    if (_0x4578bb && _0x4578bb.includes("CaishowWidget")) {
-      const _0x38c2b9 = FileManager.local();
-      _0x38c2b9.writeString(module.filename, _0x4578bb);
-      const _0x5216da = new Alert();
-      _0x5216da.title = "✅ 更新成功";
-      _0x5216da.message = "脚本已覆盖，请退出并重新运行脚本以生效。";
-      _0x5216da.addAction("好的");
-      await _0x5216da.presentAlert();
-    } else {
-      this.notify("更新失败", "下载的内容似乎不正确");
-    }
-  }
-  async handleStyleSettingsMenu(_0x508314) {
-    let _0x3a26a7 = "经典";
-    if (_0x508314 === "s2") {
-      _0x3a26a7 = "简约";
-    }
-    if (_0x508314 === "s3") {
-      _0x3a26a7 = "节日";
-    }
-    if (_0x508314 === "s4") {
-      _0x3a26a7 = "日程";
-    }
-    let _0x375e6c = [{
-      title: "布局微调",
-      val: "menu_layout",
-      icon: {
-        name: "arrow.up.and.down.and.arrow.left.and.right",
-        color: "#5856D6"
-      },
-      desc: "调整组件位置",
-      onClick: async () => await this.handleLayoutMenu(_0x508314)
-    }, {
-      title: "间距/数量",
-      val: "menu_spacing",
-      icon: {
-        name: "arrow.up.left.and.arrow.down.right",
-        color: "#FF2D55"
-      },
-      desc: "调整行列间距/数量",
-      onClick: async () => await this.handleSpacingMenu(_0x508314)
-    }, {
-      title: "显示开关",
-      val: "menu_vis",
-      icon: {
-        name: "eye.fill",
-        color: "#007AFF"
-      },
-      desc: "隐藏/显示部分元素",
-      onClick: async () => await this.handleVisibilityMenu(_0x508314, _0x3a26a7)
-    }, {
-      title: "字体大小",
-      val: "menu_size",
-      icon: {
-        name: "textformat.size",
-        color: "#FF9500"
-      },
-      desc: "调整全局或局部缩放",
-      onClick: async () => await this.handleSizeMenu(_0x508314)
-    }, {
-      title: "颜色配置",
-      val: "menu_color",
-      icon: {
-        name: "paintpalette.fill",
-        color: "#34C759"
-      },
-      desc: "自定义文字颜色",
-      onClick: async () => await this.handleColorMenu(_0x508314)
-    }, {
-      title: "背景设置",
-      val: "menu_bg",
-      icon: {
-        name: "photo.fill",
-        color: "#007AFF"
-      },
-      desc: "日夜模式/图片/渐变",
-      onClick: async () => await this.handleBackgroundMenu(_0x508314)
-    }];
-    _0x508314 === "s3" && _0x375e6c.splice(1, 0, {
-      title: "生日管理",
-      val: "menu_birthday",
-      icon: {
-        name: "cake.fill",
-        color: "#FF2D55"
-      },
-      desc: "添加/管理家人朋友生日",
-      onClick: async () => await this.handleBirthdaySettings(_0x508314)
-    });
-    await this.renderAppView([{
-      title: _0x3a26a7 + "配置菜单",
-      menu: _0x375e6c
-    }]);
-  }
-  async handleBirthdaySettings(_0x348f88) {
-    let _0x414584 = _0x348f88 + "_birthday_list";
-    let _0x40797c = this.settings[_0x414584] || "";
-    let _0x3f1564 = _0x40797c.split("\n").filter(_0x5935bd => _0x5935bd.trim() !== "");
-    const _0x586cb0 = new Alert();
-    _0x586cb0.title = "🎂 生日管理";
-    _0x586cb0.message = "【输入说明】\n请在下方输入框中填写，格式为：\n姓名,日期,类型\n\n【示例】\n老公,10-27,农历\n老婆,05-20,公历\n\n(输入框留空则不显示)";
-    for (let _0x4bb504 = 0; _0x4bb504 < 10; _0x4bb504++) {
-      let _0x355896 = _0x3f1564[_0x4bb504] || "";
-      _0x586cb0.addTextField("姓名,MM-DD,公历/农历", _0x355896);
-    }
-    _0x586cb0.addAction("保存生效");
-    _0x586cb0.addCancelAction("取消");
-    const _0x4d4bc4 = await _0x586cb0.presentAlert();
-    if (_0x4d4bc4 === 0) {
-      let _0x32905b = [];
-      for (let _0x2b03c7 = 0; _0x2b03c7 < 10; _0x2b03c7++) {
-        let _0x31feb0 = _0x586cb0.textFieldValue(_0x2b03c7).trim();
-        _0x31feb0 && _0x32905b.push(_0x31feb0);
-      }
-      this.settings[_0x414584] = _0x32905b.join("\n");
-      this.saveSettings();
-    }
-  }
-  async handleVisibilityMenu(_0x3729c7, _0x4316b5) {
-    const _0x41afa3 = _0x3729c7 + "_show_battery";
-    const _0x5b06ee = _0x3729c7 + "_show_poetry";
-    const _0x5e2e85 = _0x2c2482 => {
-      let _0x23d05a = this.settings[_0x2c2482];
-      return _0x23d05a === undefined || _0x23d05a === null || _0x23d05a === "true";
-    };
-    let _0x2b8584 = _0x5e2e85(_0x41afa3);
-    let _0x2e53a9 = _0x5e2e85(_0x5b06ee);
-    let _0x2bb87a = _0x2b8584 ? "当前状态：✅ 已开启" : "当前状态：🔴 已关闭";
-    let _0x256425 = _0x2e53a9 ? "当前状态：✅ 已开启" : "当前状态：🔴 已关闭";
-    await this.renderAppView([{
-      title: "显示设置 - " + _0x4316b5 + "模式",
-      menu: [{
-        title: "🔋 电量显示",
-        desc: _0x2bb87a,
-        icon: {
-          name: "battery.100",
-          color: _0x2b8584 ? "#34C759" : "#FF3B30"
-        },
-        val: "toggle_bat",
-        onClick: async () => {
-          const _0xd73ec6 = new Alert();
-          _0xd73ec6.title = "设置 " + _0x4316b5 + " 电量显示";
-          _0xd73ec6.addAction(_0x2b8584 ? "开启 (当前)" : "开启");
-          _0xd73ec6.addAction(!_0x2b8584 ? "关闭 (当前)" : "关闭");
-          _0xd73ec6.addCancelAction("取消");
-          const _0x10a16c = await _0xd73ec6.presentSheet();
-          if (_0x10a16c !== -1) {
-            const _0x3d540b = _0x10a16c === 0 ? "true" : "false";
-            this.settings[_0x41afa3] = _0x3d540b;
-            this.saveSettings(false);
-            this.notify("设置已保存", _0x10a16c === 0 ? "已开启电量显示" : "已关闭电量显示");
-            await this.handleVisibilityMenu(_0x3729c7, _0x4316b5);
-          }
-        }
-      }, {
-        title: "📜 诗词与天气联动",
-        desc: _0x256425 + (_0x2e53a9 ? " (显诗词+3天天气)" : " (隐诗词+7天天气)"),
-        icon: {
-          name: "text.quote",
-          color: _0x2e53a9 ? "#007AFF" : "#FF3B30"
-        },
-        val: "toggle_poe",
-        onClick: async () => {
-          const _0x401c46 = new Alert();
-          _0x401c46.title = "设置 " + _0x4316b5 + " 诗词显示";
-          _0x401c46.addAction(_0x2e53a9 ? "开启 (当前)" : "开启");
-          _0x401c46.addAction(!_0x2e53a9 ? "关闭 (当前)" : "关闭");
-          _0x401c46.addCancelAction("取消");
-          const _0x13c841 = await _0x401c46.presentSheet();
-          if (_0x13c841 !== -1) {
-            const _0xe9d2ad = _0x13c841 === 0 ? "true" : "false";
-            this.settings[_0x5b06ee] = _0xe9d2ad;
-            this.saveSettings(false);
-            this.notify("设置已保存", _0x13c841 === 0 ? "已开启诗词" : "已关闭诗词");
-            await this.handleVisibilityMenu(_0x3729c7, _0x4316b5);
-          }
-        }
-      }]
-    }]);
-  }
-  async handleGreetingSettings() {
-    const _0x1aa09f = [{
-      t: "🚫 不显示彩票 (使用问候语)",
-      v: "none"
-    }, {
-      t: "🟡🔵 大乐透 (DLT)",
-      v: "dlt"
-    }, {
-      t: "🔴🔵 双色球 (SSQ)",
-      v: "ssq"
-    }, {
-      t: "🔢 排列三 (PL3)",
-      v: "pl3"
-    }, {
-      t: "🎲 福彩3D (FC3D)",
-      v: "fc3d"
-    }, {
-      t: "7️⃣ 七星彩 (QXC)",
-      v: "qxc"
-    }, {
-      t: "🌈 七乐彩 (QLC)",
-      v: "qlc"
-    }, {
-      t: "🖐 排列五 (PL5)",
-      v: "pl5"
-    }];
-    let _0x116a5e = this.settings.lottery_type || "none";
-    let _0xd009f5 = _0x1aa09f.find(_0x1a6ad2 => _0x1a6ad2.v === _0x116a5e) || _0x1aa09f[0];
-    await this.renderAppView([{
-      title: "彩票显示设置",
-      menu: [{
-        title: "点击选择模式",
-        val: "click_select_lottery_type",
-        desc: _0xd009f5.t,
-        icon: {
-          name: "checklist",
-          color: "#FF2D55"
-        },
-        onClick: async () => {
-          const _0x18d412 = new Alert();
-          _0x18d412.title = "选择显示的彩票";
-          _0x18d412.message = "选择后将替换问候语位置显示开奖信息";
-          _0x1aa09f.forEach(_0x3525e6 => {
-            _0x3525e6.v === _0x116a5e ? _0x18d412.addAction("✅ " + _0x3525e6.t) : _0x18d412.addAction(_0x3525e6.t);
-          });
-          _0x18d412.addCancelAction("取消");
-          const _0x27d8e8 = await _0x18d412.presentSheet();
-          if (_0x27d8e8 !== -1) {
-            const _0x37bb72 = _0x1aa09f[_0x27d8e8];
-            this.settings.lottery_type = _0x37bb72.v;
-            this.saveSettings(false);
-            this.notify("设置已更新", "当前模式：" + _0x37bb72.t);
-          }
-        }
-      }]
-    }, {
-      title: "自定义问候语 (当彩票选择\"不显示\"时生效)",
-      menu: [{
-        title: "凌晨/深夜 (23:00-05:00)",
-        type: "input",
-        val: "text_greeting_night",
-        placeholder: "默认: 🦉火华,可以来一发了~"
-      }, {
-        title: "早上 (05:00-11:00)",
-        type: "input",
-        val: "text_greeting_morning",
-        placeholder: "默认: 💫火华,早上心情美美哒~"
-      }, {
-        title: "中午 (11:00-13:00)",
-        type: "input",
-        val: "text_greeting_noon",
-        placeholder: "默认: 🥳火华,中午好呀~"
-      }, {
-        title: "下午 (13:00-18:00)",
-        type: "input",
-        val: "text_greeting_afternoon",
-        placeholder: "默认: 🐡火华,下午好呀~"
-      }, {
-        title: "晚上 (18:00-23:00)",
-        type: "input",
-        val: "text_greeting_evening",
-        placeholder: "默认: 🌙火华,（晚上好呀）"
-      }]
-    }]);
-    this.saveSettings(false);
-  }
-  async handleLayoutMenu(_0x43a860) {
-    const _0x42414e = [{
-      title: "[中号] 左侧信息区",
-      code: "med_left"
-    }, {
-      title: "[中号] 右侧天气区",
-      code: "med_right"
-    }, {
-      title: "[大号] 左上信息区",
-      code: "lg_tl"
-    }, {
-      title: "[大号] 右上天气区",
-      code: "lg_tr"
-    }, {
-      title: "[大号] 中间黄历条",
-      code: "lg_mid"
-    }, {
-      title: "[大号] 日历-星期栏",
-      code: "lg_week"
-    }, {
-      title: "[大号] 日历-日期区",
-      code: "lg_cal"
-    }];
-    _0x43a860 === "s3" && _0x42414e.push({
-      title: "[大号] 左下-节日倒数",
-      code: "lg_holiday"
-    });
-    _0x43a860 === "s4" && _0x42414e.push({
-      title: "[大号] 左下-日历事件",
-      code: "lg_schedule"
-    });
-    await this.renderAppView([{
-      title: "选择调整区域 (" + _0x43a860 + ")",
-      menu: _0x42414e.map(_0x5b95da => ({
-        title: _0x5b95da.title,
-        val: "layout_" + _0x5b95da.code,
-        icon: {
-          name: "square.dashed",
-          color: "#8E8E93"
-        },
-        desc: "点击设置XY偏移",
-        onClick: async () => await this.renderLayoutInput(_0x5b95da.title, _0x5b95da.code, _0x43a860)
-      }))
-    }]);
-  }
-  async renderLayoutInput(_0x423e83, _0x3bea2d, _0x30c971) {
-    await this.renderAppView([{
-      title: _0x423e83 + " - 偏移 (X/Y)",
-      menu: [{
-        title: "X轴偏移",
-        desc: "正右负左",
-        type: "input",
-        val: _0x30c971 + "_layout_" + _0x3bea2d + "_x",
-        placeholder: "0"
-      }, {
-        title: "Y轴偏移",
-        desc: "正下负上",
-        type: "input",
-        val: _0x30c971 + "_layout_" + _0x3bea2d + "_y",
-        placeholder: "0"
-      }]
-    }]);
-    this.saveSettings(false);
-  }
-  async handleSpacingMenu(_0x4a1d9e) {
-    let _0x30cc3c = [{
-      title: "星期栏-横向",
-      desc: "(左右间距)",
-      type: "input",
-      val: _0x4a1d9e + "_space_week_w",
-      placeholder: "28"
-    }, {
-      title: "日期区-横向",
-      desc: "(左右间距,调小防溢出)",
-      type: "input",
-      val: _0x4a1d9e + "_space_cal_w",
-      placeholder: "28"
-    }, {
-      title: "日期区-行高",
-      desc: "(上下行距)",
-      type: "input",
-      val: _0x4a1d9e + "_space_cal_h",
-      placeholder: "3"
-    }];
-    _0x30cc3c.push({
-      title: "日程关键词(重要)",
-      desc: "(只显示含此词的日程,留空显示所有)",
-      type: "input",
-      val: _0x4a1d9e + "_schedule_keyword",
-      placeholder: "例如: 柴油"
-    });
-    _0x4a1d9e !== "s4" && _0x30cc3c.push({
-      title: "指定显示第几条",
-      desc: "(筛选后的第几条, 0是第一条)",
-      type: "input",
-      val: _0x4a1d9e + "_schedule_index",
-      placeholder: "0"
-    });
-    _0x4a1d9e === "s3" && _0x30cc3c.push({
-      title: "倒计时-行高",
-      type: "input",
-      val: _0x4a1d9e + "_space_holiday_h",
-      placeholder: "4"
-    });
-    _0x4a1d9e === "s4" && (_0x30cc3c.push({
-      title: "日程列表-行高",
-      type: "input",
-      val: _0x4a1d9e + "_space_schedule_h",
-      placeholder: "0"
-    }), _0x30cc3c.push({
-      title: "最大显示数量",
-      desc: "建议3或4",
-      type: "input",
-      val: _0x4a1d9e + "_schedule_count",
-      placeholder: "4"
-    }), _0x30cc3c.push({
-      title: "跳过指定序号",
-      desc: "如: 2,4 (跳过第2和第4个)",
-      type: "input",
-      val: _0x4a1d9e + "_schedule_offset",
-      placeholder: "2,4"
-    }));
-    await this.renderAppView([{
-      title: "间距调整 (" + _0x4a1d9e + ")",
-      menu: _0x30cc3c
-    }]);
-    this.saveSettings(false);
-  }
-  async handleSizeMenu(_0x321702) {
-    const _0x386b57 = [{
-      id: "greeting",
-      t: "问候语"
-    }, {
-      id: "lotteryTitle",
-      t: "彩票标题(期号)"
-    }, {
-      id: "lotteryItem",
-      t: "彩票开奖球号"
-    }, {
-      id: "lotteryInfo",
-      t: "今日开奖状态"
-    }, {
-      id: "date",
-      t: "公历日期"
-    }, {
-      id: "lunar",
-      t: "农历日期"
-    }, {
-      id: "info",
-      t: "电量与定位"
-    }, {
-      id: "weather",
-      t: "天气描述"
-    }, {
-      id: "weatherLarge",
-      t: "大温度数字"
-    }, {
-      id: "poetry",
-      t: "诗词与预报"
-    }, {
-      id: "timeInfo",
-      t: "底部时间条"
-    }, {
-      id: "calendar",
-      t: "月历区域"
-    }];
-    if (_0x321702 === "s3") {
-      _0x386b57.push({
-        id: "holiday",
-        t: "节日倒数"
-      });
-    }
-    _0x321702 === "s4" && (_0x386b57.push({
-      id: "schedule_title",
-      t: "日程标题"
-    }), _0x386b57.push({
-      id: "schedule_item",
-      t: "日程列表"
-    }));
-    const _0x31aafb = _0x386b57.map(_0x3d97ef => ({
-      title: _0x3d97ef.t,
-      type: "input",
-      val: _0x321702 + "_size_" + _0x3d97ef.id,
-      placeholder: "100"
-    }));
-    const _0x3e60fd = [{
-      title: "🌐 全局缩放",
-      desc: "所有文字按比例缩放(默认100)",
-      type: "input",
-      val: "global_font_size",
-      placeholder: "100"
-    }];
-    await this.renderAppView([{
-      title: "全局设置 (影响所有组件)",
-      menu: _0x3e60fd
-    }, {
-      title: "局部微调 (" + _0x321702 + ")",
-      menu: [{
-        title: "✏️ 修改局部数值",
-        val: "size_edit",
-        icon: {
-          name: "pencil",
-          color: "#007AFF"
-        },
-        desc: "进入单独调整",
-        onClick: async () => {
-          await this.renderAppView([{
-            title: "局部缩放 (百分比)",
-            menu: _0x31aafb
-          }]);
-          this.saveSettings(false);
-        }
-      }, {
-        title: "↩️ 恢复默认",
-        val: "size_reset",
-        icon: {
-          name: "arrow.counterclockwise",
-          color: "#FF3B30"
-        },
-        desc: "重置当前套系字体",
-        onClick: async () => {
-          _0x386b57.forEach(_0x53f469 => this.settings[_0x321702 + "_size_" + _0x53f469.id] = "100");
-          this.settings.global_font_size = "100";
-          this.saveSettings(false);
-          this.notify("已恢复", "字体大小已重置");
-        }
-      }]
-    }]);
-  }
-  async handleColorMenu(_0x5689f5) {
-    const _0x4b6909 = [{
-      id: "greeting",
-      t: "问候语"
-    }, {
-      id: "lotteryTitle",
-      t: "彩票标题"
-    }, {
-      id: "lotteryInfo",
-      t: "今日开奖状态"
-    }, {
-      id: "date",
-      t: "公历日期"
-    }, {
-      id: "lunar",
-      t: "农历日期"
-    }, {
-      id: "info",
-      t: "电量与定位"
-    }, {
-      id: "weather",
-      t: "天气描述"
-    }, {
-      id: "weatherLarge",
-      t: "大温度数字"
-    }, {
-      id: "poetry",
-      t: "诗词与预报"
-    }, {
-      id: "timeInfo",
-      t: "底部时间条"
-    }, {
-      id: "calendar",
-      t: "月历区域"
-    }];
-    if (_0x5689f5 === "s3") {
-      _0x4b6909.push({
-        id: "holiday",
-        t: "节日倒数"
-      });
-    }
-    if (_0x5689f5 === "s4") {
-      _0x4b6909.push({
-        id: "schedule_title",
-        t: "日程标题"
-      });
-      _0x4b6909.push({
-        id: "schedule_bg",
-        t: "日程背景(底框)"
-      });
-      for (let _0x350c8f = 1; _0x350c8f <= 6; _0x350c8f++) {
-        _0x4b6909.push({
-          id: "schedule_item_" + _0x350c8f,
-          t: "日程列表-第" + _0x350c8f + "行"
-        });
-      }
-    }
-    const _0x575303 = _0x4b6909.map(_0x33c1c9 => ({
-      title: _0x33c1c9.t,
-      type: "color",
-      val: _0x5689f5 + "_color_" + _0x33c1c9.id
-    }));
-    await this.renderAppView([{
-      title: "颜色配置 (" + _0x5689f5 + ")",
-      menu: [{
-        title: "🎨 修改颜色",
-        val: "color_edit",
-        icon: {
-          name: "paintpalette",
-          color: "#007AFF"
-        },
-        desc: "进入选色页面",
-        onClick: async () => {
-          await this.renderAppView([{
-            title: "自定义颜色",
-            menu: _0x575303
-          }]);
-          this.saveSettings(false);
-        }
-      }, {
-        title: "↩️ 恢复默认",
-        val: "color_reset",
-        icon: {
-          name: "arrow.counterclockwise",
-          color: "#FF3B30"
-        },
-        desc: "重置当前套系颜色",
-        onClick: async () => {
-          _0x4b6909.forEach(_0x26436d => this.settings[_0x5689f5 + "_color_" + _0x26436d.id] = baseConfigKeys["color_" + _0x26436d.id]);
-          this.saveSettings(false);
-          this.notify("已恢复", "颜色已重置");
-        }
-      }]
-    }]);
-  }
-  async handleBackgroundMenu(_0x5c4654) {
-    const _0x3512d9 = "bg_" + _0x5c4654 + ".jpg";
-    const _0x40fcd2 = "bg_" + _0x5c4654 + "_day.jpg";
-    const _0x34fb19 = "bg_" + _0x5c4654 + "_night.jpg";
-    await this.renderAppView([{
-      title: "背景模式 (" + _0x5c4654 + ")",
-      menu: [{
-        title: "🪄 制作透明背景",
-        val: "bg_make_transparent",
-        icon: {
-          name: "wand.and.stars",
-          color: "#FF2D55"
-        },
-        desc: "加载最新云端算法制作",
-        onClick: async () => await this.loadAndRunEditor(_0x5c4654)
-      }, {
-        title: "☀️ 白天模式 - 图片",
-        val: "bg_select_day",
-        icon: {
-          name: "sun.max.fill",
-          color: "#FF9500"
-        },
-        desc: "选择白天显示的图片",
-        onClick: async () => {
-          try {
-            let _0x4b5794 = await Photos.fromLibrary();
-            ConfigManager.saveImg(_0x40fcd2, _0x4b5794);
-            ConfigManager.saveImg(_0x3512d9, _0x4b5794);
-            this.notify("成功", "白天图片已保存");
-          } catch (_0x4d01b5) {}
-        }
-      }, {
-        title: "🌙 夜间模式 - 图片",
-        val: "bg_select_night",
-        icon: {
-          name: "moon.fill",
-          color: "#5856D6"
-        },
-        desc: "选择深色模式图片",
-        onClick: async () => {
-          try {
-            let _0x1a58b5 = await Photos.fromLibrary();
-            ConfigManager.saveImg(_0x34fb19, _0x1a58b5);
-            this.notify("成功", "夜间图片已保存");
-          } catch (_0x18ae93) {}
-        }
-      }, {
-        title: "☀️ 白天 - 颜色1 (主色)",
-        type: "color",
-        val: _0x5c4654 + "_color_bg_day",
-        desc: "无图片时显示"
-      }, {
-        title: "☀️ 白天 - 颜色2 (渐变)",
-        type: "color",
-        val: _0x5c4654 + "_color_bg_2_day",
-        desc: "可选: 设置后显示渐变"
-      }, {
-        title: "🌙 夜间 - 颜色1 (主色)",
-        type: "color",
-        val: _0x5c4654 + "_color_bg_night",
-        desc: "无图片时显示"
-      }, {
-        title: "🌙 夜间 - 颜色2 (渐变)",
-        type: "color",
-        val: _0x5c4654 + "_color_bg_2_night",
-        desc: "可选: 设置后显示渐变"
-      }, {
-        title: "🗑 清除所有图片",
-        val: "bg_clear",
-        icon: {
-          name: "trash",
-          color: "#FF3B30"
-        },
-        desc: "恢复纯色背景",
-        onClick: async () => {
-          ConfigManager.rmImg(_0x3512d9);
-          ConfigManager.rmImg(_0x40fcd2);
-          ConfigManager.rmImg(_0x34fb19);
-          this.notify("成功", "背景已清除");
-        }
-      }]
-    }]);
-    this.saveSettings(false);
-  }
-  async loadAndRunEditor(_0x1c0920) {
-    const _0x21a03e = "https://raw.githubusercontent.com/loveyuwy/huohua/refs/heads/main/TransparencyEditor.js";
-    const _0x2da1f7 = FileManager.local();
-    const _0x17457d = _0x2da1f7.joinPath(_0x2da1f7.libraryDirectory(), "Caishow_Editor_Cache.js");
-    try {
-      this.notify("⏳ 加载中", "正在拉取最新编辑器...");
-      const _0x104bd9 = new Request(_0x21a03e);
-      _0x104bd9.headers = {
-        "Cache-Control": "no-cache"
-      };
-      const _0x29a065 = await _0x104bd9.loadString();
-      _0x2da1f7.writeString(_0x17457d, _0x29a065);
-      const _0x10490e = importModule(_0x17457d);
-      await _0x10490e(this, ConfigManager, _0x1c0920);
-    } catch (_0x3cfbac) {
-      console.error(_0x3cfbac);
-      const _0x3fc9dd = new Alert();
-      _0x3fc9dd.title = "加载失败";
-      _0x3fc9dd.message = "无法连接 GitHub 获取编辑器代码，请检查网络或 URL 配置。\n\n" + _0x3cfbac.message;
-      _0x3fc9dd.addAction("确定");
-      await _0x3fc9dd.presentAlert();
-    }
-  }
-  async setBasicConfig() {
-    const _0xd2183b = async () => {
-      try {
-        const _0xd8ed6 = await Location.current();
-        const _0xf0aca = await Location.reverseGeocode(_0xd8ed6.latitude, _0xd8ed6.longitude, "zh_cn");
-        this.settings.fixedLat = String(_0xd8ed6.latitude);
-        this.settings.fixedLng = String(_0xd8ed6.longitude);
-        this.settings.fixedCity = _0xf0aca[0].locality;
-        this.settings.fixedSubCity = _0xf0aca[0].subLocality;
-        this.saveSettings(false);
-        this.notify("定位成功", "已保存");
-        await this.setBasicConfig();
-      } catch (_0x1a44cd) {
-        this.notify("定位失败", _0x1a44cd.message);
-        await this.setBasicConfig();
-      }
-    };
-    const _0xcc2e6c = [{
-      title: "刷新间隔(分)",
-      type: "input",
-      val: "refreshInterval",
-      placeholder: "60"
-    }, {
-      title: "📍 获取定位",
-      val: "get_location_btn",
-      icon: {
-        name: "location",
-        color: "#007AFF"
-      },
-      onClick: _0xd2183b
-    }, {
-      title: "锁定定位",
-      type: "switch",
-      val: "lockLocation"
-    }];
-    await this.renderAppView([{
-      title: "基础设置 (全局生效)",
-      menu: _0xcc2e6c
-    }, {
-      title: "固定坐标",
-      menu: [{
-        title: "经度",
-        type: "input",
-        val: "fixedLng"
-      }, {
-        title: "纬度",
-        type: "input",
-        val: "fixedLat"
-      }, {
-        title: "城市",
-        type: "input",
-        val: "fixedCity"
-      }, {
-        title: "区域",
-        type: "input",
-        val: "fixedSubCity"
-      }]
-    }]);
-    this.saveSettings(false);
-  }
-  async handleStyleSwitch() {
-    const _0xed821 = ConfigManager.load();
-    this.settings = Object.assign({}, this.defaultData, _0xed821);
-    const _0x41b029 = [{
-      t: "第一套(三天天气)",
-      v: "classic"
-    }, {
-      t: "第二套(七天天气)",
-      v: "modern"
-    }, {
-      t: "第三套(节日倒计时)",
-      v: "holiday"
-    }, {
-      t: "第四套(日历事件)",
-      v: "schedule"
-    }];
-    const _0x30cda0 = this.settings.styleModel || "classic";
-    await this.renderAppView([{
-      title: "选择组件样式",
-      menu: _0x41b029.map(_0x3395db => ({
-        title: (_0x30cda0 === _0x3395db.v ? "✅ " : "") + _0x3395db.t,
-        val: "style_" + _0x3395db.v,
-        icon: {
-          name: "circle.grid.2x2",
-          color: "#5856D6"
-        },
-        onClick: async () => {
-          const _0x3f7fd5 = new Alert();
-          _0x3f7fd5.title = "确认切换？";
-          _0x3f7fd5.message = "即将切换为：" + _0x3395db.t + "\n\n切换后请点击脚本右下角的“运行”按钮以刷新预览。";
-          _0x3f7fd5.addAction("确认切换");
-          _0x3f7fd5.addCancelAction("取消");
-          const _0x58d455 = await _0x3f7fd5.presentAlert();
-          _0x58d455 === 0 && (this.settings.styleModel = _0x3395db.v, this.saveSettings(false), this.notify("✅ 样式已切换", "当前模式：" + _0x3395db.t + " (请重新运行)"));
-        }
-      }))
-    }]);
-  }
-  async setKeyConfig() {
-    await this.setBasicConfig();
-  }
-  async setRefreshConfig() {
-    await this.setBasicConfig();
-  }
-  async fetchData() {
-    const _0x3f82ff = ConfigManager.load();
-    this.settings = Object.assign({}, this.defaultData, _0x3f82ff);
-    let _0x3cb4cf = {
-      latitude: 39.9,
-      longitude: 116.4,
-      locality: "定位中",
-      subLocality: ""
-    };
-    const _0x45d758 = this.settings.lockLocation === true || this.settings.lockLocation === "true";
-    if (_0x45d758) {
-      this.settings.fixedLat && this.settings.fixedLng && (_0x3cb4cf = {
-        latitude: this.settings.fixedLat,
-        longitude: this.settings.fixedLng,
-        locality: this.settings.fixedCity || "固定",
-        subLocality: this.settings.fixedSubCity || "位置"
-      });
-    } else {
-      try {
-        let _0x25c45c = await Location.current();
-        let _0x28ebe6 = await Location.reverseGeocode(_0x25c45c.latitude, _0x25c45c.longitude, "zh_cn");
-        _0x3cb4cf = {
-          latitude: _0x25c45c.latitude,
-          longitude: _0x25c45c.longitude,
-          locality: _0x28ebe6[0].locality,
-          subLocality: _0x28ebe6[0].subLocality
-        };
-        ConfigManager.saveCache("location_cache.json", _0x3cb4cf);
-        this.settings.fixedLat = String(_0x25c45c.latitude);
-        this.settings.fixedLng = String(_0x25c45c.longitude);
-        this.settings.fixedCity = _0x28ebe6[0].locality;
-        this.settings.fixedSubCity = _0x28ebe6[0].subLocality;
-        this.saveSettings(false);
-      } catch (_0x13aec6) {
-        const _0x167cf7 = ConfigManager.readCache("location_cache.json");
-        if (_0x167cf7) {
-          _0x3cb4cf = _0x167cf7;
-        } else {
-          _0x3cb4cf.locality = "定位失败";
-        }
-      }
-    }
-    this.location = _0x3cb4cf;
-    let _0x77e476 = {};
-    try {
-      const _0x43303c = "https://api.open-meteo.com/v1/forecast?latitude=" + _0x3cb4cf.latitude + "&longitude=" + _0x3cb4cf.longitude + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=auto&forecast_days=14";
-      const _0x13e1c8 = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=" + _0x3cb4cf.latitude + "&longitude=" + _0x3cb4cf.longitude + "&current=us_aqi&timezone=auto";
-      const _0xd8d736 = new Request(_0x43303c);
-      _0xd8d736.timeoutInterval = 8;
-      const _0x144dd0 = new Request(_0x13e1c8);
-      _0x144dd0.timeoutInterval = 8;
-      const [_0xbf9a82, _0x254afd] = await Promise.all([_0xd8d736.loadJSON(), _0x144dd0.loadJSON()]);
-      _0x77e476 = this.processOpenMeteo(_0xbf9a82, _0x254afd);
-      if (_0x77e476.temp) {
-        ConfigManager.saveCache("weather_cache.json", _0x77e476);
-      }
-    } catch (_0x552b28) {
-      const _0x57f357 = ConfigManager.readCache("weather_cache.json");
-      if (_0x57f357) {
-        _0x77e476 = _0x57f357;
-      }
-    }
-    let _0x1e728f = {};
-    let _0xe9d24e = this.settings.styleModel === "modern" || args.widgetParameter && args.widgetParameter.indexOf("style2") > -1;
-    if (!_0xe9d24e) {
-      try {
-        const _0x2b9f53 = new Request("https://v2.jinrishici.com/sentence");
-        _0x2b9f53.timeoutInterval = 5;
-        const _0x26743c = await _0x2b9f53.loadJSON();
-        _0x1e728f = _0x26743c.data ? _0x26743c : {};
-      } catch (_0x1a874d) {}
-    }
-    let _0xdd11c6 = [];
-    try {
-      const _0x192330 = await CalendarEvent.today([]);
-      _0xdd11c6 = _0x192330.filter(_0x2c98dd => !_0x2c98dd.title.startsWith("Canceled")).map(_0x1925fb => ({
-        title: _0x1925fb.title
-      }));
-    } catch (_0x490030) {}
-    const _0xc6d04e = await this.fetchLotteryData();
-    return {
-      weather: _0x77e476,
-      poetry: _0x1e728f,
-      schedules: _0xdd11c6,
-      lottery: _0xc6d04e
-    };
-  }
-  async fetchLotteryData() {
-    let _0x1c4d92 = this.settings.lottery_type || "dlt";
-    if (!_0x1c4d92 || _0x1c4d92 === "none") {
-      return null;
-    }
-    if (_0x1c4d92.includes("双色球") || _0x1c4d92.includes("SSQ")) {
-      _0x1c4d92 = "ssq";
-    } else {
-      if (_0x1c4d92.includes("大乐透") || _0x1c4d92.includes("DLT")) {
-        _0x1c4d92 = "dlt";
-      } else {
-        if (_0x1c4d92.includes("排列三") || _0x1c4d92.includes("PL3")) {
-          _0x1c4d92 = "pl3";
-        } else {
-          if (_0x1c4d92.includes("福彩3D") || _0x1c4d92.includes("FC3D")) {
-            _0x1c4d92 = "fc3d";
-          } else {
-            if (_0x1c4d92.includes("七星彩") || _0x1c4d92.includes("QXC")) {
-              _0x1c4d92 = "qxc";
-            } else {
-              if (_0x1c4d92.includes("七乐彩") || _0x1c4d92.includes("QLC")) {
-                _0x1c4d92 = "qlc";
-              } else {
-                if (_0x1c4d92.includes("排列五") || _0x1c4d92.includes("PL5")) {
-                  _0x1c4d92 = "pl5";
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    const _0x18ed63 = "lottery_cache_" + _0x1c4d92;
-    const _0x24d75d = ConfigManager.readCache(_0x18ed63);
-    if (_0x24d75d && _0x24d75d.timestamp && Date.now() - _0x24d75d.timestamp < 1800000 && _0x24d75d.data.pool) {
-      return _0x24d75d.data;
-    }
-    let _0x29414b = {
-      full: "",
-      pool: "",
-      type: _0x1c4d92
-    };
-    const _0xdb3849 = {
-      ssq: "双色球",
-      dlt: "大乐透",
-      pl3: "排列三",
-      fc3d: "福彩3D",
-      qxc: "七星彩",
-      qlc: "七乐彩",
-      pl5: "排列五"
-    };
-    const _0xc1fb94 = _0xdb3849[_0x1c4d92] || "彩票";
-    const _0x257710 = {
-      dlt: 85,
-      pl3: 35,
-      pl5: 81,
-      qxc: "04"
-    };
-    if (_0x257710[_0x1c4d92]) {
-      try {
-        const _0xd9ff35 = _0x257710[_0x1c4d92];
-        const _0x581f69 = "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=" + _0xd9ff35 + "&provinceId=0&pageSize=1&isVerify=1&pageNo=1";
-        const _0x5589dd = new Request(_0x581f69);
-        const _0x5c4a3a = await _0x5589dd.loadJSON();
-        if (_0x5c4a3a && _0x5c4a3a.success && _0x5c4a3a.value && _0x5c4a3a.value.list && _0x5c4a3a.value.list.length > 0) {
-          const _0x505d4b = _0x5c4a3a.value.list[0];
-          let _0x5b7f7e = _0x505d4b.lotteryDrawResult.replace(/ /g, " ");
-          if (_0x1c4d92 === "dlt") {
-            const _0x43bebd = _0x505d4b.lotteryDrawResult.split(" ");
-            _0x5b7f7e = _0x43bebd.slice(0, 5).join(" ") + " + " + _0x43bebd.slice(5).join(" ");
-          }
-          _0x29414b.full = _0xc1fb94 + " " + _0x505d4b.lotteryDrawNum + "期: " + _0x5b7f7e;
-          let _0x5a186b = _0x505d4b.poolMoney || "0";
-          _0x29414b.pool = this.formatMoney(_0x5a186b);
-        }
-      } catch (_0x5a1541) {
-        console.log("Sporttery Error: " + _0x5a1541.message);
-      }
-    } else {
-      try {
-        let _0x53c0eb = _0x1c4d92;
-        if (_0x1c4d92 === "fc3d") {
-          _0x53c0eb = "3d";
-        }
-        const _0x5a8148 = "https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice?name=" + _0x53c0eb + "&issueCount=1";
-        const _0x48a02f = new Request(_0x5a8148);
-        _0x48a02f.headers = {
-          "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1",
-          Referer: "https://www.cwl.gov.cn/",
-          Accept: "application/json, text/javascript, */*; q=0.01",
-          "X-Requested-With": "XMLHttpRequest"
-        };
-        const _0x3246e0 = await _0x48a02f.loadJSON();
-        if (_0x3246e0 && _0x3246e0.result && _0x3246e0.result.length > 0) {
-          const _0x3d6918 = _0x3246e0.result[0];
-          let _0x53c592 = _0x3d6918.red;
-          _0x3d6918.blue && _0x3d6918.blue.length > 0 && (_0x53c592 = _0x53c592 + " + " + _0x3d6918.blue);
-          _0x53c592 = _0x53c592.replace(/,/g, " ");
-          _0x29414b.full = _0xc1fb94 + " " + _0x3d6918.code + "期: " + _0x53c592;
-          let _0x3bee74 = _0x3d6918.poolmoney || "0";
-          _0x29414b.pool = this.formatMoney(_0x3bee74);
-        }
-      } catch (_0x551057) {
-        console.log("CWL Error: " + _0x551057.message);
-      }
-    }
-    if (_0x29414b.full) {
-      ConfigManager.saveCache(_0x18ed63, {
-        data: _0x29414b,
-        timestamp: Date.now()
-      });
-      return _0x29414b;
-    }
-    return null;
-  }
-  formatMoney(_0x5b64b0) {
-    let _0x563999 = parseFloat(_0x5b64b0.replace(/,/g, ""));
-    if (isNaN(_0x563999)) {
-      return "统计中";
-    }
-    if (_0x563999 > 100000000) {
-      return (_0x563999 / 100000000).toFixed(2) + "亿";
-    } else {
-      if (_0x563999 > 10000) {
-        return (_0x563999 / 10000).toFixed(1) + "万";
-      }
-    }
-    return _0x563999 + "元";
-  }
-  getLotterySchedule(_0x498397) {
-    const _0x4924ef = new Date().getDay();
-    const _0x49edfc = {
-      ssq: [0, 2, 4],
-      dlt: [1, 3, 6],
-      qlc: [1, 3, 5],
-      qxc: [0, 2, 5],
-      fc3d: [0, 1, 2, 3, 4, 5, 6],
-      pl3: [0, 1, 2, 3, 4, 5, 6],
-      pl5: [0, 1, 2, 3, 4, 5, 6]
-    };
-    let _0x551064 = "21:30";
-    if (["ssq", "qlc", "fc3d"].includes(_0x498397)) {
-      _0x551064 = "21:15";
-    }
-    return _0x49edfc[_0x498397] && _0x49edfc[_0x498397].includes(_0x4924ef) ? "今日开奖: " + _0x551064 : "今日不开奖";
-  }
-  processOpenMeteo(_0x3bbf03, _0x5395c1) {
-    if (!_0x3bbf03 || !_0x3bbf03.current || !_0x3bbf03.daily) {
-      return {};
-    }
-    let _0x553fe3 = {
-      temp: Math.round(_0x3bbf03.current.apparent_temperature),
-      hum: _0x3bbf03.current.relative_humidity_2m + "%",
-      ico: this.wmCodeToIcon(_0x3bbf03.current.weather_code, _0x3bbf03.current.is_day)
-    };
-    _0x3bbf03.daily.uv_index_max && _0x3bbf03.daily.uv_index_max[0] !== undefined ? _0x553fe3.uv = Math.round(_0x3bbf03.daily.uv_index_max[0]) : _0x553fe3.uv = "-";
-    _0x5395c1 && _0x5395c1.current && _0x5395c1.current.us_aqi !== undefined ? _0x553fe3.aqi = this.airQuality(_0x5395c1.current.us_aqi) : _0x553fe3.aqi = "-";
-    const _0x3d6925 = _0x3bbf03.current.temperature_2m;
-    if (_0x3d6925 <= 5) {
-      _0x553fe3.comfort = "寒冷";
-    } else {
-      if (_0x3d6925 <= 15) {
-        _0x553fe3.comfort = "凉爽";
-      } else {
-        if (_0x3d6925 <= 26) {
-          _0x553fe3.comfort = "舒适";
-        } else {
-          if (_0x3d6925 <= 32) {
-            _0x553fe3.comfort = "炎热";
-          } else {
-            _0x553fe3.comfort = "酷热";
-          }
-        }
-      }
-    }
-    if (_0x3bbf03.daily.sunrise && _0x3bbf03.daily.sunrise[0]) {
-      _0x553fe3.sunrise = _0x3bbf03.daily.sunrise[0].split("T")[1];
-    } else {
-      _0x553fe3.sunrise = "--:--";
-    }
-    if (_0x3bbf03.daily.sunset && _0x3bbf03.daily.sunset[0]) {
-      _0x553fe3.sunset = _0x3bbf03.daily.sunset[0].split("T")[1];
-    } else {
-      _0x553fe3.sunset = "--:--";
-    }
-    _0x3bbf03.daily.temperature_2m_min && _0x3bbf03.daily.temperature_2m_min[0] !== undefined ? (_0x553fe3.min = Math.round(_0x3bbf03.daily.temperature_2m_min[0]), _0x553fe3.max = Math.round(_0x3bbf03.daily.temperature_2m_max[0])) : (_0x553fe3.min = "-", _0x553fe3.max = "-");
-    const _0x3f1346 = {
-      0: "晴朗",
-      1: "多云",
-      2: "多云",
-      3: "阴",
-      45: "雾",
-      51: "小雨",
-      61: "雨",
-      71: "雪",
-      95: "雷雨"
-    };
-    let _0x3eb337 = _0x3f1346[_0x3bbf03.current.weather_code] || "有雨";
-    _0x553fe3.desc = "今日" + _0x3eb337 + "，最高" + _0x553fe3.max + "°，最低" + _0x553fe3.min + "°";
-    _0x553fe3.alertTitle = "";
-    _0x553fe3.future = [];
-    for (let _0x33924b = 1; _0x33924b < 14; _0x33924b++) {
-      try {
-        if (!_0x3bbf03.daily.time[_0x33924b]) {
+})();
+class t {
+  static #e = new Map([]);
+  static #t = [];
+  static #r = new Map([]);
+  static clear = () => {};
+  static count = (e = "default") => {
+    switch (t.#e.has(e)) {
+      case !0:
+        {
+          t.#e.set(e, t.#e.get(e) + 1);
           break;
         }
-        let _0x33f25a = _0x3bbf03.daily.time[_0x33924b];
-        let _0x3fdc54 = parseInt(_0x33f25a.split("-")[2]);
-        _0x553fe3.future.push({
-          day: _0x3fdc54 + "日",
-          min: Math.round(_0x3bbf03.daily.temperature_2m_min[_0x33924b]),
-          max: Math.round(_0x3bbf03.daily.temperature_2m_max[_0x33924b]),
-          ico: this.wmCodeToIcon(_0x3bbf03.daily.weather_code[_0x33924b], 1)
-        });
-      } catch (_0x3f11ca) {}
-    }
-    return _0x553fe3;
-  }
-  wmCodeToIcon(_0x58632b, _0x408c0e) {
-    const _0x3f4148 = {
-      0: _0x408c0e ? "sun.max.fill" : "moon.fill",
-      1: _0x408c0e ? "cloud.sun.fill" : "cloud.moon.fill",
-      2: _0x408c0e ? "cloud.sun.fill" : "cloud.moon.fill",
-      3: "cloud.fill",
-      45: "cloud.fog.fill",
-      48: "cloud.fog.fill",
-      51: "cloud.drizzle.fill",
-      53: "cloud.drizzle.fill",
-      55: "cloud.drizzle.fill",
-      61: "cloud.rain.fill",
-      63: "cloud.rain.fill",
-      65: "cloud.rain.fill",
-      80: "cloud.rain.fill",
-      81: "cloud.rain.fill",
-      82: "cloud.rain.fill",
-      71: "cloud.snow.fill",
-      73: "cloud.snow.fill",
-      75: "cloud.snow.fill",
-      95: "cloud.bolt.rain.fill",
-      96: "cloud.bolt.rain.fill",
-      99: "cloud.bolt.rain.fill"
-    };
-    return _0x3f4148[_0x58632b] || "cloud.fill";
-  }
-  async render() {
-    const _0x571865 = ConfigManager.load();
-    this.settings = Object.assign({}, this.defaultData, _0x571865);
-    const _0x25bae9 = await this.fetchData();
-    const _0x285c60 = new ListWidget();
-    let _0x58698b = this.settings.styleModel || "classic";
-    if (!config.runsInApp && args.widgetParameter) {
-      if (args.widgetParameter.indexOf("style2") > -1) {
-        _0x58698b = "modern";
-      }
-      if (args.widgetParameter.indexOf("style3") > -1) {
-        _0x58698b = "holiday";
-      }
-      if (args.widgetParameter.indexOf("style4") > -1) {
-        _0x58698b = "schedule";
-      }
-    }
-    if (_0x58698b === "modern") {
-      this.activePrefix = "s2_";
-    } else {
-      if (_0x58698b === "holiday") {
-        this.activePrefix = "s3_";
-      } else {
-        _0x58698b === "schedule" ? this.activePrefix = "s4_" : this.activePrefix = "s1_";
-      }
-    }
-    let _0x580966 = parseInt(this.settings.refreshInterval) || 60;
-    if (_0x580966 < 5) {
-      _0x580966 = 5;
-    }
-    _0x285c60.refreshAfterDate = new Date(new Date().getTime() + _0x580966 * 60000);
-    const _0x4c1f6c = Device.isUsingDarkAppearance();
-    const _0x58d3ef = _0x4c1f6c ? "_night" : "_day";
-    const _0x4cd237 = "bg_" + this.activePrefix.replace("_", "") + ".jpg";
-    const _0x3380d6 = "bg_" + this.activePrefix.replace("_", "") + _0x58d3ef + ".jpg";
-    let _0x281f70 = ConfigManager.getImg(_0x3380d6);
-    if (!_0x281f70) {
-      _0x281f70 = ConfigManager.getImg(_0x4cd237);
-    }
-    if (_0x281f70) {
-      _0x285c60.backgroundImage = _0x281f70;
-    } else {
-      let _0xd7d59 = _0x4c1f6c ? this.activePrefix + "color_bg_night" : this.activePrefix + "color_bg_day";
-      let _0x432627 = _0x4c1f6c ? this.activePrefix + "color_bg_2_night" : this.activePrefix + "color_bg_2_day";
-      let _0x1348fd = this.settings[_0xd7d59] || this.settings[this.activePrefix + "color_bg"] || "#000000";
-      let _0x6cbae3 = this.settings[_0x432627] || this.settings[this.activePrefix + "color_bg_2"];
-      if (_0x6cbae3 && _0x6cbae3.length > 0) {
-        let _0x12cd66 = new LinearGradient();
-        _0x12cd66.colors = [new Color(_0x1348fd), new Color(_0x6cbae3)];
-        _0x12cd66.locations = [0, 1];
-        _0x285c60.backgroundGradient = _0x12cd66;
-      } else {
-        _0x285c60.backgroundColor = new Color(_0x1348fd);
-      }
-    }
-    _0x285c60.setPadding(10, 4, 5, 4);
-    if (this.widgetFamily === "medium") {
-      await this.renderMedium(_0x285c60, _0x25bae9);
-    } else {
-      await this.renderLarge(_0x285c60, _0x25bae9);
-    }
-    return _0x285c60;
-  }
-  async renderMedium(_0x618e0f, _0x1f702b) {
-    let _0x7991a4 = _0x618e0f.addStack();
-    _0x7991a4.layoutHorizontally();
-    _0x7991a4.centerAlignContent();
-    let _0x6485ec = _0x7991a4.addStack();
-    _0x6485ec.layoutVertically();
-    this.applyLayout(_0x6485ec, "med_left", {
-      t: 0,
-      l: 8,
-      b: 0,
-      r: 0
-    });
-    await this.renderInfoSide(_0x6485ec, _0x1f702b);
-    _0x7991a4.addSpacer();
-    let _0x50c7c9 = _0x7991a4.addStack();
-    _0x50c7c9.size = new Size(this.s(110, "weather"), 0);
-    _0x50c7c9.layoutVertically();
-    this.applyLayout(_0x50c7c9, "med_right", {
-      t: 0,
-      l: 0,
-      b: 0,
-      r: 5
-    });
-    await this.renderWeatherSide(_0x50c7c9, _0x1f702b.weather);
-  }
-  async renderLarge(_0x1e1f70, _0x211d4e) {
-    const _0x1b8633 = this.activePrefix === "s3_";
-    const _0x1b27a1 = this.activePrefix === "s4_";
-    const _0x27119a = _0x1b8633 || _0x1b27a1;
-    let _0x1bf22b = _0x1e1f70.addStack();
-    _0x1bf22b.layoutHorizontally();
-    _0x1bf22b.size = new Size(0, this.s(_0x27119a ? 149 : 149, "weather"));
-    let _0x27c465 = _0x1bf22b.addStack();
-    _0x27c465.layoutVertically();
-    this.applyLayout(_0x27c465, "lg_tl", {
-      t: 0,
-      l: 8,
-      b: 0,
-      r: 0
-    });
-    await this.renderInfoSide(_0x27c465, _0x211d4e);
-    _0x1bf22b.addSpacer();
-    let _0x116ab6 = _0x1bf22b.addStack();
-    _0x116ab6.size = new Size(this.s(110, "weather"), 0);
-    _0x116ab6.layoutVertically();
-    this.applyLayout(_0x116ab6, "lg_tr", {
-      t: 0,
-      l: 0,
-      b: 0,
-      r: 5
-    });
-    await this.renderWeatherSide(_0x116ab6, _0x211d4e.weather);
-    _0x1e1f70.addSpacer(_0x27119a ? 0 : 4);
-    let _0x27c13a = _0x1e1f70.addStack();
-    _0x27c13a.layoutVertically();
-    this.applyLayout(_0x27c13a, "lg_mid", {
-      t: 0,
-      l: 0,
-      b: 0,
-      r: 0
-    });
-    await this.renderTimeInfo(_0x27c13a);
-    if (_0x27119a) {
-      let _0xfea7ca = _0x1e1f70.addStack();
-      _0xfea7ca.layoutHorizontally();
-      let _0x5473c2 = _0xfea7ca.addStack();
-      _0x5473c2.layoutVertically();
-      _0x1b8633 ? (this.applyLayout(_0x5473c2, "lg_holiday", {
-        t: 0,
-        l: 5,
-        b: 0,
-        r: 0
-      }), await this.renderHolidayBox(_0x5473c2)) : (this.applyLayout(_0x5473c2, "lg_schedule", {
-        t: 0,
-        l: 5,
-        b: 0,
-        r: 0
-      }), await this.renderScheduleBox(_0x5473c2, _0x211d4e.schedules));
-      _0xfea7ca.addSpacer();
-      let _0x5741e5 = _0xfea7ca.addStack();
-      _0x5741e5.layoutVertically();
-      let _0x2499a5 = _0x5741e5.addStack();
-      _0x2499a5.layoutVertically();
-      this.applyLayout(_0x2499a5, "lg_week", {
-        t: 0,
-        l: 18,
-        b: 0,
-        r: 0
-      });
-      await this.renderWeekRow(_0x2499a5);
-      let _0x24f835 = _0x5741e5.addStack();
-      _0x24f835.layoutVertically();
-      this.applyLayout(_0x24f835, "lg_cal", {
-        t: 0,
-        l: 18,
-        b: 0,
-        r: 0
-      });
-      await this.renderCalendarGrid(_0x24f835);
-    } else {
-      _0x1e1f70.addSpacer(4);
-      let _0x24f842 = _0x1e1f70.addStack();
-      _0x24f842.layoutVertically();
-      this.applyLayout(_0x24f842, "lg_week", {
-        t: 0,
-        l: 0,
-        b: 0,
-        r: 0
-      });
-      await this.renderWeekRow(_0x24f842);
-      let _0x190e48 = _0x1e1f70.addStack();
-      _0x190e48.layoutVertically();
-      this.applyLayout(_0x190e48, "lg_cal", {
-        t: 0,
-        l: 0,
-        b: 0,
-        r: 0
-      });
-      await this.renderCalendarGrid(_0x190e48);
-    }
-    _0x1e1f70.addSpacer();
-  }
-  async renderHolidayBox(_0x192608) {
-    _0x192608.centerAlignContent();
-    let _0x2ccc4f = _0x192608.addStack();
-    _0x2ccc4f.size = new Size(this.s(110, "holiday"), 0);
-    _0x2ccc4f.layoutVertically();
-    let _0xdec34d = parseFloat(this.settings[this.activePrefix + "space_holiday_h"] || 2);
-    let _0x2442ac = _0x2ccc4f.addStack();
-    _0x2442ac.centerAlignContent();
-    let _0xc6b9b7 = this.s(15, "holiday");
-    let _0xf991a7 = _0x2442ac.addImage(this.getSFIco("gift.fill"));
-    _0xf991a7.imageSize = new Size(_0xc6b9b7, _0xc6b9b7);
-    _0xf991a7.tintColor = new Color("#FF5555");
-    _0x2442ac.addSpacer(4);
-    this.addText(_0x2442ac, "节日倒数", 17, "holiday", true);
-    _0x2ccc4f.addSpacer(_0xdec34d);
-    const _0x11002d = this.getNextHolidays();
-    for (let _0x5589d2 of _0x11002d) {
-      let _0x5851ff = _0x2ccc4f.addStack();
-      _0x5851ff.centerAlignContent();
-      this.addText(_0x5851ff, _0x5589d2.name, 17, "holiday");
-      _0x5851ff.addSpacer();
-      let _0x57f36f = _0x5851ff.addStack();
-      _0x57f36f.backgroundColor = _0x5589d2.days === 0 ? new Color("#FF5555") : new Color("#ffffff", 0.2);
-      _0x57f36f.cornerRadius = 3;
-      _0x57f36f.setPadding(1, 4, 1, 4);
-      let _0x58520c = _0x57f36f.addText(_0x5589d2.days === 0 ? "今天" : _0x5589d2.days + "天");
-      _0x58520c.font = Font.boldSystemFont(this.s(13, "holiday"));
-      _0x58520c.textColor = _0x5589d2.days === 0 ? Color.white() : this.getConfColor("holiday");
-      _0x2ccc4f.addSpacer(_0xdec34d);
-    }
-  }
-  async renderScheduleBox(_0x4c0681, _0x58bdf8) {
-    _0x4c0681.centerAlignContent();
-    let _0x3f6978 = _0x4c0681.addStack();
-    _0x3f6978.size = new Size(this.s(100, "schedule_title"), 0);
-    _0x3f6978.layoutVertically();
-    let _0x58c0c4 = parseFloat(this.settings[this.activePrefix + "space_schedule_h"] || 2);
-    let _0x5759b1 = parseInt(this.settings[this.activePrefix + "schedule_count"]) || 3;
-    let _0x3e1be1 = this.settings[this.activePrefix + "schedule_offset"] || "";
-    let _0x55f29f = new Set(_0x3e1be1.replace(/，/g, ",").split(/[, ]+/).map(_0x43f9c7 => parseInt(_0x43f9c7)).filter(_0x5a5640 => !isNaN(_0x5a5640) && _0x5a5640 > 0).map(_0x5bba58 => _0x5bba58 - 1));
-    let _0x55c2f1 = this.settings[this.activePrefix + "schedule_keyword"];
-    let _0x5c1749 = _0x58bdf8;
-    _0x55c2f1 && _0x55c2f1.trim() !== "" && (_0x5c1749 = _0x58bdf8.filter(_0x43e33b => _0x43e33b.title.includes(_0x55c2f1)));
-    let _0x5bb8ac = _0x58bdf8.filter((_0x470ad1, _0x45a6ba) => !_0x55f29f.has(_0x45a6ba));
-    let _0x4f02b1 = _0x3f6978.addStack();
-    _0x4f02b1.centerAlignContent();
-    let _0x35ae84 = this.s(15, "schedule_title");
-    let _0x426301 = _0x4f02b1.addImage(this.getSFIco("calendar.badge.clock"));
-    _0x426301.imageSize = new Size(_0x35ae84, _0x35ae84);
-    _0x426301.tintColor = new Color("#55BEF0");
-    _0x4f02b1.addSpacer(4);
-    this.addText(_0x4f02b1, "日程安排", 17, "schedule_title", true);
-    _0x3f6978.addSpacer(_0x58c0c4);
-    if (_0x5bb8ac.length === 0) {
-      let _0x5d7dcb = _0x3f6978.addStack();
-      _0x5d7dcb.centerAlignContent();
-      this.addText(_0x5d7dcb, "无后续安排", 12.2, "schedule_item");
-    } else {
-      let _0x5d4e1d = _0x3f6978.addStack();
-      _0x5d4e1d.layoutVertically();
-      let _0x2aa5ca = this.activePrefix + "color_schedule_bg";
-      let _0x250eae = this.settings[_0x2aa5ca];
-      if (!_0x250eae) {
-        _0x250eae = "#666666";
-      }
-      let _0x1858ad;
-      try {
-        let _0x24b01e = new Color(_0x250eae);
-        _0x1858ad = new Color(_0x24b01e.hex, 0.3);
-      } catch (_0x18c329) {
-        _0x1858ad = new Color("#666666", 0.3);
-      }
-      _0x5d4e1d.backgroundColor = _0x1858ad;
-      _0x5d4e1d.cornerRadius = 4;
-      _0x5d4e1d.setPadding(4, 4, 4, 4);
-      let _0x17fa1c = Math.min(_0x5bb8ac.length, _0x5759b1);
-      for (let _0x23e592 = 0; _0x23e592 < _0x17fa1c; _0x23e592++) {
-        let _0x2549a9 = _0x5bb8ac[_0x23e592];
-        let _0x260862 = _0x5d4e1d.addStack();
-        _0x260862.topAlignContent();
-        let _0xcb7008 = _0x260862.addStack();
-        _0xcb7008.setPadding(6, 0, 0, 0);
-        let _0xe4dc6d = _0xcb7008.addStack();
-        _0xe4dc6d.size = new Size(4, 4);
-        _0xe4dc6d.cornerRadius = 2;
-        let _0x262484;
-        _0x23e592 < 6 ? _0x262484 = this.getConfColor("schedule_item_" + (_0x23e592 + 1)) : _0x262484 = new Color("#ffffff");
-        _0xe4dc6d.backgroundColor = _0x262484;
-        _0x260862.addSpacer(4);
-        let _0x294c0e = _0x2549a9.title;
-        let _0x27b547 = -1;
-        if (_0x294c0e.includes("柴油")) {
-          _0x27b547 = _0x294c0e.indexOf("柴油") + 2;
-        } else {
-          if (_0x294c0e.includes("汽油")) {
-            _0x27b547 = _0x294c0e.indexOf("汽油") + 2;
-          }
+      case !1:
+        {
+          t.#e.set(e, 0);
         }
-        if (_0x27b547 > -1) {
-          let _0xfde959 = _0x260862.addStack();
-          _0xfde959.layoutVertically();
-          let _0x3f5f46 = _0x294c0e.substring(0, _0x27b547);
-          let _0x3fbdf0 = _0x294c0e.substring(_0x27b547).trim();
-          this.addText(_0xfde959, _0x3f5f46, 12.2, "schedule_item", false, 0, 1, _0x262484);
-          this.addText(_0xfde959, _0x3fbdf0, 12.2, "schedule_item", false, 0, 1, _0x262484);
-        } else {
-          let _0x331f9c = this.addText(_0x260862, _0x294c0e, 12.2, "schedule_item", false, 0, 2, _0x262484);
-          _0x331f9c.lineLimit = 2;
+    }
+    t.log(`${e}: ${t.#e.get(e)}`);
+  };
+  static countReset = (e = "default") => {
+    switch (t.#e.has(e)) {
+      case !0:
+        {
+          t.#e.set(e, 0);
+          t.log(`${e}: ${t.#e.get(e)}`);
+          break;
         }
-        _0x23e592 < _0x17fa1c - 1 && _0x5d4e1d.addSpacer(_0x58c0c4);
+      case !1:
+        {
+          t.warn(`Counter "${e}" doesn’t exist`);
+        }
+    }
+  };
+  static debug = (...e) => {
+    t.#o < 4 || (e = e.map(e => `🅱️ ${e}`), t.log(...e));
+  };
+  static error(...r) {
+    if (!(t.#o < 1)) {
+      switch (e) {
+        case "Surge":
+          {}
+        case "Loon":
+          {}
+        case "Stash":
+          {}
+        case "Egern":
+          {}
+        case "Shadowrocket":
+          {}
+        case "Quantumult X":
+          {}
+        default:
+          {
+            r = r.map(e => `❌ ${e}`);
+            break;
+          }
+        case "Node.js":
+          {
+            r = r.map(e => `❌ ${e.stack}`);
+          }
       }
+      t.log(...r);
     }
   }
-  getNextHolidays() {
-    const _0x32c0f2 = new Date();
-    const _0x3eade0 = _0x32c0f2.getFullYear();
-    const _0x337fa8 = [{
-      name: "元旦",
-      m: 1,
-      d: 1
-    }, {
-      name: "情人节",
-      m: 2,
-      d: 14
-    }, {
-      name: "妇女节",
-      m: 3,
-      d: 8
-    }, {
-      name: "劳动节",
-      m: 5,
-      d: 1
-    }, {
-      name: "儿童节",
-      m: 6,
-      d: 1
-    }, {
-      name: "建军节",
-      m: 8,
-      d: 1
-    }, {
-      name: "教师节",
-      m: 9,
-      d: 10
-    }, {
-      name: "国庆节",
-      m: 10,
-      d: 1
-    }, {
-      name: "万圣节",
-      m: 11,
-      d: 1
-    }, {
-      name: "圣诞节",
-      m: 12,
-      d: 25
-    }];
-    const _0x3ea20d = {
-      2025: ["01-29", "04-04", "05-31", "10-06"],
-      2026: ["02-17", "04-05", "06-19", "09-25"],
-      2027: ["02-06", "04-05", "06-09", "09-15"],
-      2028: ["01-26", "04-04", "05-28", "10-03"],
-      2029: ["02-13", "04-04", "06-16", "09-22"],
-      2030: ["02-03", "04-05", "06-05", "09-12"],
-      2031: ["01-23", "04-05", "06-24", "10-01"]
-    };
-    let _0x4035d8 = [];
-    const _0x568c50 = (_0x55584d, _0x54f826, _0x5bb883) => new Date(_0x55584d, _0x54f826 - 1, _0x5bb883);
-    const _0x57f362 = (_0x4fcb95, _0x5aedc7) => {
-      const _0x5986b4 = _0x5aedc7.split(/[-/]/);
-      return new Date(_0x4fcb95, parseInt(_0x5986b4[0]) - 1, parseInt(_0x5986b4[1]));
-    };
-    for (let _0x5a456d = _0x3eade0 - 1; _0x5a456d <= _0x3eade0 + 1; _0x5a456d++) {
-      _0x5a456d >= _0x3eade0 && _0x337fa8.forEach(_0x5bc5a7 => {
-        _0x4035d8.push({
-          name: _0x5bc5a7.name,
-          date: _0x568c50(_0x5a456d, _0x5bc5a7.m, _0x5bc5a7.d)
-        });
+  static exception = (...e) => t.error(...e);
+  static group = e => t.#t.unshift(e);
+  static groupEnd = () => t.#t.shift();
+  static info(...e) {
+    t.#o < 3 || (e = e.map(e => `ℹ️ ${e}`), t.log(...e));
+  }
+  static #o = 3;
+  static get logLevel() {
+    switch (t.#o) {
+      case 0:
+        {
+          return "OFF";
+        }
+      case 1:
+        {
+          return "ERROR";
+        }
+      case 2:
+        {
+          return "WARN";
+        }
+      case 3:
+        {}
+      default:
+        {
+          return "INFO";
+        }
+      case 4:
+        {
+          return "DEBUG";
+        }
+      case 5:
+        {
+          return "ALL";
+        }
+    }
+  }
+  static set logLevel(e) {
+    switch (typeof e) {
+      case "string":
+        {
+          e = e.toLowerCase();
+          break;
+        }
+      case "number":
+        {
+          break;
+        }
+      default:
+        {
+          e = "warn";
+        }
+    }
+    switch (e) {
+      case 0:
+        {}
+      case "off":
+        {
+          t.#o = 0;
+          break;
+        }
+      case 1:
+        {}
+      case "error":
+        {
+          t.#o = 1;
+          break;
+        }
+      case 2:
+        {}
+      case "warn":
+        {}
+      case "warning":
+        {}
+      default:
+        {
+          t.#o = 2;
+          break;
+        }
+      case 3:
+        {}
+      case "info":
+        {
+          t.#o = 3;
+          break;
+        }
+      case 4:
+        {}
+      case "debug":
+        {
+          t.#o = 4;
+          break;
+        }
+      case 5:
+        {}
+      case "all":
+        {
+          t.#o = 5;
+        }
+    }
+  }
+  static log = (...e) => {
+    if (0 !== t.#o) {
+      e = e.map(e => {
+        switch (typeof e) {
+          case "object":
+            {
+              e = JSON.stringify(e);
+              break;
+            }
+          case "bigint":
+            {}
+          case "number":
+            {}
+          case "boolean":
+            {}
+          case "string":
+            {
+              e = e.toString();
+            }
+        }
+        return e;
       });
-      if (_0x5a456d >= _0x3eade0 && _0x3ea20d[_0x5a456d]) {
-        const [_0x5eed3e, _0x2c443d, _0x2f1262, _0x2c7733] = _0x3ea20d[_0x5a456d];
-        let _0x2f6f1c = _0x57f362(_0x5a456d, _0x5eed3e);
-        _0x4035d8.push({
-          name: "春节",
-          date: _0x2f6f1c
-        });
-        _0x4035d8.push({
-          name: "除夕",
-          date: new Date(_0x2f6f1c.getTime() - 86400000)
-        });
-        _0x4035d8.push({
-          name: "元宵",
-          date: new Date(_0x2f6f1c.getTime() + 1209600000)
-        });
-        _0x4035d8.push({
-          name: "清明",
-          date: _0x57f362(_0x5a456d, _0x2c443d)
-        });
-        _0x4035d8.push({
-          name: "端午",
-          date: _0x57f362(_0x5a456d, _0x2f1262)
-        });
-        _0x4035d8.push({
-          name: "中秋",
-          date: _0x57f362(_0x5a456d, _0x2c7733)
-        });
+      t.#t.forEach(t => {
+        (e = e.map(e => `  ${e}`)).unshift(`▼ ${t}:`);
+      });
+      e = ["", ...e];
+      console.log(e.join("\n"));
+    }
+  };
+  static time = (e = "default") => t.#r.set(e, Date.now());
+  static timeEnd = (e = "default") => t.#r.delete(e);
+  static timeLog = (e = "default") => {
+    const r = t.#r.get(e);
+    if (r) {
+      t.log(`${e}: ${Date.now() - r}ms`);
+    } else {
+      t.warn(`Timer "${e}" doesn’t exist`);
+    }
+  };
+  static warn(...e) {
+    t.#o < 2 || (e = e.map(e => `⚠️ ${e}`), t.log(...e));
+  }
+}
+class r {
+  static escape(e) {
+    const t = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
+    return e.replace(/[&<>"']/g, e => t[e]);
+  }
+  static get(e = {}, t = "", o = 0) {
+    Array.isArray(t) || (t = r.toPath(t));
+    const n = t.reduce((e, t) => Object(e)[t], e);
+    return 0 === n ? o : n;
+  }
+  static merge(e, ...t) {
+    if (null == e) {
+      return e;
+    }
+    for (const o of t) if (null != o) {
+      for (const t of Object.keys(o)) {
+        const n = o[t],
+          i = e[t];
+        switch (!0) {
+          case r.#n(n) && r.#n(i):
+            {
+              e[t] = r.merge(i, n);
+              break;
+            }
+          case n instanceof Map && i instanceof Map:
+            {
+              if (n.size > 0) {
+                for (const [e, t] of n) i.set(e, t);
+              }
+              break;
+            }
+          case n instanceof Set && i instanceof Set:
+            {
+              if (n.size > 0) {
+                for (const e of n) i.add(e);
+              }
+              break;
+            }
+          case Array.isArray(n) && 0 === n.length && 0 !== i:
+            {}
+          case n instanceof Map && 0 === n.size && 0 !== i:
+            {}
+          case n instanceof Set && 0 === n.size && 0 !== i:
+            {
+              break;
+            }
+          case 0 !== n:
+            {
+              e[t] = n;
+            }
+        }
       }
-      let _0x43eef5 = this.settings[this.activePrefix + "birthday_list"] || "";
-      if (_0x43eef5) {
-        let _0x291ac4 = _0x43eef5.split("\n");
-        for (let _0x2e5db2 of _0x291ac4) {
-          _0x2e5db2 = _0x2e5db2.replace(/，/g, ",");
-          let _0x2ebd0d = _0x2e5db2.split(",");
-          if (_0x2ebd0d.length < 2) {
-            continue;
-          }
-          let _0x297a1f = _0x2ebd0d[0].trim();
-          let _0x28bb69 = _0x2ebd0d[1].trim();
-          let _0x1d9c29 = _0x2ebd0d.length > 2 && (_0x2ebd0d[2].includes("农") || _0x2ebd0d[2].includes("Lunar")) ? "lunar" : "solar";
-          let _0x1c0568 = _0x28bb69.split(/[-/]/);
-          if (_0x1c0568.length !== 2) {
-            continue;
-          }
-          let _0x5aee4e = parseInt(_0x1c0568[0]);
-          let _0x2e0c1a = parseInt(_0x1c0568[1]);
-          let _0x358919 = null;
+    }
+    return e;
+  }
+  static #n(e) {
+    if (null === e || "object" != typeof e) {
+      return !1;
+    }
+    const t = Object.getPrototypeOf(e);
+    return null === t || t === Object.prototype;
+  }
+  static omit(e = {}, t = []) {
+    Array.isArray(t) || (t = [t.toString()]);
+    t.forEach(t => r.unset(e, t));
+    return e;
+  }
+  static pick(e = {}, t = []) {
+    Array.isArray(t) || (t = [t.toString()]);
+    const r = Object.entries(e).filter(([e, r]) => t.includes(e));
+    return Object.fromEntries(r);
+  }
+  static set(e, t, o) {
+    Array.isArray(t) || (t = r.toPath(t));
+    t.slice(0, -1).reduce((e, r, o) => Object(e[r]) === e[r] ? e[r] : /^\d+$/.test(t[o + 1]) ? e[r] = [] : e[r] = {}, e)[t[t.length - 1]] = o;
+    return e;
+  }
+  static toPath(e) {
+    return e.replace(/\[(\d+)\]/g, ".$1").split(".").filter(Boolean);
+  }
+  static unescape(e) {
+    const t = {
+      "&amp;": "&",
+      "&lt;": "<",
+      "&gt;": ">",
+      "&quot;": '"',
+      "&#39;": "'"
+    };
+    return e.replace(/&amp;|&lt;|&gt;|&quot;|&#39;/g, e => t[e]);
+  }
+  static unset(e = {}, t = "") {
+    Array.isArray(t) || (t = r.toPath(t));
+    return t.reduce((e, r, o) => o === t.length - 1 ? (delete e[r], !0) : Object(e)[r], e);
+  }
+}
+(() => {
+  switch (t.debug("☑️ $argument"), typeof globalThis.$argument) {
+    case "string":
+      {
+        const e = Object.fromEntries(globalThis.$argument.split("&").map(e => e.split("=", 2).map(e => e.replace(/\"/g, ""))));
+        globalThis.$argument = {};
+        Object.keys(e).forEach(t => r.set(globalThis.$argument, t, e[t]));
+        break;
+      }
+    case "object":
+      {
+        if (null === globalThis.$argument) {
+          globalThis.$argument = {};
+          break;
+        }
+        const e = {};
+        Object.keys(globalThis.$argument).forEach(t => r.set(e, t, globalThis.$argument[t]));
+        globalThis.$argument = e;
+        break;
+      }
+    case "undefined":
+      {
+        globalThis.$argument = {};
+      }
+  }
+  globalThis.$argument.LogLevel && (t.logLevel = globalThis.$argument.LogLevel);
+  t.debug("✅ $argument", `$argument: ${JSON.stringify(globalThis.$argument)}`);
+})();
+const o = {
+  100: "Continue",
+  101: "Switching Protocols",
+  102: "Processing",
+  103: "Early Hints",
+  200: "OK",
+  201: "Created",
+  202: "Accepted",
+  203: "Non-Authoritative Information",
+  204: "No Content",
+  205: "Reset Content",
+  206: "Partial Content",
+  207: "Multi-Status",
+  208: "Already Reported",
+  226: "IM Used",
+  300: "Multiple Choices",
+  301: "Moved Permanently",
+  302: "Found",
+  304: "Not Modified",
+  307: "Temporary Redirect",
+  308: "Permanent Redirect",
+  400: "Bad Request",
+  401: "Unauthorized",
+  402: "Payment Required",
+  403: "Forbidden",
+  404: "Not Found",
+  405: "Method Not Allowed",
+  406: "Not Acceptable",
+  407: "Proxy Authentication Required",
+  408: "Request Timeout",
+  409: "Conflict",
+  410: "Gone",
+  411: "Length Required",
+  412: "Precondition Failed",
+  413: "Content Too Large",
+  414: "URI Too Long",
+  415: "Unsupported Media Type",
+  416: "Range Not Satisfiable",
+  417: "Expectation Failed",
+  418: "I'm a teapot",
+  421: "Misdirected Request",
+  422: "Unprocessable Entity",
+  423: "Locked",
+  424: "Failed Dependency",
+  425: "Too Early",
+  426: "Upgrade Required",
+  428: "Precondition Required",
+  429: "Too Many Requests",
+  431: "Request Header Fields Too Large",
+  451: "Unavailable For Legal Reasons",
+  500: "Internal Server Error",
+  501: "Not Implemented",
+  502: "Bad Gateway",
+  503: "Service Unavailable",
+  504: "Gateway Timeout",
+  505: "HTTP Version Not Supported",
+  506: "Variant Also Negotiates",
+  507: "Insufficient Storage",
+  508: "Loop Detected",
+  510: "Not Extended",
+  511: "Network Authentication Required"
+};
+const n = r => {
+  const o = {};
+  switch (typeof r) {
+    case 0:
+      {
+        break;
+      }
+    case "string":
+      {}
+    case "number":
+      {}
+    case "boolean":
+      {
+        switch (e) {
+          case "Surge":
+            {}
+          case "Stash":
+            {}
+          case "Egern":
+            {}
+          default:
+            {
+              o.url = r;
+              break;
+            }
+          case "Loon":
+            {}
+          case "Shadowrocket":
+            {
+              o.openUrl = r;
+              break;
+            }
+          case "Quantumult X":
+            {
+              o["open-url"] = r;
+            }
+          case "Node.js":
+            {}
+        }
+        break;
+      }
+    case "object":
+      {
+        const t = r.open || r["open-url"] || r.url || r.openUrl,
+          n = r.copy || r["update-pasteboard"] || r.updatePasteboard,
+          i = r.media || r["media-url"] || r.mediaUrl;
+        switch (e) {
+          case "Surge":
+            {}
+          case "Stash":
+            {}
+          case "Egern":
+            {}
+          case "Shadowrocket":
+            {}
+          default:
+            {
+              if (t && (o.action = "open-url", o.url = t), n && (o.action = "clipboard", o.text = n), i) {
+                switch (!0) {
+                  case i.startsWith("http"):
+                    {
+                      o["media-url"] = i;
+                      break;
+                    }
+                  case i.startsWith("data:"):
+                    {
+                      const e = /^data:(?<MIME>\w+\/\w+);base64,(?<Base64>.+)/,
+                        {
+                          MIME: t,
+                          Base64: n
+                        } = i.match(e).groups;
+                      o["media-base64"] = n;
+                      o["media-base64-mime"] = r.mime || t;
+                      break;
+                    }
+                  default:
+                    {
+                      switch (o["media-base64"] = i, !0) {
+                        case i.startsWith("CiVQREYt"):
+                          {}
+                        case i.startsWith("JVBERi0"):
+                          {
+                            o["media-base64-mime"] = "application/pdf";
+                            break;
+                          }
+                        case i.startsWith("R0lGODdh"):
+                          {}
+                        case i.startsWith("R0lGODlh"):
+                          {
+                            o["media-base64-mime"] = "image/gif";
+                            break;
+                          }
+                        case i.startsWith("iVBORw0KGgo"):
+                          {
+                            o["media-base64-mime"] = "image/png";
+                            break;
+                          }
+                        case i.startsWith("/9j/"):
+                          {
+                            o["media-base64-mime"] = "image/jpg";
+                            break;
+                          }
+                        case i.startsWith("Qk02U"):
+                          {
+                            o["media-base64-mime"] = "image/bmp";
+                          }
+                      }
+                    }
+                }
+              }
+              r["auto-dismiss"] && (o["auto-dismiss"] = r["auto-dismiss"]);
+              r.sound && (o.sound = r.sound);
+              break;
+            }
+          case "Loon":
+            {
+              t && (o.openUrl = t);
+              i?.startsWith("http") && (o.mediaUrl = i);
+              break;
+            }
+          case "Quantumult X":
+            {
+              t && (o["open-url"] = t);
+              i?.startsWith("http") && (o["media-url"] = i);
+              n && (o["update-pasteboard"] = n);
+            }
+          case "Node.js":
+            {}
+        }
+        break;
+      }
+    default:
+      {
+        t.error("不支持的通知参数类型: " + typeof r, "");
+      }
+  }
+  return o;
+};
+function i(e = 1e3) {
+  return new Promise(t => setTimeout(t, e));
+}
+class s {
+  static data = null;
+  static dataFile = "box.dat";
+  static #i = /^@(?<key>[^.]+)(?:\.(?<path>.*))?$/;
+  static getItem(t, o = null) {
+    let n = o;
+    switch (t.startsWith("@")) {
+      case !0:
+        {
+          const {
+            key: e,
+            path: o
+          } = t.match(s.#i)?.groups;
+          t = e;
+          let i = s.getItem(t, {});
+          "object" != typeof i && (i = {});
+          n = r.get(i, o);
           try {
-            _0x1d9c29 === "lunar" ? _0x358919 = getSolarFromLunar(_0x5a456d, _0x5aee4e, _0x2e0c1a) : _0x358919 = _0x568c50(_0x5a456d, _0x5aee4e, _0x2e0c1a);
-          } catch (_0x326184) {}
-          _0x358919 && !isNaN(_0x358919.getTime()) && _0x4035d8.push({
-            name: _0x297a1f,
-            date: _0x358919
-          });
+            n = JSON.parse(n);
+          } catch (e) {}
+          break;
         }
-      }
+      default:
+        {
+          switch (e) {
+            case "Surge":
+              {}
+            case "Loon":
+              {}
+            case "Stash":
+              {}
+            case "Egern":
+              {}
+            case "Shadowrocket":
+              {
+                n = $persistentStore.read(t);
+                break;
+              }
+            case "Quantumult X":
+              {
+                n = $prefs.valueForKey(t);
+                break;
+              }
+            case "Node.js":
+              {
+                s.data = s.#s(s.dataFile);
+                n = s.data?.[t];
+                break;
+              }
+            default:
+              {
+                n = s.data?.[t] || null;
+              }
+          }
+          try {
+            n = JSON.parse(n);
+          } catch (e) {}
+        }
     }
-    let _0x401c51 = new Date();
-    _0x401c51.setHours(0, 0, 0, 0);
-    let _0x3d5417 = _0x4035d8.map(_0x2b113c => {
-      if (!_0x2b113c.date) {
-        return null;
+    return n ?? o;
+  }
+  static setItem(t = new String(), o = new String()) {
+    let n = !1;
+    if ("object" == typeof o) {
+      o = JSON.stringify(o);
+    } else {
+      o = String(o);
+    }
+    switch (t.startsWith("@")) {
+      case !0:
+        {
+          const {
+            key: e,
+            path: i
+          } = t.match(s.#i)?.groups;
+          t = e;
+          let a = s.getItem(t, {});
+          "object" != typeof a && (a = {});
+          r.set(a, i, o);
+          n = s.setItem(t, a);
+          break;
+        }
+      default:
+        {
+          switch (e) {
+            case "Surge":
+              {}
+            case "Loon":
+              {}
+            case "Stash":
+              {}
+            case "Egern":
+              {}
+            case "Shadowrocket":
+              {
+                n = $persistentStore.write(o, t);
+                break;
+              }
+            case "Quantumult X":
+              {
+                n = $prefs.setValueForKey(o, t);
+                break;
+              }
+            case "Node.js":
+              {
+                s.data = s.#s(s.dataFile);
+                s.data[t] = o;
+                s.#a(s.dataFile);
+                n = !0;
+                break;
+              }
+            default:
+              {
+                n = s.data?.[t] || null;
+              }
+          }
+        }
+    }
+    return n;
+  }
+  static removeItem(t) {
+    let o = !1;
+    switch (t.startsWith("@")) {
+      case !0:
+        {
+          const {
+            key: e,
+            path: n
+          } = t.match(s.#i)?.groups;
+          t = e;
+          let i = s.getItem(t);
+          "object" != typeof i && (i = {});
+          keyValue = r.unset(i, n);
+          o = s.setItem(t, i);
+          break;
+        }
+      default:
+        {
+          switch (e) {
+            case "Surge":
+              {
+                o = $persistentStore.write(null, t);
+                break;
+              }
+            case "Loon":
+              {}
+            case "Stash":
+              {}
+            case "Egern":
+              {}
+            case "Shadowrocket":
+              {}
+            default:
+              {
+                o = !1;
+                break;
+              }
+            case "Quantumult X":
+              {
+                o = $prefs.removeValueForKey(t);
+                break;
+              }
+            case "Node.js":
+              {
+                s.data = s.#s(s.dataFile);
+                delete s.data[t];
+                s.#a(s.dataFile);
+                o = !0;
+              }
+          }
+        }
+    }
+    return o;
+  }
+  static clear() {
+    let t = !1;
+    switch (e) {
+      case "Surge":
+        {}
+      case "Loon":
+        {}
+      case "Stash":
+        {}
+      case "Egern":
+        {}
+      case "Shadowrocket":
+        {}
+      default:
+        {
+          t = !1;
+          break;
+        }
+      case "Quantumult X":
+        {
+          t = $prefs.removeAllValues();
+          break;
+        }
+      case "Node.js":
+        {
+          s.data = s.#s(s.dataFile);
+          s.data = {};
+          s.#a(s.dataFile);
+          t = !0;
+        }
+    }
+    return t;
+  }
+  static #s = t => {
+    if ("Node.js" !== e) {
+      return {};
+    }
+    this.fs ? this.fs = this.fs : this.fs = require("node:fs");
+    this.path ? this.path = this.path : this.path = require("node:path");
+    const e = this.path.resolve(t),
+      r = this.path.resolve(process.cwd(), t),
+      o = this.fs.existsSync(e),
+      n = !o && this.fs.existsSync(r);
+    if (!o && !n) {
+      return {};
+    }
+    const t = o ? e : r;
+    try {
+      return JSON.parse(this.fs.readFileSync(t));
+    } catch (e) {
+      return {};
+    }
+  };
+  static #a = (t = this.dataFile) => {
+    if ("Node.js" === e) {
+      this.fs ? this.fs = this.fs : this.fs = require("node:fs");
+      this.path ? this.path = this.path : this.path = require("node:path");
+      const e = this.path.resolve(t),
+        r = this.path.resolve(process.cwd(), t),
+        o = this.fs.existsSync(e),
+        n = !o && this.fs.existsSync(r),
+        i = JSON.stringify(this.data);
+      o ? this.fs.writeFileSync(e, i) : n ? this.fs.writeFileSync(r, i) : this.fs.writeFileSync(e, i);
+    }
+  };
+}
+const a = globalThis.$argument ?? {};
+var c = {
+  displayName: "中国移动云盘"
+};
+const u = {
+    defaultTimeout: 5e3,
+    userAgent: "Mozilla/5.0 (Linux; Android 11; M2012K10C Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.210 Mobile Safari/537.36 MCloudApp/10.0.1",
+    noteHeaders: {
+      "X-Tingyun-Id": "p35OnrDoP8k;c=2;r=1122634489;u=43ee994e8c3a6057970124db00b2442c::8B3D3F05462B6E4C",
+      Charset: "UTF-8",
+      Connection: "Keep-Alive",
+      "User-Agent": "mobile",
+      APP_CP: "android",
+      CP_VERSION: "3.2.0",
+      "x-huawei-channelsrc": "10001400",
+      Host: "mnote.caiyun.feixin.10086.cn",
+      "Content-Type": "application/json; charset=UTF-8",
+      Accept: "*/*"
+    }
+  },
+  l = {
+    missingCookie: "‼️缺少授权字段, 请抓取(填写)相关参数后再执行脚本",
+    runStart: "开始执行",
+    runFailed: "执行失败",
+    runCompleted: "任务执行完成"
+  },
+  h = {
+    cookieKeys: ["ydyp_ck", "cookie", "cloud139_cookie"]
+  },
+  d = {
+    envPrefix: "CLOUD139",
+    defaults: {
+      upload: !1,
+      share: !1,
+      push: !0,
+      clickNum: 15,
+      drawTimes: 1,
+      delayMin: 1e3,
+      delayMax: 1500,
+      timeout: 5e3,
+      uploadFilename: "7",
+      uploadSizeMb: 7,
+      uploadDirId: "",
+      shareFilename: ""
+    }
+  };
+var f = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};
+function p(e) {
+  return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
+}
+var y = {
+  exports: {}
+};
+var g,
+  m = {
+    exports: {}
+  };
+function v() {
+  g || (g = 1, m.exports = function () {
+    var e = e || function (e, t) {
+      var r;
+      "undefined" != typeof window && window.crypto && (r = window.crypto);
+      "undefined" != typeof self && self.crypto && (r = self.crypto);
+      "undefined" != typeof globalThis && globalThis.crypto && (r = globalThis.crypto);
+      !r && "undefined" != typeof window && window.msCrypto && (r = window.msCrypto);
+      !r && 0 !== f && f.crypto && (r = f.crypto);
+      if (!r) {
+        try {
+          r = require("crypto");
+        } catch (e) {}
       }
-      let _0x846b4c = (_0x2b113c.date - _0x401c51) / 86400000;
-      return {
-        name: _0x2b113c.name,
-        days: Math.ceil(_0x846b4c),
-        date: _0x2b113c.date
+      var o = function () {
+          if (r) {
+            if ("function" == typeof r.getRandomValues) {
+              try {
+                return r.getRandomValues(new Uint32Array(1))[0];
+              } catch (e) {}
+            }
+            if ("function" == typeof r.randomBytes) {
+              try {
+                return r.randomBytes(4).readInt32LE();
+              } catch (e) {}
+            }
+          }
+          throw new Error("Native crypto module could not be used to get secure random number.");
+        },
+        n = Object.create || function () {
+          function e() {}
+          return function (t) {
+            var r;
+            e.prototype = t;
+            r = new e();
+            e.prototype = null;
+            return r;
+          };
+        }(),
+        i = {},
+        s = i.lib = {},
+        a = s.Base = {
+          extend: function (e) {
+            var t = n(this);
+            e && t.mixIn(e);
+            t.hasOwnProperty("init") && this.init !== t.init || (t.init = function () {
+              t.$super.init.apply(this, arguments);
+            });
+            t.init.prototype = t;
+            t.$super = this;
+            return t;
+          },
+          create: function () {
+            var e = this.extend();
+            e.init.apply(e, arguments);
+            return e;
+          },
+          init: function () {},
+          mixIn: function (e) {
+            for (var t in e) if (e.hasOwnProperty(t)) {
+              this[t] = e[t];
+            }
+            if (e.hasOwnProperty("toString")) {
+              this.toString = e.toString;
+            }
+          },
+          clone: function () {
+            return this.init.prototype.extend(this);
+          }
+        },
+        c = s.WordArray = a.extend({
+          init: function (e, r) {
+            e = this.words = e || [];
+            r != t ? this.sigBytes = r : this.sigBytes = 4 * e.length;
+          },
+          toString: function (e) {
+            return (e || l).stringify(this);
+          },
+          concat: function (e) {
+            var t = this.words,
+              r = e.words,
+              o = this.sigBytes,
+              n = e.sigBytes;
+            this.clamp();
+            if (o % 4) {
+              for (var i = 0; i < n; i++) {
+                var s = r[i >>> 2] >>> 24 - i % 4 * 8 & 255;
+                t[o + i >>> 2] |= s << 24 - (o + i) % 4 * 8;
+              }
+            } else {
+              for (var a = 0; a < n; a += 4) t[o + a >>> 2] = r[a >>> 2];
+            }
+            this.sigBytes += n;
+            return this;
+          },
+          clamp: function () {
+            var t = this.words,
+              r = this.sigBytes;
+            t[r >>> 2] &= 4294967295 << 32 - r % 4 * 8;
+            t.length = e.ceil(r / 4);
+          },
+          clone: function () {
+            var e = a.clone.call(this);
+            e.words = this.words.slice(0);
+            return e;
+          },
+          random: function (e) {
+            for (var t = [], r = 0; r < e; r += 4) t.push(o());
+            return new c.init(t, e);
+          }
+        }),
+        u = i.enc = {},
+        l = u.Hex = {
+          stringify: function (e) {
+            for (var t = e.words, r = e.sigBytes, o = [], n = 0; n < r; n++) {
+              var i = t[n >>> 2] >>> 24 - n % 4 * 8 & 255;
+              o.push((i >>> 4).toString(16));
+              o.push((15 & i).toString(16));
+            }
+            return o.join("");
+          },
+          parse: function (e) {
+            for (var t = e.length, r = [], o = 0; o < t; o += 2) r[o >>> 3] |= parseInt(e.substr(o, 2), 16) << 24 - o % 8 * 4;
+            return new c.init(r, t / 2);
+          }
+        },
+        h = u.Latin1 = {
+          stringify: function (e) {
+            for (var t = e.words, r = e.sigBytes, o = [], n = 0; n < r; n++) {
+              var i = t[n >>> 2] >>> 24 - n % 4 * 8 & 255;
+              o.push(String.fromCharCode(i));
+            }
+            return o.join("");
+          },
+          parse: function (e) {
+            for (var t = e.length, r = [], o = 0; o < t; o++) r[o >>> 2] |= (255 & e.charCodeAt(o)) << 24 - o % 4 * 8;
+            return new c.init(r, t);
+          }
+        },
+        d = u.Utf8 = {
+          stringify: function (e) {
+            try {
+              return decodeURIComponent(escape(h.stringify(e)));
+            } catch (e) {
+              throw new Error("Malformed UTF-8 data");
+            }
+          },
+          parse: function (e) {
+            return h.parse(unescape(encodeURIComponent(e)));
+          }
+        },
+        p = s.BufferedBlockAlgorithm = a.extend({
+          reset: function () {
+            this._data = new c.init();
+            this._nDataBytes = 0;
+          },
+          _append: function (e) {
+            "string" == typeof e && (e = d.parse(e));
+            this._data.concat(e);
+            this._nDataBytes += e.sigBytes;
+          },
+          _process: function (t) {
+            var r,
+              o = this._data,
+              n = o.words,
+              i = o.sigBytes,
+              s = this.blockSize,
+              a = i / (4 * s),
+              u = (t ? a = e.ceil(a) : a = e.max((0 | a) - this._minBufferSize, 0)) * s,
+              l = e.min(4 * u, i);
+            if (u) {
+              for (var h = 0; h < u; h += s) this._doProcessBlock(n, h);
+              r = n.splice(0, u);
+              o.sigBytes -= l;
+            }
+            return new c.init(r, l);
+          },
+          clone: function () {
+            var e = a.clone.call(this);
+            e._data = this._data.clone();
+            return e;
+          },
+          _minBufferSize: 0
+        });
+      s.Hasher = p.extend({
+        cfg: a.extend(),
+        init: function (e) {
+          this.cfg = this.cfg.extend(e);
+          this.reset();
+        },
+        reset: function () {
+          p.reset.call(this);
+          this._doReset();
+        },
+        update: function (e) {
+          this._append(e);
+          this._process();
+          return this;
+        },
+        finalize: function (e) {
+          e && this._append(e);
+          return this._doFinalize();
+        },
+        blockSize: 16,
+        _createHelper: function (e) {
+          return function (t, r) {
+            return new e.init(r).finalize(t);
+          };
+        },
+        _createHmacHelper: function (e) {
+          return function (t, r) {
+            return new y.HMAC.init(e, r).finalize(t);
+          };
+        }
+      });
+      var y = i.algo = {};
+      return i;
+    }(Math);
+    return e;
+  }());
+  return m.exports;
+}
+var b,
+  w = {
+    exports: {}
+  };
+function k() {
+  b || (b = 1, w.exports = function (e) {
+    o = (r = e).lib;
+    n = o.Base;
+    i = o.WordArray;
+    (s = r.x64 = {}).Word = n.extend({
+      init: function (e, t) {
+        this.high = e;
+        this.low = t;
+      }
+    });
+    s.WordArray = n.extend({
+      init: function (e, r) {
+        e = this.words = e || [];
+        r != t ? this.sigBytes = r : this.sigBytes = 8 * e.length;
+      },
+      toX32: function () {
+        for (var e = this.words, t = e.length, r = [], o = 0; o < t; o++) {
+          var n = e[o];
+          r.push(n.high);
+          r.push(n.low);
+        }
+        return i.create(r, this.sigBytes);
+      },
+      clone: function () {
+        for (var e = n.clone.call(this), t = e.words = this.words.slice(0), r = t.length, o = 0; o < r; o++) t[o] = t[o].clone();
+        return e;
+      }
+    });
+    return e;
+    var t, r, o, n, i, s;
+  }(v()));
+  return w.exports;
+}
+var _,
+  x = {
+    exports: {}
+  };
+function S() {
+  _ || (_ = 1, x.exports = function (e) {
+    (function () {
+      if ("function" == typeof ArrayBuffer) {
+        var t = e.lib.WordArray,
+          r = t.init,
+          o = t.init = function (e) {
+            e instanceof ArrayBuffer && (e = new Uint8Array(e));
+            (e instanceof Int8Array || "undefined" != typeof Uint8ClampedArray && e instanceof Uint8ClampedArray || e instanceof Int16Array || e instanceof Uint16Array || e instanceof Int32Array || e instanceof Uint32Array || e instanceof Float32Array || e instanceof Float64Array) && (e = new Uint8Array(e.buffer, e.byteOffset, e.byteLength));
+            if (e instanceof Uint8Array) {
+              for (var t = e.byteLength, o = [], n = 0; n < t; n++) o[n >>> 2] |= e[n] << 24 - n % 4 * 8;
+              r.call(this, o, t);
+            } else {
+              r.apply(this, arguments);
+            }
+          };
+        o.prototype = t;
+      }
+    })();
+    return e.lib.WordArray;
+  }(v()));
+  return x.exports;
+}
+var B,
+  A = {
+    exports: {}
+  };
+function T() {
+  B || (B = 1, A.exports = function (e) {
+    (function () {
+      var t = e,
+        r = t.lib.WordArray,
+        o = t.enc;
+      function n(e) {
+        return e << 8 & 4278255360 | e >>> 8 & 16711935;
+      }
+      o.Utf16 = o.Utf16BE = {
+        stringify: function (e) {
+          for (var t = e.words, r = e.sigBytes, o = [], n = 0; n < r; n += 2) {
+            var i = t[n >>> 2] >>> 16 - n % 4 * 8 & 65535;
+            o.push(String.fromCharCode(i));
+          }
+          return o.join("");
+        },
+        parse: function (e) {
+          for (var t = e.length, o = [], n = 0; n < t; n++) o[n >>> 1] |= e.charCodeAt(n) << 16 - n % 2 * 16;
+          return r.create(o, 2 * t);
+        }
       };
-    }).filter(_0x8a60fb => _0x8a60fb && !isNaN(_0x8a60fb.days) && _0x8a60fb.days >= 0).sort((_0x1e5b2f, _0x18657f) => _0x1e5b2f.days - _0x18657f.days);
-    let _0x552b35 = [];
-    let _0x254b22 = new Set();
-    for (let _0x1e67d9 of _0x3d5417) {
-      let _0xdd36be = _0x1e67d9.name + "_" + _0x1e67d9.days;
-      !_0x254b22.has(_0xdd36be) && (_0x254b22.add(_0xdd36be), _0x552b35.push(_0x1e67d9));
-      if (_0x552b35.length >= 5) {
+      o.Utf16LE = {
+        stringify: function (e) {
+          for (var t = e.words, r = e.sigBytes, o = [], i = 0; i < r; i += 2) {
+            var s = n(t[i >>> 2] >>> 16 - i % 4 * 8 & 65535);
+            o.push(String.fromCharCode(s));
+          }
+          return o.join("");
+        },
+        parse: function (e) {
+          for (var t = e.length, o = [], i = 0; i < t; i++) o[i >>> 1] |= n(e.charCodeAt(i) << 16 - i % 2 * 16);
+          return r.create(o, 2 * t);
+        }
+      };
+    })();
+    return e.enc.Utf16;
+  }(v()));
+  return A.exports;
+}
+var C,
+  E = {
+    exports: {}
+  };
+function $() {
+  C || (C = 1, E.exports = function (e) {
+    (function () {
+      var t = e,
+        r = t.lib.WordArray;
+      function o(e, t, o) {
+        for (var n = [], i = 0, s = 0; s < t; s++) if (s % 4) {
+          var a = o[e.charCodeAt(s - 1)] << s % 4 * 2 | o[e.charCodeAt(s)] >>> 6 - s % 4 * 2;
+          n[i >>> 2] |= a << 24 - i % 4 * 8;
+          i++;
+        }
+        return r.create(n, i);
+      }
+      t.enc.Base64 = {
+        stringify: function (e) {
+          var t = e.words,
+            r = e.sigBytes,
+            o = this._map;
+          e.clamp();
+          for (var n = [], i = 0; i < r; i += 3) for (var s = (t[i >>> 2] >>> 24 - i % 4 * 8 & 255) << 16 | (t[i + 1 >>> 2] >>> 24 - (i + 1) % 4 * 8 & 255) << 8 | t[i + 2 >>> 2] >>> 24 - (i + 2) % 4 * 8 & 255, a = 0; a < 4 && i + .75 * a < r; a++) n.push(o.charAt(s >>> 6 * (3 - a) & 63));
+          var c = o.charAt(64);
+          if (c) {
+            for (; n.length % 4;) n.push(c);
+          }
+          return n.join("");
+        },
+        parse: function (e) {
+          var t = e.length,
+            r = this._map,
+            n = this._reverseMap;
+          if (!n) {
+            n = this._reverseMap = [];
+            for (var i = 0; i < r.length; i++) n[r.charCodeAt(i)] = i;
+          }
+          var s = r.charAt(64);
+          if (s) {
+            var a = e.indexOf(s);
+            if (-1 !== a) {
+              t = a;
+            }
+          }
+          return o(e, t, n);
+        },
+        _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+      };
+    })();
+    return e.enc.Base64;
+  }(v()));
+  return E.exports;
+}
+var R,
+  z = {
+    exports: {}
+  };
+function D() {
+  R || (R = 1, z.exports = function (e) {
+    (function () {
+      var t = e,
+        r = t.lib.WordArray;
+      function o(e, t, o) {
+        for (var n = [], i = 0, s = 0; s < t; s++) if (s % 4) {
+          var a = o[e.charCodeAt(s - 1)] << s % 4 * 2 | o[e.charCodeAt(s)] >>> 6 - s % 4 * 2;
+          n[i >>> 2] |= a << 24 - i % 4 * 8;
+          i++;
+        }
+        return r.create(n, i);
+      }
+      t.enc.Base64url = {
+        stringify: function (e, t) {
+          if (0 === t) {
+            t = !0;
+          }
+          var r = e.words,
+            o = e.sigBytes,
+            n = t ? this._safe_map : this._map;
+          e.clamp();
+          for (var i = [], s = 0; s < o; s += 3) for (var a = (r[s >>> 2] >>> 24 - s % 4 * 8 & 255) << 16 | (r[s + 1 >>> 2] >>> 24 - (s + 1) % 4 * 8 & 255) << 8 | r[s + 2 >>> 2] >>> 24 - (s + 2) % 4 * 8 & 255, c = 0; c < 4 && s + .75 * c < o; c++) i.push(n.charAt(a >>> 6 * (3 - c) & 63));
+          var u = n.charAt(64);
+          if (u) {
+            for (; i.length % 4;) i.push(u);
+          }
+          return i.join("");
+        },
+        parse: function (e, t) {
+          if (0 === t) {
+            t = !0;
+          }
+          var r = e.length,
+            n = t ? this._safe_map : this._map,
+            i = this._reverseMap;
+          if (!i) {
+            i = this._reverseMap = [];
+            for (var s = 0; s < n.length; s++) i[n.charCodeAt(s)] = s;
+          }
+          var a = n.charAt(64);
+          if (a) {
+            var c = e.indexOf(a);
+            if (-1 !== c) {
+              r = c;
+            }
+          }
+          return o(e, r, i);
+        },
+        _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+        _safe_map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+      };
+    })();
+    return e.enc.Base64url;
+  }(v()));
+  return z.exports;
+}
+var H,
+  M = {
+    exports: {}
+  };
+function j() {
+  H || (H = 1, M.exports = function (e) {
+    (function (t) {
+      var r = e,
+        o = r.lib,
+        n = o.WordArray,
+        i = o.Hasher,
+        s = r.algo,
+        a = [];
+      !function () {
+        for (var e = 0; e < 64; e++) a[e] = 4294967296 * t.abs(t.sin(e + 1)) | 0;
+      }();
+      var c = s.MD5 = i.extend({
+        _doReset: function () {
+          this._hash = new n.init([1732584193, 4023233417, 2562383102, 271733878]);
+        },
+        _doProcessBlock: function (e, t) {
+          for (var r = 0; r < 16; r++) {
+            var o = t + r,
+              n = e[o];
+            e[o] = 16711935 & (n << 8 | n >>> 24) | 4278255360 & (n << 24 | n >>> 8);
+          }
+          var i = this._hash.words,
+            s = e[t + 0],
+            c = e[t + 1],
+            f = e[t + 2],
+            p = e[t + 3],
+            y = e[t + 4],
+            g = e[t + 5],
+            m = e[t + 6],
+            v = e[t + 7],
+            b = e[t + 8],
+            w = e[t + 9],
+            k = e[t + 10],
+            _ = e[t + 11],
+            x = e[t + 12],
+            S = e[t + 13],
+            B = e[t + 14],
+            A = e[t + 15],
+            T = i[0],
+            C = i[1],
+            E = i[2],
+            $ = i[3];
+          T = u(T, C, E, $, s, 7, a[0]);
+          $ = u($, T, C, E, c, 12, a[1]);
+          E = u(E, $, T, C, f, 17, a[2]);
+          C = u(C, E, $, T, p, 22, a[3]);
+          T = u(T, C, E, $, y, 7, a[4]);
+          $ = u($, T, C, E, g, 12, a[5]);
+          E = u(E, $, T, C, m, 17, a[6]);
+          C = u(C, E, $, T, v, 22, a[7]);
+          T = u(T, C, E, $, b, 7, a[8]);
+          $ = u($, T, C, E, w, 12, a[9]);
+          E = u(E, $, T, C, k, 17, a[10]);
+          C = u(C, E, $, T, _, 22, a[11]);
+          T = u(T, C, E, $, x, 7, a[12]);
+          $ = u($, T, C, E, S, 12, a[13]);
+          E = u(E, $, T, C, B, 17, a[14]);
+          T = l(T, C = u(C, E, $, T, A, 22, a[15]), E, $, c, 5, a[16]);
+          $ = l($, T, C, E, m, 9, a[17]);
+          E = l(E, $, T, C, _, 14, a[18]);
+          C = l(C, E, $, T, s, 20, a[19]);
+          T = l(T, C, E, $, g, 5, a[20]);
+          $ = l($, T, C, E, k, 9, a[21]);
+          E = l(E, $, T, C, A, 14, a[22]);
+          C = l(C, E, $, T, y, 20, a[23]);
+          T = l(T, C, E, $, w, 5, a[24]);
+          $ = l($, T, C, E, B, 9, a[25]);
+          E = l(E, $, T, C, p, 14, a[26]);
+          C = l(C, E, $, T, b, 20, a[27]);
+          T = l(T, C, E, $, S, 5, a[28]);
+          $ = l($, T, C, E, f, 9, a[29]);
+          E = l(E, $, T, C, v, 14, a[30]);
+          T = h(T, C = l(C, E, $, T, x, 20, a[31]), E, $, g, 4, a[32]);
+          $ = h($, T, C, E, b, 11, a[33]);
+          E = h(E, $, T, C, _, 16, a[34]);
+          C = h(C, E, $, T, B, 23, a[35]);
+          T = h(T, C, E, $, c, 4, a[36]);
+          $ = h($, T, C, E, y, 11, a[37]);
+          E = h(E, $, T, C, v, 16, a[38]);
+          C = h(C, E, $, T, k, 23, a[39]);
+          T = h(T, C, E, $, S, 4, a[40]);
+          $ = h($, T, C, E, s, 11, a[41]);
+          E = h(E, $, T, C, p, 16, a[42]);
+          C = h(C, E, $, T, m, 23, a[43]);
+          T = h(T, C, E, $, w, 4, a[44]);
+          $ = h($, T, C, E, x, 11, a[45]);
+          E = h(E, $, T, C, A, 16, a[46]);
+          T = d(T, C = h(C, E, $, T, f, 23, a[47]), E, $, s, 6, a[48]);
+          $ = d($, T, C, E, v, 10, a[49]);
+          E = d(E, $, T, C, B, 15, a[50]);
+          C = d(C, E, $, T, g, 21, a[51]);
+          T = d(T, C, E, $, x, 6, a[52]);
+          $ = d($, T, C, E, p, 10, a[53]);
+          E = d(E, $, T, C, k, 15, a[54]);
+          C = d(C, E, $, T, c, 21, a[55]);
+          T = d(T, C, E, $, b, 6, a[56]);
+          $ = d($, T, C, E, A, 10, a[57]);
+          E = d(E, $, T, C, m, 15, a[58]);
+          C = d(C, E, $, T, S, 21, a[59]);
+          T = d(T, C, E, $, y, 6, a[60]);
+          $ = d($, T, C, E, _, 10, a[61]);
+          E = d(E, $, T, C, f, 15, a[62]);
+          C = d(C, E, $, T, w, 21, a[63]);
+          i[0] = i[0] + T | 0;
+          i[1] = i[1] + C | 0;
+          i[2] = i[2] + E | 0;
+          i[3] = i[3] + $ | 0;
+        },
+        _doFinalize: function () {
+          var e = this._data,
+            r = e.words,
+            o = 8 * this._nDataBytes,
+            n = 8 * e.sigBytes;
+          r[n >>> 5] |= 128 << 24 - n % 32;
+          var i = t.floor(o / 4294967296),
+            s = o;
+          r[15 + (n + 64 >>> 9 << 4)] = 16711935 & (i << 8 | i >>> 24) | 4278255360 & (i << 24 | i >>> 8);
+          r[14 + (n + 64 >>> 9 << 4)] = 16711935 & (s << 8 | s >>> 24) | 4278255360 & (s << 24 | s >>> 8);
+          e.sigBytes = 4 * (r.length + 1);
+          this._process();
+          for (var a = this._hash, c = a.words, u = 0; u < 4; u++) {
+            var l = c[u];
+            c[u] = 16711935 & (l << 8 | l >>> 24) | 4278255360 & (l << 24 | l >>> 8);
+          }
+          return a;
+        },
+        clone: function () {
+          var e = i.clone.call(this);
+          e._hash = this._hash.clone();
+          return e;
+        }
+      });
+      function u(e, t, r, o, n, i, s) {
+        var a = e + (t & r | ~t & o) + n + s;
+        return (a << i | a >>> 32 - i) + t;
+      }
+      function l(e, t, r, o, n, i, s) {
+        var a = e + (t & o | r & ~o) + n + s;
+        return (a << i | a >>> 32 - i) + t;
+      }
+      function h(e, t, r, o, n, i, s) {
+        var a = e + (t ^ r ^ o) + n + s;
+        return (a << i | a >>> 32 - i) + t;
+      }
+      function d(e, t, r, o, n, i, s) {
+        var a = e + (r ^ (t | ~o)) + n + s;
+        return (a << i | a >>> 32 - i) + t;
+      }
+      r.MD5 = i._createHelper(c);
+      r.HmacMD5 = i._createHmacHelper(c);
+    })(Math);
+    return e.MD5;
+  }(v()));
+  return M.exports;
+}
+var I,
+  F = {
+    exports: {}
+  };
+function N() {
+  I || (I = 1, F.exports = function (e) {
+    r = (t = e).lib;
+    o = r.WordArray;
+    n = r.Hasher;
+    i = t.algo;
+    s = [];
+    a = i.SHA1 = n.extend({
+      _doReset: function () {
+        this._hash = new o.init([1732584193, 4023233417, 2562383102, 271733878, 3285377520]);
+      },
+      _doProcessBlock: function (e, t) {
+        for (var r = this._hash.words, o = r[0], n = r[1], i = r[2], a = r[3], c = r[4], u = 0; u < 80; u++) {
+          if (u < 16) {
+            s[u] = 0 | e[t + u];
+          } else {
+            var l = s[u - 3] ^ s[u - 8] ^ s[u - 14] ^ s[u - 16];
+            s[u] = l << 1 | l >>> 31;
+          }
+          var h = (o << 5 | o >>> 27) + c + s[u];
+          u < 20 ? h += 1518500249 + (n & i | ~n & a) : u < 40 ? h += 1859775393 + (n ^ i ^ a) : u < 60 ? h += (n & i | n & a | i & a) - 1894007588 : h += (n ^ i ^ a) - 899497514;
+          c = a;
+          a = i;
+          i = n << 30 | n >>> 2;
+          n = o;
+          o = h;
+        }
+        r[0] = r[0] + o | 0;
+        r[1] = r[1] + n | 0;
+        r[2] = r[2] + i | 0;
+        r[3] = r[3] + a | 0;
+        r[4] = r[4] + c | 0;
+      },
+      _doFinalize: function () {
+        var e = this._data,
+          t = e.words,
+          r = 8 * this._nDataBytes,
+          o = 8 * e.sigBytes;
+        t[o >>> 5] |= 128 << 24 - o % 32;
+        t[14 + (o + 64 >>> 9 << 4)] = Math.floor(r / 4294967296);
+        t[15 + (o + 64 >>> 9 << 4)] = r;
+        e.sigBytes = 4 * t.length;
+        this._process();
+        return this._hash;
+      },
+      clone: function () {
+        var e = n.clone.call(this);
+        e._hash = this._hash.clone();
+        return e;
+      }
+    });
+    t.SHA1 = n._createHelper(a);
+    t.HmacSHA1 = n._createHmacHelper(a);
+    return e.SHA1;
+    var t, r, o, n, i, s, a;
+  }(v()));
+  return F.exports;
+}
+var P,
+  O = {
+    exports: {}
+  };
+function L() {
+  P || (P = 1, O.exports = function (e) {
+    (function (t) {
+      var r = e,
+        o = r.lib,
+        n = o.WordArray,
+        i = o.Hasher,
+        s = r.algo,
+        a = [],
+        c = [];
+      !function () {
+        function e(e) {
+          for (var r = t.sqrt(e), o = 2; o <= r; o++) if (!(e % o)) {
+            return !1;
+          }
+          return !0;
+        }
+        function r(e) {
+          return 4294967296 * (e - (0 | e)) | 0;
+        }
+        for (var o = 2, n = 0; n < 64;) {
+          e(o) && (n < 8 && (a[n] = r(t.pow(o, .5))), c[n] = r(t.pow(o, 1 / 3)), n++);
+          o++;
+        }
+      }();
+      var u = [],
+        l = s.SHA256 = i.extend({
+          _doReset: function () {
+            this._hash = new n.init(a.slice(0));
+          },
+          _doProcessBlock: function (e, t) {
+            for (var r = this._hash.words, o = r[0], n = r[1], i = r[2], s = r[3], a = r[4], l = r[5], h = r[6], d = r[7], f = 0; f < 64; f++) {
+              if (f < 16) {
+                u[f] = 0 | e[t + f];
+              } else {
+                var p = u[f - 15],
+                  y = (p << 25 | p >>> 7) ^ (p << 14 | p >>> 18) ^ p >>> 3,
+                  g = u[f - 2],
+                  m = (g << 15 | g >>> 17) ^ (g << 13 | g >>> 19) ^ g >>> 10;
+                u[f] = y + u[f - 7] + m + u[f - 16];
+              }
+              var v = o & n ^ o & i ^ n & i,
+                b = (o << 30 | o >>> 2) ^ (o << 19 | o >>> 13) ^ (o << 10 | o >>> 22),
+                w = d + ((a << 26 | a >>> 6) ^ (a << 21 | a >>> 11) ^ (a << 7 | a >>> 25)) + (a & l ^ ~a & h) + c[f] + u[f];
+              d = h;
+              h = l;
+              l = a;
+              a = s + w | 0;
+              s = i;
+              i = n;
+              n = o;
+              o = w + (b + v) | 0;
+            }
+            r[0] = r[0] + o | 0;
+            r[1] = r[1] + n | 0;
+            r[2] = r[2] + i | 0;
+            r[3] = r[3] + s | 0;
+            r[4] = r[4] + a | 0;
+            r[5] = r[5] + l | 0;
+            r[6] = r[6] + h | 0;
+            r[7] = r[7] + d | 0;
+          },
+          _doFinalize: function () {
+            var e = this._data,
+              r = e.words,
+              o = 8 * this._nDataBytes,
+              n = 8 * e.sigBytes;
+            r[n >>> 5] |= 128 << 24 - n % 32;
+            r[14 + (n + 64 >>> 9 << 4)] = t.floor(o / 4294967296);
+            r[15 + (n + 64 >>> 9 << 4)] = o;
+            e.sigBytes = 4 * r.length;
+            this._process();
+            return this._hash;
+          },
+          clone: function () {
+            var e = i.clone.call(this);
+            e._hash = this._hash.clone();
+            return e;
+          }
+        });
+      r.SHA256 = i._createHelper(l);
+      r.HmacSHA256 = i._createHmacHelper(l);
+    })(Math);
+    return e.SHA256;
+  }(v()));
+  return O.exports;
+}
+var q,
+  U = {
+    exports: {}
+  };
+var W,
+  J = {
+    exports: {}
+  };
+function X() {
+  W || (W = 1, J.exports = function (e) {
+    (function () {
+      var t = e,
+        r = t.lib.Hasher,
+        o = t.x64,
+        n = o.Word,
+        i = o.WordArray,
+        s = t.algo;
+      function a() {
+        return n.create.apply(n, arguments);
+      }
+      var c = [a(1116352408, 3609767458), a(1899447441, 602891725), a(3049323471, 3964484399), a(3921009573, 2173295548), a(961987163, 4081628472), a(1508970993, 3053834265), a(2453635748, 2937671579), a(2870763221, 3664609560), a(3624381080, 2734883394), a(310598401, 1164996542), a(607225278, 1323610764), a(1426881987, 3590304994), a(1925078388, 4068182383), a(2162078206, 991336113), a(2614888103, 633803317), a(3248222580, 3479774868), a(3835390401, 2666613458), a(4022224774, 944711139), a(264347078, 2341262773), a(604807628, 2007800933), a(770255983, 1495990901), a(1249150122, 1856431235), a(1555081692, 3175218132), a(1996064986, 2198950837), a(2554220882, 3999719339), a(2821834349, 766784016), a(2952996808, 2566594879), a(3210313671, 3203337956), a(3336571891, 1034457026), a(3584528711, 2466948901), a(113926993, 3758326383), a(338241895, 168717936), a(666307205, 1188179964), a(773529912, 1546045734), a(1294757372, 1522805485), a(1396182291, 2643833823), a(1695183700, 2343527390), a(1986661051, 1014477480), a(2177026350, 1206759142), a(2456956037, 344077627), a(2730485921, 1290863460), a(2820302411, 3158454273), a(3259730800, 3505952657), a(3345764771, 106217008), a(3516065817, 3606008344), a(3600352804, 1432725776), a(4094571909, 1467031594), a(275423344, 851169720), a(430227734, 3100823752), a(506948616, 1363258195), a(659060556, 3750685593), a(883997877, 3785050280), a(958139571, 3318307427), a(1322822218, 3812723403), a(1537002063, 2003034995), a(1747873779, 3602036899), a(1955562222, 1575990012), a(2024104815, 1125592928), a(2227730452, 2716904306), a(2361852424, 442776044), a(2428436474, 593698344), a(2756734187, 3733110249), a(3204031479, 2999351573), a(3329325298, 3815920427), a(3391569614, 3928383900), a(3515267271, 566280711), a(3940187606, 3454069534), a(4118630271, 4000239992), a(116418474, 1914138554), a(174292421, 2731055270), a(289380356, 3203993006), a(460393269, 320620315), a(685471733, 587496836), a(852142971, 1086792851), a(1017036298, 365543100), a(1126000580, 2618297676), a(1288033470, 3409855158), a(1501505948, 4234509866), a(1607167915, 987167468), a(1816402316, 1246189591)],
+        u = [];
+      !function () {
+        for (var e = 0; e < 80; e++) u[e] = a();
+      }();
+      var l = s.SHA512 = r.extend({
+        _doReset: function () {
+          this._hash = new i.init([new n.init(1779033703, 4089235720), new n.init(3144134277, 2227873595), new n.init(1013904242, 4271175723), new n.init(2773480762, 1595750129), new n.init(1359893119, 2917565137), new n.init(2600822924, 725511199), new n.init(528734635, 4215389547), new n.init(1541459225, 327033209)]);
+        },
+        _doProcessBlock: function (e, t) {
+          for (var r = this._hash.words, o = r[0], n = r[1], i = r[2], s = r[3], a = r[4], l = r[5], h = r[6], d = r[7], f = o.high, p = o.low, y = n.high, g = n.low, m = i.high, v = i.low, b = s.high, w = s.low, k = a.high, _ = a.low, x = l.high, S = l.low, B = h.high, A = h.low, T = d.high, C = d.low, E = f, $ = p, R = y, z = g, D = m, H = v, M = b, j = w, I = k, F = _, N = x, P = S, O = B, L = A, q = T, U = C, W = 0; W < 80; W++) {
+            var J,
+              X,
+              K = u[W];
+            if (W < 16) {
+              X = K.high = 0 | e[t + 2 * W];
+              J = K.low = 0 | e[t + 2 * W + 1];
+            } else {
+              var V = u[W - 15],
+                G = V.high,
+                Q = V.low,
+                Z = (G >>> 1 | Q << 31) ^ (G >>> 8 | Q << 24) ^ G >>> 7,
+                Y = (Q >>> 1 | G << 31) ^ (Q >>> 8 | G << 24) ^ (Q >>> 7 | G << 25),
+                ee = u[W - 2],
+                te = ee.high,
+                re = ee.low,
+                oe = (te >>> 19 | re << 13) ^ (te << 3 | re >>> 29) ^ te >>> 6,
+                ne = (re >>> 19 | te << 13) ^ (re << 3 | te >>> 29) ^ (re >>> 6 | te << 26),
+                ie = u[W - 7],
+                se = ie.high,
+                ae = ie.low,
+                ce = u[W - 16],
+                ue = ce.high,
+                le = ce.low;
+              X = (X = (X = Z + se + ((J = Y + ae) >>> 0 < Y >>> 0 ? 1 : 0)) + oe + ((J += ne) >>> 0 < ne >>> 0 ? 1 : 0)) + ue + ((J += le) >>> 0 < le >>> 0 ? 1 : 0);
+              K.high = X;
+              K.low = J;
+            }
+            var he,
+              de = I & N ^ ~I & O,
+              fe = F & P ^ ~F & L,
+              pe = E & R ^ E & D ^ R & D,
+              ye = $ & z ^ $ & H ^ z & H,
+              ge = (E >>> 28 | $ << 4) ^ (E << 30 | $ >>> 2) ^ (E << 25 | $ >>> 7),
+              me = ($ >>> 28 | E << 4) ^ ($ << 30 | E >>> 2) ^ ($ << 25 | E >>> 7),
+              ve = (I >>> 14 | F << 18) ^ (I >>> 18 | F << 14) ^ (I << 23 | F >>> 9),
+              be = (F >>> 14 | I << 18) ^ (F >>> 18 | I << 14) ^ (F << 23 | I >>> 9),
+              we = c[W],
+              ke = we.high,
+              _e = we.low,
+              xe = q + ve + ((he = U + be) >>> 0 < U >>> 0 ? 1 : 0),
+              Se = me + ye;
+            q = O;
+            U = L;
+            O = N;
+            L = P;
+            N = I;
+            P = F;
+            I = M + (xe = (xe = (xe = xe + de + ((he += fe) >>> 0 < fe >>> 0 ? 1 : 0)) + ke + ((he += _e) >>> 0 < _e >>> 0 ? 1 : 0)) + X + ((he += J) >>> 0 < J >>> 0 ? 1 : 0)) + ((F = j + he | 0) >>> 0 < j >>> 0 ? 1 : 0) | 0;
+            M = D;
+            j = H;
+            D = R;
+            H = z;
+            R = E;
+            z = $;
+            E = xe + (ge + pe + (Se >>> 0 < me >>> 0 ? 1 : 0)) + (($ = he + Se | 0) >>> 0 < he >>> 0 ? 1 : 0) | 0;
+          }
+          p = o.low = p + $;
+          o.high = f + E + (p >>> 0 < $ >>> 0 ? 1 : 0);
+          g = n.low = g + z;
+          n.high = y + R + (g >>> 0 < z >>> 0 ? 1 : 0);
+          v = i.low = v + H;
+          i.high = m + D + (v >>> 0 < H >>> 0 ? 1 : 0);
+          w = s.low = w + j;
+          s.high = b + M + (w >>> 0 < j >>> 0 ? 1 : 0);
+          _ = a.low = _ + F;
+          a.high = k + I + (_ >>> 0 < F >>> 0 ? 1 : 0);
+          S = l.low = S + P;
+          l.high = x + N + (S >>> 0 < P >>> 0 ? 1 : 0);
+          A = h.low = A + L;
+          h.high = B + O + (A >>> 0 < L >>> 0 ? 1 : 0);
+          C = d.low = C + U;
+          d.high = T + q + (C >>> 0 < U >>> 0 ? 1 : 0);
+        },
+        _doFinalize: function () {
+          var e = this._data,
+            t = e.words,
+            r = 8 * this._nDataBytes,
+            o = 8 * e.sigBytes;
+          t[o >>> 5] |= 128 << 24 - o % 32;
+          t[30 + (o + 128 >>> 10 << 5)] = Math.floor(r / 4294967296);
+          t[31 + (o + 128 >>> 10 << 5)] = r;
+          e.sigBytes = 4 * t.length;
+          this._process();
+          return this._hash.toX32();
+        },
+        clone: function () {
+          var e = r.clone.call(this);
+          e._hash = this._hash.clone();
+          return e;
+        },
+        blockSize: 32
+      });
+      t.SHA512 = r._createHelper(l);
+      t.HmacSHA512 = r._createHmacHelper(l);
+    })();
+    return e.SHA512;
+  }(v(), k()));
+  return J.exports;
+}
+var K,
+  V = {
+    exports: {}
+  };
+var G,
+  Q = {
+    exports: {}
+  };
+function Z() {
+  G || (G = 1, Q.exports = function (e) {
+    (function (t) {
+      var r = e,
+        o = r.lib,
+        n = o.WordArray,
+        i = o.Hasher,
+        s = r.x64.Word,
+        a = r.algo,
+        c = [],
+        u = [],
+        l = [];
+      !function () {
+        for (var e = 1, t = 0, r = 0; r < 24; r++) {
+          c[e + 5 * t] = (r + 1) * (r + 2) / 2 % 64;
+          var o = (2 * e + 3 * t) % 5;
+          e = t % 5;
+          t = o;
+        }
+        for (e = 0; e < 5; e++) for (t = 0; t < 5; t++) u[e + 5 * t] = t + (2 * e + 3 * t) % 5 * 5;
+        for (var n = 1, i = 0; i < 24; i++) {
+          for (var a = 0, h = 0, d = 0; d < 7; d++) {
+            if (1 & n) {
+              var f = (1 << d) - 1;
+              f < 32 ? h ^= 1 << f : a ^= 1 << f - 32;
+            }
+            128 & n ? n = n << 1 ^ 113 : n <<= 1;
+          }
+          l[i] = s.create(a, h);
+        }
+      }();
+      var h = [];
+      !function () {
+        for (var e = 0; e < 25; e++) h[e] = s.create();
+      }();
+      var d = a.SHA3 = i.extend({
+        cfg: i.cfg.extend({
+          outputLength: 512
+        }),
+        _doReset: function () {
+          for (var e = this._state = [], t = 0; t < 25; t++) e[t] = new s.init();
+          this.blockSize = (1600 - 2 * this.cfg.outputLength) / 32;
+        },
+        _doProcessBlock: function (e, t) {
+          for (var r = this._state, o = this.blockSize / 2, n = 0; n < o; n++) {
+            var i = e[t + 2 * n],
+              s = e[t + 2 * n + 1];
+            i = 16711935 & (i << 8 | i >>> 24) | 4278255360 & (i << 24 | i >>> 8);
+            s = 16711935 & (s << 8 | s >>> 24) | 4278255360 & (s << 24 | s >>> 8);
+            (C = r[n]).high ^= s;
+            C.low ^= i;
+          }
+          for (var a = 0; a < 24; a++) {
+            for (var d = 0; d < 5; d++) {
+              for (var f = 0, p = 0, y = 0; y < 5; y++) {
+                f ^= (C = r[d + 5 * y]).high;
+                p ^= C.low;
+              }
+              var g = h[d];
+              g.high = f;
+              g.low = p;
+            }
+            for (d = 0; d < 5; d++) {
+              var m = h[(d + 4) % 5],
+                v = h[(d + 1) % 5],
+                b = v.high,
+                w = v.low;
+              for (f = m.high ^ (b << 1 | w >>> 31), p = m.low ^ (w << 1 | b >>> 31), y = 0; y < 5; y++) {
+                (C = r[d + 5 * y]).high ^= f;
+                C.low ^= p;
+              }
+            }
+            for (var k = 1; k < 25; k++) {
+              var _ = (C = r[k]).high,
+                x = C.low,
+                S = c[k];
+              S < 32 ? (f = _ << S | x >>> 32 - S, p = x << S | _ >>> 32 - S) : (f = x << S - 32 | _ >>> 64 - S, p = _ << S - 32 | x >>> 64 - S);
+              var B = h[u[k]];
+              B.high = f;
+              B.low = p;
+            }
+            var A = h[0],
+              T = r[0];
+            for (A.high = T.high, A.low = T.low, d = 0; d < 5; d++) for (y = 0; y < 5; y++) {
+              var C = r[k = d + 5 * y],
+                E = h[k],
+                $ = h[(d + 1) % 5 + 5 * y],
+                R = h[(d + 2) % 5 + 5 * y];
+              C.high = E.high ^ ~$.high & R.high;
+              C.low = E.low ^ ~$.low & R.low;
+            }
+            C = r[0];
+            var z = l[a];
+            C.high ^= z.high;
+            C.low ^= z.low;
+          }
+        },
+        _doFinalize: function () {
+          var e = this._data,
+            r = e.words;
+          this._nDataBytes;
+          var o = 8 * e.sigBytes,
+            i = 32 * this.blockSize;
+          r[o >>> 5] |= 1 << 24 - o % 32;
+          r[(t.ceil((o + 1) / i) * i >>> 5) - 1] |= 128;
+          e.sigBytes = 4 * r.length;
+          this._process();
+          for (var s = this._state, a = this.cfg.outputLength / 8, c = a / 8, u = [], l = 0; l < c; l++) {
+            var h = s[l],
+              d = h.high,
+              f = h.low;
+            d = 16711935 & (d << 8 | d >>> 24) | 4278255360 & (d << 24 | d >>> 8);
+            f = 16711935 & (f << 8 | f >>> 24) | 4278255360 & (f << 24 | f >>> 8);
+            u.push(f);
+            u.push(d);
+          }
+          return new n.init(u, a);
+        },
+        clone: function () {
+          for (var e = i.clone.call(this), t = e._state = this._state.slice(0), r = 0; r < 25; r++) t[r] = t[r].clone();
+          return e;
+        }
+      });
+      r.SHA3 = i._createHelper(d);
+      r.HmacSHA3 = i._createHmacHelper(d);
+    })(Math);
+    return e.SHA3;
+  }(v(), k()));
+  return Q.exports;
+}
+var Y,
+  ee = {
+    exports: {}
+  };
+var te,
+  re = {
+    exports: {}
+  };
+function oe() {
+  te || (te = 1, re.exports = function (e) {
+    var t, r, o;
+    r = (t = e).lib.Base;
+    o = t.enc.Utf8;
+    t.algo.HMAC = r.extend({
+      init: function (e, t) {
+        e = this._hasher = new e.init();
+        "string" == typeof t && (t = o.parse(t));
+        var r = e.blockSize,
+          n = 4 * r;
+        t.sigBytes > n && (t = e.finalize(t));
+        t.clamp();
+        for (var i = this._oKey = t.clone(), s = this._iKey = t.clone(), a = i.words, c = s.words, u = 0; u < r; u++) {
+          a[u] ^= 1549556828;
+          c[u] ^= 909522486;
+        }
+        i.sigBytes = s.sigBytes = n;
+        this.reset();
+      },
+      reset: function () {
+        var e = this._hasher;
+        e.reset();
+        e.update(this._iKey);
+      },
+      update: function (e) {
+        this._hasher.update(e);
+        return this;
+      },
+      finalize: function (e) {
+        var t = this._hasher,
+          r = t.finalize(e);
+        t.reset();
+        return t.finalize(this._oKey.clone().concat(r));
+      }
+    });
+  }(v()));
+  return re.exports;
+}
+var ne,
+  ie = {
+    exports: {}
+  };
+var se,
+  ae = {
+    exports: {}
+  };
+function ce() {
+  se || (se = 1, ae.exports = function (e) {
+    r = (t = e).lib;
+    o = r.Base;
+    n = r.WordArray;
+    i = t.algo;
+    s = i.MD5;
+    a = i.EvpKDF = o.extend({
+      cfg: o.extend({
+        keySize: 4,
+        hasher: s,
+        iterations: 1
+      }),
+      init: function (e) {
+        this.cfg = this.cfg.extend(e);
+      },
+      compute: function (e, t) {
+        for (var r, o = this.cfg, i = o.hasher.create(), s = n.create(), a = s.words, c = o.keySize, u = o.iterations; a.length < c;) {
+          r && i.update(r);
+          r = i.update(e).finalize(t);
+          i.reset();
+          for (var l = 1; l < u; l++) {
+            r = i.finalize(r);
+            i.reset();
+          }
+          s.concat(r);
+        }
+        s.sigBytes = 4 * c;
+        return s;
+      }
+    });
+    t.EvpKDF = function (e, t, r) {
+      return a.create(r).compute(e, t);
+    };
+    return e.EvpKDF;
+    var t, r, o, n, i, s, a;
+  }(v(), N(), oe()));
+  return ae.exports;
+}
+var ue,
+  le = {
+    exports: {}
+  };
+function he() {
+  ue || (ue = 1, le.exports = function (e) {
+    e.lib.Cipher || function (t) {
+      var r = e,
+        o = r.lib,
+        n = o.Base,
+        i = o.WordArray,
+        s = o.BufferedBlockAlgorithm,
+        a = r.enc;
+      a.Utf8;
+      var c = a.Base64,
+        u = r.algo.EvpKDF,
+        l = o.Cipher = s.extend({
+          cfg: n.extend(),
+          createEncryptor: function (e, t) {
+            return this.create(this._ENC_XFORM_MODE, e, t);
+          },
+          createDecryptor: function (e, t) {
+            return this.create(this._DEC_XFORM_MODE, e, t);
+          },
+          init: function (e, t, r) {
+            this.cfg = this.cfg.extend(r);
+            this._xformMode = e;
+            this._key = t;
+            this.reset();
+          },
+          reset: function () {
+            s.reset.call(this);
+            this._doReset();
+          },
+          process: function (e) {
+            this._append(e);
+            return this._process();
+          },
+          finalize: function (e) {
+            e && this._append(e);
+            return this._doFinalize();
+          },
+          keySize: 4,
+          ivSize: 4,
+          _ENC_XFORM_MODE: 1,
+          _DEC_XFORM_MODE: 2,
+          _createHelper: function () {
+            function e(e) {
+              return "string" == typeof e ? b : m;
+            }
+            return function (t) {
+              return {
+                encrypt: function (r, o, n) {
+                  return e(o).encrypt(t, r, o, n);
+                },
+                decrypt: function (r, o, n) {
+                  return e(o).decrypt(t, r, o, n);
+                }
+              };
+            };
+          }()
+        });
+      o.StreamCipher = l.extend({
+        _doFinalize: function () {
+          return this._process(!0);
+        },
+        blockSize: 1
+      });
+      var h = r.mode = {},
+        d = o.BlockCipherMode = n.extend({
+          createEncryptor: function (e, t) {
+            return this.Encryptor.create(e, t);
+          },
+          createDecryptor: function (e, t) {
+            return this.Decryptor.create(e, t);
+          },
+          init: function (e, t) {
+            this._cipher = e;
+            this._iv = t;
+          }
+        }),
+        f = h.CBC = function () {
+          var e = d.extend();
+          function r(e, r, o) {
+            var n,
+              i = this._iv;
+            i ? (n = i, this._iv = t) : n = this._prevBlock;
+            for (var s = 0; s < o; s++) e[r + s] ^= n[s];
+          }
+          e.Encryptor = e.extend({
+            processBlock: function (e, t) {
+              var o = this._cipher,
+                n = o.blockSize;
+              r.call(this, e, t, n);
+              o.encryptBlock(e, t);
+              this._prevBlock = e.slice(t, t + n);
+            }
+          });
+          e.Decryptor = e.extend({
+            processBlock: function (e, t) {
+              var o = this._cipher,
+                n = o.blockSize,
+                i = e.slice(t, t + n);
+              o.decryptBlock(e, t);
+              r.call(this, e, t, n);
+              this._prevBlock = i;
+            }
+          });
+          return e;
+        }(),
+        p = (r.pad = {}).Pkcs7 = {
+          pad: function (e, t) {
+            for (var r = 4 * t, o = r - e.sigBytes % r, n = o << 24 | o << 16 | o << 8 | o, s = [], a = 0; a < o; a += 4) s.push(n);
+            var c = i.create(s, o);
+            e.concat(c);
+          },
+          unpad: function (e) {
+            var t = 255 & e.words[e.sigBytes - 1 >>> 2];
+            e.sigBytes -= t;
+          }
+        };
+      o.BlockCipher = l.extend({
+        cfg: l.cfg.extend({
+          mode: f,
+          padding: p
+        }),
+        reset: function () {
+          var e;
+          l.reset.call(this);
+          var t = this.cfg,
+            r = t.iv,
+            o = t.mode;
+          this._xformMode == this._ENC_XFORM_MODE ? e = o.createEncryptor : (e = o.createDecryptor, this._minBufferSize = 1);
+          this._mode && this._mode.__creator == e ? this._mode.init(this, r && r.words) : (this._mode = e.call(o, this, r && r.words), this._mode.__creator = e);
+        },
+        _doProcessBlock: function (e, t) {
+          this._mode.processBlock(e, t);
+        },
+        _doFinalize: function () {
+          var e,
+            t = this.cfg.padding;
+          this._xformMode == this._ENC_XFORM_MODE ? (t.pad(this._data, this.blockSize), e = this._process(!0)) : (e = this._process(!0), t.unpad(e));
+          return e;
+        },
+        blockSize: 4
+      });
+      var y = o.CipherParams = n.extend({
+          init: function (e) {
+            this.mixIn(e);
+          },
+          toString: function (e) {
+            return (e || this.formatter).stringify(this);
+          }
+        }),
+        g = (r.format = {}).OpenSSL = {
+          stringify: function (e) {
+            var t = e.ciphertext,
+              r = e.salt;
+            return (r ? i.create([1398893684, 1701076831]).concat(r).concat(t) : t).toString(c);
+          },
+          parse: function (e) {
+            var t,
+              r = c.parse(e),
+              o = r.words;
+            1398893684 == o[0] && 1701076831 == o[1] && (t = i.create(o.slice(2, 4)), o.splice(0, 4), r.sigBytes -= 16);
+            return y.create({
+              ciphertext: r,
+              salt: t
+            });
+          }
+        },
+        m = o.SerializableCipher = n.extend({
+          cfg: n.extend({
+            format: g
+          }),
+          encrypt: function (e, t, r, o) {
+            o = this.cfg.extend(o);
+            var n = e.createEncryptor(r, o),
+              i = n.finalize(t),
+              s = n.cfg;
+            return y.create({
+              ciphertext: i,
+              key: r,
+              iv: s.iv,
+              algorithm: e,
+              mode: s.mode,
+              padding: s.padding,
+              blockSize: e.blockSize,
+              formatter: o.format
+            });
+          },
+          decrypt: function (e, t, r, o) {
+            o = this.cfg.extend(o);
+            t = this._parse(t, o.format);
+            return e.createDecryptor(r, o).finalize(t.ciphertext);
+          },
+          _parse: function (e, t) {
+            return "string" == typeof e ? t.parse(e, this) : e;
+          }
+        }),
+        v = (r.kdf = {}).OpenSSL = {
+          execute: function (e, t, r, o, n) {
+            o || (o = i.random(8));
+            if (n) {
+              s = u.create({
+                keySize: t + r,
+                hasher: n
+              }).compute(e, o);
+            } else {
+              var s = u.create({
+                keySize: t + r
+              }).compute(e, o);
+            }
+            var a = i.create(s.words.slice(t), 4 * r);
+            s.sigBytes = 4 * t;
+            return y.create({
+              key: s,
+              iv: a,
+              salt: o
+            });
+          }
+        },
+        b = o.PasswordBasedCipher = m.extend({
+          cfg: m.cfg.extend({
+            kdf: v
+          }),
+          encrypt: function (e, t, r, o) {
+            var n = (o = this.cfg.extend(o)).kdf.execute(r, e.keySize, e.ivSize, o.salt, o.hasher);
+            o.iv = n.iv;
+            var i = m.encrypt.call(this, e, t, n.key, o);
+            i.mixIn(n);
+            return i;
+          },
+          decrypt: function (e, t, r, o) {
+            o = this.cfg.extend(o);
+            t = this._parse(t, o.format);
+            var n = o.kdf.execute(r, e.keySize, e.ivSize, t.salt, o.hasher);
+            o.iv = n.iv;
+            return m.decrypt.call(this, e, t, n.key, o);
+          }
+        });
+    }();
+  }(v(), ce()));
+  return le.exports;
+}
+var de,
+  fe = {
+    exports: {}
+  };
+function pe() {
+  de || (de = 1, fe.exports = function (e) {
+    e.mode.CFB = function () {
+      var t = e.lib.BlockCipherMode.extend();
+      function r(e, t, r, o) {
+        var n,
+          i = this._iv;
+        i ? (n = i.slice(0), this._iv = 0) : n = this._prevBlock;
+        o.encryptBlock(n, 0);
+        for (var s = 0; s < r; s++) e[t + s] ^= n[s];
+      }
+      t.Encryptor = t.extend({
+        processBlock: function (e, t) {
+          var o = this._cipher,
+            n = o.blockSize;
+          r.call(this, e, t, n, o);
+          this._prevBlock = e.slice(t, t + n);
+        }
+      });
+      t.Decryptor = t.extend({
+        processBlock: function (e, t) {
+          var o = this._cipher,
+            n = o.blockSize,
+            i = e.slice(t, t + n);
+          r.call(this, e, t, n, o);
+          this._prevBlock = i;
+        }
+      });
+      return t;
+    }();
+    return e.mode.CFB;
+  }(v(), he()));
+  return fe.exports;
+}
+var ye,
+  ge = {
+    exports: {}
+  };
+function me() {
+  ye || (ye = 1, ge.exports = function (e) {
+    e.mode.CTR = (t = e.lib.BlockCipherMode.extend(), r = t.Encryptor = t.extend({
+      processBlock: function (e, t) {
+        var r = this._cipher,
+          o = r.blockSize,
+          n = this._iv,
+          i = this._counter;
+        if (n) {
+          i = this._counter = n.slice(0);
+          this._iv = 0;
+        }
+        var s = i.slice(0);
+        r.encryptBlock(s, 0);
+        i[o - 1] = i[o - 1] + 1 | 0;
+        for (var a = 0; a < o; a++) e[t + a] ^= s[a];
+      }
+    }), t.Decryptor = r, t);
+    return e.mode.CTR;
+    var t, r;
+  }(v(), he()));
+  return ge.exports;
+}
+var ve,
+  be = {
+    exports: {}
+  };
+function we() {
+  ve || (ve = 1, be.exports = function (e) {
+    e.mode.CTRGladman = function () {
+      var t = e.lib.BlockCipherMode.extend();
+      function r(e) {
+        if (255 & ~(e >> 24)) {
+          e += 1 << 24;
+        } else {
+          var t = e >> 16 & 255,
+            r = e >> 8 & 255,
+            o = 255 & e;
+          255 === t ? (t = 0, 255 === r ? (r = 0, 255 === o ? o = 0 : ++o) : ++r) : ++t;
+          e = 0;
+          e += t << 16;
+          e += r << 8;
+          e += o;
+        }
+        return e;
+      }
+      function o(e) {
+        0 === (e[0] = r(e[0])) && (e[1] = r(e[1]));
+        return e;
+      }
+      var n = t.Encryptor = t.extend({
+        processBlock: function (e, t) {
+          var r = this._cipher,
+            n = r.blockSize,
+            i = this._iv,
+            s = this._counter;
+          i && (s = this._counter = i.slice(0), this._iv = 0);
+          o(s);
+          var a = s.slice(0);
+          r.encryptBlock(a, 0);
+          for (var c = 0; c < n; c++) e[t + c] ^= a[c];
+        }
+      });
+      t.Decryptor = n;
+      return t;
+    }();
+    /** @preserve
+    			 * Counter block mode compatible with  Dr Brian Gladman fileenc.c
+    			 * derived from CryptoJS.mode.CTR
+    			 * Jan Hruby jhruby.web@gmail.com
+    			 */
+    return e.mode.CTRGladman;
+  }(v(), he()));
+  return be.exports;
+}
+var ke,
+  _e = {
+    exports: {}
+  };
+function xe() {
+  ke || (ke = 1, _e.exports = function (e) {
+    e.mode.OFB = (t = e.lib.BlockCipherMode.extend(), r = t.Encryptor = t.extend({
+      processBlock: function (e, t) {
+        var r = this._cipher,
+          o = r.blockSize,
+          n = this._iv,
+          i = this._keystream;
+        n && (i = this._keystream = n.slice(0), this._iv = 0);
+        r.encryptBlock(i, 0);
+        for (var s = 0; s < o; s++) e[t + s] ^= i[s];
+      }
+    }), t.Decryptor = r, t);
+    return e.mode.OFB;
+    var t, r;
+  }(v(), he()));
+  return _e.exports;
+}
+var Se,
+  Be = {
+    exports: {}
+  };
+var Ae,
+  Te = {
+    exports: {}
+  };
+var Ce,
+  Ee = {
+    exports: {}
+  };
+var $e,
+  Re = {
+    exports: {}
+  };
+var ze,
+  De = {
+    exports: {}
+  };
+var He,
+  Me = {
+    exports: {}
+  };
+var je,
+  Ie = {
+    exports: {}
+  };
+var Fe,
+  Ne = {
+    exports: {}
+  };
+var Pe,
+  Oe = {
+    exports: {}
+  };
+function Le() {
+  Pe || (Pe = 1, Oe.exports = function (e) {
+    (function () {
+      var t = e,
+        r = t.lib,
+        o = r.WordArray,
+        n = r.BlockCipher,
+        i = t.algo,
+        s = [57, 49, 41, 33, 25, 17, 9, 1, 58, 50, 42, 34, 26, 18, 10, 2, 59, 51, 43, 35, 27, 19, 11, 3, 60, 52, 44, 36, 63, 55, 47, 39, 31, 23, 15, 7, 62, 54, 46, 38, 30, 22, 14, 6, 61, 53, 45, 37, 29, 21, 13, 5, 28, 20, 12, 4],
+        a = [14, 17, 11, 24, 1, 5, 3, 28, 15, 6, 21, 10, 23, 19, 12, 4, 26, 8, 16, 7, 27, 20, 13, 2, 41, 52, 31, 37, 47, 55, 30, 40, 51, 45, 33, 48, 44, 49, 39, 56, 34, 53, 46, 42, 50, 36, 29, 32],
+        c = [1, 2, 4, 6, 8, 10, 12, 14, 15, 17, 19, 21, 23, 25, 27, 28],
+        u = [{
+          0: 8421888,
+          268435456: 32768,
+          536870912: 8421378,
+          805306368: 2,
+          1073741824: 512,
+          1342177280: 8421890,
+          1610612736: 8389122,
+          1879048192: 8388608,
+          2147483648: 514,
+          2415919104: 8389120,
+          2684354560: 33280,
+          2952790016: 8421376,
+          3221225472: 32770,
+          3489660928: 8388610,
+          3758096384: 0,
+          4026531840: 33282,
+          134217728: 0,
+          402653184: 8421890,
+          671088640: 33282,
+          939524096: 32768,
+          1207959552: 8421888,
+          1476395008: 512,
+          1744830464: 8421378,
+          2013265920: 2,
+          2281701376: 8389120,
+          2550136832: 33280,
+          2818572288: 8421376,
+          3087007744: 8389122,
+          3355443200: 8388610,
+          3623878656: 32770,
+          3892314112: 514,
+          4160749568: 8388608,
+          1: 32768,
+          268435457: 2,
+          536870913: 8421888,
+          805306369: 8388608,
+          1073741825: 8421378,
+          1342177281: 33280,
+          1610612737: 512,
+          1879048193: 8389122,
+          2147483649: 8421890,
+          2415919105: 8421376,
+          2684354561: 8388610,
+          2952790017: 33282,
+          3221225473: 514,
+          3489660929: 8389120,
+          3758096385: 32770,
+          4026531841: 0,
+          134217729: 8421890,
+          402653185: 8421376,
+          671088641: 8388608,
+          939524097: 512,
+          1207959553: 32768,
+          1476395009: 8388610,
+          1744830465: 2,
+          2013265921: 33282,
+          2281701377: 32770,
+          2550136833: 8389122,
+          2818572289: 514,
+          3087007745: 8421888,
+          3355443201: 8389120,
+          3623878657: 0,
+          3892314113: 33280,
+          4160749569: 8421378
+        }, {
+          0: 1074282512,
+          16777216: 16384,
+          33554432: 524288,
+          50331648: 1074266128,
+          67108864: 1073741840,
+          83886080: 1074282496,
+          100663296: 1073758208,
+          117440512: 16,
+          134217728: 540672,
+          150994944: 1073758224,
+          167772160: 1073741824,
+          184549376: 540688,
+          201326592: 524304,
+          218103808: 0,
+          234881024: 16400,
+          251658240: 1074266112,
+          8388608: 1073758208,
+          25165824: 540688,
+          41943040: 16,
+          58720256: 1073758224,
+          75497472: 1074282512,
+          92274688: 1073741824,
+          109051904: 524288,
+          125829120: 1074266128,
+          142606336: 524304,
+          159383552: 0,
+          176160768: 16384,
+          192937984: 1074266112,
+          209715200: 1073741840,
+          226492416: 540672,
+          243269632: 1074282496,
+          260046848: 16400,
+          268435456: 0,
+          285212672: 1074266128,
+          301989888: 1073758224,
+          318767104: 1074282496,
+          335544320: 1074266112,
+          352321536: 16,
+          369098752: 540688,
+          385875968: 16384,
+          402653184: 16400,
+          419430400: 524288,
+          436207616: 524304,
+          452984832: 1073741840,
+          469762048: 540672,
+          486539264: 1073758208,
+          503316480: 1073741824,
+          520093696: 1074282512,
+          276824064: 540688,
+          293601280: 524288,
+          310378496: 1074266112,
+          327155712: 16384,
+          343932928: 1073758208,
+          360710144: 1074282512,
+          377487360: 16,
+          394264576: 1073741824,
+          411041792: 1074282496,
+          427819008: 1073741840,
+          444596224: 1073758224,
+          461373440: 524304,
+          478150656: 0,
+          494927872: 16400,
+          511705088: 1074266128,
+          528482304: 540672
+        }, {
+          0: 260,
+          1048576: 0,
+          2097152: 67109120,
+          3145728: 65796,
+          4194304: 65540,
+          5242880: 67108868,
+          6291456: 67174660,
+          7340032: 67174400,
+          8388608: 67108864,
+          9437184: 67174656,
+          10485760: 65792,
+          11534336: 67174404,
+          12582912: 67109124,
+          13631488: 65536,
+          14680064: 4,
+          15728640: 256,
+          524288: 67174656,
+          1572864: 67174404,
+          2621440: 0,
+          3670016: 67109120,
+          4718592: 67108868,
+          5767168: 65536,
+          6815744: 65540,
+          7864320: 260,
+          8912896: 4,
+          9961472: 256,
+          11010048: 67174400,
+          12058624: 65796,
+          13107200: 65792,
+          14155776: 67109124,
+          15204352: 67174660,
+          16252928: 67108864,
+          16777216: 67174656,
+          17825792: 65540,
+          18874368: 65536,
+          19922944: 67109120,
+          20971520: 256,
+          22020096: 67174660,
+          23068672: 67108868,
+          24117248: 0,
+          25165824: 67109124,
+          26214400: 67108864,
+          27262976: 4,
+          28311552: 65792,
+          29360128: 67174400,
+          30408704: 260,
+          31457280: 65796,
+          32505856: 67174404,
+          17301504: 67108864,
+          18350080: 260,
+          19398656: 67174656,
+          20447232: 0,
+          21495808: 65540,
+          22544384: 67109120,
+          23592960: 256,
+          24641536: 67174404,
+          25690112: 65536,
+          26738688: 67174660,
+          27787264: 65796,
+          28835840: 67108868,
+          29884416: 67109124,
+          30932992: 67174400,
+          31981568: 4,
+          33030144: 65792
+        }, {
+          0: 2151682048,
+          65536: 2147487808,
+          131072: 4198464,
+          196608: 2151677952,
+          262144: 0,
+          327680: 4198400,
+          393216: 2147483712,
+          458752: 4194368,
+          524288: 2147483648,
+          589824: 4194304,
+          655360: 64,
+          720896: 2147487744,
+          786432: 2151678016,
+          851968: 4160,
+          917504: 4096,
+          983040: 2151682112,
+          32768: 2147487808,
+          98304: 64,
+          163840: 2151678016,
+          229376: 2147487744,
+          294912: 4198400,
+          360448: 2151682112,
+          425984: 0,
+          491520: 2151677952,
+          557056: 4096,
+          622592: 2151682048,
+          688128: 4194304,
+          753664: 4160,
+          819200: 2147483648,
+          884736: 4194368,
+          950272: 4198464,
+          1015808: 2147483712,
+          1048576: 4194368,
+          1114112: 4198400,
+          1179648: 2147483712,
+          1245184: 0,
+          1310720: 4160,
+          1376256: 2151678016,
+          1441792: 2151682048,
+          1507328: 2147487808,
+          1572864: 2151682112,
+          1638400: 2147483648,
+          1703936: 2151677952,
+          1769472: 4198464,
+          1835008: 2147487744,
+          1900544: 4194304,
+          1966080: 64,
+          2031616: 4096,
+          1081344: 2151677952,
+          1146880: 2151682112,
+          1212416: 0,
+          1277952: 4198400,
+          1343488: 4194368,
+          1409024: 2147483648,
+          1474560: 2147487808,
+          1540096: 64,
+          1605632: 2147483712,
+          1671168: 4096,
+          1736704: 2147487744,
+          1802240: 2151678016,
+          1867776: 4160,
+          1933312: 2151682048,
+          1998848: 4194304,
+          2064384: 4198464
+        }, {
+          0: 128,
+          4096: 17039360,
+          8192: 262144,
+          12288: 536870912,
+          16384: 537133184,
+          20480: 16777344,
+          24576: 553648256,
+          28672: 262272,
+          32768: 16777216,
+          36864: 537133056,
+          40960: 536871040,
+          45056: 553910400,
+          49152: 553910272,
+          53248: 0,
+          57344: 17039488,
+          61440: 553648128,
+          2048: 17039488,
+          6144: 553648256,
+          10240: 128,
+          14336: 17039360,
+          18432: 262144,
+          22528: 537133184,
+          26624: 553910272,
+          30720: 536870912,
+          34816: 537133056,
+          38912: 0,
+          43008: 553910400,
+          47104: 16777344,
+          51200: 536871040,
+          55296: 553648128,
+          59392: 16777216,
+          63488: 262272,
+          65536: 262144,
+          69632: 128,
+          73728: 536870912,
+          77824: 553648256,
+          81920: 16777344,
+          86016: 553910272,
+          90112: 537133184,
+          94208: 16777216,
+          98304: 553910400,
+          102400: 553648128,
+          106496: 17039360,
+          110592: 537133056,
+          114688: 262272,
+          118784: 536871040,
+          122880: 0,
+          126976: 17039488,
+          67584: 553648256,
+          71680: 16777216,
+          75776: 17039360,
+          79872: 537133184,
+          83968: 536870912,
+          88064: 17039488,
+          92160: 128,
+          96256: 553910272,
+          100352: 262272,
+          104448: 553910400,
+          108544: 0,
+          112640: 553648128,
+          116736: 16777344,
+          120832: 262144,
+          124928: 537133056,
+          129024: 536871040
+        }, {
+          0: 268435464,
+          256: 8192,
+          512: 270532608,
+          768: 270540808,
+          1024: 268443648,
+          1280: 2097152,
+          1536: 2097160,
+          1792: 268435456,
+          2048: 0,
+          2304: 268443656,
+          2560: 2105344,
+          2816: 8,
+          3072: 270532616,
+          3328: 2105352,
+          3584: 8200,
+          3840: 270540800,
+          128: 270532608,
+          384: 270540808,
+          640: 8,
+          896: 2097152,
+          1152: 2105352,
+          1408: 268435464,
+          1664: 268443648,
+          1920: 8200,
+          2176: 2097160,
+          2432: 8192,
+          2688: 268443656,
+          2944: 270532616,
+          3200: 0,
+          3456: 270540800,
+          3712: 2105344,
+          3968: 268435456,
+          4096: 268443648,
+          4352: 270532616,
+          4608: 270540808,
+          4864: 8200,
+          5120: 2097152,
+          5376: 268435456,
+          5632: 268435464,
+          5888: 2105344,
+          6144: 2105352,
+          6400: 0,
+          6656: 8,
+          6912: 270532608,
+          7168: 8192,
+          7424: 268443656,
+          7680: 270540800,
+          7936: 2097160,
+          4224: 8,
+          4480: 2105344,
+          4736: 2097152,
+          4992: 268435464,
+          5248: 268443648,
+          5504: 8200,
+          5760: 270540808,
+          6016: 270532608,
+          6272: 270540800,
+          6528: 270532616,
+          6784: 8192,
+          7040: 2105352,
+          7296: 2097160,
+          7552: 0,
+          7808: 268435456,
+          8064: 268443656
+        }, {
+          0: 1048576,
+          16: 33555457,
+          32: 1024,
+          48: 1049601,
+          64: 34604033,
+          80: 0,
+          96: 1,
+          112: 34603009,
+          128: 33555456,
+          144: 1048577,
+          160: 33554433,
+          176: 34604032,
+          192: 34603008,
+          208: 1025,
+          224: 1049600,
+          240: 33554432,
+          8: 34603009,
+          24: 0,
+          40: 33555457,
+          56: 34604032,
+          72: 1048576,
+          88: 33554433,
+          104: 33554432,
+          120: 1025,
+          136: 1049601,
+          152: 33555456,
+          168: 34603008,
+          184: 1048577,
+          200: 1024,
+          216: 34604033,
+          232: 1,
+          248: 1049600,
+          256: 33554432,
+          272: 1048576,
+          288: 33555457,
+          304: 34603009,
+          320: 1048577,
+          336: 33555456,
+          352: 34604032,
+          368: 1049601,
+          384: 1025,
+          400: 34604033,
+          416: 1049600,
+          432: 1,
+          448: 0,
+          464: 34603008,
+          480: 33554433,
+          496: 1024,
+          264: 1049600,
+          280: 33555457,
+          296: 34603009,
+          312: 1,
+          328: 33554432,
+          344: 1048576,
+          360: 1025,
+          376: 34604032,
+          392: 33554433,
+          408: 34603008,
+          424: 0,
+          440: 34604033,
+          456: 1049601,
+          472: 1024,
+          488: 33555456,
+          504: 1048577
+        }, {
+          0: 134219808,
+          1: 131072,
+          2: 134217728,
+          3: 32,
+          4: 131104,
+          5: 134350880,
+          6: 134350848,
+          7: 2048,
+          8: 134348800,
+          9: 134219776,
+          10: 133120,
+          11: 134348832,
+          12: 2080,
+          13: 0,
+          14: 134217760,
+          15: 133152,
+          2147483648: 2048,
+          2147483649: 134350880,
+          2147483650: 134219808,
+          2147483651: 134217728,
+          2147483652: 134348800,
+          2147483653: 133120,
+          2147483654: 133152,
+          2147483655: 32,
+          2147483656: 134217760,
+          2147483657: 2080,
+          2147483658: 131104,
+          2147483659: 134350848,
+          2147483660: 0,
+          2147483661: 134348832,
+          2147483662: 134219776,
+          2147483663: 131072,
+          16: 133152,
+          17: 134350848,
+          18: 32,
+          19: 2048,
+          20: 134219776,
+          21: 134217760,
+          22: 134348832,
+          23: 131072,
+          24: 0,
+          25: 131104,
+          26: 134348800,
+          27: 134219808,
+          28: 134350880,
+          29: 133120,
+          30: 2080,
+          31: 134217728,
+          2147483664: 131072,
+          2147483665: 2048,
+          2147483666: 134348832,
+          2147483667: 133152,
+          2147483668: 32,
+          2147483669: 134348800,
+          2147483670: 134217728,
+          2147483671: 134219808,
+          2147483672: 134350880,
+          2147483673: 134217760,
+          2147483674: 134219776,
+          2147483675: 0,
+          2147483676: 133120,
+          2147483677: 2080,
+          2147483678: 131104,
+          2147483679: 134350848
+        }],
+        l = [4160749569, 528482304, 33030144, 2064384, 129024, 8064, 504, 2147483679],
+        h = i.DES = n.extend({
+          _doReset: function () {
+            for (var e = this._key.words, t = [], r = 0; r < 56; r++) {
+              var o = s[r] - 1;
+              t[r] = e[o >>> 5] >>> 31 - o % 32 & 1;
+            }
+            for (var n = this._subKeys = [], i = 0; i < 16; i++) {
+              var u = n[i] = [],
+                l = c[i];
+              for (r = 0; r < 24; r++) {
+                u[r / 6 | 0] |= t[(a[r] - 1 + l) % 28] << 31 - r % 6;
+                u[4 + (r / 6 | 0)] |= t[28 + (a[r + 24] - 1 + l) % 28] << 31 - r % 6;
+              }
+              for (u[0] = u[0] << 1 | u[0] >>> 31, r = 1; r < 7; r++) u[r] = u[r] >>> 4 * (r - 1) + 3;
+              u[7] = u[7] << 5 | u[7] >>> 27;
+            }
+            var h = this._invSubKeys = [];
+            for (r = 0; r < 16; r++) h[r] = n[15 - r];
+          },
+          encryptBlock: function (e, t) {
+            this._doCryptBlock(e, t, this._subKeys);
+          },
+          decryptBlock: function (e, t) {
+            this._doCryptBlock(e, t, this._invSubKeys);
+          },
+          _doCryptBlock: function (e, t, r) {
+            this._lBlock = e[t];
+            this._rBlock = e[t + 1];
+            d.call(this, 4, 252645135);
+            d.call(this, 16, 65535);
+            f.call(this, 2, 858993459);
+            f.call(this, 8, 16711935);
+            d.call(this, 1, 1431655765);
+            for (var o = 0; o < 16; o++) {
+              for (var n = r[o], i = this._lBlock, s = this._rBlock, a = 0, c = 0; c < 8; c++) a |= u[c][((s ^ n[c]) & l[c]) >>> 0];
+              this._lBlock = s;
+              this._rBlock = i ^ a;
+            }
+            var h = this._lBlock;
+            this._lBlock = this._rBlock;
+            this._rBlock = h;
+            d.call(this, 1, 1431655765);
+            f.call(this, 8, 16711935);
+            f.call(this, 2, 858993459);
+            d.call(this, 16, 65535);
+            d.call(this, 4, 252645135);
+            e[t] = this._lBlock;
+            e[t + 1] = this._rBlock;
+          },
+          keySize: 2,
+          ivSize: 2,
+          blockSize: 2
+        });
+      function d(e, t) {
+        var r = (this._lBlock >>> e ^ this._rBlock) & t;
+        this._rBlock ^= r;
+        this._lBlock ^= r << e;
+      }
+      function f(e, t) {
+        var r = (this._rBlock >>> e ^ this._lBlock) & t;
+        this._lBlock ^= r;
+        this._rBlock ^= r << e;
+      }
+      t.DES = n._createHelper(h);
+      var p = i.TripleDES = n.extend({
+        _doReset: function () {
+          var e = this._key.words;
+          if (2 !== e.length && 4 !== e.length && e.length < 6) {
+            throw new Error("Invalid key length - 3DES requires the key length to be 64, 128, 192 or >192.");
+          }
+          var t = e.slice(0, 2),
+            r = e.length < 4 ? e.slice(0, 2) : e.slice(2, 4),
+            n = e.length < 6 ? e.slice(0, 2) : e.slice(4, 6);
+          this._des1 = h.createEncryptor(o.create(t));
+          this._des2 = h.createEncryptor(o.create(r));
+          this._des3 = h.createEncryptor(o.create(n));
+        },
+        encryptBlock: function (e, t) {
+          this._des1.encryptBlock(e, t);
+          this._des2.decryptBlock(e, t);
+          this._des3.encryptBlock(e, t);
+        },
+        decryptBlock: function (e, t) {
+          this._des3.decryptBlock(e, t);
+          this._des2.encryptBlock(e, t);
+          this._des1.decryptBlock(e, t);
+        },
+        keySize: 6,
+        ivSize: 2,
+        blockSize: 2
+      });
+      t.TripleDES = n._createHelper(p);
+    })();
+    return e.TripleDES;
+  }(v(), $(), j(), ce(), he()));
+  return Oe.exports;
+}
+var qe,
+  Ue = {
+    exports: {}
+  };
+var We,
+  Je = {
+    exports: {}
+  };
+var Xe,
+  Ke = {
+    exports: {}
+  };
+var Ve,
+  Ge = {
+    exports: {}
+  };
+function Qe() {
+  Ve || (Ve = 1, Ge.exports = function (e) {
+    (function () {
+      var t = e,
+        r = t.lib.BlockCipher,
+        o = t.algo;
+      const n = 16,
+        i = [608135816, 2242054355, 320440878, 57701188, 2752067618, 698298832, 137296536, 3964562569, 1160258022, 953160567, 3193202383, 887688300, 3232508343, 3380367581, 1065670069, 3041331479, 2450970073, 2306472731],
+        s = [[3509652390, 2564797868, 805139163, 3491422135, 3101798381, 1780907670, 3128725573, 4046225305, 614570311, 3012652279, 134345442, 2240740374, 1667834072, 1901547113, 2757295779, 4103290238, 227898511, 1921955416, 1904987480, 2182433518, 2069144605, 3260701109, 2620446009, 720527379, 3318853667, 677414384, 3393288472, 3101374703, 2390351024, 1614419982, 1822297739, 2954791486, 3608508353, 3174124327, 2024746970, 1432378464, 3864339955, 2857741204, 1464375394, 1676153920, 1439316330, 715854006, 3033291828, 289532110, 2706671279, 2087905683, 3018724369, 1668267050, 732546397, 1947742710, 3462151702, 2609353502, 2950085171, 1814351708, 2050118529, 680887927, 999245976, 1800124847, 3300911131, 1713906067, 1641548236, 4213287313, 1216130144, 1575780402, 4018429277, 3917837745, 3693486850, 3949271944, 596196993, 3549867205, 258830323, 2213823033, 772490370, 2760122372, 1774776394, 2652871518, 566650946, 4142492826, 1728879713, 2882767088, 1783734482, 3629395816, 2517608232, 2874225571, 1861159788, 326777828, 3124490320, 2130389656, 2716951837, 967770486, 1724537150, 2185432712, 2364442137, 1164943284, 2105845187, 998989502, 3765401048, 2244026483, 1075463327, 1455516326, 1322494562, 910128902, 469688178, 1117454909, 936433444, 3490320968, 3675253459, 1240580251, 122909385, 2157517691, 634681816, 4142456567, 3825094682, 3061402683, 2540495037, 79693498, 3249098678, 1084186820, 1583128258, 426386531, 1761308591, 1047286709, 322548459, 995290223, 1845252383, 2603652396, 3431023940, 2942221577, 3202600964, 3727903485, 1712269319, 422464435, 3234572375, 1170764815, 3523960633, 3117677531, 1434042557, 442511882, 3600875718, 1076654713, 1738483198, 4213154764, 2393238008, 3677496056, 1014306527, 4251020053, 793779912, 2902807211, 842905082, 4246964064, 1395751752, 1040244610, 2656851899, 3396308128, 445077038, 3742853595, 3577915638, 679411651, 2892444358, 2354009459, 1767581616, 3150600392, 3791627101, 3102740896, 284835224, 4246832056, 1258075500, 768725851, 2589189241, 3069724005, 3532540348, 1274779536, 3789419226, 2764799539, 1660621633, 3471099624, 4011903706, 913787905, 3497959166, 737222580, 2514213453, 2928710040, 3937242737, 1804850592, 3499020752, 2949064160, 2386320175, 2390070455, 2415321851, 4061277028, 2290661394, 2416832540, 1336762016, 1754252060, 3520065937, 3014181293, 791618072, 3188594551, 3933548030, 2332172193, 3852520463, 3043980520, 413987798, 3465142937, 3030929376, 4245938359, 2093235073, 3534596313, 375366246, 2157278981, 2479649556, 555357303, 3870105701, 2008414854, 3344188149, 4221384143, 3956125452, 2067696032, 3594591187, 2921233993, 2428461, 544322398, 577241275, 1471733935, 610547355, 4027169054, 1432588573, 1507829418, 2025931657, 3646575487, 545086370, 48609733, 2200306550, 1653985193, 298326376, 1316178497, 3007786442, 2064951626, 458293330, 2589141269, 3591329599, 3164325604, 727753846, 2179363840, 146436021, 1461446943, 4069977195, 705550613, 3059967265, 3887724982, 4281599278, 3313849956, 1404054877, 2845806497, 146425753, 1854211946], [1266315497, 3048417604, 3681880366, 3289982499, 290971e4, 1235738493, 2632868024, 2414719590, 3970600049, 1771706367, 1449415276, 3266420449, 422970021, 1963543593, 2690192192, 3826793022, 1062508698, 1531092325, 1804592342, 2583117782, 2714934279, 4024971509, 1294809318, 4028980673, 1289560198, 2221992742, 1669523910, 35572830, 157838143, 1052438473, 1016535060, 1802137761, 1753167236, 1386275462, 3080475397, 2857371447, 1040679964, 2145300060, 2390574316, 1461121720, 2956646967, 4031777805, 4028374788, 33600511, 2920084762, 1018524850, 629373528, 3691585981, 3515945977, 2091462646, 2486323059, 586499841, 988145025, 935516892, 3367335476, 2599673255, 2839830854, 265290510, 3972581182, 2759138881, 3795373465, 1005194799, 847297441, 406762289, 1314163512, 1332590856, 1866599683, 4127851711, 750260880, 613907577, 1450815602, 3165620655, 3734664991, 3650291728, 3012275730, 3704569646, 1427272223, 778793252, 1343938022, 2676280711, 2052605720, 1946737175, 3164576444, 3914038668, 3967478842, 3682934266, 1661551462, 3294938066, 4011595847, 840292616, 3712170807, 616741398, 312560963, 711312465, 1351876610, 322626781, 1910503582, 271666773, 2175563734, 1594956187, 70604529, 3617834859, 1007753275, 1495573769, 4069517037, 2549218298, 2663038764, 504708206, 2263041392, 3941167025, 2249088522, 1514023603, 1998579484, 1312622330, 694541497, 2582060303, 2151582166, 1382467621, 776784248, 2618340202, 3323268794, 2497899128, 2784771155, 503983604, 4076293799, 907881277, 423175695, 432175456, 1378068232, 4145222326, 3954048622, 3938656102, 3820766613, 2793130115, 2977904593, 26017576, 3274890735, 3194772133, 1700274565, 1756076034, 4006520079, 3677328699, 720338349, 1533947780, 354530856, 688349552, 3973924725, 1637815568, 332179504, 3949051286, 53804574, 2852348879, 3044236432, 1282449977, 3583942155, 3416972820, 4006381244, 1617046695, 2628476075, 3002303598, 1686838959, 431878346, 2686675385, 1700445008, 1080580658, 1009431731, 832498133, 3223435511, 2605976345, 2271191193, 2516031870, 1648197032, 4164389018, 2548247927, 300782431, 375919233, 238389289, 3353747414, 2531188641, 2019080857, 1475708069, 455242339, 2609103871, 448939670, 3451063019, 1395535956, 2413381860, 1841049896, 1491858159, 885456874, 4264095073, 4001119347, 1565136089, 3898914787, 1108368660, 540939232, 1173283510, 2745871338, 3681308437, 4207628240, 3343053890, 4016749493, 1699691293, 1103962373, 3625875870, 2256883143, 3830138730, 1031889488, 3479347698, 1535977030, 4236805024, 3251091107, 2132092099, 1774941330, 1199868427, 1452454533, 157007616, 2904115357, 342012276, 595725824, 1480756522, 206960106, 497939518, 591360097, 863170706, 2375253569, 3596610801, 1814182875, 2094937945, 3421402208, 1082520231, 3463918190, 2785509508, 435703966, 3908032597, 1641649973, 2842273706, 3305899714, 1510255612, 2148256476, 2655287854, 3276092548, 4258621189, 236887753, 3681803219, 274041037, 1734335097, 3815195456, 3317970021, 1899903192, 1026095262, 4050517792, 356393447, 2410691914, 3873677099, 3682840055], [3913112168, 2491498743, 4132185628, 2489919796, 1091903735, 1979897079, 3170134830, 3567386728, 3557303409, 857797738, 1136121015, 1342202287, 507115054, 2535736646, 337727348, 3213592640, 1301675037, 2528481711, 1895095763, 1721773893, 3216771564, 62756741, 2142006736, 835421444, 2531993523, 1442658625, 3659876326, 2882144922, 676362277, 1392781812, 170690266, 3921047035, 1759253602, 3611846912, 1745797284, 664899054, 1329594018, 3901205900, 3045908486, 2062866102, 2865634940, 3543621612, 3464012697, 1080764994, 553557557, 3656615353, 3996768171, 991055499, 499776247, 1265440854, 648242737, 3940784050, 980351604, 3713745714, 1749149687, 3396870395, 4211799374, 3640570775, 1161844396, 3125318951, 1431517754, 545492359, 4268468663, 3499529547, 1437099964, 2702547544, 3433638243, 2581715763, 2787789398, 1060185593, 1593081372, 2418618748, 4260947970, 69676912, 2159744348, 86519011, 2512459080, 3838209314, 1220612927, 3339683548, 133810670, 1090789135, 1078426020, 1569222167, 845107691, 3583754449, 4072456591, 1091646820, 628848692, 1613405280, 3757631651, 526609435, 236106946, 48312990, 2942717905, 3402727701, 1797494240, 859738849, 992217954, 4005476642, 2243076622, 3870952857, 3732016268, 765654824, 3490871365, 2511836413, 1685915746, 3888969200, 1414112111, 2273134842, 3281911079, 4080962846, 172450625, 2569994100, 980381355, 4109958455, 2819808352, 2716589560, 2568741196, 3681446669, 3329971472, 1835478071, 660984891, 3704678404, 4045999559, 3422617507, 3040415634, 1762651403, 1719377915, 3470491036, 2693910283, 3642056355, 3138596744, 1364962596, 2073328063, 1983633131, 926494387, 3423689081, 2150032023, 4096667949, 1749200295, 3328846651, 309677260, 2016342300, 1779581495, 3079819751, 111262694, 1274766160, 443224088, 298511866, 1025883608, 3806446537, 1145181785, 168956806, 3641502830, 3584813610, 1689216846, 3666258015, 3200248200, 1692713982, 2646376535, 4042768518, 1618508792, 1610833997, 3523052358, 4130873264, 2001055236, 3610705100, 2202168115, 4028541809, 2961195399, 1006657119, 2006996926, 3186142756, 1430667929, 3210227297, 1314452623, 4074634658, 4101304120, 2273951170, 1399257539, 3367210612, 3027628629, 1190975929, 2062231137, 2333990788, 2221543033, 2438960610, 1181637006, 548689776, 2362791313, 3372408396, 3104550113, 3145860560, 296247880, 1970579870, 3078560182, 3769228297, 1714227617, 3291629107, 3898220290, 166772364, 1251581989, 493813264, 448347421, 195405023, 2709975567, 677966185, 3703036547, 1463355134, 2715995803, 1338867538, 1343315457, 2802222074, 2684532164, 233230375, 2599980071, 2000651841, 3277868038, 1638401717, 4028070440, 3237316320, 6314154, 819756386, 300326615, 590932579, 1405279636, 3267499572, 3150704214, 2428286686, 3959192993, 3461946742, 1862657033, 1266418056, 963775037, 2089974820, 2263052895, 1917689273, 448879540, 3550394620, 3981727096, 150775221, 3627908307, 1303187396, 508620638, 2975983352, 2726630617, 1817252668, 1876281319, 1457606340, 908771278, 3720792119, 3617206836, 2455994898, 1729034894, 1080033504], [976866871, 3556439503, 2881648439, 1522871579, 1555064734, 1336096578, 3548522304, 2579274686, 3574697629, 3205460757, 3593280638, 3338716283, 3079412587, 564236357, 2993598910, 1781952180, 1464380207, 3163844217, 3332601554, 1699332808, 1393555694, 1183702653, 3581086237, 1288719814, 691649499, 2847557200, 2895455976, 3193889540, 2717570544, 1781354906, 1676643554, 2592534050, 3230253752, 1126444790, 2770207658, 2633158820, 2210423226, 2615765581, 2414155088, 3127139286, 673620729, 2805611233, 1269405062, 4015350505, 3341807571, 4149409754, 1057255273, 2012875353, 2162469141, 2276492801, 2601117357, 993977747, 3918593370, 2654263191, 753973209, 36408145, 2530585658, 25011837, 3520020182, 2088578344, 530523599, 2918365339, 1524020338, 1518925132, 3760827505, 3759777254, 1202760957, 3985898139, 3906192525, 674977740, 4174734889, 2031300136, 2019492241, 3983892565, 4153806404, 3822280332, 352677332, 2297720250, 60907813, 90501309, 3286998549, 1016092578, 2535922412, 2839152426, 457141659, 509813237, 4120667899, 652014361, 1966332200, 2975202805, 55981186, 2327461051, 676427537, 3255491064, 2882294119, 3433927263, 1307055953, 942726286, 933058658, 2468411793, 3933900994, 4215176142, 1361170020, 2001714738, 2830558078, 3274259782, 1222529897, 1679025792, 2729314320, 3714953764, 1770335741, 151462246, 3013232138, 1682292957, 1483529935, 471910574, 1539241949, 458788160, 3436315007, 1807016891, 3718408830, 978976581, 1043663428, 3165965781, 1927990952, 4200891579, 2372276910, 3208408903, 3533431907, 1412390302, 2931980059, 4132332400, 1947078029, 3881505623, 4168226417, 2941484381, 1077988104, 1320477388, 886195818, 18198404, 3786409e3, 2509781533, 112762804, 3463356488, 1866414978, 891333506, 18488651, 661792760, 1628790961, 3885187036, 3141171499, 876946877, 2693282273, 1372485963, 791857591, 2686433993, 3759982718, 3167212022, 3472953795, 2716379847, 445679433, 3561995674, 3504004811, 3574258232, 54117162, 3331405415, 2381918588, 3769707343, 4154350007, 1140177722, 4074052095, 668550556, 3214352940, 367459370, 261225585, 2610173221, 4209349473, 3468074219, 3265815641, 314222801, 3066103646, 3808782860, 282218597, 3406013506, 3773591054, 379116347, 1285071038, 846784868, 2669647154, 3771962079, 3550491691, 2305946142, 453669953, 1268987020, 3317592352, 3279303384, 3744833421, 2610507566, 3859509063, 266596637, 3847019092, 517658769, 3462560207, 3443424879, 370717030, 4247526661, 2224018117, 4143653529, 4112773975, 2788324899, 2477274417, 1456262402, 2901442914, 1517677493, 1846949527, 2295493580, 3734397586, 2176403920, 1280348187, 1908823572, 3871786941, 846861322, 1172426758, 3287448474, 3383383037, 1655181056, 3139813346, 901632758, 1897031941, 2986607138, 3066810236, 3447102507, 1393639104, 373351379, 950779232, 625454576, 3124240540, 4148612726, 2007998917, 544563296, 2244738638, 2330496472, 2058025392, 1291430526, 424198748, 50039436, 29584100, 3605783033, 2429876329, 2791104160, 1057563949, 3255363231, 3075367218, 3463963227, 1469046755, 985887462]];
+      var a = {
+        pbox: [],
+        sbox: []
+      };
+      function c(e, t) {
+        let r = t >> 24 & 255,
+          o = t >> 16 & 255,
+          n = t >> 8 & 255,
+          i = 255 & t,
+          s = e.sbox[0][r] + e.sbox[1][o];
+        s ^= e.sbox[2][n];
+        s += e.sbox[3][i];
+        return s;
+      }
+      function u(e, t, r) {
+        let o,
+          i = t,
+          s = r;
+        for (let t = 0; t < n; ++t) {
+          i ^= e.pbox[t];
+          s = c(e, i) ^ s;
+          o = i;
+          i = s;
+          s = o;
+        }
+        o = i;
+        i = s;
+        s = o;
+        s ^= e.pbox[n];
+        i ^= e.pbox[n + 1];
+        return {
+          left: i,
+          right: s
+        };
+      }
+      function l(e, t, r) {
+        let o,
+          i = t,
+          s = r;
+        for (let t = n + 1; t > 1; --t) {
+          i ^= e.pbox[t];
+          s = c(e, i) ^ s;
+          o = i;
+          i = s;
+          s = o;
+        }
+        o = i;
+        i = s;
+        s = o;
+        s ^= e.pbox[1];
+        i ^= e.pbox[0];
+        return {
+          left: i,
+          right: s
+        };
+      }
+      function h(e, t, r) {
+        for (let t = 0; t < 4; t++) {
+          e.sbox[t] = [];
+          for (let r = 0; r < 256; r++) e.sbox[t][r] = s[t][r];
+        }
+        let o = 0;
+        for (let s = 0; s < n + 2; s++) {
+          e.pbox[s] = i[s] ^ t[o];
+          o++;
+          o >= r && (o = 0);
+        }
+        let a = 0,
+          c = 0,
+          l = 0;
+        for (let t = 0; t < n + 2; t += 2) {
+          l = u(e, a, c);
+          a = l.left;
+          c = l.right;
+          e.pbox[t] = a;
+          e.pbox[t + 1] = c;
+        }
+        for (let t = 0; t < 4; t++) for (let r = 0; r < 256; r += 2) {
+          l = u(e, a, c);
+          a = l.left;
+          c = l.right;
+          e.sbox[t][r] = a;
+          e.sbox[t][r + 1] = c;
+        }
+        return !0;
+      }
+      var d = o.Blowfish = r.extend({
+        _doReset: function () {
+          if (this._keyPriorReset !== this._key) {
+            var e = this._keyPriorReset = this._key,
+              t = e.words,
+              r = e.sigBytes / 4;
+            h(a, t, r);
+          }
+        },
+        encryptBlock: function (e, t) {
+          var r = u(a, e[t], e[t + 1]);
+          e[t] = r.left;
+          e[t + 1] = r.right;
+        },
+        decryptBlock: function (e, t) {
+          var r = l(a, e[t], e[t + 1]);
+          e[t] = r.left;
+          e[t + 1] = r.right;
+        },
+        blockSize: 2,
+        keySize: 4,
+        ivSize: 2
+      });
+      t.Blowfish = r._createHelper(d);
+    })();
+    return e.Blowfish;
+  }(v(), $(), j(), ce(), he()));
+  return Ge.exports;
+}
+y.exports = function (e) {
+  return e;
+}(v(), k(), S(), T(), $(), D(), j(), N(), L(), q || (q = 1, U.exports = function (e) {
+  r = (t = e).lib.WordArray;
+  o = t.algo;
+  n = o.SHA256;
+  i = o.SHA224 = n.extend({
+    _doReset: function () {
+      this._hash = new r.init([3238371032, 914150663, 812702999, 4144912697, 4290775857, 1750603025, 1694076839, 3204075428]);
+    },
+    _doFinalize: function () {
+      var e = n._doFinalize.call(this);
+      e.sigBytes -= 4;
+      return e;
+    }
+  });
+  t.SHA224 = n._createHelper(i);
+  t.HmacSHA224 = n._createHmacHelper(i);
+  return e.SHA224;
+  var t, r, o, n, i;
+}(v(), L())), X(), K || (K = 1, V.exports = function (e) {
+  r = (t = e).x64;
+  o = r.Word;
+  n = r.WordArray;
+  i = t.algo;
+  s = i.SHA512;
+  a = i.SHA384 = s.extend({
+    _doReset: function () {
+      this._hash = new n.init([new o.init(3418070365, 3238371032), new o.init(1654270250, 914150663), new o.init(2438529370, 812702999), new o.init(355462360, 4144912697), new o.init(1731405415, 4290775857), new o.init(2394180231, 1750603025), new o.init(3675008525, 1694076839), new o.init(1203062813, 3204075428)]);
+    },
+    _doFinalize: function () {
+      var e = s._doFinalize.call(this);
+      e.sigBytes -= 16;
+      return e;
+    }
+  });
+  t.SHA384 = s._createHelper(a);
+  t.HmacSHA384 = s._createHmacHelper(a);
+  return e.SHA384;
+  var t, r, o, n, i, s, a;
+}(v(), k(), X())), Z(), Y || (Y = 1, ee.exports = function (e) {
+  (function () {
+    var t = e,
+      r = t.lib,
+      o = r.WordArray,
+      n = r.Hasher,
+      i = t.algo,
+      s = o.create([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 7, 4, 13, 1, 10, 6, 15, 3, 12, 0, 9, 5, 2, 14, 11, 8, 3, 10, 14, 4, 9, 15, 8, 1, 2, 7, 0, 6, 13, 11, 5, 12, 1, 9, 11, 10, 0, 8, 12, 4, 13, 3, 7, 15, 14, 5, 6, 2, 4, 0, 5, 9, 7, 12, 2, 10, 14, 1, 3, 8, 11, 6, 15, 13]),
+      a = o.create([5, 14, 7, 0, 9, 2, 11, 4, 13, 6, 15, 8, 1, 10, 3, 12, 6, 11, 3, 7, 0, 13, 5, 10, 14, 15, 8, 12, 4, 9, 1, 2, 15, 5, 1, 3, 7, 14, 6, 9, 11, 8, 12, 2, 10, 0, 4, 13, 8, 6, 4, 1, 3, 11, 15, 0, 5, 12, 2, 13, 9, 7, 10, 14, 12, 15, 10, 4, 1, 5, 8, 7, 6, 2, 13, 14, 0, 3, 9, 11]),
+      c = o.create([11, 14, 15, 12, 5, 8, 7, 9, 11, 13, 14, 15, 6, 7, 9, 8, 7, 6, 8, 13, 11, 9, 7, 15, 7, 12, 15, 9, 11, 7, 13, 12, 11, 13, 6, 7, 14, 9, 13, 15, 14, 8, 13, 6, 5, 12, 7, 5, 11, 12, 14, 15, 14, 15, 9, 8, 9, 14, 5, 6, 8, 6, 5, 12, 9, 15, 5, 11, 6, 8, 13, 12, 5, 12, 13, 14, 11, 8, 5, 6]),
+      u = o.create([8, 9, 9, 11, 13, 15, 15, 5, 7, 7, 8, 11, 14, 14, 12, 6, 9, 13, 15, 7, 12, 8, 9, 11, 7, 7, 12, 7, 6, 15, 13, 11, 9, 7, 15, 11, 8, 6, 6, 14, 12, 13, 5, 14, 13, 13, 7, 5, 15, 5, 8, 11, 14, 14, 6, 14, 6, 9, 12, 9, 12, 5, 15, 8, 8, 5, 12, 9, 12, 5, 14, 6, 8, 13, 6, 5, 15, 13, 11, 11]),
+      l = o.create([0, 1518500249, 1859775393, 2400959708, 2840853838]),
+      h = o.create([1352829926, 1548603684, 1836072691, 2053994217, 0]),
+      d = i.RIPEMD160 = n.extend({
+        _doReset: function () {
+          this._hash = o.create([1732584193, 4023233417, 2562383102, 271733878, 3285377520]);
+        },
+        _doProcessBlock: function (e, t) {
+          for (var r = 0; r < 16; r++) {
+            var o = t + r,
+              n = e[o];
+            e[o] = 16711935 & (n << 8 | n >>> 24) | 4278255360 & (n << 24 | n >>> 8);
+          }
+          var i,
+            d,
+            b,
+            w,
+            k,
+            _,
+            x,
+            S,
+            B,
+            A,
+            T,
+            C = this._hash.words,
+            E = l.words,
+            $ = h.words,
+            R = s.words,
+            z = a.words,
+            D = c.words,
+            H = u.words;
+          for (_ = i = C[0], x = d = C[1], S = b = C[2], B = w = C[3], A = k = C[4], r = 0; r < 80; r += 1) {
+            T = i + e[t + R[r]] | 0;
+            r < 16 ? T += f(d, b, w) + E[0] : r < 32 ? T += p(d, b, w) + E[1] : r < 48 ? T += y(d, b, w) + E[2] : r < 64 ? T += g(d, b, w) + E[3] : T += m(d, b, w) + E[4];
+            T = (T = v(T |= 0, D[r])) + k | 0;
+            i = k;
+            k = w;
+            w = v(b, 10);
+            b = d;
+            d = T;
+            T = _ + e[t + z[r]] | 0;
+            r < 16 ? T += m(x, S, B) + $[0] : r < 32 ? T += g(x, S, B) + $[1] : r < 48 ? T += y(x, S, B) + $[2] : r < 64 ? T += p(x, S, B) + $[3] : T += f(x, S, B) + $[4];
+            T = (T = v(T |= 0, H[r])) + A | 0;
+            _ = A;
+            A = B;
+            B = v(S, 10);
+            S = x;
+            x = T;
+          }
+          T = C[1] + b + B | 0;
+          C[1] = C[2] + w + A | 0;
+          C[2] = C[3] + k + _ | 0;
+          C[3] = C[4] + i + x | 0;
+          C[4] = C[0] + d + S | 0;
+          C[0] = T;
+        },
+        _doFinalize: function () {
+          var e = this._data,
+            t = e.words,
+            r = 8 * this._nDataBytes,
+            o = 8 * e.sigBytes;
+          t[o >>> 5] |= 128 << 24 - o % 32;
+          t[14 + (o + 64 >>> 9 << 4)] = 16711935 & (r << 8 | r >>> 24) | 4278255360 & (r << 24 | r >>> 8);
+          e.sigBytes = 4 * (t.length + 1);
+          this._process();
+          for (var n = this._hash, i = n.words, s = 0; s < 5; s++) {
+            var a = i[s];
+            i[s] = 16711935 & (a << 8 | a >>> 24) | 4278255360 & (a << 24 | a >>> 8);
+          }
+          return n;
+        },
+        clone: function () {
+          var e = n.clone.call(this);
+          e._hash = this._hash.clone();
+          return e;
+        }
+      });
+    function f(e, t, r) {
+      return e ^ t ^ r;
+    }
+    function p(e, t, r) {
+      return e & t | ~e & r;
+    }
+    function y(e, t, r) {
+      return (e | ~t) ^ r;
+    }
+    function g(e, t, r) {
+      return e & r | t & ~r;
+    }
+    function m(e, t, r) {
+      return e ^ (t | ~r);
+    }
+    function v(e, t) {
+      return e << t | e >>> 32 - t;
+    }
+    t.RIPEMD160 = n._createHelper(d);
+    t.HmacRIPEMD160 = n._createHmacHelper(d);
+  })();
+  /** @preserve
+  			(c) 2012 by Cédric Mesnil. All rights reserved.
+  
+  			Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  
+  			    - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+  			    - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+  
+  			THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  			*/
+  return e.RIPEMD160;
+}(v())), oe(), ne || (ne = 1, ie.exports = function (e) {
+  o = (r = (t = e).lib).Base;
+  n = r.WordArray;
+  s = (i = t.algo).SHA256;
+  a = i.HMAC;
+  c = i.PBKDF2 = o.extend({
+    cfg: o.extend({
+      keySize: 4,
+      hasher: s,
+      iterations: 25e4
+    }),
+    init: function (e) {
+      this.cfg = this.cfg.extend(e);
+    },
+    compute: function (e, t) {
+      for (var r = this.cfg, o = a.create(r.hasher, e), i = n.create(), s = n.create([1]), c = i.words, u = s.words, l = r.keySize, h = r.iterations; c.length < l;) {
+        var d = o.update(t).finalize(s);
+        o.reset();
+        for (var f = d.words, p = f.length, y = d, g = 1; g < h; g++) {
+          y = o.finalize(y);
+          o.reset();
+          for (var m = y.words, v = 0; v < p; v++) f[v] ^= m[v];
+        }
+        i.concat(d);
+        u[0]++;
+      }
+      i.sigBytes = 4 * l;
+      return i;
+    }
+  });
+  t.PBKDF2 = function (e, t, r) {
+    return c.create(r).compute(e, t);
+  };
+  return e.PBKDF2;
+  var t, r, o, n, i, s, a, c;
+}(v(), L(), oe())), ce(), he(), pe(), me(), we(), xe(), Se || (Se = 1, Be.exports = function (e) {
+  e.mode.ECB = ((t = e.lib.BlockCipherMode.extend()).Encryptor = t.extend({
+    processBlock: function (e, t) {
+      this._cipher.encryptBlock(e, t);
+    }
+  }), t.Decryptor = t.extend({
+    processBlock: function (e, t) {
+      this._cipher.decryptBlock(e, t);
+    }
+  }), t);
+  return e.mode.ECB;
+  var t;
+}(v(), he())), Ae || (Ae = 1, Te.exports = function (e) {
+  e.pad.AnsiX923 = {
+    pad: function (e, t) {
+      var r = e.sigBytes,
+        o = 4 * t,
+        n = o - r % o,
+        i = r + n - 1;
+      e.clamp();
+      e.words[i >>> 2] |= n << 24 - i % 4 * 8;
+      e.sigBytes += n;
+    },
+    unpad: function (e) {
+      var t = 255 & e.words[e.sigBytes - 1 >>> 2];
+      e.sigBytes -= t;
+    }
+  };
+  return e.pad.Ansix923;
+}(v(), he())), Ce || (Ce = 1, Ee.exports = function (e) {
+  e.pad.Iso10126 = {
+    pad: function (t, r) {
+      var o = 4 * r,
+        n = o - t.sigBytes % o;
+      t.concat(e.lib.WordArray.random(n - 1)).concat(e.lib.WordArray.create([n << 24], 1));
+    },
+    unpad: function (e) {
+      var t = 255 & e.words[e.sigBytes - 1 >>> 2];
+      e.sigBytes -= t;
+    }
+  };
+  return e.pad.Iso10126;
+}(v(), he())), $e || ($e = 1, Re.exports = function (e) {
+  e.pad.Iso97971 = {
+    pad: function (t, r) {
+      t.concat(e.lib.WordArray.create([2147483648], 1));
+      e.pad.ZeroPadding.pad(t, r);
+    },
+    unpad: function (t) {
+      e.pad.ZeroPadding.unpad(t);
+      t.sigBytes--;
+    }
+  };
+  return e.pad.Iso97971;
+}(v(), he())), ze || (ze = 1, De.exports = function (e) {
+  e.pad.ZeroPadding = {
+    pad: function (e, t) {
+      var r = 4 * t;
+      e.clamp();
+      e.sigBytes += r - (e.sigBytes % r || r);
+    },
+    unpad: function (e) {
+      var t = e.words,
+        r = e.sigBytes - 1;
+      for (r = e.sigBytes - 1; r >= 0; r--) if (t[r >>> 2] >>> 24 - r % 4 * 8 & 255) {
+        e.sigBytes = r + 1;
         break;
       }
     }
-    return _0x552b35;
-  }
-  applyLayout(_0x2b1071, _0x14ce9a, _0x1aa169 = {
-    t: 0,
-    l: 0,
-    b: 0,
-    r: 0
-  }) {
-    let _0x150143 = parseInt(this.settings[this.activePrefix + "layout_" + _0x14ce9a + "_x"]) || 0;
-    let _0x4779ef = parseInt(this.settings[this.activePrefix + "layout_" + _0x14ce9a + "_y"]) || 0;
-    let _0x312a25 = _0x1aa169.t + _0x4779ef;
-    let _0x117708 = _0x1aa169.l + _0x150143;
-    let _0x176cb8 = _0x1aa169.b;
-    let _0xd60c4e = _0x1aa169.r;
-    _0x312a25 < 0 && (_0x176cb8 += Math.abs(_0x312a25), _0x312a25 = 0);
-    _0x176cb8 < 0 && (_0x312a25 += Math.abs(_0x176cb8), _0x176cb8 = 0);
-    _0x117708 < 0 && (_0xd60c4e += Math.abs(_0x117708), _0x117708 = 0);
-    _0xd60c4e < 0 && (_0x117708 += Math.abs(_0xd60c4e), _0xd60c4e = 0);
-    _0x2b1071.setPadding(_0x312a25, _0x117708, _0x176cb8, _0xd60c4e);
-  }
-  renderLotteryBalls(_0x1acaf8, _0x193438, _0x2ddb42, _0x179968 = false) {
-    const _0x3421d8 = new Color("#FF3B30");
-    const _0x30cd95 = new Color("#007AFF");
-    let _0x309de7 = _0x193438.split("+");
-    let _0x30fc90 = _0x309de7[0].trim().split(/[\s,]+/);
-    let _0x3627a7 = [];
-    _0x309de7.length > 1 && (_0x3627a7 = _0x309de7[1].trim().split(/[\s,]+/));
-    let _0x4211a1 = this.s(14, "lotteryItem");
-    let _0x4378b2 = Math.round(_0x4211a1 * (_0x179968 ? 1.5 : 1.7));
-    const _0x59d261 = (_0x4375e7, _0x420ed5) => {
-      if (!_0x4375e7 || _0x4375e7.trim() === "") {
-        return;
+  };
+  return e.pad.ZeroPadding;
+}(v(), he())), He || (He = 1, Me.exports = function (e) {
+  e.pad.NoPadding = {
+    pad: function () {},
+    unpad: function () {}
+  };
+  return e.pad.NoPadding;
+}(v(), he())), je || (je = 1, Ie.exports = function (e) {
+  r = (t = e).lib.CipherParams;
+  o = t.enc.Hex;
+  t.format.Hex = {
+    stringify: function (e) {
+      return e.ciphertext.toString(o);
+    },
+    parse: function (e) {
+      var t = o.parse(e);
+      return r.create({
+        ciphertext: t
+      });
+    }
+  };
+  return e.format.Hex;
+  var t, r, o;
+}(v(), he())), Fe || (Fe = 1, Ne.exports = function (e) {
+  (function () {
+    var t = e,
+      r = t.lib.BlockCipher,
+      o = t.algo,
+      n = [],
+      i = [],
+      s = [],
+      a = [],
+      c = [],
+      u = [],
+      l = [],
+      h = [],
+      d = [],
+      f = [];
+    !function () {
+      for (var e = [], t = 0; t < 256; t++) t < 128 ? e[t] = t << 1 : e[t] = t << 1 ^ 283;
+      var r = 0,
+        o = 0;
+      for (t = 0; t < 256; t++) {
+        var p = o ^ o << 1 ^ o << 2 ^ o << 3 ^ o << 4;
+        p = p >>> 8 ^ 255 & p ^ 99;
+        n[r] = p;
+        i[p] = r;
+        var y = e[r],
+          g = e[y],
+          m = e[g],
+          v = 257 * e[p] ^ 16843008 * p;
+        s[r] = v << 24 | v >>> 8;
+        a[r] = v << 16 | v >>> 16;
+        c[r] = v << 8 | v >>> 24;
+        u[r] = v;
+        v = 16843009 * m ^ 65537 * g ^ 257 * y ^ 16843008 * r;
+        l[p] = v << 24 | v >>> 8;
+        h[p] = v << 16 | v >>> 16;
+        d[p] = v << 8 | v >>> 24;
+        f[p] = v;
+        r ? (r = y ^ e[e[e[m ^ y]]], o ^= e[e[o]]) : r = o = 1;
       }
-      let _0x43a595 = _0x1acaf8.addStack();
-      _0x43a595.size = new Size(_0x4378b2, _0x4378b2);
-      _0x43a595.cornerRadius = _0x4378b2 / 2;
-      _0x43a595.backgroundColor = _0x420ed5;
-      _0x43a595.centerAlignContent();
-      let _0x46a374 = _0x43a595.addText(_0x4375e7);
-      _0x46a374.font = Font.boldSystemFont(_0x4211a1);
-      _0x46a374.textColor = Color.white();
-      _0x1acaf8.addSpacer(_0x179968 ? 3 : 4);
-    };
-    for (let _0x404f1e of _0x30fc90) _0x59d261(_0x404f1e, _0x3421d8);
-    for (let _0x470f7b of _0x3627a7) _0x59d261(_0x470f7b, _0x30cd95);
-  }
-  async renderInfoSide(_0x352e68, _0x4b87ab) {
-    const _0x352b3d = this.activePrefix === "s2_";
-    const _0x33c425 = this.settings[this.activePrefix + "show_battery"];
-    const _0x33811c = this.settings[this.activePrefix + "show_poetry"];
-    const _0x30833d = _0x33c425 === undefined || _0x33c425 === "true";
-    const _0x36d793 = _0x33811c === undefined || _0x33811c === "true";
-    const _0x301736 = new Date();
-    let _0x3ccd32 = _0x352e68.addStack();
-    _0x3ccd32.centerAlignContent();
-    let _0x3c012a = this.settings.lottery_type && this.settings.lottery_type !== "none" && _0x4b87ab.lottery;
-    if (_0x3c012a) {
-      let _0x4a59de = _0x4b87ab.lottery.full.split(":");
-      let _0x48f2cc = _0x4a59de[0];
-      let _0x4a4387 = _0x4a59de.length > 1 ? _0x4a59de[1].trim() : "";
-      this.addText(_0x3ccd32, _0x48f2cc, 14, "lotteryTitle", true);
-      _0x3ccd32.addSpacer(25);
-      let _0x4cd913 = _0x3ccd32.addStack();
-      _0x4cd913.backgroundColor = new Color("#666666", 0.3);
-      _0x4cd913.cornerRadius = 4;
-      _0x4cd913.setPadding(1, 4, 1, 4);
-      _0x4cd913.centerAlignContent();
-      let _0x5811d0 = this.getLotterySchedule(_0x4b87ab.lottery.type);
-      this.addText(_0x4cd913, _0x5811d0, 10, "lotteryInfo", false, 0, 1, this.getConfColor("lotteryInfo"));
-      _0x352e68.addSpacer(2);
-      let _0x4c27dc = _0x352e68.addStack();
-      _0x4c27dc.centerAlignContent();
-      this.renderLotteryBalls(_0x4c27dc, _0x4a4387, this.settings.lottery_type, _0x352b3d);
-      if (_0x352b3d) {
-        _0x352e68.addSpacer(2);
-      }
-    } else {
-      this.addText(_0x3ccd32, this.getGreeting(_0x301736), 22, "greeting", true);
-      let _0x58d085 = _0x352e68.addStack();
-      _0x58d085.centerAlignContent();
-      this.addText(_0x58d085, this.getDateStr(_0x301736), 16, "date");
-      _0x58d085.addSpacer(4);
-      let _0x3f792f = this.getLunarDate_Precise(_0x301736);
-      this.addText(_0x58d085, _0x3f792f.month + _0x3f792f.day, 16, "lunar");
-    }
-    _0x352e68.addSpacer(2);
-    let _0x3cbfe2 = _0x352e68.addStack();
-    _0x3cbfe2.centerAlignContent();
-    this.addText(_0x3cbfe2, weekTitle[_0x301736.getDay()], 16, "info");
-    _0x30833d && (_0x3cbfe2.addSpacer(4), this.addText(_0x3cbfe2, "🔋" + Math.round(Device.batteryLevel() * 100) + "%", 15, "info"));
-    _0x3cbfe2.addSpacer(4);
-    let _0x561739 = this.location.locality || "";
-    if (this.location.subLocality) {
-      _0x561739 += " " + this.location.subLocality;
-    }
-    if (!_0x561739) {
-      _0x561739 = "定位中";
-    }
-    this.addText(_0x3cbfe2, "📍" + _0x561739, 15, "info");
-    let _0x54b322 = _0x4b87ab.weather.alertTitle || _0x4b87ab.weather.desc || "暂无数据";
-    this.addText(_0x352e68, _0x54b322, 12, "weather", false, 2, 3);
-    _0x352e68.addSpacer(2);
-    let _0x565d44 = _0x352e68.addStack();
-    _0x565d44.centerAlignContent();
-    if (_0x4b87ab.weather.future && _0x4b87ab.weather.future.length > 0) {
-      let _0x3375cf = _0x565d44.addStack();
-      let _0x3f9580 = _0x352b3d || !_0x36d793;
-      let _0x40e046 = _0x3f9580 ? 7 : 3;
-      let _0xe37ee6 = Math.min(_0x4b87ab.weather.future.length, _0x40e046);
-      let _0x11981c = _0x3f9580 ? 6 : 8;
-      for (let _0x40e690 = 0; _0x40e690 < _0xe37ee6; _0x40e690++) {
-        let _0x34f99c = _0x4b87ab.weather.future[_0x40e690];
-        let _0x343ae6 = _0x3375cf.addStack();
-        _0x343ae6.layoutVertically();
-        _0x343ae6.centerAlignContent();
-        if (_0x3f9580) {
-          let _0x403f99 = _0x343ae6.addText(_0x34f99c.day);
-          _0x403f99.font = Font.systemFont(this.s(9, "poetry"));
-          _0x403f99.textColor = this.getConfColor("poetry");
-          _0x343ae6.addSpacer(1);
-          let _0x569c14 = this.s(13, "weather");
-          let _0x4a98de = _0x343ae6.addImage(this.getSFIco(_0x34f99c.ico));
-          _0x4a98de.imageSize = new Size(_0x569c14, _0x569c14);
-          _0x4a98de.tintColor = this.getConfColor("weather");
-          _0x343ae6.addSpacer(1);
-          let _0x4c4300 = _0x343ae6.addText(_0x34f99c.min + "/" + _0x34f99c.max + "°");
-          _0x4c4300.font = Font.systemFont(this.s(8, "poetry"));
-          _0x4c4300.textColor = this.getConfColor("poetry");
-        } else {
-          this.addText(_0x343ae6, _0x34f99c.day, 10, "poetry");
-          _0x343ae6.addSpacer(1);
-          let _0x584635 = _0x343ae6.addImage(this.getSFIco(_0x34f99c.ico));
-          let _0x259d35 = this.s(15, "weather");
-          _0x584635.imageSize = new Size(_0x259d35, _0x259d35);
-          _0x584635.tintColor = this.getConfColor("weather");
-          _0x343ae6.addSpacer(1);
-          this.addText(_0x343ae6, _0x34f99c.min + "/" + _0x34f99c.max + "°", 9, "poetry");
-        }
-        if (_0x40e690 < _0xe37ee6 - 1) {
-          _0x3375cf.addSpacer(_0x11981c);
-        }
-      }
-      if (_0x3f9580 && _0xe37ee6 < 7) {
-        _0x565d44.addSpacer(4);
-        let _0x23f313 = _0x565d44.addText("API仅" + _0xe37ee6 + "天");
-        _0x23f313.font = Font.systemFont(8);
-        _0x23f313.textColor = Color.red();
-      }
-    } else {
-      let _0x274da0 = _0x565d44.addText("无预报数据");
-      _0x274da0.font = Font.systemFont(10);
-      _0x274da0.textColor = Color.red();
-    }
-    _0x565d44.addSpacer(10);
-    if (_0x36d793 && !_0x352b3d && _0x4b87ab.poetry && _0x4b87ab.poetry.data) {
-      let _0x2ce4bc = _0x565d44.addStack();
-      _0x2ce4bc.layoutVertically();
-      _0x2ce4bc.backgroundColor = new Color("#666", 0.3);
-      _0x2ce4bc.cornerRadius = 4;
-      _0x2ce4bc.setPadding(2, 4, 2, 4);
-      let _0x2d4417 = _0x4b87ab.poetry.data.content.replace(/[。，！]$/, "");
-      let _0x2e02cf = this.addText(_0x2ce4bc, _0x2d4417, 10, "poetry");
-      _0x2e02cf.lineLimit = 3;
-      _0x2ce4bc.addSpacer(2);
-      let _0x21fe1c = _0x4b87ab.poetry.data.origin.dynasty + "·" + _0x4b87ab.poetry.data.origin.author;
-      let _0xba1a1d = this.addText(_0x2ce4bc, "— " + _0x21fe1c, 8, "poetry");
-      _0xba1a1d.rightAlignText();
-    }
-    if (this.activePrefix !== "s4_" && _0x4b87ab.schedules.length > 0) {
-      let _0x17a4d7 = _0x4b87ab.schedules;
-      let _0x165a12 = this.settings[this.activePrefix + "schedule_keyword"];
-      let _0xa56dc1 = parseInt(this.settings[this.activePrefix + "schedule_index"]) || 0;
-      _0x165a12 && _0x165a12.trim() !== "" && (_0x17a4d7 = _0x17a4d7.filter(_0x401066 => _0x401066.title.includes(_0x165a12)));
-      let _0x37097b = _0x17a4d7[_0xa56dc1];
-      if (_0x37097b) {
-        _0x352e68.addSpacer(4);
-        let _0x46062b = _0x352e68.addStack();
-        _0x46062b.centerAlignContent();
-        let _0xfedfab = _0x46062b.addImage(this.getSFIco("megaphone"));
-        _0xfedfab.imageSize = new Size(10, 10);
-        _0xfedfab.tintColor = this.getConfColor("info");
-        _0x46062b.addSpacer(4);
-        this.addText(_0x46062b, _0x37097b.title, 11, "info");
-      }
-    }
-  }
-  async renderWeatherSide(_0xfedfa9, _0x418c59) {
-    let _0x1d6d51 = _0xfedfa9.addStack();
-    _0x1d6d51.bottomAlignContent();
-    _0xfedfa9.addSpacer(0);
-    _0x1d6d51.addSpacer();
-    let _0x415fa6 = _0x1d6d51.addImage(this.getSFIco(_0x418c59.ico));
-    let _0xfe9b1f = this.s(30, "weatherLarge");
-    _0x415fa6.imageSize = new Size(_0xfe9b1f, _0xfe9b1f);
-    _0x415fa6.tintColor = this.getConfColor("weatherLarge");
-    _0x1d6d51.addSpacer(4);
-    let _0x30c89a = this.addText(_0x1d6d51, (_0x418c59.temp || "-") + "°", 20, "weatherLarge");
-    _0x30c89a.font = Font.boldMonospacedSystemFont(this.s(20, "weatherLarge"));
-    _0xfedfa9.addSpacer(4);
-    const _0x3396c9 = _0xfeeba1 => {
-      let _0x3ca158 = _0xfedfa9.addStack();
-      _0x3ca158.addSpacer();
-      this.addText(_0x3ca158, _0xfeeba1, 12, "weather");
-    };
-    _0x3396c9("湿度：" + (_0x418c59.hum || "-"));
-    _0x3396c9("舒适：" + (_0x418c59.comfort || "-"));
-    _0x3396c9("紫外：" + (_0x418c59.uv || "-"));
-    _0x3396c9("空气：" + (_0x418c59.aqi || "-"));
-    _0xfedfa9.addSpacer(2);
-    let _0xee712 = _0xfedfa9.addStack();
-    _0xee712.addSpacer();
-    let _0x14dcc2 = _0xee712.addText("↑" + (_0x418c59.max || "-") + "°");
-    _0x14dcc2.font = Font.systemFont(this.s(11, "weather"));
-    _0x14dcc2.textColor = new Color("#ff5555");
-    _0xee712.addSpacer(4);
-    let _0xef2f3 = _0xee712.addText("↓" + (_0x418c59.min || "-") + "°");
-    _0xef2f3.font = Font.systemFont(this.s(11, "weather"));
-    _0xef2f3.textColor = new Color("#55ff55");
-    _0xfedfa9.addSpacer(1);
-    let _0xcdc238 = _0xfedfa9.addStack();
-    _0xcdc238.addSpacer();
-    let _0xcc4643 = this.s(12, "weather");
-    let _0xcc4642 = _0xcdc238.addImage(this.getSFIco("sunrise.fill"));
-    _0xcc4642.imageSize = new Size(_0xcc4643, _0xcc4643);
-    this.addText(_0xcdc238, _0x418c59.sunrise || "--:--", 11, "weather");
-    _0xcdc238.addSpacer(4);
-    let _0x261885 = _0xcdc238.addImage(this.getSFIco("sunset.fill"));
-    _0x261885.imageSize = new Size(_0xcc4643, _0xcc4643);
-    this.addText(_0xcdc238, _0x418c59.sunset || "--:--", 11, "weather");
-    _0xfedfa9.addSpacer(2);
-    let _0xcc1399 = _0xfedfa9.addStack();
-    _0xcc1399.addSpacer();
-    let _0xed820 = new Date();
-    let _0x41b027 = _0xed820.getMinutes();
-    this.addText(_0xcc1399, "更新 " + _0xed820.getHours() + ":" + (_0x41b027 < 10 ? "0" + _0x41b027 : _0x41b027), 10, "weather");
-  }
-  async renderTimeInfo(_0x3f6993) {
-    let _0x3f9941 = _0x3f6993.addStack();
-    _0x3f9941.layoutHorizontally();
-    _0x3f9941.setPadding(0, 4, 0, 4);
-    const _0x3ff7de = new Date();
-    const _0x3cfcfa = this.getLunarDate_Precise(_0x3ff7de);
-    const _0x3c9e5d = zodiacAnimals[(_0x3cfcfa.year - 4) % 12];
-    const _0x30b169 = getWeekOfYear(_0x3ff7de);
-    const _0x4a05f5 = getDayOfYear(_0x3ff7de);
-    const _0x30b494 = _0x3ff7de.getFullYear() % 4 === 0 ? 366 : 365;
-    let _0x3cb7ca = [];
-    let _0x3f8005 = [];
-    try {
-      const _0x367aa1 = await CalendarEvent.today([]);
-      for (const _0x419b5d of _0x367aa1) {
-        if (!_0x419b5d.isAllDay) {
-          continue;
-        }
-        let _0x419b5e = _0x419b5d.title;
-        if (_0x419b5e.includes("宜")) {
-          let _0x5aef8a = _0x419b5e.substring(_0x419b5e.indexOf("宜") + 1);
-          if (_0x5aef8a.includes("忌")) {
-            _0x5aef8a = _0x5aef8a.split("忌")[0];
-          }
-          _0x5aef8a = _0x5aef8a.replace(/^[:：\s]+/, "");
-          let _0x598b6d = _0x5aef8a.split(/[\s,，、\.．]+/).filter(_0x432ef3 => _0x432ef3.trim().length > 0 && _0x432ef3.length < 6);
-          if (_0x598b6d.length > 0) {
-            _0x3cb7ca = _0x598b6d;
-          }
-        }
-        if (_0x419b5e.includes("忌")) {
-          let _0x372bc3 = _0x419b5e.substring(_0x419b5e.indexOf("忌") + 1);
-          if (_0x372bc3.includes("宜")) {
-            _0x372bc3 = _0x372bc3.split("宜")[0];
-          }
-          _0x372bc3 = _0x372bc3.replace(/^[:：\s]+/, "");
-          let _0x3a594f = _0x372bc3.split(/[\s,，、\.．]+/).filter(_0x465c80 => _0x465c80.trim().length > 0 && _0x465c80.length < 6);
-          if (_0x3a594f.length > 0) {
-            _0x3f8005 = _0x3a594f;
-          }
-        }
-      }
-    } catch (_0x167c5b) {}
-    if (_0x3cb7ca.length === 0) {
-      _0x3cb7ca = getYiJiSimple(_0x3ff7de, 0);
-    }
-    if (_0x3f8005.length === 0) {
-      _0x3f8005 = getYiJiSimple(_0x3ff7de, 1);
-    }
-    let _0x337ccf = _0x3f9941.addStack();
-    _0x337ccf.layoutVertically();
-    let _0x3084e6 = _0x337ccf.addStack();
-    _0x3084e6.centerAlignContent();
-    this.addText(_0x3084e6, _0x3c9e5d + "年 " + _0x3cfcfa.month + _0x3cfcfa.day, 12, "timeInfo");
-    _0x337ccf.addSpacer(0);
-    let _0x36d93e = _0x337ccf.addStack();
-    _0x36d93e.centerAlignContent();
-    this.addText(_0x36d93e, "第" + _0x30b169 + "/53周 第 " + _0x4a05f5 + "/" + _0x30b494 + "天", 10, "date");
-    _0x3f9941.addSpacer();
-    let _0x39d421 = _0x3f9941.addStack();
-    _0x39d421.centerAlignContent();
-    this.renderYiJi(_0x39d421, "宜", "#D32F2F", _0x3cb7ca, "#D32F2F");
-    _0x3f9941.addSpacer();
-    let _0x397585 = _0x3f9941.addStack();
-    _0x397585.centerAlignContent();
-    this.renderYiJi(_0x397585, "忌", "#000000", _0x3f8005, "#ffffff");
-  }
-  renderYiJi(_0x10e53c, _0xdea590, _0x2c9a28, _0x1fd6ab, _0x1fd6ac) {
-    let _0x699f7 = _0x10e53c.addStack();
-    let _0x19c0f6 = this.s(30, "timeInfo");
-    _0x699f7.size = new Size(_0x19c0f6, _0x19c0f6);
-    _0x699f7.cornerRadius = _0x19c0f6 / 2;
-    _0x699f7.backgroundColor = new Color(_0x2c9a28);
-    _0x699f7.centerAlignContent();
-    let _0x4bb503 = _0x699f7.addText(_0xdea590);
-    _0x4bb503.font = Font.boldSystemFont(this.s(17, "timeInfo"));
-    _0x4bb503.textColor = Color.white();
-    _0x10e53c.addSpacer(8);
-    let _0x2b03c6 = _0x10e53c.addStack();
-    _0x2b03c6.layoutVertically();
-    if (_0x1fd6ab.length > 0) {
-      let _0x34f988 = _0x2b03c6.addStack();
-      this.addText(_0x34f988, _0x1fd6ab.slice(0, 3).join("  "), 10, "timeInfo", false, 0, 1, new Color(_0x1fd6ac));
-      if (_0x1fd6ab.length > 3) {
-        let _0x3a249f = _0x2b03c6.addStack();
-        this.addText(_0x3a249f, _0x1fd6ab.slice(3, 6).join("  "), 10, "timeInfo", false, 0, 1, new Color(_0x1fd6ac));
-      }
-    }
-  }
-  async renderWeekRow(_0x46118d) {
-    let _0x44aa7b = _0x46118d.addStack();
-    _0x44aa7b.setPadding(0, 5, 0, 3);
-    let _0x5e01d2 = this.activePrefix === "s3_" || this.activePrefix === "s4_" ? 9.1 : 30;
-    let _0x5b33a1 = parseFloat(this.settings[this.activePrefix + "space_week_w"] || _0x5e01d2);
-    for (let _0x16a9aa = 0; _0x16a9aa < 7; _0x16a9aa++) {
-      let _0x138213 = _0x44aa7b.addStack();
-      _0x138213.size = new Size(this.s(24, "calendar"), this.s(22, "calendar"));
-      _0x138213.centerAlignContent();
-      let _0x462b14 = _0x138213.addText(weekTitleShort[_0x16a9aa]);
-      _0x462b14.font = Font.boldSystemFont(this.s(14, "calendar"));
-      _0x462b14.textColor = _0x16a9aa === 0 || _0x16a9aa === 6 ? new Color("#ff5555") : this.getConfColor("calendar");
-      if (_0x16a9aa < 6) {
-        _0x44aa7b.addSpacer(_0x5b33a1);
-      }
-    }
-  }
-  async renderCalendarGrid(_0x16dca0) {
-    let _0x10884b = new Date();
-    let _0x1748a8 = _0x10884b.getFullYear();
-    let _0xef47fe = _0x10884b.getMonth();
-    let _0x2845e1 = getMonthGrid(_0x1748a8, _0xef47fe);
-    let _0x106ec4;
-    let _0xda6951;
-    this.activePrefix === "s3_" || this.activePrefix === "s4_" ? (_0x106ec4 = parseFloat(this.settings[this.activePrefix + "space_cal_w"] || 6.2), _0xda6951 = parseFloat(this.settings[this.activePrefix + "space_cal_h"] || 0)) : (_0x106ec4 = parseFloat(this.settings[this.activePrefix + "space_cal_w"] || 27.2), _0xda6951 = parseFloat(this.settings[this.activePrefix + "space_cal_h"] || 3));
-    let _0xe63cd9 = this.s(27, "calendar");
-    for (let _0x58e338 = 0; _0x58e338 < _0x2845e1.length; _0x58e338++) {
-      let _0x55b5b8 = _0x16dca0.addStack();
-      _0x55b5b8.setPadding(0, 7, 0, 2);
-      for (let _0x29031a = 0; _0x29031a < 7; _0x29031a++) {
-        let _0x2f5772 = _0x2845e1[_0x58e338][_0x29031a];
-        let _0x2c5c8e = _0x55b5b8.addStack();
-        _0x2c5c8e.size = new Size(_0xe63cd9, _0xe63cd9);
-        _0x2c5c8e.layoutVertically();
-        _0x2c5c8e.centerAlignContent();
-        if (_0x2f5772 !== null) {
-          let _0x25b408 = new Date(_0x1748a8, _0xef47fe, _0x2f5772);
-          let _0x19ca15 = _0x2f5772 === _0x10884b.getDate();
-          let _0x1862fd = _0x29031a === 0 || _0x29031a === 6;
-          let _0x2095a7 = _0x2c5c8e.addStack();
-          _0x2095a7.size = new Size(this.s(17, "calendar"), this.s(17, "calendar"));
-          _0x2095a7.centerAlignContent();
-          if (_0x19ca15) {
-            let _0x182d30 = _0x2095a7.addStack();
-            _0x182d30.size = new Size(this.s(16, "calendar"), this.s(16, "calendar"));
-            _0x182d30.cornerRadius = this.s(8, "calendar");
-            _0x182d30.backgroundColor = new Color("#ffcc00");
-            _0x182d30.centerAlignContent();
-            let _0x241a24 = _0x182d30.addText(_0x2f5772.toString());
-            _0x241a24.font = Font.boldSystemFont(this.s(12, "calendar"));
-            _0x241a24.textColor = Color.black();
-          } else {
-            let _0x1d3e15 = _0x2095a7.addText(_0x2f5772.toString());
-            _0x1d3e15.font = Font.boldSystemFont(this.s(12, "calendar"));
-            _0x1d3e15.textColor = _0x1862fd ? new Color("#ff5555") : this.getConfColor("calendar");
-          }
-          let _0x1865c8 = this.getLunarDate_Precise(_0x25b408);
-          let _0x3b6a0e = getSolarTerm(_0x25b408);
-          let _0x483ffd = _0x2c5c8e.addStack();
-          _0x483ffd.setPadding(-1, 1.5, 0, 0);
-          _0x483ffd.centerAlignContent();
-          let _0x1b8d5e = _0x483ffd.addText(_0x3b6a0e || _0x1865c8.day);
-          _0x1b8d5e.font = Font.systemFont(this.s(8, "calendar"));
-          _0x1b8d5e.textColor = new Color(this.getConfColor("calendar").hex, 0.7);
-        }
-        if (_0x29031a < 6) {
-          _0x55b5b8.addSpacer(_0x106ec4);
-        }
-      }
-      if (_0x58e338 < _0x2845e1.length - 1) {
-        _0x16dca0.addSpacer(_0xda6951);
-      }
-    }
-  }
-  addText(_0xe73b7f, _0xcdcf1c, _0x263449, _0xe5d2bd, _0x58dca1 = false, _0x564716 = 0, _0x5b8a03 = 1, _0x4fa010 = null) {
-    if (_0x564716 > 0) {
-      _0xe73b7f.addSpacer(_0x564716);
-    }
-    let _0x5c3cb9 = _0xe73b7f.addText(String(_0xcdcf1c));
-    _0x5c3cb9.font = _0x58dca1 ? Font.boldSystemFont(this.s(_0x263449, _0xe5d2bd)) : Font.systemFont(this.s(_0x263449, _0xe5d2bd));
-    _0x5c3cb9.textColor = _0x4fa010 || this.getConfColor(_0xe5d2bd);
-    if (_0x5b8a03 > 1) {
-      _0x5c3cb9.lineLimit = _0x5b8a03;
-    }
-    return _0x5c3cb9;
-  }
-  s(_0x5ad8a2, _0x5a7a05) {
-    let _0x442057 = this.activePrefix + "size_" + _0x5a7a05;
-    let _0x5a76db = (parseInt(this.settings[_0x442057]) || 100) / 100;
-    let _0x59b6a4 = (parseInt(this.settings.global_font_size) || 100) / 100;
-    return Math.round(_0x5ad8a2 * _0x5a76db * _0x59b6a4);
-  }
-  getConfColor(_0x41dfe6) {
-    let _0x42a01d = this.activePrefix + "color_" + _0x41dfe6;
-    let _0x54dfbc = this.settings[_0x42a01d];
-    return _0x54dfbc ? new Color(_0x54dfbc) : new Color(baseConfigKeys["color_" + _0x41dfe6]);
-  }
-  getSFIco(_0x5a22aa) {
-    try {
-      return SFSymbol.named(_0x5a22aa).image;
-    } catch {
-      return SFSymbol.named("sun.max.fill").image;
-    }
-  }
-  getDateStr(_0x484191) {
-    let _0x47e2f4 = new DateFormatter();
-    _0x47e2f4.locale = "zh_cn";
-    _0x47e2f4.dateFormat = "yyyy年MM月d日";
-    return _0x47e2f4.string(_0x484191);
-  }
-  getGreeting(_0x3189a4) {
-    const _0x3e2653 = _0x3189a4.getHours();
-    let _0x5482cd = "";
-    if (_0x3e2653 < 5 || _0x3e2653 >= 23) {
-      _0x5482cd = this.settings.text_greeting_night;
-      if (!_0x5482cd) {
-        _0x5482cd = "🦉火华,可以来一发了~";
-      }
-    } else {
-      if (_0x3e2653 < 11) {
-        _0x5482cd = this.settings.text_greeting_morning;
-        if (!_0x5482cd) {
-          _0x5482cd = "💫火华,早上心情美美哒~";
-        }
-      } else {
-        if (_0x3e2653 < 13) {
-          _0x5482cd = this.settings.text_greeting_noon;
-          if (!_0x5482cd) {
-            _0x5482cd = "🥳火华,中午好呀~";
-          }
-        } else {
-          if (_0x3e2653 < 18) {
-            _0x5482cd = this.settings.text_greeting_afternoon;
-            if (!_0x5482cd) {
-              _0x5482cd = "🐡火华,下午好呀~";
-            }
-          } else {
-            _0x5482cd = this.settings.text_greeting_evening;
-            if (!_0x5482cd) {
-              _0x5482cd = "🌙火华,（晚上好呀）";
+    }();
+    var p = [0, 1, 2, 4, 8, 16, 32, 64, 128, 27, 54],
+      y = o.AES = r.extend({
+        _doReset: function () {
+          if (!this._nRounds || this._keyPriorReset !== this._key) {
+            for (var e = this._keyPriorReset = this._key, t = e.words, r = e.sigBytes / 4, o = 4 * ((this._nRounds = r + 6) + 1), i = this._keySchedule = [], s = 0; s < o; s++) s < r ? i[s] = t[s] : (u = i[s - 1], s % r ? r > 6 && s % r == 4 && (u = n[u >>> 24] << 24 | n[u >>> 16 & 255] << 16 | n[u >>> 8 & 255] << 8 | n[255 & u]) : (u = n[(u = u << 8 | u >>> 24) >>> 24] << 24 | n[u >>> 16 & 255] << 16 | n[u >>> 8 & 255] << 8 | n[255 & u], u ^= p[s / r | 0] << 24), i[s] = i[s - r] ^ u);
+            for (var a = this._invKeySchedule = [], c = 0; c < o; c++) {
+              s = o - c;
+              if (c % 4) {
+                var u = i[s];
+              } else {
+                u = i[s - 4];
+              }
+              c < 4 || s <= 4 ? a[c] = u : a[c] = l[n[u >>> 24]] ^ h[n[u >>> 16 & 255]] ^ d[n[u >>> 8 & 255]] ^ f[n[255 & u]];
             }
           }
-        }
+        },
+        encryptBlock: function (e, t) {
+          this._doCryptBlock(e, t, this._keySchedule, s, a, c, u, n);
+        },
+        decryptBlock: function (e, t) {
+          var r = e[t + 1];
+          e[t + 1] = e[t + 3];
+          e[t + 3] = r;
+          this._doCryptBlock(e, t, this._invKeySchedule, l, h, d, f, i);
+          r = e[t + 1];
+          e[t + 1] = e[t + 3];
+          e[t + 3] = r;
+        },
+        _doCryptBlock: function (e, t, r, o, n, i, s, a) {
+          for (var c = this._nRounds, u = e[t] ^ r[0], l = e[t + 1] ^ r[1], h = e[t + 2] ^ r[2], d = e[t + 3] ^ r[3], f = 4, p = 1; p < c; p++) {
+            var y = o[u >>> 24] ^ n[l >>> 16 & 255] ^ i[h >>> 8 & 255] ^ s[255 & d] ^ r[f++],
+              g = o[l >>> 24] ^ n[h >>> 16 & 255] ^ i[d >>> 8 & 255] ^ s[255 & u] ^ r[f++],
+              m = o[h >>> 24] ^ n[d >>> 16 & 255] ^ i[u >>> 8 & 255] ^ s[255 & l] ^ r[f++],
+              v = o[d >>> 24] ^ n[u >>> 16 & 255] ^ i[l >>> 8 & 255] ^ s[255 & h] ^ r[f++];
+            u = y;
+            l = g;
+            h = m;
+            d = v;
+          }
+          y = (a[u >>> 24] << 24 | a[l >>> 16 & 255] << 16 | a[h >>> 8 & 255] << 8 | a[255 & d]) ^ r[f++];
+          g = (a[l >>> 24] << 24 | a[h >>> 16 & 255] << 16 | a[d >>> 8 & 255] << 8 | a[255 & u]) ^ r[f++];
+          m = (a[h >>> 24] << 24 | a[d >>> 16 & 255] << 16 | a[u >>> 8 & 255] << 8 | a[255 & l]) ^ r[f++];
+          v = (a[d >>> 24] << 24 | a[u >>> 16 & 255] << 16 | a[l >>> 8 & 255] << 8 | a[255 & h]) ^ r[f++];
+          e[t] = y;
+          e[t + 1] = g;
+          e[t + 2] = m;
+          e[t + 3] = v;
+        },
+        keySize: 8
+      });
+    t.AES = r._createHelper(y);
+  })();
+  return e.AES;
+}(v(), $(), j(), ce(), he())), Le(), qe || (qe = 1, Ue.exports = function (e) {
+  (function () {
+    var t = e,
+      r = t.lib.StreamCipher,
+      o = t.algo,
+      n = o.RC4 = r.extend({
+        _doReset: function () {
+          for (var e = this._key, t = e.words, r = e.sigBytes, o = this._S = [], n = 0; n < 256; n++) o[n] = n;
+          n = 0;
+          for (var i = 0; n < 256; n++) {
+            var s = n % r,
+              a = t[s >>> 2] >>> 24 - s % 4 * 8 & 255;
+            i = (i + o[n] + a) % 256;
+            var c = o[n];
+            o[n] = o[i];
+            o[i] = c;
+          }
+          this._i = this._j = 0;
+        },
+        _doProcessBlock: function (e, t) {
+          e[t] ^= i.call(this);
+        },
+        keySize: 8,
+        ivSize: 0
+      });
+    function i() {
+      for (var e = this._S, t = this._i, r = this._j, o = 0, n = 0; n < 4; n++) {
+        r = (r + e[t = (t + 1) % 256]) % 256;
+        var i = e[t];
+        e[t] = e[r];
+        e[r] = i;
+        o |= e[(e[t] + e[r]) % 256] << 24 - 8 * n;
       }
+      this._i = t;
+      this._j = r;
+      return o;
     }
-    return _0x5482cd;
-  }
-  airQuality(_0x556f00) {
-    if (_0x556f00 <= 50) {
-      return "优";
-    }
-    if (_0x556f00 <= 100) {
-      return "良";
-    }
-    if (_0x556f00 <= 150) {
-      return "轻";
-    }
-    if (_0x556f00 <= 200) {
-      return "中";
-    }
-    if (_0x556f00 <= 300) {
-      return "重";
-    }
-    return "严";
-  }
-  getLunarDate_Precise(_0x3c1d9f) {
-    const _0x53f45d = ["正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "腊月"];
-    const _0x559e7f = ["初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十", "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"];
-    let _0x3dc7c1 = _0x3c1d9f.getFullYear();
-    let _0x3eb32b = _0x3c1d9f.getMonth() + 1;
-    let _0x3f1352 = _0x3c1d9f.getDate();
-    let _0x33f266;
-    let _0x33923f = 348;
-    let _0x3f7c39 = (Date.UTC(_0x3dc7c1, _0x3eb32b - 1, _0x3f1352) - Date.UTC(1900, 0, 31)) / 86400000;
-    for (_0x33f266 = 1900; _0x33f266 < 2101 && _0x3f7c39 > 0; _0x33f266++) {
-      _0x33923f = lYearDays(_0x33f266);
-      _0x3f7c39 -= _0x33923f;
-    }
-    _0x3f7c39 < 0 && (_0x3f7c39 += _0x33923f, _0x33f266--);
-    let _0x432626 = lunarInfo[_0x33f266 - 1900] & 15;
-    let _0x210578 = false;
-    let _0x1b6e5c;
-    let _0x1b0fca;
-    for (_0x1b6e5c = 1; _0x1b6e5c < 13 && _0x3f7c39 > 0; _0x1b6e5c++) {
-      _0x1b0fca = _0x432626 === _0x1b6e5c - 1 && !_0x210578 ? lunarInfo[_0x33f266 - 1900] & 65536 ? 30 : 29 : lunarInfo[_0x33f266 - 1900] & 65536 >> _0x1b6e5c ? 30 : 29;
-      if (_0x210578 && _0x1b6e5c === _0x432626 + 1) {
-        _0x210578 = false;
-      } else {
-        _0x432626 > 0 && _0x1b6e5c === _0x432626 + 1 && !_0x210578 && (_0x210578 = true, --_0x1b6e5c);
+    t.RC4 = r._createHelper(n);
+    var s = o.RC4Drop = n.extend({
+      cfg: n.cfg.extend({
+        drop: 192
+      }),
+      _doReset: function () {
+        n._doReset.call(this);
+        for (var e = this.cfg.drop; e > 0; e--) i.call(this);
       }
-      _0x3f7c39 -= _0x1b0fca;
+    });
+    t.RC4Drop = r._createHelper(s);
+  })();
+  return e.RC4;
+}(v(), $(), j(), ce(), he())), We || (We = 1, Je.exports = function (e) {
+  (function () {
+    var t = e,
+      r = t.lib.StreamCipher,
+      o = t.algo,
+      n = [],
+      i = [],
+      s = [],
+      a = o.Rabbit = r.extend({
+        _doReset: function () {
+          for (var e = this._key.words, t = this.cfg.iv, r = 0; r < 4; r++) e[r] = 16711935 & (e[r] << 8 | e[r] >>> 24) | 4278255360 & (e[r] << 24 | e[r] >>> 8);
+          var o = this._X = [e[0], e[3] << 16 | e[2] >>> 16, e[1], e[0] << 16 | e[3] >>> 16, e[2], e[1] << 16 | e[0] >>> 16, e[3], e[2] << 16 | e[1] >>> 16],
+            n = this._C = [e[2] << 16 | e[2] >>> 16, 4294901760 & e[0] | 65535 & e[1], e[3] << 16 | e[3] >>> 16, 4294901760 & e[1] | 65535 & e[2], e[0] << 16 | e[0] >>> 16, 4294901760 & e[2] | 65535 & e[3], e[1] << 16 | e[1] >>> 16, 4294901760 & e[3] | 65535 & e[0]];
+          for (this._b = 0, r = 0; r < 4; r++) c.call(this);
+          for (r = 0; r < 8; r++) n[r] ^= o[r + 4 & 7];
+          if (t) {
+            var i = t.words,
+              s = i[0],
+              a = i[1],
+              u = 16711935 & (s << 8 | s >>> 24) | 4278255360 & (s << 24 | s >>> 8),
+              l = 16711935 & (a << 8 | a >>> 24) | 4278255360 & (a << 24 | a >>> 8),
+              h = u >>> 16 | 4294901760 & l,
+              d = l << 16 | 65535 & u;
+            for (n[0] ^= u, n[1] ^= h, n[2] ^= l, n[3] ^= d, n[4] ^= u, n[5] ^= h, n[6] ^= l, n[7] ^= d, r = 0; r < 4; r++) c.call(this);
+          }
+        },
+        _doProcessBlock: function (e, t) {
+          var r = this._X;
+          c.call(this);
+          n[0] = r[0] ^ r[5] >>> 16 ^ r[3] << 16;
+          n[1] = r[2] ^ r[7] >>> 16 ^ r[5] << 16;
+          n[2] = r[4] ^ r[1] >>> 16 ^ r[7] << 16;
+          n[3] = r[6] ^ r[3] >>> 16 ^ r[1] << 16;
+          for (var o = 0; o < 4; o++) {
+            n[o] = 16711935 & (n[o] << 8 | n[o] >>> 24) | 4278255360 & (n[o] << 24 | n[o] >>> 8);
+            e[t + o] ^= n[o];
+          }
+        },
+        blockSize: 4,
+        ivSize: 2
+      });
+    function c() {
+      for (var e = this._X, t = this._C, r = 0; r < 8; r++) i[r] = t[r];
+      for (t[0] = t[0] + 1295307597 + this._b | 0, t[1] = t[1] + 3545052371 + (t[0] >>> 0 < i[0] >>> 0 ? 1 : 0) | 0, t[2] = t[2] + 886263092 + (t[1] >>> 0 < i[1] >>> 0 ? 1 : 0) | 0, t[3] = t[3] + 1295307597 + (t[2] >>> 0 < i[2] >>> 0 ? 1 : 0) | 0, t[4] = t[4] + 3545052371 + (t[3] >>> 0 < i[3] >>> 0 ? 1 : 0) | 0, t[5] = t[5] + 886263092 + (t[4] >>> 0 < i[4] >>> 0 ? 1 : 0) | 0, t[6] = t[6] + 1295307597 + (t[5] >>> 0 < i[5] >>> 0 ? 1 : 0) | 0, t[7] = t[7] + 3545052371 + (t[6] >>> 0 < i[6] >>> 0 ? 1 : 0) | 0, t[7] >>> 0 < i[7] >>> 0 ? this._b = 1 : this._b = 0, r = 0; r < 8; r++) {
+        var o = e[r] + t[r],
+          n = 65535 & o,
+          a = o >>> 16,
+          c = ((n * n >>> 17) + n * a >>> 15) + a * a,
+          u = ((4294901760 & o) * o | 0) + ((65535 & o) * o | 0);
+        s[r] = c ^ u;
+      }
+      e[0] = s[0] + (s[7] << 16 | s[7] >>> 16) + (s[6] << 16 | s[6] >>> 16) | 0;
+      e[1] = s[1] + (s[0] << 8 | s[0] >>> 24) + s[7] | 0;
+      e[2] = s[2] + (s[1] << 16 | s[1] >>> 16) + (s[0] << 16 | s[0] >>> 16) | 0;
+      e[3] = s[3] + (s[2] << 8 | s[2] >>> 24) + s[1] | 0;
+      e[4] = s[4] + (s[3] << 16 | s[3] >>> 16) + (s[2] << 16 | s[2] >>> 16) | 0;
+      e[5] = s[5] + (s[4] << 8 | s[4] >>> 24) + s[3] | 0;
+      e[6] = s[6] + (s[5] << 16 | s[5] >>> 16) + (s[4] << 16 | s[4] >>> 16) | 0;
+      e[7] = s[7] + (s[6] << 8 | s[6] >>> 24) + s[5] | 0;
     }
-    _0x3f7c39 < 0 && (_0x3f7c39 += _0x1b0fca, --_0x1b6e5c);
-    if (_0x1b6e5c < 1) {
-      _0x1b6e5c = 1;
+    t.Rabbit = r._createHelper(a);
+  })();
+  return e.Rabbit;
+}(v(), $(), j(), ce(), he())), Xe || (Xe = 1, Ke.exports = function (e) {
+  (function () {
+    var t = e,
+      r = t.lib.StreamCipher,
+      o = t.algo,
+      n = [],
+      i = [],
+      s = [],
+      a = o.RabbitLegacy = r.extend({
+        _doReset: function () {
+          var e = this._key.words,
+            t = this.cfg.iv,
+            r = this._X = [e[0], e[3] << 16 | e[2] >>> 16, e[1], e[0] << 16 | e[3] >>> 16, e[2], e[1] << 16 | e[0] >>> 16, e[3], e[2] << 16 | e[1] >>> 16],
+            o = this._C = [e[2] << 16 | e[2] >>> 16, 4294901760 & e[0] | 65535 & e[1], e[3] << 16 | e[3] >>> 16, 4294901760 & e[1] | 65535 & e[2], e[0] << 16 | e[0] >>> 16, 4294901760 & e[2] | 65535 & e[3], e[1] << 16 | e[1] >>> 16, 4294901760 & e[3] | 65535 & e[0]];
+          this._b = 0;
+          for (var n = 0; n < 4; n++) c.call(this);
+          for (n = 0; n < 8; n++) o[n] ^= r[n + 4 & 7];
+          if (t) {
+            var i = t.words,
+              s = i[0],
+              a = i[1],
+              u = 16711935 & (s << 8 | s >>> 24) | 4278255360 & (s << 24 | s >>> 8),
+              l = 16711935 & (a << 8 | a >>> 24) | 4278255360 & (a << 24 | a >>> 8),
+              h = u >>> 16 | 4294901760 & l,
+              d = l << 16 | 65535 & u;
+            for (o[0] ^= u, o[1] ^= h, o[2] ^= l, o[3] ^= d, o[4] ^= u, o[5] ^= h, o[6] ^= l, o[7] ^= d, n = 0; n < 4; n++) c.call(this);
+          }
+        },
+        _doProcessBlock: function (e, t) {
+          var r = this._X;
+          c.call(this);
+          n[0] = r[0] ^ r[5] >>> 16 ^ r[3] << 16;
+          n[1] = r[2] ^ r[7] >>> 16 ^ r[5] << 16;
+          n[2] = r[4] ^ r[1] >>> 16 ^ r[7] << 16;
+          n[3] = r[6] ^ r[3] >>> 16 ^ r[1] << 16;
+          for (var o = 0; o < 4; o++) {
+            n[o] = 16711935 & (n[o] << 8 | n[o] >>> 24) | 4278255360 & (n[o] << 24 | n[o] >>> 8);
+            e[t + o] ^= n[o];
+          }
+        },
+        blockSize: 4,
+        ivSize: 2
+      });
+    function c() {
+      for (var e = this._X, t = this._C, r = 0; r < 8; r++) i[r] = t[r];
+      for (t[0] = t[0] + 1295307597 + this._b | 0, t[1] = t[1] + 3545052371 + (t[0] >>> 0 < i[0] >>> 0 ? 1 : 0) | 0, t[2] = t[2] + 886263092 + (t[1] >>> 0 < i[1] >>> 0 ? 1 : 0) | 0, t[3] = t[3] + 1295307597 + (t[2] >>> 0 < i[2] >>> 0 ? 1 : 0) | 0, t[4] = t[4] + 3545052371 + (t[3] >>> 0 < i[3] >>> 0 ? 1 : 0) | 0, t[5] = t[5] + 886263092 + (t[4] >>> 0 < i[4] >>> 0 ? 1 : 0) | 0, t[6] = t[6] + 1295307597 + (t[5] >>> 0 < i[5] >>> 0 ? 1 : 0) | 0, t[7] = t[7] + 3545052371 + (t[6] >>> 0 < i[6] >>> 0 ? 1 : 0) | 0, t[7] >>> 0 < i[7] >>> 0 ? this._b = 1 : this._b = 0, r = 0; r < 8; r++) {
+        var o = e[r] + t[r],
+          n = 65535 & o,
+          a = o >>> 16,
+          c = ((n * n >>> 17) + n * a >>> 15) + a * a,
+          u = ((4294901760 & o) * o | 0) + ((65535 & o) * o | 0);
+        s[r] = c ^ u;
+      }
+      e[0] = s[0] + (s[7] << 16 | s[7] >>> 16) + (s[6] << 16 | s[6] >>> 16) | 0;
+      e[1] = s[1] + (s[0] << 8 | s[0] >>> 24) + s[7] | 0;
+      e[2] = s[2] + (s[1] << 16 | s[1] >>> 16) + (s[0] << 16 | s[0] >>> 16) | 0;
+      e[3] = s[3] + (s[2] << 8 | s[2] >>> 24) + s[1] | 0;
+      e[4] = s[4] + (s[3] << 16 | s[3] >>> 16) + (s[2] << 16 | s[2] >>> 16) | 0;
+      e[5] = s[5] + (s[4] << 8 | s[4] >>> 24) + s[3] | 0;
+      e[6] = s[6] + (s[5] << 16 | s[5] >>> 16) + (s[4] << 16 | s[4] >>> 16) | 0;
+      e[7] = s[7] + (s[6] << 8 | s[6] >>> 24) + s[5] | 0;
     }
-    if (_0x1b6e5c > 12) {
-      _0x1b6e5c = 12;
+    t.RabbitLegacy = r._createHelper(a);
+  })();
+  return e.RabbitLegacy;
+}(v(), $(), j(), ce(), he())), Qe());
+var Ze = p(y.exports);
+class Ye {
+  constructor() {
+    this.lines = [];
+    this.errors = [];
+    this.amounts = [];
+    this.invalid = [];
+  }
+  info(e) {
+    this.lines.push(e);
+    t.log(e);
+  }
+  line(e) {
+    this.lines.push(e);
+    t.log(e);
+  }
+  section(e) {
+    this.info(`\n======== ${e} ========`);
+  }
+  renderSummary() {
+    const e = [];
+    this.invalid.length && e.push(`失效账号:\n${this.invalid.join("\n")}`);
+    this.amounts.length && e.push(`云朵统计:\n${this.amounts.join("\n")}`);
+    this.errors.length && e.push(`异常信息:\n${this.errors.join("\n")}`);
+    return e.join("\n\n") || "执行完成";
+  }
+}
+function et(e) {
+  return "boolean" == typeof e ? e : ["1", "true", "yes", "on"].includes(String(e).toLowerCase());
+}
+function tt(e, t) {
+  const r = Number(e);
+  return Number.isFinite(r) ? r : t;
+}
+function rt(e) {
+  return String(e || "").startsWith("Basic ") ? String(e) : `Basic ${e}`;
+}
+function ot(e, t, r) {
+  return "cloud_app" === e && "month" === t ? [110, 113, 417, 409].includes(r) : "cloud_app" === e && "day" === t ? 404 === r : "email_app" === e && "month" === t && [1004, 1005, 1015, 1020].includes(r);
+}
+function nt(e) {
+  return [e.getFullYear(), String(e.getMonth() + 1).padStart(2, "0"), String(e.getDate()).padStart(2, "0"), String(e.getHours()).padStart(2, "0"), String(e.getMinutes()).padStart(2, "0"), String(e.getSeconds()).padStart(2, "0")].join("");
+}
+function it(e) {
+  const t = "19f3a063d67e4694ca63a4227ec9a94a19088404f9a28084e3e486b928039a299bf756ebc77aa4f6bfa250308ec6a8be8b63b5271a00350d136d117b8a72f39c5bd15cdfd350cba4271dc797f15412d9f269e666aea5039f5049d00739b320bb9e8585a008b52c1cbd86970cae9476446f3e41871de8d9f6112db94b05e5dc7ea0a942a9daf145ac8e487d3d5cba7cea145680efc64794d43dd15c5062b81e1cda7bf278b9bc4e1b8955846e6bc4b6a61c28f831f81b2270289e5a8a677c3141ddc9868129060c0c3b5ef507fbd46c004f6de346332ef7f05c0094215eae1217ee7c13c8dca6d174cfb49c716dd42903bb4b02d823b5f1ff93c3f88768251b56cc";
+  let r = "";
+  for (let o = 0; o < e; o += 1) r += t.charAt(Math.floor(514 * Math.random()));
+  return r;
+}
+function st(e) {
+  const t = [];
+  for (let r = 0; r < e; r += 4) t.push(4294967296 * Math.random() | 0);
+  return Ze.lib.WordArray.create(t, e);
+}
+async function at(e, t) {
+  const r = Math.floor(Math.random() * (t - e + 1)) + e;
+  await i(r);
+}
+function ct() {
+  const e = a,
+    t = d.defaults,
+    r = d.envPrefix;
+  return {
+    cookie: ut(e, h.cookieKeys, lt(h.cookieKeys, "")),
+    uploadEnabled: et(ut(e, ["upload"], lt([`${r}_UPLOAD`, "cloud139_upload"], t.upload))),
+    uploadDirId: String(ut(e, ["dirId", "dir_id"], lt([`${r}_DIR_ID`, "cloud139_dir_id", "DIR_ID"], t.uploadDirId)) || ""),
+    uploadFilename: String(ut(e, ["uploadFilename"], lt([`${r}_UPLOAD_FILENAME`, "cloud139_upload_filename"], t.uploadFilename)) || t.uploadFilename),
+    uploadSizeMb: tt(ut(e, ["uploadSizeMb"], lt([`${r}_UPLOAD_SIZE_MB`, "cloud139_upload_size_mb"], t.uploadSizeMb)), t.uploadSizeMb),
+    shareEnabled: et(ut(e, ["share"], lt([`${r}_SHARE`, "cloud139_share"], t.share))),
+    shareFilename: String(ut(e, ["shareFilename"], lt([`${r}_SHARE_FILENAME`, "cloud139_share_filename"], t.shareFilename)) || ""),
+    push: et(ut(e, ["push"], lt([`${r}_PUSH`, "cloud139_push"], t.push))),
+    clickNum: tt(ut(e, ["clickNum"], lt([`${r}_CLICK_NUM`, "cloud139_click_num"], t.clickNum)), t.clickNum),
+    drawTimes: tt(ut(e, ["drawTimes"], lt([`${r}_DRAW_TIMES`, "cloud139_draw_times"], t.drawTimes)), t.drawTimes),
+    delayMin: tt(ut(e, ["delayMin"], lt([`${r}_DELAY_MIN`, "cloud139_delay_min"], t.delayMin)), t.delayMin),
+    delayMax: tt(ut(e, ["delayMax"], lt([`${r}_DELAY_MAX`, "cloud139_delay_max"], t.delayMax)), t.delayMax),
+    requestTimeout: tt(ut(e, ["timeout"], lt([`${r}_TIMEOUT`, "cloud139_timeout"], t.timeout)), t.timeout)
+  };
+}
+function ut(e, t, r) {
+  for (const r of t) {
+    const t = e[r];
+    if (null != t && "" !== t) {
+      return t;
     }
+  }
+  return r;
+}
+function lt(e, t) {
+  !function () {
+    if (ht) {
+      return;
+    }
+    ht = !0;
+    if ("undefined" == typeof process || !process.versions?.node || "function" != typeof process.loadEnvFile) {
+      return;
+    }
+    try {
+      process.loadEnvFile(".env");
+    } catch (e) {}
+  }();
+  const r = "undefined" != typeof process && process.env ? process.env : {};
+  for (const t of e) {
+    if (0 !== r[t] && null !== r[t] && "" !== r[t]) {
+      return r[t];
+    }
+    try {
+      const e = s.getItem?.(t);
+      if (null != e && "" !== e) {
+        return e;
+      }
+    } catch (e) {}
+  }
+  return t;
+}
+let ht = !1;
+function dt() {
+  function e(e, t, r, o, n) {
     return {
-      year: _0x33f266,
-      month: (_0x210578 ? "闰" : "") + _0x53f45d[_0x1b6e5c - 1],
-      day: _0x559e7f[Math.floor(_0x3f7c39)] || "初一"
+      name: "AxiosError",
+      message: e || "Axios Error",
+      code: t,
+      config: r,
+      request: o,
+      response: n,
+      isAxiosError: !0,
+      toString() {
+        return this.name + ": " + this.message;
+      }
     };
   }
-}
-function getSolarFromLunar(_0x26f9c4, _0x1bda53, _0x27dc3c) {
-  if (_0x26f9c4 < 1900 || _0x26f9c4 > 2100) {
-    return null;
-  }
-  let _0x11828d = 0;
-  for (let _0x548b99 = 1900; _0x548b99 < _0x26f9c4; _0x548b99++) {
-    _0x11828d += lYearDays(_0x548b99);
-  }
-  let _0x27d911 = lunarInfo[_0x26f9c4 - 1900] & 15;
-  for (let _0x5759bd = 1; _0x5759bd < _0x1bda53; _0x5759bd++) {
-    let _0x24b17c = lunarInfo[_0x26f9c4 - 1900] & 65536 >> _0x5759bd ? 30 : 29;
-    _0x11828d += _0x24b17c;
-    _0x27d911 > 0 && _0x5759bd === _0x27d911 && (_0x11828d += lunarInfo[_0x26f9c4 - 1900] & 65536 ? 30 : 29);
-  }
-  _0x11828d += _0x27dc3c - 1;
-  let _0x100253 = new Date(1900, 0, 31);
-  _0x100253.setDate(_0x100253.getDate() + _0x11828d);
-  return _0x100253;
-}
-function lYearDays(_0x19b717) {
-  let _0x185300;
-  let _0x7be2d = 348;
-  for (_0x185300 = 32768; _0x185300 > 8; _0x185300 >>= 1) {
-    _0x7be2d += lunarInfo[_0x19b717 - 1900] & _0x185300 ? 1 : 0;
-  }
-  return _0x7be2d + (lunarInfo[_0x19b717 - 1900] & 15 ? lunarInfo[_0x19b717 - 1900] & 65536 ? 30 : 29 : 0);
-}
-function getSolarTerm(_0x3a96f3) {
-  const _0xab90b = ["小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"];
-  const _0x64131e = _0x3a96f3.getFullYear();
-  const _0x6a14c3 = _0x3a96f3.getMonth() + 1;
-  const _0x135777 = _0x3a96f3.getDate();
-  const _0x2cac03 = [5.4055, 20.12, 3.87, 18.73, 5.63, 20.646, 4.81, 20.1, 5.52, 21.04, 5.678, 21.37, 7.108, 22.83, 7.5, 23.13, 7.646, 23.042, 8.318, 23.438, 7.438, 22.36, 7.18, 21.94];
-  if (_0x64131e < 2000 || _0x64131e > 2099) {
-    return "";
-  }
-  function _0x1ff459(_0xad2453, _0xb01f31) {
-    return Math.floor((_0xad2453 - 2000) * 0.2422 + _0x2cac03[_0xb01f31]) - Math.floor((_0xad2453 - 2000) / 4);
-  }
-  let _0x1e608e = (_0x6a14c3 - 1) * 2;
-  let _0x80a0a4 = _0x1ff459(_0x64131e, _0x1e608e);
-  if (_0x135777 === _0x80a0a4) {
-    return _0xab90b[_0x1e608e];
-  }
-  let _0x2141e4 = (_0x6a14c3 - 1) * 2 + 1;
-  let _0x22a8f7 = _0x1ff459(_0x64131e, _0x2141e4);
-  if (_0x135777 === _0x22a8f7) {
-    return _0xab90b[_0x2141e4];
-  }
-  return null;
-}
-function getMonthGrid(_0x37b54a, _0x315f77) {
-  const _0x3e15a8 = new Date(_0x37b54a, _0x315f77, 1);
-  const _0x3e75b7 = new Date(_0x37b54a, _0x315f77 + 1, 0);
-  const _0x31bf86 = _0x3e75b7.getDate();
-  const _0x3da97f = _0x3e15a8.getDay();
-  const _0x328a3f = [];
-  let _0x31232c = Array(_0x3da97f).fill(null);
-  for (let _0x306477 = 1; _0x306477 <= _0x31bf86; _0x306477++) {
-    _0x31232c.push(_0x306477);
-    _0x31232c.length === 7 && (_0x328a3f.push(_0x31232c), _0x31232c = []);
-  }
-  if (_0x31232c.length > 0) {
-    while (_0x31232c.length < 7) {
-      _0x31232c.push(null);
+  class t {
+    constructor() {
+      this.handlers = [];
     }
-    _0x328a3f.push(_0x31232c);
-  }
-  return _0x328a3f;
-}
-function getStemBranchDay(_0x49bbce) {
-  const _0x33191f = new Date(1900, 0, 31);
-  const _0x34aceb = Math.floor((_0x49bbce - _0x33191f) / 86400000);
-  return heavenlyStems[(_0x34aceb % 10 + 10) % 10] + earthlyBranches[(_0x34aceb % 12 + 12) % 12];
-}
-function getYellowBlackDay(_0x4c83fc) {
-  let _0x1d0882 = getLunarDate_Precise_Simple(_0x4c83fc);
-  return yellowBlackDays[(_0x1d0882.m + _0x1d0882.d - 2) % 12];
-}
-function getLunarDate_Precise_Simple(_0x1ca85c) {
-  let _0x294681 = _0x1ca85c.getFullYear();
-  let _0x29a6a6 = _0x1ca85c.getMonth() + 1;
-  let _0x1dbcb3 = _0x1ca85c.getDate();
-  let _0x28e7ee;
-  let _0x4a7a84 = 348;
-  let _0xf90a2c = (Date.UTC(_0x294681, _0x29a6a6 - 1, _0x1dbcb3) - Date.UTC(1900, 0, 31)) / 86400000;
-  for (_0x28e7ee = 1900; _0x28e7ee < 2101 && _0xf90a2c > 0; _0x28e7ee++) {
-    _0x4a7a84 = lYearDays(_0x28e7ee);
-    _0xf90a2c -= _0x4a7a84;
-  }
-  _0xf90a2c < 0 && (_0xf90a2c += _0x4a7a84, _0x28e7ee--);
-  let _0x104f5b = lunarInfo[_0x28e7ee - 1900] & 15;
-  let _0x4716b2 = false;
-  let _0x5d582b;
-  let _0x1c31f0;
-  for (_0x5d582b = 1; _0x5d582b < 13 && _0xf90a2c > 0; _0x5d582b++) {
-    _0x1c31f0 = _0x104f5b === _0x5d582b - 1 && !_0x4716b2 ? lunarInfo[_0x28e7ee - 1900] & 65536 ? 30 : 29 : lunarInfo[_0x28e7ee - 1900] & 65536 >> _0x5d582b ? 30 : 29;
-    if (_0x4716b2 && _0x5d582b === _0x104f5b + 1) {
-      _0x4716b2 = false;
-    } else {
-      _0x104f5b > 0 && _0x5d582b === _0x104f5b + 1 && !_0x4716b2 && (_0x4716b2 = true, --_0x5d582b);
+    use(e, t) {
+      this.handlers.push({
+        onFulfilled: e,
+        onRejected: t
+      });
+      return this.handlers.length - 1;
     }
-    _0xf90a2c -= _0x1c31f0;
-  }
-  _0xf90a2c < 0 && (_0xf90a2c += _0x1c31f0, --_0x5d582b);
-  if (_0x5d582b < 1) {
-    _0x5d582b = 1;
-  }
-  if (_0x5d582b > 12) {
-    _0x5d582b = 12;
-  }
-  return {
-    m: _0x5d582b,
-    d: Math.floor(_0xf90a2c) + 1
-  };
-}
-function getMansion(_0x5678bf) {
-  const _0x53aa9b = new Date(1900, 0, 31);
-  const _0x2c41a8 = Math.floor((_0x5678bf - _0x53aa9b) / 86400000);
-  return twentyEightMansions[(_0x2c41a8 % 28 + 28) % 28];
-}
-function isAuspiciousDay(_0x12d542) {
-  const _0x1a9b37 = getYellowBlackDay(_0x12d542);
-  const _0x4a7bfd = getMansion(_0x12d542);
-  const _0x1dc8bc = ["除", "危", "定", "执", "成", "开"];
-  const _0x1a6ed2 = ["角", "房", "尾", "箕", "斗", "室", "壁", "娄", "胃", "毕", "参", "井", "张", "轸"];
-  return _0x1dc8bc.includes(_0x1a9b37) && _0x1a6ed2.includes(_0x4a7bfd);
-}
-function getTraditionalYiJi(_0x1acd7a) {
-  const _0x25ee30 = getStemBranchDay(_0x1acd7a);
-  const _0x1ff891 = getYellowBlackDay(_0x1acd7a);
-  const _0x2be285 = isAuspiciousDay(_0x1acd7a);
-  let _0x128b39 = [];
-  let _0x76bcfa = [];
-  let _0x8cfe73 = _0x25ee30[0];
-  if (["甲", "乙"].includes(_0x8cfe73)) {
-    _0x128b39.push("祭祀", "祈福", "入学", "栽种");
-    _0x76bcfa.push("动土", "开市", "破屋");
-  } else {
-    if (["丙", "丁"].includes(_0x8cfe73)) {
-      _0x128b39.push("嫁娶", "开市", "出行");
-      _0x76bcfa.push("祭祀", "动土", "安葬");
-    } else {
-      if (["戊", "己"].includes(_0x8cfe73)) {
-        _0x128b39.push("修造", "动土", "入宅");
-        _0x76bcfa.push("开市", "嫁娶", "出行");
-      } else {
-        ["庚", "辛"].includes(_0x8cfe73) ? (_0x128b39.push("求医", "诉讼", "交易"), _0x76bcfa.push("祈福", "祭祀", "安床")) : (_0x128b39.push("出行", "移徙", "纳财"), _0x76bcfa.push("修造", "动土", "开仓"));
+    eject(e) {
+      if (this.handlers[e]) {
+        this.handlers[e] = null;
+      }
+    }
+    forEach(e) {
+      for (let t = 0; t < this.handlers.length; t += 1) {
+        const r = this.handlers[t];
+        if (r) {
+          e(r);
+        }
       }
     }
   }
-  const _0x811314 = {
-    "建": [["祭祀", "祈福"], ["嫁娶", "开市"]],
-    "除": [["治病", "扫舍"], ["出行", "诉讼"]],
-    "满": [["祭祀", "开市"], ["嫁娶", "安葬"]],
-    "平": [["修造", "安床"], ["开市", "交易"]],
-    "定": [["嫁娶", "订盟"], ["词讼", "开渠"]],
-    "执": [["捕捉", "破土"], ["嫁娶", "移徙"]],
-    "破": [["破屋", "坏垣"], ["嫁娶", "开市"]],
-    "危": [["安床", "入宅"], ["破土", "开渠"]],
-    "成": [["嫁娶", "开市"], ["造桥", "安床"]],
-    "收": [["纳财", "交易"], ["开市", "安葬"]],
-    "开": [["开市", "交易"], ["破土", "安葬"]],
-    "闭": [["筑堤", "补垣"], ["开市", "出行"]]
-  };
-  _0x811314[_0x1ff891] && (_0x128b39.push(..._0x811314[_0x1ff891][0]), _0x76bcfa.push(..._0x811314[_0x1ff891][1]));
-  if (_0x2be285) {
-    _0x128b39.push("嫁娶", "开市", "入宅");
-  } else {
-    _0x76bcfa.push("嫁娶", "开市", "出行");
+  function r() {
+    const e = {};
+    for (let t = 0; t < arguments.length; t += 1) {
+      const r = arguments[t];
+      if (!r) {
+        continue;
+      }
+      const o = Object.keys(r);
+      for (let t = 0; t < o.length; t += 1) e[o[t]] = r[o[t]];
+    }
+    return e;
   }
+  function o(e) {
+    return String(e || "get").toLowerCase();
+  }
+  function n(e) {
+    return e >= 200 && e < 300;
+  }
+  function i(e) {
+    switch (String(e || "").split(";")[0].trim().toLowerCase()) {
+      case "application/protobuf":
+        {}
+      case "application/x-protobuf":
+        {}
+      case "application/vnd.google.protobuf":
+        {}
+      case "application/vnd.apple.flatbuffer":
+        {}
+      case "application/grpc":
+        {}
+      case "application/grpc+proto":
+        {}
+      case "application/octet-stream":
+        {
+          return !0;
+        }
+      default:
+        {
+          return !1;
+        }
+    }
+  }
+  function s(e, t, r) {
+    return r ? function (e) {
+      return 0 !== e.bodyBytes ? a(e.bodyBytes) : 0 !== e.rawBody ? a(e.rawBody) : 0 !== e.body ? a(e.body) : 0 !== e.data ? a(e.data) : 0;
+    }(e) : function (e, t) {
+      for (let r = 0; r < t.length; r += 1) {
+        const o = e[t[r]];
+        if (0 !== o) {
+          return o;
+        }
+      }
+    }(e, ["data", "body", "bodyBytes", "rawBody"]);
+  }
+  function a(e) {
+    if (e instanceof ArrayBuffer) {
+      return e;
+    }
+    if ("undefined" != typeof ArrayBuffer && ArrayBuffer.isView && ArrayBuffer.isView(e)) {
+      return e.buffer.slice(e.byteOffset, e.byteOffset + e.byteLength);
+    }
+    if ("string" == typeof e) {
+      if ("undefined" != typeof TextEncoder) {
+        return new TextEncoder().encode(e).buffer;
+      }
+      if ("undefined" != typeof Buffer) {
+        const t = Buffer.from(e, "utf8");
+        return t.buffer.slice(t.byteOffset, t.byteOffset + t.byteLength);
+      }
+    }
+    return e;
+  }
+  function c(e, t, r) {
+    const o = r.responseType || "json";
+    switch (o) {
+      case "arraybuffer":
+        {
+          return a(e);
+        }
+      case "text":
+        {
+          return function (e) {
+            switch (!0) {
+              case "string" == typeof e:
+                {
+                  return e;
+                }
+              case "undefined" != typeof Buffer && Buffer.isBuffer && Buffer.isBuffer(e):
+                {
+                  return e.toString("utf8");
+                }
+              case "undefined" != typeof TextDecoder && e instanceof ArrayBuffer:
+                {
+                  return new TextDecoder("utf-8").decode(e);
+                }
+              default:
+                {
+                  return e;
+                }
+            }
+          }(e);
+        }
+    }
+    if ("string" != typeof e) {
+      return e;
+    }
+    const n = String(t && (t["content-type"] || t["Content-Type"]) || "");
+    if ("json" === o || n.indexOf("application/json") >= 0) {
+      try {
+        return e.length ? JSON.parse(e) : null;
+      } catch (t) {
+        return e;
+      }
+    }
+    return e;
+  }
+  function u(e) {
+    const t = {
+      url: e.url,
+      method: o(e.method),
+      headers: e.headers,
+      timeout: e.timeout,
+      policy: e.policy,
+      redirection: "boolean" == typeof e.redirection ? e.redirection : e.followRedirect,
+      "auto-redirect": e["auto-redirect"],
+      "auto-cookie": e["auto-cookie"],
+      opts: e.opts
+    };
+    switch (!0) {
+      case 0 !== e.bodyBytes:
+        {
+          t.bodyBytes = a(e.bodyBytes);
+          break;
+        }
+      case 0 !== e.data && (e.data instanceof ArrayBuffer || ArrayBuffer.isView && ArrayBuffer.isView(e.data)):
+        {
+          t.bodyBytes = a(e.data);
+          break;
+        }
+      case 0 !== e.body:
+        {
+          t.body = e.body;
+          break;
+        }
+      case 0 !== e.data:
+        {
+          t.body = e.data;
+        }
+    }
+    const r = Object.keys(e);
+    for (let o = 0; o < r.length; o += 1) {
+      const n = r[o];
+      if (0 === t[n]) {
+        t[n] = e[n];
+      }
+    }
+    t.method || (function (e) {
+      return 0 !== e.body || 0 !== e.bodyBytes;
+    }(t) ? t.method = "post" : t.method = "get");
+    t.method = o(t.method);
+    Object.assign(t, function (e) {
+      null != e && "" !== e || (e = 5e3);
+      if (null == e) {
+        return {};
+      }
+      const t = Number.parseInt(e, 10);
+      return Number.isNaN(t) ? {} : {
+        timeout: t
+      };
+    }(t.timeout));
+    "boolean" == typeof t.redirection && 0 === t["auto-redirect"] && (t["auto-redirect"] = t.redirection);
+    t.headers = t.headers || {};
+    (function (e, t) {
+      for (let r = 0; r < t.length; r += 1) delete e[t[r]];
+    })(t.headers, ["Host", ":authority", "Content-Length", "content-length"]);
+    const n = t.headers.Accept || t.headers.accept;
+    switch (("arraybuffer" === t.responseType || i(n)) && (t["binary-mode"] = !0), !0) {
+      case 0 !== t.bodyBytes && 0 === t.body:
+        {
+          t.data = t.bodyBytes;
+          break;
+        }
+      case 0 !== t.body:
+        {
+          t.data = t.body;
+        }
+    }
+    return t;
+  }
+  function l(e, t, r) {
+    const o = e || {},
+      a = o.headers || {},
+      u = a["content-type"] || a["Content-Type"],
+      l = {
+        data: c(s(o, 0, "arraybuffer" === t.responseType || !0 === t["binary-mode"] || i(u)), a, t),
+        status: Number(0 !== o.status ? o.status : 0 !== o.statusCode ? o.statusCode : 0),
+        statusText: o.statusText || "",
+        headers: a,
+        config: t,
+        request: o.request || r,
+        raw: o
+      };
+    l.ok = (t.validateStatus || n)(l.status);
+    return l;
+  }
+  function h(e) {
+    return !!(e && "object" == typeof e && "status" in e && "data" in e && "headers" in e && "config" in e);
+  }
+  function d(e) {
+    if (!e) {
+      return null;
+    }
+    if ("function" == typeof e) {
+      return e;
+    }
+    if ("function" == typeof e.request) {
+      return e.request.bind(e);
+    }
+    throw new TypeError("Unsupported adapter shape");
+  }
+  class f {
+    constructor(e) {
+      this.defaults = Object.assign({
+        headers: {
+          Accept: "application/json, text/plain, */*"
+        },
+        validateStatus: n,
+        throwHttpErrors: !0
+      }, e || {});
+      this.interceptors = {
+        request: new t(),
+        response: new t()
+      };
+    }
+    resolveAdapter(e) {
+      const t = d(e.adapter);
+      if (t) {
+        return t;
+      }
+      const r = e.adapters || this.defaults.adapters || [];
+      for (let e = 0; e < r.length; e += 1) {
+        const t = d(r[e]);
+        if (t) {
+          return t;
+        }
+      }
+      return "function" == typeof e.fetch ? e.fetch : "function" == typeof this.defaults.fetch ? this.defaults.fetch : null;
+    }
+    dispatchRequest(t) {
+      const r = this.resolveAdapter(t);
+      if (!r) {
+        return Promise.reject(new e("No available adapter", "ERR_NOT_SUPPORT", t));
+      }
+      const o = function (e) {
+        const t = u(e);
+        return {
+          url: t.url,
+          method: t.method,
+          headers: t.headers,
+          body: t.body,
+          bodyBytes: t.bodyBytes,
+          timeout: t.timeout,
+          policy: t.policy,
+          redirection: t.redirection,
+          "auto-redirect": t["auto-redirect"],
+          "auto-cookie": t["auto-cookie"],
+          opts: t.opts,
+          "binary-mode": t["binary-mode"],
+          data: t.data
+        };
+      }(t);
+      return Promise.resolve(r(o, t)).then(function (r) {
+        const o = h(r) ? r : l(r, t, r && r.request);
+        if (!o.ok && !1 !== t.throwHttpErrors) {
+          throw new e("Request failed with status code " + o.status, "ERR_BAD_RESPONSE", t, o.request, o);
+        }
+        return o;
+      }, function (r) {
+        throw function (t, r) {
+          if (t && t.isAxiosError) {
+            return t;
+          }
+          let o = t && t.request,
+            n = t && t.response;
+          n && !h(n) && (n = l(n, r, n.request || o), o = n.request);
+          !n && t && "object" == typeof t && ("status" in t || "statusCode" in t || "body" in t || "bodyBytes" in t || "data" in t ? n = l(t, r, o) : t.response && "object" == typeof t.response && (n = l(t.response, r, t.response.request || o), o = n.request));
+          return new e(t && t.message || (n && n.status ? "Request failed with status code " + n.status : null) || String(t || "Network Error"), t && t.code || (n && n.status ? "ERR_BAD_RESPONSE" : "ERR_NETWORK"), r, o, n);
+        }(r, t);
+      });
+    }
+    mergeConfig(e) {
+      const t = "string" == typeof e ? {
+          url: e
+        } : e || {},
+        n = Object.assign({}, this.defaults, t);
+      var i, s;
+      n.headers = r(this.defaults.headers, t.headers);
+      n.method = o(n.method);
+      n.baseURL && n.url && (i = n.url, !/^[a-z][a-z\d+\-.]*:\/\//i.test(String(i || ""))) && (n.url = function (e, t) {
+        return e ? t ? String(e).replace(/\/+$/, "") + "/" + String(t).replace(/^\/+/, "") : e : t || "";
+      }(n.baseURL, n.url));
+      n.url = function (e, t, r) {
+        if (!t) {
+          return e;
+        }
+        const o = "function" == typeof r ? r(t) : function (e) {
+          const t = [],
+            r = Object.keys(e || {});
+          for (let o = 0; o < r.length; o += 1) {
+            const n = r[o],
+              i = e[n];
+            if (null != i) {
+              if (Array.isArray(i)) {
+                for (let e = 0; e < i.length; e += 1) t.push(encodeURIComponent(n) + "=" + encodeURIComponent(String(i[e])));
+              } else {
+                t.push(encodeURIComponent(n) + "=" + encodeURIComponent(String(i)));
+              }
+            }
+          }
+          return t.join("&");
+        }(t);
+        return o ? String(e) + (String(e).indexOf("?") >= 0 ? "&" : "?") + o : e;
+      }(n.url || "", n.params, n.paramsSerializer);
+      s = n.data;
+      if (!("[object Object]" !== Object.prototype.toString.call(s) || n.data instanceof ArrayBuffer || ArrayBuffer.isView && ArrayBuffer.isView(n.data))) {
+        let e = null;
+        const t = Object.keys(n.headers || {});
+        for (let r = 0; r < t.length; r += 1) if ("content-type" === t[r].toLowerCase()) {
+          e = t[r];
+          break;
+        }
+        e || (e = "Content-Type", n.headers[e] = "application/x-www-form-urlencoded");
+        String(n.headers[e] || "").indexOf("application/json") >= 0 && (n.data = JSON.stringify(n.data));
+      }
+      return n;
+    }
+    request(e) {
+      const t = this.mergeConfig(e);
+      t.transport = u(t);
+      const r = [];
+      this.interceptors.request.forEach(function (e) {
+        r.unshift(e.onFulfilled, e.onRejected);
+      });
+      r.push(this.dispatchRequest.bind(this), 0);
+      this.interceptors.response.forEach(function (e) {
+        r.push(e.onFulfilled, e.onRejected);
+      });
+      let o = Promise.resolve(t);
+      for (; r.length;) o = o.then(r.shift(), r.shift());
+      return o;
+    }
+    create(e) {
+      return new f(Object.assign({}, this.defaults, e || {}, {
+        headers: r(this.defaults.headers, e && e.headers)
+      }));
+    }
+    isAxiosError(e) {
+      return !(!e || !e.isAxiosError);
+    }
+  }
+  ["get", "options", "delete", "head"].forEach(function (e) {
+    f.prototype[e] = function (t, r) {
+      return this.request(Object.assign({}, r || {}, {
+        method: e,
+        url: t
+      }));
+    };
+  });
+  ["post", "put", "patch"].forEach(function (e) {
+    f.prototype[e] = function (t, r, o) {
+      return this.request(Object.assign({}, o || {}, {
+        method: e,
+        url: t,
+        data: r
+      }));
+    };
+  });
+  const p = new f();
   return {
-    yi: [...new Set(_0x128b39)].slice(0, 6),
-    ji: [...new Set(_0x76bcfa)].slice(0, 6)
+    Axios: f,
+    axios: p,
+    createAxios: function (e) {
+      return new f(e);
+    },
+    normalizeAdapter: d,
+    AxiosError: e,
+    InterceptorManager: t
   };
 }
-function getYiJiSimple(_0x1e6d9f, _0x425b2a) {
-  const _0x95ebc9 = getTraditionalYiJi(_0x1e6d9f);
-  return _0x425b2a === 0 ? _0x95ebc9.yi : _0x95ebc9.ji;
+if ("object" == typeof module && module.exports) {
+  module.exports = dt;
 }
-function getWeekOfYear(_0xaf582f) {
-  const _0x2135da = new Date(Date.UTC(_0xaf582f.getFullYear(), _0xaf582f.getMonth(), _0xaf582f.getDate()));
-  const _0x361143 = _0x2135da.getUTCDay() || 7;
-  _0x2135da.setUTCDate(_0x2135da.getUTCDate() + 4 - _0x361143);
-  const _0x6968d9 = new Date(Date.UTC(_0x2135da.getUTCFullYear(), 0, 1));
-  return Math.ceil(((_0x2135da - _0x6968d9) / 86400000 + 1) / 7);
+const ft = u.userAgent,
+  pt = u.noteHeaders,
+  {
+    Axios: yt
+  } = dt(),
+  gt = new yt({
+    timeout: u.defaultTimeout,
+    adapter: async t => async function (t, n = {}) {
+      switch (typeof t) {
+        case "object":
+          {
+            t = {
+              ...n,
+              ...t
+            };
+            break;
+          }
+        case "string":
+          {
+            t = {
+              ...n,
+              url: t
+            };
+            break;
+          }
+        default:
+          {
+            throw new TypeError(`${Function.name}: 参数类型错误, resource 必须为对象或字符串`);
+          }
+      }
+      t.method || (t.method = "GET", (t.body ?? t.bodyBytes) && (t.method = "POST"));
+      delete t.headers?.Host;
+      delete t.headers?.[":authority"];
+      delete t.headers?.["Content-Length"];
+      delete t.headers?.["content-length"];
+      const i = t.method.toLocaleLowerCase();
+      t.timeout || (t.timeout = 5);
+      t.timeout && (t.timeout = Number.parseInt(t.timeout, 10), t.timeout > 500 && (t.timeout = Math.round(t.timeout / 1e3)));
+      if (t.timeout) {
+        switch (e) {
+          case "Loon":
+            {}
+          case "Quantumult X":
+            {}
+          case "Node.js":
+            {
+              t.timeout = 1e3 * t.timeout;
+            }
+        }
+      }
+      switch (e) {
+        case "Loon":
+          {}
+        case "Surge":
+          {}
+        case "Stash":
+          {}
+        case "Egern":
+          {}
+        case "Shadowrocket":
+          {}
+        default:
+          {
+            if (t.policy) {
+              switch (e) {
+                case "Loon":
+                  {
+                    t.node = t.policy;
+                    break;
+                  }
+                case "Stash":
+                  {
+                    r.set(t, "headers.X-Stash-Selected-Proxy", encodeURI(t.policy));
+                    break;
+                  }
+                case "Shadowrocket":
+                  {
+                    r.set(t, "headers.X-Surge-Proxy", t.policy);
+                  }
+              }
+            }
+            switch ("boolean" == typeof t.redirection && (t["auto-redirect"] = t.redirection), t.bodyBytes && !t.body && (t.body = t.bodyBytes, t.bodyBytes = 0), (t.headers?.Accept || t.headers?.accept)?.split(";")?.[0]) {
+              case "application/protobuf":
+                {}
+              case "application/x-protobuf":
+                {}
+              case "application/vnd.google.protobuf":
+                {}
+              case "application/vnd.apple.flatbuffer":
+                {}
+              case "application/grpc":
+                {}
+              case "application/grpc+proto":
+                {}
+              case "application/octet-stream":
+                {
+                  t["binary-mode"] = !0;
+                }
+            }
+            return new Promise((e, r) => {
+              globalThis.$httpClient[i](t, (n, i, s) => {
+                n ? r(n) : (i.ok = /^2\d\d$/.test(i.status), i.statusCode = i.status, i.statusText = o[i.status], s && (i.body = s, 1 == t["binary-mode"] && (i.bodyBytes = s)), e(i));
+              });
+            });
+          }
+        case "Quantumult X":
+          {
+            t.policy && r.set(t, "opts.policy", t.policy);
+            "boolean" == typeof t["auto-redirect"] && r.set(t, "opts.redirection", t["auto-redirect"]);
+            t.body instanceof ArrayBuffer ? (t.bodyBytes = t.body, t.body = 0) : ArrayBuffer.isView(t.body) ? (t.bodyBytes = t.body.buffer.slice(t.body.byteOffset, t.body.byteLength + t.body.byteOffset), t.body = 0) : t.body && (t.bodyBytes = 0);
+            return Promise.race([globalThis.$task.fetch(t).then(e => {
+              switch (e.ok = /^2\d\d$/.test(e.statusCode), e.status = e.statusCode, e.statusText = o[e.status], (e.headers?.["Content-Type"] ?? e.headers?.["content-type"])?.split(";")?.[0]) {
+                case "application/protobuf":
+                  {}
+                case "application/x-protobuf":
+                  {}
+                case "application/vnd.google.protobuf":
+                  {}
+                case "application/vnd.apple.flatbuffer":
+                  {}
+                case "application/grpc":
+                  {}
+                case "application/grpc+proto":
+                  {}
+                case "application/octet-stream":
+                  {
+                    e.body = e.bodyBytes;
+                  }
+              }
+              e.bodyBytes = 0;
+              return e;
+            }, e => Promise.reject(e.error)), new Promise((e, r) => {
+              setTimeout(() => {
+                r(new Error(`${Function.name}: 请求超时, 请检查网络后重试`));
+              }, t.timeout);
+            })]);
+          }
+        case "Node.js":
+          {
+            switch (globalThis.fetch || (globalThis.fetch = require("node-fetch")), t["auto-cookie"]) {
+              case 0:
+                {}
+              case "true":
+                {}
+              case !0:
+                {}
+              case "1":
+                {}
+              case 1:
+                {}
+              default:
+                {
+                  globalThis.fetch?.cookieJar || (globalThis.fetch = require("fetch-cookie").default(globalThis.fetch));
+                }
+              case "false":
+                {}
+              case !1:
+                {}
+              case "0":
+                {}
+              case 0:
+                {}
+              case "-1":
+                {}
+              case -1:
+                {}
+            }
+            t.redirection ? t.redirect = "follow" : t.redirect = "manual";
+            const {
+              url: e,
+              ...r
+            } = t;
+            return Promise.race([globalThis.fetch(e, r).then(async e => {
+              const t = await e.arrayBuffer();
+              let r;
+              try {
+                r = e.headers.raw();
+              } catch {
+                r = Array.from(e.headers.entries()).reduce((e, [t, r]) => (e[t] ? e[t] = [...e[t], r] : e[t] = [r], e), {});
+              }
+              return {
+                ok: e.ok ?? /^2\d\d$/.test(e.status),
+                status: e.status,
+                statusCode: e.status,
+                statusText: e.statusText,
+                body: new TextDecoder("utf-8").decode(t),
+                bodyBytes: t,
+                headers: Object.fromEntries(Object.entries(r).map(([e, t]) => [e, "set-cookie" !== e.toLowerCase() ? t.toString() : t]))
+              };
+            }).catch(e => Promise.reject(e.message)), new Promise((e, r) => {
+              setTimeout(() => {
+                r(new Error(`${Function.name}: 请求超时, 请检查网络后重试`));
+              }, t.timeout);
+            })]);
+          }
+      }
+    }({
+      ...t,
+      timeout: "number" == typeof t.timeout ? Math.max(1, 1e3 * t.timeout) : t.timeout
+    })
+  }),
+  mt = "https://orches.yun.139.com/orchestration/auth-rebuild/token/v1.0/querySpecToken",
+  vt = "https://user-njs.yun.139.com/user/querySpecToken",
+  bt = e => `https://caiyun.feixin.10086.cn:7071/portal/auth/tyrzLogin.action?ssoToken=${encodeURIComponent(e)}`;
+function wt(e) {
+  return {
+    ssoForMCloud: async function () {
+      const t = await e.requestJson({
+        url: mt,
+        method: "post",
+        headers: {
+          Authorization: e.authorization,
+          "User-Agent": ft,
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Host: "orches.yun.139.com"
+        },
+        data: {
+          account: e.account,
+          toSourceId: "001005"
+        }
+      });
+      return t?.success ? t.data.token : null;
+    },
+    ssoForPortal: async function () {
+      const t = await e.requestJson({
+        url: vt,
+        method: "post",
+        headers: {
+          Authorization: rt(e.authorization),
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Host: "user-njs.yun.139.com",
+          "User-Agent": ft
+        },
+        data: {
+          phoneNumber: e.account,
+          toSourceId: "001003"
+        }
+      });
+      return t?.success ? t.data.token : null;
+    },
+    fetchJwt: async function (t) {
+      return e.requestJson({
+        url: bt(t),
+        method: "post",
+        headers: e.jwtHeaders
+      });
+    }
+  };
 }
-function getDayOfYear(_0x393ec9) {
-  return Math.floor((_0x393ec9 - new Date(_0x393ec9.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+const kt = "http://mnote.caiyun.feixin.10086.cn/noteServer/api/authTokenRefresh.do",
+  _t = "http://mnote.caiyun.feixin.10086.cn/noteServer/api/syncNotebookV3.do",
+  xt = "http://mnote.caiyun.feixin.10086.cn/noteServer/api/createNote.do";
+function St(e) {
+  return {
+    refreshNoteToken: async function () {
+      return e.request({
+        url: kt,
+        method: "post",
+        headers: pt,
+        data: {
+          authToken: e.authToken,
+          userPhone: e.account
+        },
+        throwHttpErrors: !1
+      });
+    },
+    syncNotebook: async function (t) {
+      return e.requestJson({
+        url: _t,
+        method: "post",
+        headers: t,
+        data: {
+          addNotebooks: [],
+          delNotebooks: [],
+          notebookRefs: [],
+          updateNotebooks: []
+        }
+      });
+    },
+    createNote: async function (t, r) {
+      const o = e.randomHex(32),
+        n = String(Date.now());
+      return e.request({
+        url: xt,
+        method: "post",
+        headers: t,
+        data: {
+          archived: 0,
+          attachmentdir: o,
+          attachmentdirid: "",
+          attachments: [],
+          audioInfo: {
+            audioDuration: 0,
+            audioSize: 0,
+            audioStatus: 0
+          },
+          contentid: "",
+          contents: [{
+            contentid: 0,
+            data: '<font size="3">000000</font>',
+            noteId: o,
+            sortOrder: 0,
+            type: "RICHTEXT"
+          }],
+          cp: "",
+          createtime: n,
+          description: "android",
+          expands: {
+            noteType: 0
+          },
+          latlng: "",
+          location: "",
+          noteid: o,
+          notestatus: 0,
+          remindtime: "",
+          remindtype: 1,
+          revision: "1",
+          sharecount: "0",
+          sharestatus: "0",
+          system: "mobile",
+          tags: [{
+            id: r,
+            orderIndex: "0",
+            text: "默认笔记本"
+          }],
+          title: "00000",
+          topmost: "0",
+          updatetime: n,
+          userphone: e.account,
+          version: "1.00",
+          visitTime: ""
+        },
+        throwHttpErrors: !1
+      });
+    }
+  };
 }
-function pad(_0x35e501) {
-  return _0x35e501 < 10 ? "0" + _0x35e501 : _0x35e501;
+const Bt = {
+    wxSign: "https://caiyun.feixin.10086.cn/market/playoffic/followSignInfo?isWx=true",
+    drawInfo: "https://caiyun.feixin.10086.cn/market/playoffic/drawInfo",
+    draw: "https://caiyun.feixin.10086.cn/market/playoffic/draw",
+    shake: "https://caiyun.feixin.10086.cn:7071/market/shake-server/shake/shakeIt?flag=1"
+  },
+  At = {
+    info: "https://caiyun.feixin.10086.cn/market/signin/hecheng1T/info?op=info",
+    invite: "https://caiyun.feixin.10086.cn/market/signin/hecheng1T/beinvite",
+    finish: "https://caiyun.feixin.10086.cn/market/signin/hecheng1T/finish?flag=true"
+  },
+  Tt = {
+    info: "https://caiyun.feixin.10086.cn/market/backupgift/info",
+    receive: "https://caiyun.feixin.10086.cn/market/backupgift/receive"
+  },
+  Ct = {
+    status: "https://caiyun.feixin.10086.cn/market/msgPushOn/task/status",
+    obtain: "https://caiyun.feixin.10086.cn/market/msgPushOn/task/obtain"
+  };
+function Et(e) {
+  return {
+    getWxSignInfo: async function () {
+      return e.requestJson({
+        url: Bt.wxSign,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    getDrawInfo: async function () {
+      return e.requestJson({
+        url: Bt.drawInfo,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    doDraw: async function () {
+      return e.requestJson({
+        url: Bt.draw,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    doShake: async function () {
+      return e.requestJson({
+        url: Bt.shake,
+        method: "post",
+        headers: e.jwtHeaders
+      });
+    },
+    getCloudGameInfo: async function () {
+      return e.requestJson({
+        url: At.info,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    inviteCloudGame: async function () {
+      return e.requestJson({
+        url: At.invite,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    finishCloudGame: async function () {
+      return e.requestJson({
+        url: At.finish,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    getBackupInfo: async function () {
+      return e.requestJson({
+        url: Tt.info,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    receiveBackupReward: async function () {
+      return e.requestJson({
+        url: Tt.receive,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    getMsgPushStatus: async function () {
+      return e.requestJson({
+        url: Ct.status,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    obtainMsgPushReward: async function (t) {
+      return e.requestJson({
+        url: Ct.obtain,
+        method: "post",
+        headers: e.jwtHeaders,
+        data: {
+          type: t
+        }
+      });
+    }
+  };
 }
-await Runing(CaishowWidget, args.widgetParameter, false);
+const $t = "https://caiyun.feixin.10086.cn/market/signin/page/info?client=app",
+  Rt = "https://caiyun.feixin.10086.cn/market/manager/commonMarketconfig/getByMarketRuleName?marketName=sign_in_3",
+  zt = e => `https://caiyun.feixin.10086.cn/market/signin/task/taskList?marketname=${e}`,
+  Dt = e => `https://caiyun.feixin.10086.cn/market/signin/task/click?key=task&id=${e}`,
+  Ht = "https://caiyun.feixin.10086.cn/market/signin/page/receive",
+  Mt = e => `https://caiyun.feixin.10086.cn/market/prizeApi/checkPrize/getUserPrizeLogPage?currPage=1&pageSize=15&_=${e}`,
+  jt = "https://caiyun.feixin.10086.cn/market/signin/page/taskExpansion",
+  It = e => `https://caiyun.feixin.10086.cn/market/signin/page/receiveTaskExpansion?acceptDate=${e}`;
+function Ft(e) {
+  return {
+    getSigninStatus: async function () {
+      return e.requestJson({
+        url: $t,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    doSignin: async function () {
+      return e.requestJson({
+        url: Rt,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    getTaskList: async function (t) {
+      return e.requestJson({
+        url: zt(t),
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    clickTask: async function (t, r = {}) {
+      return e.requestJson({
+        url: Dt(t),
+        method: "get",
+        headers: e.jwtHeaders,
+        ...r
+      });
+    },
+    receiveClouds: async function () {
+      return e.requestJson({
+        url: Ht,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    getPrizeLog: async function (t) {
+      return e.requestJson({
+        url: Mt(t),
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    getTaskExpansion: async function () {
+      return e.requestJson({
+        url: jt,
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    },
+    receiveTaskExpansion: async function (t) {
+      return e.requestJson({
+        url: It(t),
+        method: "get",
+        headers: e.jwtHeaders
+      });
+    }
+  };
+}
+const Nt = "http://ose.caiyun.feixin.10086.cn/richlifeApp/devapp/IUploadAndDownload",
+  Pt = "https://ose.caiyun.feixin.10086.cn/richlifeApp/devapp/IUploadAndDownload",
+  Ot = "https://personal-kd-njs.yun.139.com/hcy/file/list",
+  Lt = "https://yun.139.com/orchestration/personalCloud-rebuild/outlink/v1.0/getOutLink";
+function qt(e) {
+  return {
+    uploadSimpleFile: async function () {
+      const t = ["<pcUploadFileRequest>", `<ownerMSISDN>${e.account}</ownerMSISDN>`, "<fileCount>1</fileCount>", "<totalSize>1</totalSize>", '<uploadContentList length="1">', "<uploadContentInfo>", "<comlexFlag>0</comlexFlag>", "<contentDesc><![CDATA[]]></contentDesc>", "<contentName><![CDATA[000000.txt]]></contentName>", "<contentSize>1</contentSize>", "<contentTAGList></contentTAGList>", "<digest>C4CA4238A0B923820DCC509A6F75849B</digest>", "<exif/>", "<fileEtag>0</fileEtag>", "<fileVersion>0</fileVersion>", "<updateContentID></updateContentID>", "</uploadContentInfo>", "</uploadContentList>", "<newCatalogName></newCatalogName>", "<parentCatalogID></parentCatalogID>", "<operation>0</operation>", "<path></path>", "<manualRename>2</manualRename>", '<autoCreatePath length="0"/>', "<tagID></tagID>", "<tagType></tagType>", "</pcUploadFileRequest>"].join("");
+      return e.request({
+        url: Nt,
+        method: "post",
+        headers: {
+          "x-huawei-uploadSrc": "1",
+          "x-ClientOprType": "11",
+          Connection: "keep-alive",
+          "x-NetType": "6",
+          "x-DeviceInfo": "6|127.0.0.1|1|10.0.1|Xiaomi|M2012K10C|CB63218727431865A48E691BFFDB49A1|02-00-00-00-00-00|android 11|1080X2272|zh||||032|",
+          "x-huawei-channelSrc": "10000023",
+          "x-MM-Source": "032",
+          "x-SvcType": "1",
+          APP_NUMBER: e.account,
+          Authorization: e.authorization,
+          "X-Tingyun-Id": "p35OnrDoP8k;c=2;r=1955442920;u=43ee994e8c3a6057970124db00b2442c::8B3D3F05462B6E4C",
+          Host: "ose.caiyun.feixin.10086.cn",
+          "User-Agent": "okhttp/3.11.0",
+          "Content-Type": "application/xml; charset=UTF-8",
+          Accept: "*/*"
+        },
+        data: t,
+        responseType: "text",
+        throwHttpErrors: !1
+      });
+    },
+    uploadLargeFile: async function () {
+      const t = e.randomWordArray(1024 * e.config.uploadSizeMb * 1024),
+        r = e.md5(t),
+        o = ["<pcUploadFileRequest>", `<ownerMSISDN>${e.account}</ownerMSISDN>`, "<fileCount>1</fileCount>", `<totalSize>${1024 * e.config.uploadSizeMb * 1024}</totalSize>`, '<uploadContentList length="1">', "<uploadContentInfo>", `<contentName><![CDATA[${e.config.uploadFilename}]]></contentName>`, `<contentSize>${1024 * e.config.uploadSizeMb * 1024}</contentSize>`, "<contentDesc></contentDesc>", "<contentTAGList></contentTAGList>", "<comlexFlag>0</comlexFlag>", "<comlexCID></comlexCID>", '<resCID length="0"></resCID>', `<digest>${r}</digest>`, `<extInfo length="1"><entry><key>modifyTime</key><vaule>${e.formatDate(new Date())}</vaule></entry></extInfo>`, "</uploadContentInfo>", "</uploadContentList>", "<newCatalogName></newCatalogName>", `<parentCatalogID>${e.config.uploadDirId}</parentCatalogID>`, "<operation>0</operation>", "<path></path>", "<manualRename>2</manualRename>", "</pcUploadFileRequest>"].join("");
+      return e.request({
+        url: Pt,
+        method: "post",
+        headers: {
+          "x-huawei-uploadSrc": "1",
+          "x-huawei-channelSrc": "10200153",
+          "x-ClientOprType": "11",
+          Connection: "keep-alive",
+          "x-NetType": "6",
+          "x-DeviceInfo": "||11|8.2.1.20241205|PC|V0lOLUVQSUxVNjE1TUlI|D1EA1E8B761492DFF34B18F05A5876E0|| Windows 10 (10.0)|1366X738|RW5nbGlzaA==|||",
+          "x-MM-Source": "032",
+          "x-SvcType": "1",
+          Authorization: rt(e.authorization),
+          Host: "ose.caiyun.feixin.10086.cn",
+          "User-Agent": "Mozilla/5.0",
+          "Content-Type": "text/xml;UTF-8",
+          Accept: "*/*"
+        },
+        data: o,
+        responseType: "text",
+        throwHttpErrors: !1
+      });
+    },
+    listPersonalFiles: async function () {
+      return e.requestJson({
+        url: Ot,
+        method: "post",
+        headers: {
+          "x-yun-op-type": "1",
+          "x-yun-net-type": "1",
+          "x-yun-module-type": "100",
+          "x-yun-app-channel": "10214200",
+          "x-yun-client-info": "1||8|5.10.1|microsoft|microsoft|306d1d1c-016c-4251-9ea6-951dca||windows 10 x64|||||",
+          "x-tingyun": "c=M|4Nl_NnGbjwY",
+          authorization: rt(e.authorization),
+          "x-yun-api-version": "v1",
+          xweb_xhr: "1",
+          "x-yun-tid": "cb8a2b4b-8eb7-4b05-b1c1-e41020",
+          "content-type": "application/json"
+        },
+        data: {
+          parentFileId: e.config.uploadDirId,
+          pageInfo: {
+            pageSize: 40,
+            pageCursor: "0|[9-1-0,11-0-1][JzIwMjQtMDMtMDlUMTA6MzM6MTguNzEyWic=,J0ZzSVEweF9NVVVDVmNqQ1plaTJ0SFZxSjVadjNsbEZ5bCc=]"
+          },
+          imageThumbnailStyleList: ["Big", "Small"],
+          orderDirection: "DESC",
+          orderBy: "updated_at"
+        }
+      });
+    },
+    createOutLink: async function (t, r) {
+      return e.requestJson({
+        url: Lt,
+        method: "post",
+        headers: {
+          ...e.jwtHeaders,
+          Authorization: rt(e.authorization)
+        },
+        data: {
+          getOutLinkReq: {
+            subLinkType: 0,
+            encrypt: 1,
+            coIDLst: [t],
+            caIDLst: [],
+            pubType: 1,
+            dedicatedName: r,
+            periodUnit: 1,
+            viewerLst: [],
+            extInfo: {
+              isWatermark: 0,
+              shareChannel: "3001"
+            },
+            period: 1,
+            commonAccountInfo: {
+              account: e.account,
+              accountType: 1
+            }
+          }
+        }
+      });
+    }
+  };
+}
+class Ut {
+  constructor(e, t, r) {
+    this.rawCookie = String(e || "").trim();
+    this.config = t;
+    this.reporter = r;
+    this.cookies = {};
+    this.jwtHeaders = {
+      "User-Agent": ft,
+      Accept: "*/*",
+      Host: "caiyun.feixin.10086.cn:7071"
+    };
+    this.noteToken = "";
+    this.noteAuth = "";
+    this.notebookId = "";
+    this.clickNum = t.clickNum;
+    this.drawTimes = t.drawTimes;
+    this.parseCookie();
+    this.requester = function (e, t) {
+      return {
+        request: r,
+        requestJson: async function (e, t = 3) {
+          return (await r({
+            responseType: "json",
+            ...e
+          }, t)).data;
+        },
+        requestText: async function (e, t = 3) {
+          return (await r({
+            responseType: "text",
+            ...e
+          }, t)).data;
+        }
+      };
+      async function r(r, o = 3) {
+        let n;
+        for (let s = 0; s < o; s += 1) try {
+          return await e.request({
+            timeout: t(),
+            responseType: "json",
+            ...r
+          });
+        } catch (e) {
+          n = e;
+          s < o - 1 && (await i(1e3));
+        }
+        throw n;
+      }
+    }(gt, () => this.config.requestTimeout);
+    const o = this;
+    var n;
+    this.api = {
+      ...wt(n = {
+        get authorization() {
+          return o.authorization;
+        },
+        get account() {
+          return o.account;
+        },
+        get authToken() {
+          return o.authToken;
+        },
+        get config() {
+          return o.config;
+        },
+        get jwtHeaders() {
+          return o.jwtHeaders;
+        },
+        request: (...e) => o.request(...e),
+        requestJson: (...e) => o.requestJson(...e),
+        requestText: (...e) => o.requestText(...e),
+        md5: e => Ze.MD5(e).toString().toUpperCase(),
+        randomHex: it,
+        randomWordArray: st,
+        formatDate: nt
+      }),
+      ...Ft(n),
+      ...Et(n),
+      ...St(n),
+      ...qt(n)
+    };
+  }
+  parseCookie() {
+    if (this.rawCookie.includes("#")) {
+      const [e, t, r] = this.rawCookie.split("#");
+      this.authorization = e;
+      this.account = t;
+      this.authToken = r || "";
+    } else {
+      this.authorization = this.rawCookie;
+      this.authToken = "00";
+      this.account = function (e) {
+        try {
+          const t = String(e || "").replace(/^Basic\s+/i, "");
+          return Ze.enc.Utf8.stringify(Ze.enc.Base64.parse(t)).split(":")[1] || "13800138000";
+        } catch (e) {
+          return "13800138000";
+        }
+      }(this.authorization);
+    }
+    this.maskedAccount = function (e) {
+      const t = String(e || "未知账号");
+      return t.length >= 7 ? `${t.slice(0, 3)}****${t.slice(7)}` : t;
+    }(this.account);
+    this.cookies.sensors_stay_time = String(Date.now());
+  }
+  log(e) {
+    this.reporter.line(`[${this.maskedAccount}] ${e}`);
+  }
+  async run() {
+    try {
+      if (!(await this.jwt())) {
+        return this.reporter.invalid.push(this.maskedAccount);
+      }
+      await this.signinStatus();
+      await this.clickTask();
+      await this.processTaskList("sign_in_3", "cloud_app");
+      await this.cloudGame();
+      await this.wxSign();
+      await this.shake();
+      await this.surplusNum();
+      await this.backupCloud();
+      await this.openSend();
+      await this.processTaskList("newsign_139mail", "email_app");
+      await this.receive();
+      this.config.uploadEnabled && (await this.uploadLargeFile());
+      this.config.shareEnabled && (await this.shareFile());
+    } catch (e) {
+      this.reporter.errors.push(`${this.maskedAccount}: ${e.message || String(e)}`);
+      this.log(`执行异常: ${function (e) {
+        if (e instanceof Error) {
+          return `${e.name}: ${e.message}`;
+        }
+        try {
+          return JSON.stringify(e);
+        } catch (t) {
+          return String(e);
+        }
+      }(e)}`);
+    }
+  }
+  async request(e, t = 3) {
+    return this.requester.request(e, t);
+  }
+  async requestJson(e, t = 3) {
+    return this.requester.requestJson(e, t);
+  }
+  async requestText(e, t = 3) {
+    return this.requester.requestText(e, t);
+  }
+  async ssoForMCloud() {
+    return this.api.ssoForMCloud();
+  }
+  async ssoForPortal() {
+    return this.api.ssoForPortal();
+  }
+  async jwt() {
+    const e = (await this.ssoForMCloud()) || (await this.ssoForPortal());
+    if (!e) {
+      this.log("获取 ssoToken 失败");
+      return !1;
+    }
+    const t = await this.api.fetchJwt(e);
+    return t && 0 === t.code ? (this.jwtHeaders.jwtToken = t.result.token, this.cookies.jwtToken = t.result.token, this.log("jwtToken 获取成功"), !0) : (this.log(`获取 jwtToken 失败: ${t?.msg || "未知错误"}`), !1);
+  }
+  async signinStatus() {
+    await this.sleep();
+    const e = await this.api.getSigninStatus();
+    if ("success" !== e?.msg) {
+      return this.log(`签到状态查询失败: ${e?.msg || "未知错误"}`);
+    }
+    if (e.result?.todaySignIn) {
+      return this.log("今日已签到");
+    }
+    const t = await this.api.doSignin();
+    this.log("success" === t?.msg ? "签到成功" : `签到失败: ${t?.msg || "未知错误"}`);
+  }
+  async clickTask() {
+    let e = 0;
+    for (let t = 0; t < this.clickNum; t += 1) try {
+      const t = await this.api.clickTask(319);
+      t?.result && (e += 1);
+      await i(200);
+    } catch (e) {}
+    this.log(e > 0 ? `戳一下成功 ${e} 次` : `戳一下未获得奖励 x ${this.clickNum}`);
+  }
+  async processTaskList(e, t) {
+    const r = await this.api.getTaskList(e);
+    await this.sleep();
+    const o = r?.result || {};
+    for (const e of Object.keys(o)) if (!["new", "hidden", "hiddenabc"].includes(e)) {
+      for (const r of o[e]) ot(t, e, r.id) || ("FINISH" !== r.state ? (this.log(`去完成任务: ${r.name}`), await this.doTask(r.id, e, t), await i(2e3)) : this.log(`已完成任务: ${r.name}`));
+    }
+  }
+  async doTask(e, t, r) {
+    await this.sleep();
+    await this.api.clickTask(e, {
+      throwHttpErrors: !1
+    });
+    if ("cloud_app" === r && "day" === t) {
+      switch (e) {
+        case 106:
+          {
+            await this.uploadZeroFile();
+            break;
+          }
+        case 107:
+          {
+            await this.createDefaultNote();
+          }
+      }
+    }
+  }
+  async refreshNoteToken() {
+    if (!this.authToken || "00" === this.authToken) {
+      return !1;
+    }
+    const e = await this.api.refreshNoteToken();
+    this.noteToken = e.headers?.NOTE_TOKEN || e.headers?.note_token || "";
+    this.noteAuth = e.headers?.APP_AUTH || e.headers?.app_auth || "";
+    return !(!this.noteToken || !this.noteAuth);
+  }
+  async createDefaultNote() {
+    if (!(await this.refreshNoteToken())) {
+      return this.log("跳过创建笔记: 缺少 authToken");
+    }
+    const e = {
+        ...pt,
+        APP_NUMBER: this.account,
+        APP_AUTH: this.noteAuth,
+        NOTE_TOKEN: this.noteToken
+      },
+      t = await this.api.syncNotebook(e);
+    this.notebookId = t?.notebooks?.[0]?.notebookId || "";
+    this.notebookId ? (await this.api.createNote(e, this.notebookId), this.log("创建笔记完成")) : this.log("获取默认笔记本失败");
+  }
+  async uploadZeroFile() {
+    await this.api.uploadSimpleFile();
+    this.log("上传任务文件完成");
+  }
+  async wxSign() {
+    await this.sleep();
+    const e = await this.api.getWxSignInfo();
+    this.log(e?.result?.todaySignIn ? "公众号签到成功" : `公众号签到失败: ${e?.msg || "可能未绑定公众号"}`);
+  }
+  async shake() {
+    let e = 0;
+    for (let t = 0; t < this.clickNum; t += 1) try {
+      const t = await this.api.doShake();
+      t?.result?.shakePrizeconfig?.name && (e += 1, this.log(`摇一摇获得: ${t.result.shakePrizeconfig.name}`));
+      await i(1e3);
+    } catch (e) {}
+    e || this.log(`摇一摇未中奖 x ${this.clickNum}`);
+  }
+  async surplusNum() {
+    await this.sleep();
+    const e = await this.api.getDrawInfo(),
+      t = e?.result?.surplusNumber || 0;
+    this.log(`剩余抽奖次数: ${t}`);
+    if (!(t <= 50 - this.drawTimes)) {
+      for (let e = 0; e < this.drawTimes; e += 1) {
+        await this.sleep();
+        const e = await this.api.doDraw();
+        this.log(0 === e?.code ? `抽奖成功: ${e?.result?.prizeName || ""}` : "抽奖失败");
+      }
+    }
+  }
+  async cloudGame() {
+    const e = await this.api.getCloudGameInfo(),
+      t = e?.result?.info?.curr || 0,
+      r = e?.result?.history?.[0]?.rank || "",
+      o = e?.result?.history?.[0]?.count || 0;
+    this.log(`云朵大作战剩余 ${t} 次, 排名 ${r}, 合成 ${o} 次`);
+    for (let e = 0; e < t; e += 1) {
+      await this.api.inviteCloudGame();
+      await at(1e4, 15e3);
+      await this.api.finishCloudGame();
+      this.log("云朵大作战完成一局");
+    }
+  }
+  async receive() {
+    const e = await this.api.receiveClouds();
+    await this.sleep();
+    const t = await this.api.getPrizeLog(Date.now()),
+      r = (t?.result?.result || []).filter(e => 1 === e.flag).map(e => e.prizeName).join("、"),
+      o = e?.result?.receive || 0,
+      n = e?.result?.total || 0;
+    this.reporter.amounts.push(`${this.maskedAccount}: 云朵 ${n}${r ? `, 待领取 ${r}` : ""}`);
+    this.log(`当前待领取 ${o} 云朵, 当前总数 ${n}`);
+  }
+  async backupCloud() {
+    const e = await this.api.getBackupInfo(),
+      t = e?.result?.state;
+    if (0 === t) {
+      const e = await this.api.receiveBackupReward();
+      this.log(`连续备份奖励: ${e?.result?.result || ""}`);
+    } else {
+      if (1 === t) {
+        this.log("本月连续备份奖励已领取");
+      }
+    }
+    await this.sleep();
+    const r = await this.api.getTaskExpansion();
+    if (r?.result?.preMonthBackup && !r?.result?.curMonthBackupTaskAccept) {
+      const e = await this.api.receiveTaskExpansion(r.result.acceptDate);
+      this.log(`膨胀云朵领取: ${e?.result?.cloudCount || e?.msg || ""}`);
+    }
+  }
+  async openSend() {
+    const e = await this.api.getMsgPushStatus();
+    if (1 === e?.result?.pushOn) {
+      for (const t of [1, 2]) {
+        const r = 1 === t ? "firstTaskStatus" : "secondTaskStatus";
+        if ([2, 3].includes(e.result[r])) {
+          const e = await this.api.obtainMsgPushReward(t);
+          this.log(`通知奖励${t}: ${e?.result?.description || "已处理"}`);
+        }
+      }
+    } else {
+      this.log("通知权限未开启");
+    }
+  }
+  async uploadLargeFile() {
+    this.config.uploadDirId ? (await this.api.uploadLargeFile(), this.log(`大文件上传任务已执行: ${this.config.uploadFilename}`)) : this.log("跳过大文件上传: 缺少 dirId");
+  }
+  async shareFile() {
+    if (!this.config.shareFilename || !this.config.uploadDirId) {
+      return this.log("跳过分享任务: 缺少 shareFilename 或 dirId");
+    }
+    const e = await this.api.listPersonalFiles(),
+      t = (e?.data?.items || []).find(e => String(e.name || "").includes(this.config.shareFilename));
+    if (!t) {
+      return this.log("未找到可分享文件");
+    }
+    const r = await this.api.createOutLink(t.fileId, t.name),
+      o = r?.data?.getOutLinkRes?.getOutLinkResSet?.[0]?.linkUrl || "";
+    this.log(o ? `分享成功: ${o}` : "分享失败");
+  }
+  async sleep() {
+    await at(this.config.delayMin, this.config.delayMax);
+  }
+}
+const Wt = c.displayName,
+  {
+    missingCookie: Jt,
+    runCompleted: Xt
+  } = l;
+async function Kt(r = ct()) {
+  if (!r.cookie) {
+    throw new Error(Jt);
+  }
+  const o = (i = r.cookie, String(i).split(/[@\n]/).map(e => e.trim()).filter(Boolean));
+  var i;
+  const s = new Ye();
+  s.info(`${Wt} 共获取到 ${o.length} 个账号`);
+  for (let e = 0; e < o.length; e += 1) {
+    s.section(`第 ${e + 1} 个账号`);
+    const t = new Ut(o[e], r, s);
+    await t.run();
+    e < o.length - 1 && (await at(5e3, 1e4));
+  }
+  const a = s.renderSummary();
+  t.log(a);
+  r.push && function (r = `ℹ️ ${e} 通知`, o = "", i = "", s = {}) {
+    const a = n(s);
+    switch (e) {
+      case "Surge":
+        {}
+      case "Loon":
+        {}
+      case "Stash":
+        {}
+      case "Egern":
+        {}
+      case "Shadowrocket":
+        {}
+      default:
+        {
+          $notification.post(r, o, i, a);
+          break;
+        }
+      case "Quantumult X":
+        {
+          $notify(r, o, i, a);
+        }
+      case "Node.js":
+        {}
+    }
+    t.group("📣 系统通知");
+    t.log(r, o, i, JSON.stringify(a, null, 2));
+    t.groupEnd();
+  }?.(Wt, Xt, a);
+  return {
+    summary: a,
+    reporter: s
+  };
+}
+const Vt = c.displayName,
+  {
+    runStart: Gt,
+    runFailed: Qt
+  } = l;
+!async function () {
+  try {
+    t.log(`\n${Vt} ${Gt}`);
+    await Kt(ct());
+  } catch (e) {
+    t.log(`${Vt} ${Qt}: ${e?.message || String(e)}`);
+    t.error(e instanceof Error ? e : new Error(String(e)));
+  } finally {
+    !function (n = {}) {
+      switch (e) {
+        case "Surge":
+          {
+            n.policy && r.set(n, "headers.X-Surge-Policy", n.policy);
+            t.log("🚩 执行结束!", `🕛 ${new Date().getTime() / 1e3 - $script.startTime} 秒`);
+            $done(n);
+            break;
+          }
+        case "Loon":
+          {
+            n.policy && (n.node = n.policy);
+            t.log("🚩 执行结束!", `🕛 ${(new Date() - $script.startTime) / 1e3} 秒`);
+            $done(n);
+            break;
+          }
+        case "Stash":
+          {
+            n.policy && r.set(n, "headers.X-Stash-Selected-Proxy", encodeURI(n.policy));
+            t.log("🚩 执行结束!", `🕛 ${(new Date() - $script.startTime) / 1e3} 秒`);
+            $done(n);
+            break;
+          }
+        case "Egern":
+          {}
+        case "Shadowrocket":
+          {
+            t.log("🚩 执行结束!");
+            $done(n);
+            break;
+          }
+        case "Quantumult X":
+          {
+            switch (n.policy && r.set(n, "opts.policy", n.policy), typeof (n = r.pick(n, ["status", "url", "headers", "body", "bodyBytes"])).status) {
+              case "number":
+                {
+                  n.status = `HTTP/1.1 ${n.status} ${o[n.status]}`;
+                  break;
+                }
+              case "string":
+                {}
+              case "undefined":
+                {
+                  break;
+                }
+              default:
+                {
+                  throw new TypeError(`${Function.name}: 参数类型错误, status 必须为数字或字符串`);
+                }
+            }
+            n.body instanceof ArrayBuffer ? (n.bodyBytes = n.body, n.body = 0) : ArrayBuffer.isView(n.body) ? (n.bodyBytes = n.body.buffer.slice(n.body.byteOffset, n.body.byteLength + n.body.byteOffset), n.body = 0) : n.body && (n.bodyBytes = 0);
+            t.log("🚩 执行结束!");
+            $done(n);
+            break;
+          }
+        case "Node.js":
+          {
+            t.log("🚩 执行结束!");
+            process.exit(1);
+            break;
+          }
+        default:
+          {
+            t.log("🚩 执行结束!");
+          }
+      }
+    }({});
+  }
+}();
